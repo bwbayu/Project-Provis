@@ -1,5 +1,5 @@
 # DANA USAHA (DAUS)
-![Logo][(/path/to/logo.png)](https://github.com/dauspairet/Provis/blob/main/percobaan_4/asset/images/logo-daus.png)
+![alt text](https://github.com/dauspairet/Provis/blob/main/percobaan_4/asset/images/logo-daus.png)
 
  ## Tugas Besar Provis Kelompok 2
  
