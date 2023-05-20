@@ -57,10 +57,14 @@ class _TambahRekeningPageState extends State<TambahRekeningPage> {
                   ),
                   SizedBox(height: 8),
                   Container(
+                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 148, 227, 191),
                       borderRadius: BorderRadius.circular(20),
                     ),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: TextField(
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
@@ -83,13 +87,21 @@ class _TambahRekeningPageState extends State<TambahRekeningPage> {
                   ),
                   SizedBox(height: 8),
                   Container(
+                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 148, 227, 191),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 12),
-                    child: DropdownButton<String>(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: DropdownButtonFormField<String>(
                       dropdownColor: Color.fromARGB(255, 148, 227, 191),
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
                       value: selectedBank,
                       onChanged: (newValue) {
                         setState(() {
@@ -100,8 +112,10 @@ class _TambahRekeningPageState extends State<TambahRekeningPage> {
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
-                          child: Text(value,
-                              style: TextStyle(color: Colors.white)),
+                          child: Text(
+                            value,
+                            style: TextStyle(color: Colors.white),
+                          ),
                         );
                       }).toList(),
                     ),
@@ -117,10 +131,14 @@ class _TambahRekeningPageState extends State<TambahRekeningPage> {
                   ),
                   SizedBox(height: 8),
                   Container(
+                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 148, 227, 191),
                       borderRadius: BorderRadius.circular(20),
                     ),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: TextField(
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
