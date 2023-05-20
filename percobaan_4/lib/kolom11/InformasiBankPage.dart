@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +26,7 @@ class InformasiBankPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple,
+      backgroundColor: Color.fromRGBO(45, 41, 96, 1),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,19 +35,36 @@ class InformasiBankPage extends StatelessWidget {
             child: Row(
               children: [
                 IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  color: Colors.white,
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    // Back button action
                   },
+                  icon: SvgPicture.asset(
+                    'asset/images/vector.svg',
+                    width: 30,
+                    height: 30,
+                  ),
                 ),
                 Spacer(),
                 Row(
                   children: [
                     CircleAvatar(child: Text('1')),
-                    Icon(Icons.arrow_forward),
+                    Transform.rotate(
+                      angle: 270.0 *
+                          (3.14 /
+                              180.0), // Rotate by 90 degrees as a double value
+                      child: SvgPicture.asset(
+                        'asset/images/sequence_arrow1.svg',
+                      ),
+                    ),
                     CircleAvatar(child: Text('2')),
-                    Icon(Icons.arrow_forward),
+                    Transform.rotate(
+                      angle: 270.0 *
+                          (3.14 /
+                              180.0), // Rotate by 90 degrees as a double value
+                      child: SvgPicture.asset(
+                        'asset/images/sequence_arrow1.svg',
+                      ),
+                    ),
                     CircleAvatar(child: Text('3')),
                   ],
                 ),
@@ -168,7 +186,7 @@ class InformasiBankPage extends StatelessWidget {
                     // Add your button logic here
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.purple,
+                    backgroundColor: Color.fromARGB(255, 151, 126, 242),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -211,7 +229,7 @@ class CircleIcon extends StatelessWidget {
         child: Text(
           number,
           style: TextStyle(
-            color: Colors.black,
+            color: Color.fromARGB(255, 255, 0, 0),
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
