@@ -191,6 +191,7 @@ class MyAppState extends State<MyApp> {
                   'Riwayat Wallet',
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -219,7 +220,7 @@ class MyAppState extends State<MyApp> {
                                 ),
                                 child: ListTile(
                                   title: Text(
-                                    'keterangan',
+                                    'Keterangan',
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
                                       color: Colors.black,
@@ -252,7 +253,7 @@ class MyAppState extends State<MyApp> {
               ),
               BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
-                currentIndex: 3, // Set the current index of the selected icon
+                currentIndex: 2, // Set the current index of the selected icon
                 selectedItemColor: Colors
                     .purple, // Set the default color of the active page icon to purple
                 onTap: (index) {
