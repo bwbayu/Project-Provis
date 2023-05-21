@@ -10,31 +10,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bank and Cards',
+      title: 'Pengajuan Pinjaman',
       home: PengajuanPinjamanPage(),
       debugShowCheckedModeBanner: false, // Remove the debug banner
     );
   }
 }
 
-class PengajuanPinjamanPage extends StatefulWidget {
-  @override
-  _PengajuanPinjamanPageState createState() => _PengajuanPinjamanPageState();
-}
-
-class _PengajuanPinjamanPageState extends State<PengajuanPinjamanPage> {
-  String selectedTenor = 'Harian';
-  String selectedAgunan = 'Saya';
-  String selectedBunga = '5%';
-  String selectedAngsuranPokok = '1';
-  String selectedAngsuranBunga = 'Ichi';
-
-  List<String> tenorList = ['Harian', 'Mingguan', 'Bulanan', 'Tahunan'];
-  List<String> agunanList = ['Saya', 'Tidak', 'Tahu'];
-  List<String> bungaList = ['5%', '10%', '15%'];
-  List<String> angsuranPokokList = ['1', '2', '3'];
-  List<String> angsuranBungaList = ['Ichi', 'Ni', 'San'];
-
+class PengajuanPinjamanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,16 +90,16 @@ class _PengajuanPinjamanPageState extends State<PengajuanPinjamanPage> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: TextField(
                   style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                     hintText: 'Rp 100000',
                     hintStyle: TextStyle(color: Colors.black),
                     border: InputBorder.none,
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
                   ),
                 ),
               ),
@@ -131,30 +114,26 @@ class _PengajuanPinjamanPageState extends State<PengajuanPinjamanPage> {
               ),
               SizedBox(height: 8.0),
               Container(
-                width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: selectedTenor,
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedTenor = newValue!;
-                      });
-                    },
-                    items:
-                        tenorList.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }).toList(),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: DropdownButtonFormField<String>(
+                  items: ['Hari', 'Bulan', 'Tahun'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (value) {},
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   ),
+                  dropdownColor: Colors.white,
                 ),
               ),
               SizedBox(height: 16.0),
@@ -168,30 +147,26 @@ class _PengajuanPinjamanPageState extends State<PengajuanPinjamanPage> {
               ),
               SizedBox(height: 8.0),
               Container(
-                width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: selectedAgunan,
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedAgunan = newValue!;
-                      });
-                    },
-                    items: agunanList
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }).toList(),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: DropdownButtonFormField<String>(
+                  items: ['Satu', 'Dua', 'Tiga'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (value) {},
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   ),
+                  dropdownColor: Colors.white,
                 ),
               ),
               SizedBox(height: 16.0),
@@ -205,30 +180,26 @@ class _PengajuanPinjamanPageState extends State<PengajuanPinjamanPage> {
               ),
               SizedBox(height: 8.0),
               Container(
-                width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: selectedBunga,
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedBunga = newValue!;
-                      });
-                    },
-                    items:
-                        bungaList.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }).toList(),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: DropdownButtonFormField<String>(
+                  items: ['5', '10', '15'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (value) {},
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   ),
+                  dropdownColor: Colors.white,
                 ),
               ),
               SizedBox(height: 16.0),
@@ -242,30 +213,26 @@ class _PengajuanPinjamanPageState extends State<PengajuanPinjamanPage> {
               ),
               SizedBox(height: 8.0),
               Container(
-                width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: selectedAngsuranPokok,
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedAngsuranPokok = newValue!;
-                      });
-                    },
-                    items: angsuranPokokList
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }).toList(),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: DropdownButtonFormField<String>(
+                  items: ['1', '2', '3'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (value) {},
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   ),
+                  dropdownColor: Colors.white,
                 ),
               ),
               SizedBox(height: 16.0),
@@ -279,30 +246,26 @@ class _PengajuanPinjamanPageState extends State<PengajuanPinjamanPage> {
               ),
               SizedBox(height: 8.0),
               Container(
-                width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: selectedAngsuranBunga,
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedAngsuranBunga = newValue!;
-                      });
-                    },
-                    items: angsuranBungaList
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }).toList(),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: DropdownButtonFormField<String>(
+                  items: ['1', '2', '3'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (value) {},
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   ),
+                  dropdownColor: Colors.white,
                 ),
               ),
               SizedBox(height: 16.0),
@@ -319,16 +282,16 @@ class _PengajuanPinjamanPageState extends State<PengajuanPinjamanPage> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: TextField(
                   style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                     hintText: 'Masukkan Tujuan Pinjaman',
                     hintStyle: TextStyle(color: Colors.black),
                     border: InputBorder.none,
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
                   ),
                 ),
               ),
@@ -346,16 +309,16 @@ class _PengajuanPinjamanPageState extends State<PengajuanPinjamanPage> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: TextField(
                   style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                     hintText: 'Masukkan Deskripsi Pinjaman',
                     hintStyle: TextStyle(color: Colors.black),
                     border: InputBorder.none,
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
                   ),
                 ),
               ),
@@ -370,7 +333,7 @@ class _PengajuanPinjamanPageState extends State<PengajuanPinjamanPage> {
                     minimumSize: Size(120, 40),
                     backgroundColor: Color.fromARGB(255, 151, 126, 242),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                   child: Text(
