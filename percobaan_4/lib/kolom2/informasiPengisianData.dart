@@ -28,30 +28,21 @@ class MyAppState extends State<MyApp> {
       theme: ThemeData.light(),
       title: 'Tubes',
       home: Scaffold(
-        backgroundColor: Color(0xFF2D2960),
+        backgroundColor: Color(0xFF2E2960),
+        appBar: AppBar(
+          backgroundColor: Color(0xFF2E2960),
+          automaticallyImplyLeading: true,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () {
+            },
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: SingleChildScrollView(
             child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(15, 15, 0, 0),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: Color(0xFFF8F6F6),
-                      size: 24,
-                    ),
-                    onPressed: () {
-                      print('IconButton pressed ...');
-                    },
-                    padding: EdgeInsets.zero,
-                    constraints: BoxConstraints(),
-                  ),
-                ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(50, 10, 10, 0),
                   child: Container(
@@ -59,28 +50,25 @@ class MyAppState extends State<MyApp> {
                     height: 150,
                     decoration: BoxDecoration(
                       color: Color(0xFF2D2960),
-                      shape: BoxShape.rectangle,
                     ),
                     child: ListTile(
-                      title: Text(
-                        'Mulai Pengisian Data',
-                        style: TextStyle(
-                          fontFamily: 'Outfit',
-                          color: Color(0xFFF7F8F9),
-                          fontSize: 25,
+                        title: Text(
+                          'Mulai Pengisian Data',
+                          style: TextStyle(
+                            fontFamily: 'Outfit',
+                            color: Color(0xFFF7F8F9),
+                            fontSize: 25,
+                          ),
                         ),
-                      ),
-                      subtitle: Text(
-                        'Sebelum melanjutkan pengisian data, mohon siapkan dokumen berikut untuk memudahkan pengisian data Anda.',
-                        style: TextStyle(
-                          fontFamily: 'Readex Pro',
-                          color: Color(0xFFF2F5F8),
-                          fontWeight: FontWeight.w300,
+                        subtitle: Text(
+                          'Sebelum melanjutkan pengisian data, mohon siapkan dokumen berikut untuk memudahkan pengisian data Anda.',
+                          style: TextStyle(
+                            fontFamily: 'Readex Pro',
+                            color: Color(0xFFF2F5F8),
+                            fontWeight: FontWeight.w300,
+                          ),
                         ),
-                      ),
-                      tileColor: Color(0xFF2D2960),
-                      dense: false,
-                    ),
+                        tileColor: Color(0xFF2D2960)),
                   ),
                 ),
                 Padding(
@@ -118,8 +106,6 @@ class MyAppState extends State<MyApp> {
                           fontWeight: FontWeight.w300,
                         ),
                       ),
-                      tileColor: Color(0xFF2D2960),
-                      dense: false,
                       contentPadding: EdgeInsets.all(16),
                     ),
                   ),
@@ -159,8 +145,6 @@ class MyAppState extends State<MyApp> {
                           fontWeight: FontWeight.w300,
                         ),
                       ),
-                      tileColor: Color(0xFF2D2960),
-                      dense: false,
                       contentPadding: EdgeInsets.all(16),
                     ),
                   ),
@@ -172,7 +156,6 @@ class MyAppState extends State<MyApp> {
                     color: Color(0xFF2D2960),
                   ),
                   child: Row(
-                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [

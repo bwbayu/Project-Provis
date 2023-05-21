@@ -21,13 +21,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
       title: 'Tubes',
       home: Scaffold(
         backgroundColor: Color(0xFF2E2960),
         appBar: AppBar(
           backgroundColor: Color(0xFF977EF2),
-          automaticallyImplyLeading: false,
           title: Text(
             'PINJAMAN',
             style: TextStyle(
@@ -37,14 +35,10 @@ class _MyAppState extends State<MyApp> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          actions: [],
-          centerTitle: false,
-          elevation: 2,
         ),
         body: SafeArea(
           top: true,
           child: Column(
-            mainAxisSize: MainAxisSize.max,
             children: [
               Container(
                 width: double.infinity,
@@ -54,8 +48,6 @@ class _MyAppState extends State<MyApp> {
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(25),
                     bottomRight: Radius.circular(25),
-                    topLeft: Radius.circular(0),
-                    topRight: Radius.circular(0),
                   ),
                 ),
                 child: Column(
@@ -73,7 +65,6 @@ class _MyAppState extends State<MyApp> {
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                           child: Row(
-                            mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
@@ -110,7 +101,6 @@ class _MyAppState extends State<MyApp> {
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                           child: Row(
-                            mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
@@ -146,7 +136,6 @@ class _MyAppState extends State<MyApp> {
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                           child: Row(
-                            mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
@@ -177,7 +166,6 @@ class _MyAppState extends State<MyApp> {
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                 child: Row(
-                  mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     TextButton(
@@ -204,9 +192,7 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {
-                        // Aksi ketika tombol "Selesai" diklik
-                      },
+                      onPressed: () {},
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
                         backgroundColor: Colors.transparent,
@@ -227,9 +213,7 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {
-                        // Aksi ketika tombol "Semua" diklik
-                      },
+                      onPressed: () {},
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
                         backgroundColor: Colors.transparent,
@@ -255,9 +239,7 @@ class _MyAppState extends State<MyApp> {
               Padding(
                 padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
                 child: ElevatedButton(
-                  onPressed: () {
-                    // Add your button press logic here
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     onPrimary: Colors.black,
@@ -293,7 +275,6 @@ class _MyAppState extends State<MyApp> {
                         child: ListView.builder(
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: 10,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
@@ -301,16 +282,12 @@ class _MyAppState extends State<MyApp> {
                               child: Container(
                                 width: double.infinity,
                                 height: 200,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
                                 child: Column(
-                                  mainAxisSize: MainAxisSize.max,
                                   children: [
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(8),
                                       child: Image.network(
-                                        'https://picsum.photos/seed/260/600',
+                                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
                                         width: double.infinity,
                                         height: 120,
                                         fit: BoxFit.cover,
@@ -326,12 +303,10 @@ class _MyAppState extends State<MyApp> {
                                         padding:
                                             EdgeInsets.fromLTRB(20, 0, 20, 0),
                                         child: Row(
-                                          mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Column(
-                                              mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               crossAxisAlignment:

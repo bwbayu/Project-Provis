@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,21 +24,19 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
       title: 'Tubes',
       home: Scaffold(
         backgroundColor: Color(0xFF2E2960),
         appBar: AppBar(
           backgroundColor: Color(0xFF2E2960),
-          automaticallyImplyLeading: false,
-          actions: [],
-          centerTitle: false,
-          elevation: 2,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () {},
+          ),
         ),
         body: SafeArea(
           top: true,
           child: Column(
-            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
@@ -47,9 +44,7 @@ class MyAppState extends State<MyApp> {
                 child: Container(
                   width: double.infinity,
                   height: 60,
-                  decoration: BoxDecoration(),
                   child: Row(
-                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -91,7 +86,7 @@ class MyAppState extends State<MyApp> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
-                      width: 160,
+                      width: 140,
                       height: 80,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -127,7 +122,7 @@ class MyAppState extends State<MyApp> {
                       ),
                     ),
                     Container(
-                      width: 160,
+                      width: 140,
                       height: 80,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -138,7 +133,7 @@ class MyAppState extends State<MyApp> {
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 15,
                             ),
                           ),
                           Container(
@@ -171,7 +166,7 @@ class MyAppState extends State<MyApp> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
-                      width: 160,
+                      width: 140,
                       height: 80,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -207,7 +202,7 @@ class MyAppState extends State<MyApp> {
                       ),
                     ),
                     Container(
-                      width: 160,
+                      width: 140,
                       height: 80,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -284,7 +279,7 @@ class MyAppState extends State<MyApp> {
                                         fontFamily: 'Readex Pro',
                                         color: Colors.white,
                                         fontSize: 20,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.normal,
                                       ),
                                     ),
                                   ],
@@ -312,7 +307,7 @@ class MyAppState extends State<MyApp> {
                                         fontFamily: 'Readex Pro',
                                         color: Colors.white,
                                         fontSize: 20,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.normal,
                                       ),
                                     ),
                                   ],
@@ -345,7 +340,7 @@ class MyAppState extends State<MyApp> {
                                         fontFamily: 'Readex Pro',
                                         color: Colors.white,
                                         fontSize: 20,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.normal,
                                       ),
                                     ),
                                   ],
@@ -373,7 +368,7 @@ class MyAppState extends State<MyApp> {
                                         fontFamily: 'Readex Pro',
                                         color: Colors.white,
                                         fontSize: 20,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.normal,
                                       ),
                                     ),
                                   ],
@@ -390,15 +385,12 @@ class MyAppState extends State<MyApp> {
               Padding(
                 padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                 child: ElevatedButton(
-                  onPressed: () {
-                    print('Button pressed ...');
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xFF977EF2),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    elevation: 3,
                     padding: EdgeInsets.symmetric(vertical: 20),
                   ),
                   child: Text(

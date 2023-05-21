@@ -30,8 +30,6 @@ class MyAppState extends State<MyApp> {
         body: SafeArea(
           top: true,
           child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
@@ -43,7 +41,6 @@ class MyAppState extends State<MyApp> {
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Column(
-                    mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
@@ -60,7 +57,6 @@ class MyAppState extends State<MyApp> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                         child: Row(
-                          mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -83,22 +79,22 @@ class MyAppState extends State<MyApp> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                 child: Row(
-                  mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         ElevatedButton(
-                          onPressed: () {
-                            print('Button pressed ...');
-                          },
-                          child: Text(
-                            'Tarik Dana',
-                            style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Colors.white,
-                              fontSize: 16,
+                          onPressed: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Tarik Dana',
+                              style: TextStyle(
+                                fontFamily: 'Readex Pro',
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
@@ -138,15 +134,16 @@ class MyAppState extends State<MyApp> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         ElevatedButton(
-                          onPressed: () {
-                            print('Button pressed ...');
-                          },
-                          child: Text(
-                            'Isi Dana',
-                            style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Colors.white,
-                              fontSize: 16,
+                          onPressed: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Isi Dana',
+                              style: TextStyle(
+                                fontFamily: 'Readex Pro',
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
@@ -191,10 +188,9 @@ class MyAppState extends State<MyApp> {
                   'Riwayat Wallet',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
               ),
               Flexible(
@@ -204,9 +200,7 @@ class MyAppState extends State<MyApp> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                         child: ListView.builder(
-                          padding: EdgeInsets.zero,
                           shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: 10,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
@@ -220,7 +214,7 @@ class MyAppState extends State<MyApp> {
                                 ),
                                 child: ListTile(
                                   title: Text(
-                                    'Keterangan',
+                                    'keterangan',
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
                                       color: Colors.black,
@@ -240,7 +234,6 @@ class MyAppState extends State<MyApp> {
                                     color: Colors.black,
                                     size: 20,
                                   ),
-                                  dense: false,
                                 ),
                               ),
                             );
@@ -253,12 +246,10 @@ class MyAppState extends State<MyApp> {
               ),
               BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
-                currentIndex: 2, // Set the current index of the selected icon
+                currentIndex: 2,
                 selectedItemColor: Colors
                     .purple, // Set the default color of the active page icon to purple
                 onTap: (index) {
-                  // Handle bottom navigation icon tap
-                  // Use the index parameter to determine the tapped icon
                 },
                 items: [
                   BottomNavigationBarItem(
