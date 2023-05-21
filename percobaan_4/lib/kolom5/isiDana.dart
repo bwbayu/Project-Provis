@@ -24,6 +24,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(),
       title: 'Tubes',
       home: Scaffold(
         backgroundColor: Color(0xFF2E2960),
@@ -33,8 +34,12 @@ class _MyAppState extends State<MyApp> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
+              Navigator.of(context).pop();
             },
           ),
+          actions: [],
+          centerTitle: true,
+          elevation: 4,
         ),
         body: SafeArea(
           top: true,
@@ -48,30 +53,48 @@ class _MyAppState extends State<MyApp> {
                   height: 60,
                   decoration: BoxDecoration(
                     color: Color(0xFF2D2960),
+                    shape: BoxShape.rectangle,
                   ),
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-                    child: Text(
-                      'Mau isi saldo dengan cara apa ?',
-                      style: TextStyle(
-                        fontFamily: 'Outfit',
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Mau isi saldo dengan cara',
+                          style: TextStyle(
+                            fontFamily: 'Outfit',
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'apa?',
+                          style: TextStyle(
+                            fontFamily: 'Outfit',
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                child: Text(
-                  'Transfer Bank',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Transfer Bank',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
                 ),
               ),
               Flexible(
@@ -83,6 +106,7 @@ class _MyAppState extends State<MyApp> {
                         child: ListView.builder(
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: 10,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
@@ -115,6 +139,7 @@ class _MyAppState extends State<MyApp> {
                                       size: 20,
                                     ),
                                     onPressed: () {
+                                      // Add your onPressed logic here
                                     },
                                   ),
                                 ),
