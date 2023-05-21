@@ -21,22 +21,15 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
       title: 'Tubes',
       home: Scaffold(
         backgroundColor: Color(0xFF2E2960),
         appBar: AppBar(
           backgroundColor: Color(0xFF2E2960),
-          automaticallyImplyLeading: true,
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+            onPressed: () {},
           ),
-          actions: [],
-          centerTitle: true,
-          elevation: 4,
         ),
         body: Column(
           children: [
@@ -144,13 +137,16 @@ class _MyAppState extends State<MyApp> {
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                        child: Text(
-                          'Ajukan Perpanjangan',
-                          style: TextStyle(
-                            fontFamily: 'Readex Pro',
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                        child: TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Ajukan Perpanjangan',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),

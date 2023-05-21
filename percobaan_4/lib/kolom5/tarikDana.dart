@@ -23,7 +23,6 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
       title: 'Tubes',
       home: Scaffold(
         backgroundColor: const Color(0xFF2E2960),
@@ -32,17 +31,12 @@ class MyAppState extends State<MyApp> {
           automaticallyImplyLeading: true,
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+            onPressed: () {},
           ),
-          centerTitle: true,
-          elevation: 4,
         ),
         body: SafeArea(
           top: true,
           child: Column(
-            mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
                 padding: EdgeInsets.all(16.0),
@@ -65,9 +59,7 @@ class MyAppState extends State<MyApp> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                 child: ElevatedButton(
-                  onPressed: () {
-                    // Add your desired functionality here
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     primary: const Color(0xFFFCB58F),
                     shape: RoundedRectangleBorder(
@@ -92,7 +84,6 @@ class MyAppState extends State<MyApp> {
                       color: Colors.black,
                       size: 20,
                     ),
-                    dense: false,
                   ),
                 ),
               ),
@@ -104,12 +95,12 @@ class MyAppState extends State<MyApp> {
                   decoration: BoxDecoration(),
                   child: Text(
                     'Rekening bank',
-                    style:
-                        Theme.of(context).textTheme.headline5!.merge(TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Colors.white,
-                              fontWeight: FontWeight.w300,
-                            )),
+                    style: TextStyle(
+                      fontFamily: 'Readex Pro',
+                      color: Colors.white,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 24,
+                    ),
                   ),
                 ),
               ),
@@ -137,48 +128,38 @@ class MyAppState extends State<MyApp> {
                                   padding:
                                       const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                   child: Row(
-                                    mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
                                     children: [
                                       Text(
                                         'Bank',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline4!
-                                            .merge(TextStyle(
-                                              fontFamily: 'Outfit',
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w600,
-                                            )),
+                                        style: TextStyle(
+                                          fontFamily: 'Outfit',
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 28,
+                                        ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional
-                                            .fromSTEB(0, 10, 0, 10),
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 10, 0, 10),
                                         child: Column(
-                                          mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Text(
                                               'Nama Orang',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline6!
-                                                  .merge(TextStyle(
-                                                    fontFamily: 'Readex Pro',
-                                                    fontWeight: FontWeight.w500,
-                                                  )),
+                                              style: TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 20,
+                                              ),
                                             ),
                                             Text(
                                               '12345678909',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline6!
-                                                  .merge(TextStyle(
-                                                    fontFamily: 'Readex Pro',
-                                                    fontWeight: FontWeight.w500,
-                                                  )),
+                                              style: TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 20,
+                                              ),
                                             ),
                                           ],
                                         ),
