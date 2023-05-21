@@ -27,26 +27,18 @@ class MyAppState extends State<MyApp> {
       title: 'Tubes',
       home: Scaffold(
         backgroundColor: Color(0xFF2D2960),
+        appBar: AppBar(
+          backgroundColor: Color(0xFF2E2960),
+          automaticallyImplyLeading: true,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () {},
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(15, 15, 0, 0),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Color(0xFFF8F6F6),
-                    size: 24,
-                  ),
-                  onPressed: () {
-                    print('IconButton pressed ...');
-                  },
-                ),
-              ),
               Padding(
                 padding: EdgeInsets.fromLTRB(30, 10, 10, 0),
                 child: Container(
@@ -54,7 +46,6 @@ class MyAppState extends State<MyApp> {
                   height: 100,
                   decoration: BoxDecoration(
                     color: Color(0xFF2D2960),
-                    shape: BoxShape.rectangle,
                   ),
                   child: ListTile(
                     title: Text(
@@ -73,8 +64,6 @@ class MyAppState extends State<MyApp> {
                         fontWeight: FontWeight.w300,
                       ),
                     ),
-                    tileColor: Color(0xFF2D2960),
-                    dense: false,
                   ),
                 ),
               ),
@@ -92,7 +81,7 @@ class MyAppState extends State<MyApp> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.network(
-                          'https://picsum.photos/seed/343/600',
+                          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
                           width: double.infinity,
                           height: 320,
                           fit: BoxFit.cover,
@@ -104,7 +93,6 @@ class MyAppState extends State<MyApp> {
                         children: [
                           ElevatedButton(
                             onPressed: () {
-                              print('Button pressed ...');
                             },
                             child: Text(
                               'Upload',
@@ -114,7 +102,7 @@ class MyAppState extends State<MyApp> {
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
-                              primary: Theme.of(context).primaryColor,
+                              primary: Color(0xffcb5f18),
                               elevation: 3,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
@@ -140,7 +128,6 @@ class MyAppState extends State<MyApp> {
                       padding: EdgeInsets.fromLTRB(0, 20, 10, 10),
                       child: ElevatedButton(
                         onPressed: () {
-                          print('Button pressed ...');
                         },
                         child: Text(
                           'Lanjutkan',
