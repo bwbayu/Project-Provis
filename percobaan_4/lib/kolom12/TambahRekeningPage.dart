@@ -16,14 +16,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class TambahRekeningPage extends StatefulWidget {
-  @override
-  _TambahRekeningPageState createState() => _TambahRekeningPageState();
-}
-
-class _TambahRekeningPageState extends State<TambahRekeningPage> {
-  String selectedBank = 'BNI';
-
+class TambahRekeningPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,14 +50,11 @@ class _TambahRekeningPageState extends State<TambahRekeningPage> {
                   ),
                   SizedBox(height: 8),
                   Container(
-                    width: double.infinity,
+                    height: 50,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 148, 227, 191),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: TextField(
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
@@ -85,39 +75,27 @@ class _TambahRekeningPageState extends State<TambahRekeningPage> {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 16),
                   Container(
-                    width: double.infinity,
+                    height: 50,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 148, 227, 191),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 12),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: DropdownButtonFormField<String>(
-                      dropdownColor: Color.fromARGB(255, 148, 227, 191),
-                      decoration: InputDecoration(
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      value: selectedBank,
-                      onChanged: (newValue) {
-                        setState(() {
-                          selectedBank = newValue!;
-                        });
-                      },
-                      items: <String>['BNI', 'BRI', 'BCA']
-                          .map<DropdownMenuItem<String>>((String value) {
+                      items: ['BNI', 'BCA', 'BRI'].map((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
-                          child: Text(
-                            value,
-                            style: TextStyle(color: Colors.white),
-                          ),
+                          child: Text(value),
                         );
                       }).toList(),
+                      onChanged: (value) {},
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      ),
+                      dropdownColor: Colors.white,
                     ),
                   ),
                   SizedBox(height: 16),
@@ -131,14 +109,11 @@ class _TambahRekeningPageState extends State<TambahRekeningPage> {
                   ),
                   SizedBox(height: 8),
                   Container(
-                    width: double.infinity,
+                    height: 50,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 148, 227, 191),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: TextField(
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
