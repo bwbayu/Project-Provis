@@ -18,11 +18,6 @@ class MyApp extends StatelessWidget {
 }
 
 class InformasiBankPage extends StatelessWidget {
-  final ValueNotifier<String> _selectedBank = ValueNotifier<String>('BNI');
-  final List<String> _bankList = ['BNI', 'BCA', 'BRI'];
-
-  InformasiBankPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,31 +90,26 @@ class InformasiBankPage extends StatelessWidget {
             ),
           ),
           Container(
-            width: double.infinity,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
             ),
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: ValueListenableBuilder<String>(
-              valueListenable: _selectedBank,
-              builder: (context, value, child) {
-                return DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: value,
-                    items: _bankList.map((String bank) {
-                      return DropdownMenuItem<String>(
-                        value: bank,
-                        child: Text(bank),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      _selectedBank.value = newValue!;
-                    },
-                  ),
+            child: DropdownButtonFormField<String>(
+              items: ['BNI', 'BCA', 'BRI'].map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
                 );
-              },
+              }).toList(),
+              onChanged: (value) {},
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              ),
+              dropdownColor: Colors.white,
             ),
           ),
           Padding(
@@ -134,7 +124,6 @@ class InformasiBankPage extends StatelessWidget {
             ),
           ),
           Container(
-            width: double.infinity,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -142,7 +131,6 @@ class InformasiBankPage extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: TextField(
-              textAlign: TextAlign.center,
               decoration: InputDecoration(
                 hintText: 'Enter your account number',
                 border: InputBorder.none,
@@ -161,7 +149,6 @@ class InformasiBankPage extends StatelessWidget {
             ),
           ),
           Container(
-            width: double.infinity,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -169,7 +156,6 @@ class InformasiBankPage extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: TextField(
-              textAlign: TextAlign.center,
               decoration: InputDecoration(
                 hintText: 'Enter the account owner name',
                 border: InputBorder.none,
@@ -206,34 +192,6 @@ class InformasiBankPage extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class CircleIcon extends StatelessWidget {
-  final String number;
-
-  const CircleIcon({required this.number});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 40,
-      height: 40,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white,
-      ),
-      child: Center(
-        child: Text(
-          number,
-          style: TextStyle(
-            color: Color.fromARGB(255, 255, 0, 0),
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
       ),
     );
   }

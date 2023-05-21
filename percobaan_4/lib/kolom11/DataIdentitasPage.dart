@@ -11,24 +11,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Data Identitas UMKM',
-      home: DataIdentitasPage(),
+      home: _DataIdentitasPageState(),
       debugShowCheckedModeBanner: false, // Remove the debug banner
     );
   }
 }
 
-class DataIdentitasPage extends StatefulWidget {
-  @override
-  _DataIdentitasPageState createState() => _DataIdentitasPageState();
-}
-
-class _DataIdentitasPageState extends State<DataIdentitasPage> {
-  String selectedBentuk = 'Bulat';
-  String selectedKategori = 'S';
-
-  List<String> bentukList = ['Bulat', 'Persegi', 'Segitiga', 'Jajargenjang'];
-  List<String> kategoriList = ['S', 'M', 'L'];
-
+class _DataIdentitasPageState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,30 +93,24 @@ class _DataIdentitasPageState extends State<DataIdentitasPage> {
               ),
               SizedBox(height: 8.0),
               Container(
-                width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: selectedBentuk,
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedBentuk = newValue!;
-                      });
-                    },
-                    items: bentukList
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }).toList(),
+                child: DropdownButtonFormField<String>(
+                  items: ['Segitiga', 'Bulat', 'Persegi'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (value) {},
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   ),
+                  dropdownColor: Colors.white,
                 ),
               ),
               SizedBox(height: 16.0),
@@ -197,30 +180,24 @@ class _DataIdentitasPageState extends State<DataIdentitasPage> {
               ),
               SizedBox(height: 8.0),
               Container(
-                width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: selectedKategori,
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedKategori = newValue!;
-                      });
-                    },
-                    items: kategoriList
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }).toList(),
+                child: DropdownButtonFormField<String>(
+                  items: ['Kecil', 'Medium', 'Large'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (value) {},
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   ),
+                  dropdownColor: Colors.white,
                 ),
               ),
               SizedBox(height: 16.0),
