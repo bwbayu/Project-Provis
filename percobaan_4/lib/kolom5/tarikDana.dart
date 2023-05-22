@@ -113,6 +113,7 @@ class MyAppState extends State<MyApp> {
                         child: ListView.builder(
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: 10,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
