@@ -14,9 +14,18 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+  bool isTapped = false;
+  int _currentIndex = 2;
+
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void _onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 
   @override
@@ -245,12 +254,11 @@ class MyAppState extends State<MyApp> {
                 ),
               ),
               BottomNavigationBar(
+                currentIndex: _currentIndex,
+                onTap: _onTabTapped,
+                selectedItemColor: Colors.purple,
+                backgroundColor: Colors.white,
                 type: BottomNavigationBarType.fixed,
-                currentIndex: 2,
-                selectedItemColor: Colors
-                    .purple, // Set the default color of the active page icon to purple
-                onTap: (index) {
-                },
                 items: [
                   BottomNavigationBarItem(
                     icon: Icon(Icons.home),
