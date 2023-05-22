@@ -27,15 +27,17 @@ class WelcomePage extends StatelessWidget {
       backgroundColor: Color.fromRGBO(45, 41, 96, 1),
       body: Container(
         height: MediaQuery.of(context).size.height,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(left: 16),
-              child: Image.asset(
-                'asset/images/logo-daus.png',
-                width: 50,
-                height: 50,
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: 16),
+                child: Image.asset(
+                  'asset/images/logo-daus.png',
+                  width: 50,
+                  height: 50,
+                ),
               ),
             ),
             SizedBox(height: 60),
