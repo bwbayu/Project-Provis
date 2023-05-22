@@ -34,8 +34,7 @@ class MyAppState extends State<MyApp> {
           automaticallyImplyLeading: true,
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {
-            },
+            onPressed: () {},
           ),
         ),
         body: SafeArea(
@@ -52,23 +51,25 @@ class MyAppState extends State<MyApp> {
                       color: Color(0xFF2D2960),
                     ),
                     child: ListTile(
-                        title: Text(
-                          'Mulai Pengisian Data',
-                          style: TextStyle(
-                            fontFamily: 'Outfit',
-                            color: Color(0xFFF7F8F9),
-                            fontSize: 25,
-                          ),
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(
+                        'Mulai Pengisian Data',
+                        style: TextStyle(
+                          fontFamily: 'Outfit',
+                          color: Color(0xFFF7F8F9),
+                          fontSize: 25,
                         ),
-                        subtitle: Text(
-                          'Sebelum melanjutkan pengisian data, mohon siapkan dokumen berikut untuk memudahkan pengisian data Anda.',
-                          style: TextStyle(
-                            fontFamily: 'Readex Pro',
-                            color: Color(0xFFF2F5F8),
-                            fontWeight: FontWeight.w300,
-                          ),
+                      ),
+                      subtitle: Text(
+                        'Sebelum melanjutkan pengisian data, mohon siapkan dokumen berikut untuk memudahkan pengisian data Anda.',
+                        style: TextStyle(
+                          fontFamily: 'Readex Pro',
+                          color: Color(0xFFF2F5F8),
+                          fontWeight: FontWeight.w300,
                         ),
-                        tileColor: Color(0xFF2D2960)),
+                      ),
+                      tileColor: Color(0xFF2D2960),
+                    ),
                   ),
                 ),
                 Padding(
@@ -106,7 +107,6 @@ class MyAppState extends State<MyApp> {
                           fontWeight: FontWeight.w300,
                         ),
                       ),
-                      contentPadding: EdgeInsets.all(16),
                     ),
                   ),
                 ),
