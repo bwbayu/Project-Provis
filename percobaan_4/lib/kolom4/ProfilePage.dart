@@ -22,10 +22,17 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   bool isTapped = false;
+  int _currentIndex = 3;
 
   void _toggleTapState() {
     setState(() {
       isTapped = !isTapped;
+    });
+  }
+
+  void _onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
     });
   }
 
@@ -153,14 +160,11 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           Spacer(),
           BottomNavigationBar(
+            currentIndex: _currentIndex,
+            onTap: _onTabTapped,
+            selectedItemColor: Colors.purple,
+            backgroundColor: Colors.white,
             type: BottomNavigationBarType.fixed,
-            currentIndex: 3, // Set the current index of the selected icon
-            selectedItemColor: Colors
-                .purple, // Set the default color of the active page icon to purple
-            onTap: (index) {
-              // Handle bottom navigation icon tap
-              // Use the index parameter to determine the tapped icon
-            },
             items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
