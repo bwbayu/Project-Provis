@@ -32,10 +32,10 @@ class WelcomePage extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: EdgeInsets.only(left: 16),
+                padding: EdgeInsets.only(left: 0),
                 child: Image.asset(
                   'asset/images/logo-daus.png',
-                  width: 50,
+                  width: 100,
                   height: 50,
                 ),
               ),
