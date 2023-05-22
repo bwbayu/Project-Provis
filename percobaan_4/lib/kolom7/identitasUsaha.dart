@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'New Page',
       theme: ThemeData(primarySwatch: Colors.purple),
+      debugShowCheckedModeBanner: false,
       home: NewPage(),
     );
   }
