@@ -65,31 +65,53 @@ class _PendanaanPageState extends State<PendanaanPage> {
                 children: [
                   Expanded(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        Container(
-                          color: Colors.green,
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(
-                            'Left Container',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                            width: double.infinity,
+                            height: 320,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        Container(
-                          color: Colors.white,
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(
-                            'Rp xxx',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {},
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Rp xxx',
+                                    style: TextStyle(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Status',
+                                    style: TextStyle(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                primary: Color(0xffcb5f18),
+                                elevation: 3,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                padding: EdgeInsets.all(16),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       ],
                     ),
@@ -102,31 +124,53 @@ class _PendanaanPageState extends State<PendanaanPage> {
                 children: [
                   Expanded(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        Container(
-                          color: Colors.green,
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(
-                            'Left Container',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                            width: double.infinity,
+                            height: 320,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        Container(
-                          color: Colors.white,
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(
-                            'Rp xxx',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {},
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Rp xxx',
+                                    style: TextStyle(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Status',
+                                    style: TextStyle(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                primary: Color(0xffcb5f18),
+                                elevation: 3,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                padding: EdgeInsets.all(16),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       ],
                     ),
