@@ -9,137 +9,198 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomePage(),
+      home: LoginScreen(),
     );
   }
 }
 
-class WelcomePage extends StatelessWidget {
-  final List<String> imageList = [
-    'asset/images/kubo1.jpg',
-    'asset/images/kubo2.jpg',
-    'asset/images/kubo3.jpg',
-  ];
-
+class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(45, 41, 96, 1),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(left: 16),
-              child: Image.asset(
-                'asset/images/logo-daus.png',
-                width: 50,
-                height: 50,
-              ),
-            ),
-            SizedBox(height: 60),
-            Expanded(
-              child: ImageSlider(imageList: imageList),
-            ),
-            SizedBox(height: 60),
-            Center(
-              child: ElevatedButton(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              IconButton(
                 onPressed: () {
-                  // Lanjutkan button action
+                  // Facebook button action
+                },
+                icon: SvgPicture.asset(
+                  'asset/images/vector.svg',
+                  width: 30,
+                  height: 30,
+                ),
+              ),
+              SizedBox(height: 16),
+              Text(
+                'Tumbuhkan bisnis anda',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                'dengan cepat tanpa risau!',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: 16),
+              Text(
+                'Email',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: 8),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
+              Text(
+                'Password',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: 8),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  ),
+                ),
+              ),
+              SizedBox(height: 32),
+              ElevatedButton(
+                onPressed: () {
+                  // Masuk button action
                 },
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(300, 50),
-                  backgroundColor: Color.fromARGB(255, 151, 126, 242),
+                  minimumSize: Size(double.infinity, 70),
+                  backgroundColor: Color.fromARGB(
+                      255, 148, 227, 191), // Set the desired button color here
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
                 ),
                 child: Text(
-                  'Lanjutkan',
+                  'Masuk',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 16),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ImageSlider extends StatefulWidget {
-  final List<String> imageList;
-
-  ImageSlider({required this.imageList});
-
-  @override
-  _ImageSliderState createState() => _ImageSliderState();
-}
-
-class _ImageSliderState extends State<ImageSlider> {
-  PageController _pageController = PageController();
-  int _currentPage = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController.addListener(() {
-      setState(() {
-        _currentPage = _pageController.page!.round();
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        SizedBox(
-          height: 400,
-          child: PageView.builder(
-            controller: _pageController,
-            itemCount: widget.imageList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    widget.imageList[index],
-                    fit: BoxFit.cover,
+              SizedBox(height: 32),
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    // Forgot Password link action
+                  },
+                  child: Text(
+                    'Lupa Password?',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              );
-            },
+              ),
+              SizedBox(height: 8),
+              Center(
+                child: Text(
+                  'atau masuk dengan',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  IconButton(
+                    onPressed: () {
+                      // Facebook button action
+                    },
+                    icon: Image.asset(
+                      'asset/images/facebook.png',
+                      width: 24,
+                      height: 24,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      // Google button action
+                    },
+                    icon: Image.asset(
+                      'asset/images/google.png',
+                      width: 24,
+                      height: 24,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Belum punya akun?',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(width: 4),
+                  GestureDetector(
+                    onTap: () {
+                      // Daftar Sekarang / Sign Up link action
+                    },
+                    child: Text(
+                      'Daftar Sekarang',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
-        SizedBox(height: 16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List<Widget>.generate(widget.imageList.length, (int index) {
-            return Container(
-              width: 10,
-              height: 10,
-              margin: EdgeInsets.symmetric(horizontal: 4),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _currentPage == index ? Colors.white : Colors.grey,
-              ),
-            );
-          }),
-        ),
-      ],
+      ),
     );
   }
 }
