@@ -1,12 +1,4 @@
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
@@ -135,14 +127,6 @@ class BankAndCardsPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-    return MaterialApp(
-      title: 'Profile Page',
-      home: ProfilePage(),
-      debugShowCheckedModeBanner: false, // Remove the debug banner
     );
   }
 }
