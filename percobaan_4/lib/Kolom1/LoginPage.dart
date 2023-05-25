@@ -38,7 +38,7 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 16),
               Text(
-                'Tumbuhkan bisnis anda',
+                'Tumbuhkan bisnis anda TEST',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
