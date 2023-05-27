@@ -37,7 +37,7 @@ class RolePage extends StatelessWidget {
                 ),
               ),
               Text(
-                'Step to a better future?  aaa',
+                'Step to a better future?',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.white,
