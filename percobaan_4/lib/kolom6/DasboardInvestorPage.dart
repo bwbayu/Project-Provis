@@ -1,32 +1,54 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+// void main() {
+//   runApp(MyApp());
+// }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dashboard Investor',
-      home: DashboardPage(),
-      debugShowCheckedModeBanner: false, // Remove the debug banner
-    );
-  }
-}
+// class DashboardInvestor extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Dashboard Investor',
+//       home: myApp(),
+//       debugShowCheckedModeBanner: false, // Remove the debug banner
+//     );
+//   }
+// }
 
-class DashboardPage extends StatefulWidget {
-  @override
-  _DashboardPageState createState() => _DashboardPageState();
-}
+// class DashboardPage extends StatefulWidget {
+//   @override
+//   _DashboardPageState createState() => _DashboardPageState();
+// }
 
-class _DashboardPageState extends State<DashboardPage> {
-  int _currentIndex = 0;
+class DashboardInvestor extends StatelessWidget {
+  // int _currentIndex = 0;
 
+  // void _onTabTapped(int index) {
+  //   setState(() {
+  //     _currentIndex = index;
+  //   });
+  // }
   void _onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
+    // Perform actions based on the tapped icon
+    switch (index) {
+      case 0:
+        // Home icon tapped
+        // Perform the desired action
+
+        break;
+      case 1:
+        // List icon tapped
+        // Perform the desired action
+        break;
+      case 2:
+        // Wallet icon tapped
+        // Perform the desired action
+        break;
+      case 3:
+        // Profile icon tapped
+        // Perform the desired action
+        break;
+    }
   }
 
   @override
@@ -71,6 +93,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     child: ElevatedButton(
                       onPressed: () {
                         // Handle Verifikasi Akun button tap
+                        Navigator.pushNamed(context, '/formVerifikasi');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(151, 126, 242, 1),
@@ -293,7 +316,7 @@ class _DashboardPageState extends State<DashboardPage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
+        currentIndex: 0,
         onTap: _onTabTapped,
         selectedItemColor: Colors.purple,
         backgroundColor: Colors.white,

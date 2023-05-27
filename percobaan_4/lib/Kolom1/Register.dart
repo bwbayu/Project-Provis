@@ -1,20 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: RegisterPage(),
-    );
-  }
-}
-
 class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -28,7 +14,7 @@ class RegisterPage extends StatelessWidget {
             children: <Widget>[
               IconButton(
                 onPressed: () {
-                  // Facebook button action
+                  Navigator.of(context).pop();
                 },
                 icon: SvgPicture.asset(
                   'asset/images/vector.svg',
@@ -160,7 +146,8 @@ class RegisterPage extends StatelessWidget {
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  // Masuk button action
+                  // MASUK LOGIN PAGE
+                  Navigator.pushNamed(context, '/loginPage');
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 70),

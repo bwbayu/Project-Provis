@@ -1,20 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
-    );
-  }
-}
-
-class LoginScreen extends StatelessWidget {
+class RolePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +11,16 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: SvgPicture.asset(
+                  'asset/images/vector.svg',
+                  width: 30,
+                  height: 30,
+                ),
+              ),
               SizedBox(height: 16),
               Image.asset(
                 'asset/images/logo-daus-saja.png',
@@ -59,7 +56,8 @@ class LoginScreen extends StatelessWidget {
                 children: <Widget>[
                   ElevatedButton(
                     onPressed: () {
-                      // Investor button action
+                      // REGISTER DENGAN JENIS_USER = INVESTOR
+                      Navigator.pushNamed(context, '/registerPage');
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(300, 80),
@@ -73,7 +71,8 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () {
-                      // UMKM button action
+                      // REGISTER DENGAN JENIS_USER = BORROWER
+                      Navigator.pushNamed(context, '/registerPage');
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(300, 80),
@@ -88,6 +87,7 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Text(
+                // MASUK KE DASHBOARD INVESTOR SEBAGAI VISITOR (KALAU BIKIN)
                 'Not now',
                 style: TextStyle(
                   fontSize: 16,

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
+class formVerifikasi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,7 +12,9 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
           title: Text(''),
           backgroundColor: Colors.transparent,
@@ -50,7 +50,9 @@ class MyApp extends StatelessWidget {
                   ),
                   SizedBox(height: 8.0),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/dataDiri');
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -72,7 +74,32 @@ class MyApp extends StatelessWidget {
                   ),
                   SizedBox(height: 8.0),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/formData');
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.black,
+                          radius: 4.0,
+                        ),
+                        SizedBox(width: 8.0),
+                        Text('Dokumen', style: TextStyle(color: Colors.black)),
+                      ],
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 32.0, vertical: 16.0),
+                      shape: RoundedRectangleBorder(),
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/akunBank');
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -94,7 +121,9 @@ class MyApp extends StatelessWidget {
                   ),
                   SizedBox(height: 8.0),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/formTTD');
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -119,7 +148,9 @@ class MyApp extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/dashboardInvestor');
+                  },
                   child:
                       Text('Lanjutkan', style: TextStyle(color: Colors.black)),
                   style: ElevatedButton.styleFrom(primary: Color(0xFF977EF2)),

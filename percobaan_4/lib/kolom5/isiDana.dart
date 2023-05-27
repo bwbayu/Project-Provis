@@ -1,25 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  _MyAppState createState() {
-    return _MyAppState();
-  }
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+class isiDana extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

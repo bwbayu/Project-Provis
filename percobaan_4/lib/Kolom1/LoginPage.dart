@@ -1,20 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
-    );
-  }
-}
-
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -28,7 +14,7 @@ class LoginScreen extends StatelessWidget {
             children: <Widget>[
               IconButton(
                 onPressed: () {
-                  // Facebook button action
+                  Navigator.of(context).pop();
                 },
                 icon: SvgPicture.asset(
                   'asset/images/vector.svg',
@@ -101,7 +87,9 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: 32),
               ElevatedButton(
                 onPressed: () {
-                  // Masuk button action
+                  // MASUK KE DASHBOARD INVESTOR DAN BORROWER
+                  Navigator.pushNamed(context, '/dashboardInvestor');
+                  // Navigator.pushNamed(context, '/dashboardUMKM');
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 70),
@@ -123,7 +111,7 @@ class LoginScreen extends StatelessWidget {
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    // Forgot Password link action
+                    // MASUK KE PAGE LUPA PASSWORD (KALAU BIKIN)
                   },
                   child: Text(
                     'Lupa Password?',
@@ -185,7 +173,8 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(width: 4),
                   GestureDetector(
                     onTap: () {
-                      // Daftar Sekarang / Sign Up link action
+                      // MASUK KE ROLE SELECTION
+                      Navigator.pushNamed(context, '/roleSelectionPage');
                     },
                     child: Text(
                       'Daftar Sekarang',

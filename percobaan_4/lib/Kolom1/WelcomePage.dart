@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:percobaan_4/route/routes.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,6 +10,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: '/welcomePage',
+      routes: routes,
       home: WelcomePage(),
     );
   }
@@ -48,7 +51,7 @@ class WelcomePage extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // Lanjutkan button action
+                  Navigator.pushNamed(context, '/loginPage');
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(300, 50),

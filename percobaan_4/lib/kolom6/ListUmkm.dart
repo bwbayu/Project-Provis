@@ -1,33 +1,29 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class listUMKM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pendanaan',
-      home: PendanaanPage(),
+      home: myApp(),
       debugShowCheckedModeBanner: false, // Remove the debug banner
     );
   }
 }
 
-class PendanaanPage extends StatefulWidget {
-  @override
-  _PendanaanPageState createState() => _PendanaanPageState();
-}
+// class PendanaanPage extends StatefulWidget {
+//   @override
+//   _PendanaanPageState createState() => _PendanaanPageState();
+// }
 
-class _PendanaanPageState extends State<PendanaanPage> {
-  int _currentIndex = 0;
+class myApp extends StatelessWidget {
+  // int _currentIndex = 0;
 
-  void _onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
+  // void _onTabTapped(int index) {
+  //   setState(() {
+  //     _currentIndex = index;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -183,8 +179,8 @@ class _PendanaanPageState extends State<PendanaanPage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: _onTabTapped,
+        currentIndex: 1,
+        onTap: null,
         selectedItemColor: Colors.purple,
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,

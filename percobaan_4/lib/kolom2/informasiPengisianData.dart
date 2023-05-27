@@ -1,26 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-// 'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  MyAppState createState() {
-    return MyAppState();
-  }
-}
-
-class MyAppState extends State<MyApp> {
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+class formData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,7 +15,9 @@ class MyAppState extends State<MyApp> {
           automaticallyImplyLeading: true,
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
         body: SafeArea(
@@ -77,6 +60,7 @@ class MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Button pressed callback
+                      Navigator.pushNamed(context, '/formKTP');
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
@@ -115,6 +99,7 @@ class MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Button pressed callback
+                      Navigator.pushNamed(context, '/formNPWP');
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
@@ -130,7 +115,7 @@ class MyAppState extends State<MyApp> {
                         color: Color(0xFFF7F8F9),
                       ),
                       title: Text(
-                        'KTP',
+                        'NPWP (opsional)',
                         style: TextStyle(
                           fontFamily: 'Outfit',
                           color: Color(0xFFF7F8F9),
@@ -162,7 +147,9 @@ class MyAppState extends State<MyApp> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 20, 10, 10),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Text(

@@ -1,33 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  MyAppState createState() {
-    return MyAppState();
-  }
-}
-
-class MyAppState extends State<MyApp> {
-  bool isTapped = false;
-  int _currentIndex = 2;
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  void _onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
+class wallet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -255,8 +228,8 @@ class MyAppState extends State<MyApp> {
                 ),
               ),
               BottomNavigationBar(
-                currentIndex: _currentIndex,
-                onTap: _onTabTapped,
+                currentIndex: 2,
+                onTap: null,
                 selectedItemColor: Colors.purple,
                 backgroundColor: Colors.white,
                 type: BottomNavigationBarType.fixed,

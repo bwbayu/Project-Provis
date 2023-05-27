@@ -1,24 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  MyAppState createState() {
-    return MyAppState();
-  }
-}
-
-class MyAppState extends State<MyApp> {
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+class tarikDana extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

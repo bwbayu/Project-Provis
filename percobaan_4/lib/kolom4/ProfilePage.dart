@@ -1,41 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Profile Page',
-      home: ProfilePage(),
-      debugShowCheckedModeBanner: false, // Remove the debug banner
-    );
-  }
-}
-
-class ProfilePage extends StatefulWidget {
-  @override
-  _ProfilePageState createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-  bool isTapped = false;
-  int _currentIndex = 3;
-
-  void _toggleTapState() {
-    setState(() {
-      isTapped = !isTapped;
-    });
-  }
-
-  void _onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
+class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,17 +47,12 @@ class _ProfilePageState extends State<ProfilePage> {
                     width: 80,
                     height: 80,
                     child: InkWell(
-                      onTap: () {
-                        // Handle profile picture tap
-                        setState(() {
-                          isTapped = !isTapped;
-                        });
-                      },
+                      onTap: () {},
                       borderRadius: BorderRadius.circular(40),
                       child: Icon(
                         Icons.account_circle,
                         size: 40,
-                        color: isTapped ? Colors.green : Colors.white,
+                        color: Colors.green,
                       ),
                     ),
                   ),
@@ -160,8 +120,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           Spacer(),
           BottomNavigationBar(
-            currentIndex: _currentIndex,
-            onTap: _onTabTapped,
+            currentIndex: 3,
             selectedItemColor: Colors.purple,
             backgroundColor: Colors.white,
             type: BottomNavigationBarType.fixed,

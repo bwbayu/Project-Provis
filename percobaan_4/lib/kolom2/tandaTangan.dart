@@ -1,24 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  MyAppState createState() {
-    return MyAppState();
-  }
-}
-
-class MyAppState extends State<MyApp> {
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+class formTTD extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,7 +14,9 @@ class MyAppState extends State<MyApp> {
           automaticallyImplyLeading: true,
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
         body: SafeArea(
@@ -92,8 +76,7 @@ class MyAppState extends State<MyApp> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           ElevatedButton(
-                            onPressed: () {
-                            },
+                            onPressed: () {},
                             child: Text(
                               'Upload',
                               style: TextStyle(
@@ -128,6 +111,7 @@ class MyAppState extends State<MyApp> {
                       padding: EdgeInsets.fromLTRB(0, 20, 10, 10),
                       child: ElevatedButton(
                         onPressed: () {
+                          Navigator.pop(context);
                         },
                         child: Text(
                           'Lanjutkan',

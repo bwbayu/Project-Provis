@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
+class dataDiri extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,7 +12,9 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
           title: Text(''),
           backgroundColor: Colors.transparent,
@@ -210,7 +210,9 @@ class MyApp extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child:
                       Text('Lanjutkan', style: TextStyle(color: Colors.black)),
                   style: ElevatedButton.styleFrom(primary: Color(0xFF977EF2)),
