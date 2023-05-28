@@ -22,7 +22,32 @@ import 'package:percobaan_4/kolom5/tarikDana.dart';
 import 'package:percobaan_4/kolom5/wallet.dart';
 // kolom 6
 import 'package:percobaan_4/kolom6/DasboardInvestorPage.dart';
-import 'package:percobaan_4/kolom6/ListUmkm.dart';
+// kolom 7
+import 'package:percobaan_4/kolom7/identitasUsaha.dart';
+import 'package:percobaan_4/kolom7/mulaiPendanaanInvestor.dart';
+import 'package:percobaan_4/kolom7/syarat&ketentuan.dart';
+import 'package:percobaan_4/kolom7/umkmPage.dart';
+// kolom 8
+import 'package:percobaan_4/kolom8/detailPortofolio.dart';
+import 'package:percobaan_4/kolom8/portofolio.dart';
+// kolom 9
+import 'package:percobaan_4/kolom9/DasboardUmkmPage.dart';
+// kolom 10
+import 'package:percobaan_4/kolom10/listPinjaman.dart';
+import 'package:percobaan_4/kolom10/pembayaran.dart';
+import 'package:percobaan_4/kolom10/rincianPinjaman.dart';
+// kolom 11
+import 'package:percobaan_4/kolom11/DataIdentitasPage.dart';
+import 'package:percobaan_4/kolom11/InformasiBankPage.dart';
+import 'package:percobaan_4/kolom11/PengajuanPinjaman.dart';
+// kolom 12
+import 'package:percobaan_4/kolom12/BankCardsPage.dart';
+import 'package:percobaan_4/kolom12/TambahRekeningPage.dart';
+// kolom 14
+import 'package:percobaan_4/kolom14/CallCenterPage.dart';
+import 'package:percobaan_4/kolom14/FAQPage.dart';
+import 'package:percobaan_4/kolom14/HelpCenterPage.dart';
+import 'package:percobaan_4/kolom14/PoinHelpPage.dart';
 
 // =====================================
 final Map<String, WidgetBuilder> routes = {
@@ -42,12 +67,37 @@ final Map<String, WidgetBuilder> routes = {
   '/formVerifikasi': (context) => formVerifikasi(),
   // kolom 4
   '/dataAkun': (context) => InformasiAkunPage(),
-  '/profile': (context) => ProfilePage(),
+  '/profile': (context) => profilePage(),
   // kolom 5
   '/isiDana': (context) => isiDana(),
   '/tarikDana': (context) => tarikDana(),
   '/wallet': (context) => wallet(),
   // kolom 6
   '/dashboardInvestor': (context) => DashboardInvestor(),
-  '/listUMKM': (context) => listUMKM(),
+  // kolom 7
+  '/IdentitasUsaha': (context) => IdentitasUsaha(),
+  '/MulaiPendanaanInvestor': (context) => MulaiPendanaanInvestor(),
+  '/SyaratKetentuan': (context) => SyaratKetentuan(),
+  '/UMKMPage': (context) => UMKMPage(),
+  // kolom 8
+  '/detailPortofolio': (context) => detailPortofolio(),
+  '/Portofolio': (context) => Portofolio(),
+  // kolom 9
+  '/DashboardUMKM': (context) => DashboardUMKM(),
+  // kolom 10
+  '/listPinjaman': (context) => listPinjaman(),
+  '/Pembayaran': (context) => Pembayaran(),
+  '/rincianPinjaman': (context) => rincianPinjaman(),
+  // kolom 11
+  '/DataIdentitasUMKM': (context) => DataIdentitasUMKM(),
+  '/PengajuanPinjamanPage': (context) => PengajuanPinjamanPage(),
+  '/InformasiBankPage': (context) => InformasiBankPage(),
+  // kolom 12
+  '/BankAndCardsPage': (context) => BankAndCardsPage(),
+  '/TambahRekeningPage': (context) => TambahRekeningPage(),
+  // kolom 14
+  '/CallCenterPage': (context) => CallCenterPage(),
+  '/FAQPage': (context) => FAQPage(),
+  '/HelpCenterPage': (context) => HelpCenterPage(),
+  '/PoinHelpPage': (context) => PoinHelpPage(),
 };

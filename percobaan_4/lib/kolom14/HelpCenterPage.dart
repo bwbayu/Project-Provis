@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class HelpCenterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Help Center',
-      home: HelpCenterPage(),
+      home: Page(),
       debugShowCheckedModeBanner: false, // Remove the debug banner
     );
   }
 }
 
-class HelpCenterPage extends StatelessWidget {
+class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

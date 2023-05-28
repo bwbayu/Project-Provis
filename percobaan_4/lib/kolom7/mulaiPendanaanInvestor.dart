@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
+class MulaiPendanaanInvestor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'New Page',
-      theme: ThemeData(
-        primarySwatch: Colors.purple
-      ),
-      home: NewPage(),
+      title: 'Pendanaan Investor',
+      theme: ThemeData(primarySwatch: Colors.purple),
+      home: Page(),
     );
   }
 }
 
-class NewPage extends StatefulWidget {
-  @override
-  _NewPageState createState() => _NewPageState();
-}
-
-class _NewPageState extends State<NewPage> {
-  final TextEditingController _controller = TextEditingController();
+class Page extends StatelessWidget {
   double _loanAmount = 0;
   double _interestRate = 0.14;
   int _tenor = 12;
@@ -54,7 +44,10 @@ class _NewPageState extends State<NewPage> {
                   padding: EdgeInsets.all(20.0),
                   child: Text(
                     'Mulai Pendanaan',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                 ),
                 Padding(
@@ -90,24 +83,19 @@ class _NewPageState extends State<NewPage> {
                 Padding(
                   padding: EdgeInsets.all(20.0),
                   child: Text('Jumlah Pemberian Pinjaman',
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white)),
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white)),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: TextFormField(
-                    controller: _controller,
                     decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
                         suffixIcon: IconButton(
-                            icon: Icon(Icons.calculate),
-                            onPressed: () {
-                              setState(() {
-                                _loanAmount =
-                                    double.tryParse(_controller.text) ?? 0;
-                              });
-                            }),
+                            icon: Icon(Icons.calculate), onPressed: () {}),
                         hintText: 'Masukkan jumlah pinjaman'),
                     style: TextStyle(color: Colors.black),
                     cursorColor: Colors.black,
@@ -159,7 +147,8 @@ class _NewPageState extends State<NewPage> {
                         onTap: null,
                         child: Text("Syarat dan Ketentuan",
                             style: TextStyle(
-                                decoration: TextDecoration.underline, color: Colors.white))))
+                                decoration: TextDecoration.underline,
+                                color: Colors.white))))
               ],
             ),
           ),

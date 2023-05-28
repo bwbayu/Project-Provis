@@ -1,34 +1,17 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class DashboardUMKM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Dashboard UMKM',
-      home: DashboardPage(),
+      home: Page(),
       debugShowCheckedModeBanner: false, // Remove the debug banner
     );
   }
 }
 
-class DashboardPage extends StatefulWidget {
-  @override
-  _DashboardPageState createState() => _DashboardPageState();
-}
-
-class _DashboardPageState extends State<DashboardPage> {
-  int _currentIndex = 0;
-
-  void _onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
+class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -213,8 +196,8 @@ class _DashboardPageState extends State<DashboardPage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: _onTabTapped,
+        currentIndex: 0,
+        onTap: null,
         selectedItemColor: Colors.purple,
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,

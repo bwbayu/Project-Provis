@@ -11,7 +11,7 @@ class DashboardInvestor extends StatefulWidget {
 
 class _DashboardInvestorState extends State<DashboardInvestor> {
   int currentIndex = 0;
-  final screens = [InvestorPage(), listUMKM(), wallet(), ProfilePage()];
+  final screens = [InvestorPage(), listUMKM(), wallet(), profilePage()];
 
   @override
   Widget build(BuildContext context) {

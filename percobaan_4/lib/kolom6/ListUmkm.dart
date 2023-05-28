@@ -11,20 +11,7 @@ class listUMKM extends StatelessWidget {
   }
 }
 
-// class PendanaanPage extends StatefulWidget {
-//   @override
-//   _PendanaanPageState createState() => _PendanaanPageState();
-// }
-
 class myApp extends StatelessWidget {
-  // int _currentIndex = 0;
-
-  // void _onTabTapped(int index) {
-  //   setState(() {
-  //     _currentIndex = index;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,27 +22,6 @@ class myApp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 16.0),
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      // Handle back button tap
-                    },
-                    icon: Icon(Icons.arrow_back),
-                    color: Colors.white,
-                  ),
-                  SizedBox(width: 8.0),
-                  Text(
-                    'List UMKM',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
               SizedBox(height: 16.0),
               Row(
                 children: [

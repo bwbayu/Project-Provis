@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
+class IdentitasUsaha extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'New Page',
       theme: ThemeData(primarySwatch: Colors.purple),
       debugShowCheckedModeBanner: false,
-      home: NewPage(),
+      home: Page(),
     );
   }
 }
 
-class NewPage extends StatefulWidget {
-  @override
-  _NewPageState createState() => _NewPageState();
-}
-
-class _NewPageState extends State<NewPage> {
+class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
