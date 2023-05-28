@@ -119,30 +119,6 @@ class ProfilePage extends StatelessWidget {
             child: Text('Setting App', style: TextStyle(color: Colors.white)),
           ),
           Spacer(),
-          BottomNavigationBar(
-            currentIndex: 3,
-            selectedItemColor: Colors.purple,
-            backgroundColor: Colors.white,
-            type: BottomNavigationBarType.fixed,
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.list),
-                label: 'List',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.account_balance_wallet),
-                label: 'Wallet',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'Profile',
-              ),
-            ],
-          ),
         ],
       ),
     );

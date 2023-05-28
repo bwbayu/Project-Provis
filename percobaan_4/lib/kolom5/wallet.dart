@@ -227,31 +227,6 @@ class wallet extends StatelessWidget {
                   ),
                 ),
               ),
-              BottomNavigationBar(
-                currentIndex: 2,
-                onTap: null,
-                selectedItemColor: Colors.purple,
-                backgroundColor: Colors.white,
-                type: BottomNavigationBarType.fixed,
-                items: [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.list),
-                    label: 'List',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.account_balance_wallet),
-                    label: 'Wallet',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.person),
-                    label: 'Profile',
-                  ),
-                ],
-              ),
             ],
           ),
         ),
