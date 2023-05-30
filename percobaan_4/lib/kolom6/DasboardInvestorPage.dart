@@ -3,6 +3,7 @@ import 'package:percobaan_4/kolom5/wallet.dart';
 import 'package:percobaan_4/kolom6/InvestorPage.dart';
 import 'package:percobaan_4/kolom6/ListUmkm.dart';
 import 'package:percobaan_4/kolom4/ProfilePage.dart';
+import 'package:percobaan_4/kolom8/portofolio.dart';
 
 class DashboardInvestor extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class DashboardInvestor extends StatefulWidget {
 
 class _DashboardInvestorState extends State<DashboardInvestor> {
   int currentIndex = 0;
-  final screens = [InvestorPage(), listUMKM(), wallet(), profilePage()];
+  final screens = [Portofolio(), listUMKM(), wallet(), profilePage()];
 
   @override
   Widget build(BuildContext context) {
