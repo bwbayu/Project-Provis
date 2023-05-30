@@ -337,34 +337,6 @@ class listPinjaman extends StatelessWidget {
                   ),
                 ),
               ),
-              BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                currentIndex: 1, // Set the current index of the selected icon
-                selectedItemColor: Colors
-                    .purple, // Set the default color of the active page icon to purple
-                onTap: (index) {
-                  // Handle bottom navigation icon tap
-                  // Use the index parameter to determine the tapped icon
-                },
-                items: [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.list),
-                    label: 'List',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.account_balance_wallet),
-                    label: 'Wallet',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.person),
-                    label: 'Profile',
-                  ),
-                ],
-              ),
             ],
           ),
         ),
