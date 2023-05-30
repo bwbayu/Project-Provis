@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:percobaan_4/kolom5/wallet.dart';
-import 'package:percobaan_4/kolom6/ListUmkm.dart';
-import 'package:percobaan_4/kolom4/ProfilePage.dart';
 
 // void main() {
 //   runApp(MyApp());

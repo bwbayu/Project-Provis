@@ -12,7 +12,13 @@ class DashboardInvestor extends StatefulWidget {
 
 class _DashboardInvestorState extends State<DashboardInvestor> {
   int currentIndex = 0;
-  final screens = [Portofolio(), listUMKM(), wallet(), profilePage()];
+  final screens = [
+    InvestorPage(),
+    Portofolio(),
+    listUMKM(),
+    wallet(),
+    profilePage()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +51,11 @@ class _DashboardInvestorState extends State<DashboardInvestor> {
               icon: Icon(Icons.list),
               selectedIcon: Icon(Icons.list),
               label: 'List',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.list),
+              selectedIcon: Icon(Icons.list),
+              label: 'Portofolio',
             ),
             NavigationDestination(
               icon: Icon(Icons.account_balance_wallet),

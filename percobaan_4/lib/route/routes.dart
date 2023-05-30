@@ -83,7 +83,7 @@ final Map<String, WidgetBuilder> routes = {
   '/detailPortofolio': (context) => detailPortofolio(),
   '/Portofolio': (context) => Portofolio(),
   // kolom 9
-  '/DashboardUMKM': (context) => DashboardUmkm(),
+  '/dashboardUMKM': (context) => DashboardUmkm(),
   // kolom 10
   '/listPinjaman': (context) => listPinjaman(),
   '/Pembayaran': (context) => Pembayaran(),

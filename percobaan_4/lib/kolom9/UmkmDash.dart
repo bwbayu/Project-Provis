@@ -54,6 +54,7 @@ class Page extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         // Handle Verifikasi Akun button tap
+                        Navigator.pushNamed(context, '/formVerifikasi');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(151, 126, 242, 1),

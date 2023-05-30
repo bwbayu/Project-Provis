@@ -88,8 +88,8 @@ class LoginScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // MASUK KE DASHBOARD INVESTOR DAN BORROWER
-                  Navigator.pushNamed(context, '/dashboardInvestor');
-                  // Navigator.pushNamed(context, '/dashboardUMKM');
+                  // Navigator.pushNamed(context, '/dashboardInvestor');
+                  Navigator.pushNamed(context, '/dashboardUMKM');
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 70),

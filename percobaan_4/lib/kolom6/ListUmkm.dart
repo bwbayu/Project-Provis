@@ -5,13 +5,13 @@ class listUMKM extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pendanaan',
-      home: myApp(),
+      home: Page(),
       debugShowCheckedModeBanner: false, // Remove the debug banner
     );
   }
 }
 
-class myApp extends StatelessWidget {
+class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

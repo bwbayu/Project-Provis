@@ -4,18 +4,6 @@ import 'package:percobaan_4/kolom5/wallet.dart';
 import 'package:percobaan_4/kolom4/ProfilePage.dart';
 import 'package:percobaan_4/kolom9/UmkmDash.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dashboard UMKM',
-      home: DashboardUmkm(),
-    );
-  }
-}
-
 class DashboardUmkm extends StatefulWidget {
   @override
   _DashboardUmkmState createState() => _DashboardUmkmState();
