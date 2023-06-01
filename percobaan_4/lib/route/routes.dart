@@ -77,15 +77,17 @@ final Map<String, WidgetBuilder> routes = {
   '/tarikDana': (context) => tarikDana(), //aman
   '/wallet': (context) => wallet(), // aman
   // kolom 6
-  '/dashboardInvestor': (context) => DashboardInvestor(),
+  '/dashboardInvestor': (context) =>
+      DashboardInvestor(), // search ganti saldo, rekomendasi bisa di slider, whats on your mind mau apa aja,
+  // list umkm = bisa ditambah search button, filter, (?)
   // kolom 7
-  '/IdentitasUsaha': (context) => IdentitasUsaha(),
-  '/MulaiPendanaanInvestor': (context) => MulaiPendanaanInvestor(),
-  '/SyaratKetentuan': (context) => SyaratKetentuan(),
-  '/UMKMPage': (context) => UMKMPage(),
+  '/IdentitasUsaha': (context) => IdentitasUsaha(), //aman
+  '/MulaiPendanaanInvestor': (context) => MulaiPendanaanInvestor(), //aman
+  '/SyaratKetentuan': (context) => SyaratKetentuan(), //aman
+  '/UMKMPage': (context) => UMKMPage(), //aman
   // kolom 8
-  '/detailPortofolio': (context) => detailPortofolio(),
-  '/Portofolio': (context) => Portofolio(),
+  '/detailPortofolio': (context) => detailPortofolio(), //aman
+  '/Portofolio': (context) => Portofolio(), //aman
   // kolom 9
   '/dashboardUMKM': (context) =>
       DashboardUmkm(), // search ganti saldo, pinjaman dibikin slider (kasih ada 3/5 item), bagian what's on your mind bagusin lgi + disitu mau ditaro apa aja (pake icon ?), di dashboard UMKM mau ditaro apa lagi ?
@@ -102,8 +104,8 @@ final Map<String, WidgetBuilder> routes = {
   '/BankAndCardsPage': (context) => BankAndCardsPage(), //aman
   '/TambahRekeningPage': (context) => TambahRekeningPage(), //aman
   // kolom 14
-  '/CallCenterPage': (context) => CallCenterPage(),
-  '/FAQPage': (context) => FAQPage(),
-  '/HelpCenterPage': (context) => HelpCenterPage(),
-  '/PoinHelpPage': (context) => PoinHelpPage(title: ''),
+  '/CallCenterPage': (context) => CallCenterPage(), //aman
+  '/FAQPage': (context) => FAQPage(), //aman
+  '/HelpCenterPage': (context) => HelpCenterPage(), //aman
+  '/PoinHelpPage': (context) => PoinHelpPage(title: ''), //aman
 };
