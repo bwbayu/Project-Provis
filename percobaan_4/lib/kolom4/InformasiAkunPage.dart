@@ -15,6 +15,7 @@ class InformasiAkunPage extends StatelessWidget {
               IconButton(
                 onPressed: () {
                   // Back button action
+                  Navigator.pop(context);
                 },
                 icon: SvgPicture.asset(
                   'asset/images/vector.svg',

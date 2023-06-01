@@ -12,7 +12,9 @@ class Pembayaran extends StatelessWidget {
           backgroundColor: Color(0xFF2E2960),
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
         body: Column(
@@ -174,7 +176,9 @@ class Pembayaran extends StatelessWidget {
                       height: 40,
                       width: 100,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/dashboardUMKM');
+                        },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero, // Remove default padding
                         ),

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class FAQPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'FAQ',
-      home: Page(),
-      debugShowCheckedModeBanner: false, // Remove the debug banner
-    );
-  }
-}
+// class FAQPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'FAQ',
+//       home: Page(),
+//       debugShowCheckedModeBanner: false, // Remove the debug banner
+//     );
+//   }
+// }
 
-class Page extends StatelessWidget {
+class FAQPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +28,7 @@ class Page extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       // Handle back button tap
+                      Navigator.pop(context);
                     },
                     icon: Icon(Icons.arrow_back),
                     color: Colors.white,

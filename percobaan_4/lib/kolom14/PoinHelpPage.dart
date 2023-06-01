@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PoinHelpPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Poin Help',
-      home: Page(),
-      debugShowCheckedModeBanner: false, // Remove the debug banner
-    );
-  }
-}
-
-class Page extends StatelessWidget {
+  const PoinHelpPage({Key? key, required this.title}) : super(key: key);
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,13 +17,15 @@ class Page extends StatelessWidget {
               IconButton(
                 onPressed: () {
                   // Handle back button tap
+                  Navigator.pop(context);
+
                 },
                 icon: Icon(Icons.arrow_back),
                 color: Colors.white,
               ),
               SizedBox(height: 8.0),
               Text(
-                'Risiko Pemberian Pinjaman',
+                "$title",
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,

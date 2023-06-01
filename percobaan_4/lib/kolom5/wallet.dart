@@ -67,7 +67,9 @@ class wallet extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context,'/tarikDana');
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
@@ -116,7 +118,10 @@ class wallet extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context,'/isiDana');
+
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(

@@ -3,17 +3,6 @@ import 'package:flutter/material.dart';
 class UmkmDash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dashboard UMKM',
-      home: Page(),
-      debugShowCheckedModeBanner: false, // Remove the debug banner
-    );
-  }
-}
-
-class Page extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(45, 41, 96, 1),
       body: SingleChildScrollView(
@@ -44,7 +33,7 @@ class Page extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 16.0),
-                  Icon(Icons.notifications, color: Colors.white),
+                  NotificationButton(), // Replace with NotificationButton widget
                 ],
               ),
               SizedBox(height: 16.0),
@@ -122,6 +111,7 @@ class Page extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         // Handle Verifikasi Akun button tap
+                        Navigator.pushNamed(context, '/isiDana');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
@@ -148,6 +138,7 @@ class Page extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         // Handle Pengajuan Pinjaman button tap
+                        Navigator.pushNamed(context, '/DataIdentitasUMKM');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
@@ -184,6 +175,7 @@ class Page extends StatelessWidget {
                     child: IconButton(
                       onPressed: () {
                         // Handle customer service button tap
+                        Navigator.pushNamed(context, '/CallCenterPage');
                       },
                       icon: Icon(Icons.headset),
                       color: Colors.black,
@@ -195,6 +187,43 @@ class Page extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class NotificationButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<String>(
+      onSelected: (value) {
+        // Handle notification options
+        if (value == 'option1') {
+          // Perform action for option 1
+        } else if (value == 'option2') {
+          // Perform action for option 2
+        }
+      },
+      itemBuilder: (BuildContext context) => [
+        PopupMenuItem<String>(
+          value: 'option1',
+          child: Container(
+            width: 200, // Adjust the width to your preference
+            child: Text('Halo Selamat Datang di Aplikasi DAUS'),
+          ),
+        ),
+        PopupMenuItem<String>(
+          value: 'option2',
+          child: Container(
+            width: 200, // Adjust the width to your preference
+            child: Text('Hello Welcome to DAUS'),
+          ),
+        ),
+      ],
+      child: Icon(
+        Icons.notifications,
+        size: 30,
+        color: Colors.white,
       ),
     );
   }

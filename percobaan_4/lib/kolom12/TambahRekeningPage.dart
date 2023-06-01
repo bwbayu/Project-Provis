@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class TambahRekeningPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bank and Cards',
-      home: Page(),
-      debugShowCheckedModeBanner: false, // Remove the debug banner
-    );
-  }
-}
+// class TambahRekeningPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Bank and Cards',
+//       home: Page(),
+//       debugShowCheckedModeBanner: false, // Remove the debug banner
+//     );
+//   }
+// }
 
-class Page extends StatelessWidget {
+class TambahRekeningPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +28,7 @@ class Page extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       // Back button action
+                      Navigator.pop(context);
                     },
                     icon: SvgPicture.asset(
                       'asset/images/vector.svg',
@@ -133,6 +134,7 @@ class Page extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   // Handle Lanjutkan button tap
+                  Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 60),

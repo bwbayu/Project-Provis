@@ -1,25 +1,5 @@
 import 'package:flutter/material.dart';
 
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class DashboardInvestor extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Dashboard Investor',
-//       home: myApp(),
-//       debugShowCheckedModeBanner: false, // Remove the debug banner
-//     );
-//   }
-// }
-
-// class DashboardPage extends StatefulWidget {
-//   @override
-//   _DashboardPageState createState() => _DashboardPageState();
-// }
-
 class InvestorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

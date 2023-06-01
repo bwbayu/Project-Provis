@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:percobaan_4/kolom14/PoinHelpPage.dart';
+
+// class HelpCenterPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Help Center',
+//       home: Page(),
+//       debugShowCheckedModeBanner: false, // Remove the debug banner
+//     );
+//   }
+// }
 
 class HelpCenterPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Help Center',
-      home: Page(),
-      debugShowCheckedModeBanner: false, // Remove the debug banner
-    );
-  }
-}
-
-class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +29,8 @@ class Page extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       // Handle back button tap
+                  Navigator.pop(context);
+
                     },
                     icon: Icon(Icons.arrow_back),
                     color: Colors.white,
@@ -54,6 +57,7 @@ class Page extends StatelessWidget {
                 text: 'FAQ',
                 onTap: () {
                   // Handle FAQ button tap
+                  Navigator.pushNamed(context, '/FAQPage');
                 },
               ),
               SizedBox(height: 16.0),
@@ -62,6 +66,8 @@ class Page extends StatelessWidget {
                 text: 'Call Center',
                 onTap: () {
                   // Handle Call Center button tap
+                  Navigator.pushNamed(context, '/CallCenterPage');
+
                 },
               ),
               SizedBox(height: 16.0),
@@ -70,6 +76,13 @@ class Page extends StatelessWidget {
                 text: 'Resiko Pemberian Pinjaman',
                 onTap: () {
                   // Handle Resiko Pemberian Pinjaman button tap
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PoinHelpPage(title: 'Resiko Pemberian Pinjaman'),
+                    ),
+                  );
+
                 },
               ),
               SizedBox(height: 16.0),
@@ -78,6 +91,13 @@ class Page extends StatelessWidget {
                 text: 'Draft Perjanjian',
                 onTap: () {
                   // Handle Draft Perjanjian button tap
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PoinHelpPage(title: 'Draft Perjanjian'),
+                    ),
+                  );
+
                 },
               ),
               SizedBox(height: 16.0),
@@ -86,6 +106,13 @@ class Page extends StatelessWidget {
                 text: 'Informasi Penilaian Risiko',
                 onTap: () {
                   // Handle Informasi Penilaian Risiko button tap
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PoinHelpPage(title: 'Informasi Penilaian Risiko'),
+                    ),
+                  );
+
                 },
               ),
               SizedBox(height: 16.0),
@@ -94,6 +121,13 @@ class Page extends StatelessWidget {
                 text: 'Kebijakan Privasi',
                 onTap: () {
                   // Handle Kebijakan Privasi button tap
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PoinHelpPage(title: 'Kebijakan Privasi'),
+                    ),
+                  );
+
                 },
               ),
             ],

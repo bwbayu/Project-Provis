@@ -3,17 +3,6 @@ import 'package:flutter/material.dart';
 class CallCenterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Call Center',
-      home: Page(),
-      debugShowCheckedModeBanner: false, // Remove the debug banner
-    );
-  }
-}
-
-class Page extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF2E2960),
       body: SingleChildScrollView(
@@ -26,6 +15,7 @@ class Page extends StatelessWidget {
               IconButton(
                 onPressed: () {
                   // Handle back button tap
+                  Navigator.pop(context);
                 },
                 icon: Icon(Icons.arrow_back),
                 color: Colors.white,
@@ -50,7 +40,7 @@ class Page extends StatelessWidget {
                 textAlign: TextAlign.justify,
               ),
               Text(
-                'blabla@gmail.co.id',
+                'customer.service@xyz.com',
                 style: TextStyle(
                   color: Colors.purple,
                   fontWeight: FontWeight.bold,
@@ -69,7 +59,7 @@ class Page extends StatelessWidget {
                 textAlign: TextAlign.justify,
               ),
               Text(
-                '081xxxxxxx',
+                '0800-123-4567',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -111,7 +101,7 @@ class Page extends StatelessWidget {
                 textAlign: TextAlign.justify,
               ),
               Text(
-                'lorem ipsum',
+                'Jalan Jendral Sudirman No. 123',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -119,7 +109,7 @@ class Page extends StatelessWidget {
                 textAlign: TextAlign.justify,
               ),
               Text(
-                'Bandung kode_pos, Indonesia',
+                'Kota ABC',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -127,7 +117,7 @@ class Page extends StatelessWidget {
                 textAlign: TextAlign.justify,
               ),
               Text(
-                'Open google maps (link)',
+                '12345',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -281,6 +271,8 @@ class Page extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Handle Lanjutkan button tap
+                  // Navigator.pushNamed(context, 'dashboardInvestor');
+                  Navigator.pushNamed(context, '/dashboardUMKM');
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 60),

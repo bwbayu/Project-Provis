@@ -11,52 +11,54 @@ class profilePage extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: 16),
           Center(
-            child: Container(
-              width: 350,
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 253, 181, 144),
-                borderRadius: BorderRadius.circular(25),
-              ),
-              padding: EdgeInsets.all(16),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Welcome',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+            child: InkWell(
+              onTap: () {
+                // Handle the container tap here
+                Navigator.pushNamed(context, '/dataAkun');
+              },
+              child: Container(
+                width: 350,
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 253, 181, 144),
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                padding: EdgeInsets.all(16),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'Welcome',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        Text(
-                          'Username',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
+                          Text(
+                            'Username',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 16),
-                  Container(
-                    width: 80,
-                    height: 80,
-                    child: InkWell(
-                      onTap: () {},
-                      borderRadius: BorderRadius.circular(40),
+                    SizedBox(width: 16),
+                    Container(
+                      width: 80,
+                      height: 80,
                       child: Icon(
                         Icons.account_circle,
                         size: 40,
                         color: Colors.green,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -64,6 +66,7 @@ class profilePage extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               // Handle Banks and Cards button tap
+              Navigator.pushNamed(context, '/BankAndCardsPage');
             },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(300, 60),
@@ -79,6 +82,7 @@ class profilePage extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               // Handle Referral Rewards button tap
+              Navigator.pushNamed(context, '/HelpCenterPage');
             },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(300, 60),
@@ -88,26 +92,14 @@ class profilePage extends StatelessWidget {
               ),
             ),
             child:
-                Text('Referral Rewards', style: TextStyle(color: Colors.white)),
+                Text('Help Center', style: TextStyle(color: Colors.white)),
           ),
           SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               // Handle Help Center button tap
-            },
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(300, 60),
-              backgroundColor: Color.fromARGB(255, 148, 226, 191),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25),
-              ),
-            ),
-            child: Text('Help Center', style: TextStyle(color: Colors.white)),
-          ),
-          SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
-              // Handle Setting App button tap
+              // Navigator.pushNamed(context, '/SettingPage');
+              
             },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(300, 60),
@@ -117,6 +109,21 @@ class profilePage extends StatelessWidget {
               ),
             ),
             child: Text('Setting App', style: TextStyle(color: Colors.white)),
+          ),
+          SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              // Handle Setting App button tap
+              Navigator.pushNamed(context, '/welcomePage');
+            },
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(300, 60),
+              backgroundColor: Color.fromARGB(255, 148, 226, 191),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
+              ),
+            ),
+            child: Text('Log Out', style: TextStyle(color: Colors.white)),
           ),
           Spacer(),
         ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-// Test
 class RolePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -12,14 +11,20 @@ class RolePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              IconButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: SvgPicture.asset(
-                  'asset/images/vector.svg',
-                  width: 30,
-                  height: 30,
+              Padding(
+                padding: EdgeInsets.only(left: 20, top: 20),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: SvgPicture.asset(
+                      'asset/images/vector.svg',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: 16),

@@ -13,7 +13,10 @@ class tarikDana extends StatelessWidget {
           automaticallyImplyLeading: true,
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop();
+
+            },
           ),
         ),
         body: SafeArea(
@@ -41,7 +44,10 @@ class tarikDana extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                            Navigator.pushNamed(context,'/TambahRekeningPage');
+                    
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: const Color(0xFFFCB58F),
                     shape: RoundedRectangleBorder(

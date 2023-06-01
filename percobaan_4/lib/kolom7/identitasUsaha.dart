@@ -3,18 +3,6 @@ import 'package:flutter/material.dart';
 class IdentitasUsaha extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'New Page',
-      theme: ThemeData(primarySwatch: Colors.purple),
-      debugShowCheckedModeBanner: false,
-      home: Page(),
-    );
-  }
-}
-
-class Page extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
