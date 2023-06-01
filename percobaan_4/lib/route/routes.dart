@@ -52,26 +52,30 @@ import 'package:percobaan_4/kolom14/PoinHelpPage.dart';
 // =====================================
 final Map<String, WidgetBuilder> routes = {
   // kolom 1
-  '/welcomePage': (context) => WelcomePage(),
-  '/loginPage': (context) => LoginScreen(),
-  '/roleSelectionPage': (context) => RolePage(),
-  '/registerPage': (context) => RegisterPage(),
+  '/welcomePage': (context) => WelcomePage(), // foto
+  '/loginPage': (context) => LoginScreen(), //aman
+  '/roleSelectionPage': (context) => RolePage(), //aman
+  '/registerPage': (context) => RegisterPage(), //aman
   // kolom 2
-  '/formData': (context) => formData(),
-  '/formKTP': (context) => formKTP(),
-  '/formNPWP': (context) => formNPWP(),
-  '/formTTD': (context) => formTTD(),
+  '/formData': (context) => formData(), //aman
+  '/formKTP': (context) =>
+      formKTP(), // ganti pake upload image, ketika user upload image, imagenya bakal ke show di containernya
+  '/formNPWP': (context) =>
+      formNPWP(), // ganti pake upload image, ketika user upload image, imagenya bakal ke show di containernya
+  '/formTTD': (context) =>
+      formTTD(), // ganti pake upload image, ketika user upload image, imagenya bakal ke show di containernya
   // kolom 3
-  '/akunBank': (context) => akunBank(),
-  '/dataDiri': (context) => dataDiri(),
-  '/formVerifikasi': (context) => formVerifikasi(),
+  '/akunBank': (context) => akunBank(), // aman
+  '/dataDiri': (context) =>
+      dataDiri(), // button lanjutkan, harusnya diem dibawah kanan doang
+  '/formVerifikasi': (context) => formVerifikasi(), //aman
   // kolom 4
-  '/dataAkun': (context) => InformasiAkunPage(),
-  '/profile': (context) => profilePage(),
+  '/dataAkun': (context) => InformasiAkunPage(), //aman
+  '/profile': (context) => profilePage(), //aman
   // kolom 5
-  '/isiDana': (context) => isiDana(),
-  '/tarikDana': (context) => tarikDana(),
-  '/wallet': (context) => wallet(),
+  '/isiDana': (context) => isiDana(), // data bank (icon sama nama bank),
+  '/tarikDana': (context) => tarikDana(), //aman
+  '/wallet': (context) => wallet(), // aman
   // kolom 6
   '/dashboardInvestor': (context) => DashboardInvestor(),
   // kolom 7
@@ -83,21 +87,23 @@ final Map<String, WidgetBuilder> routes = {
   '/detailPortofolio': (context) => detailPortofolio(),
   '/Portofolio': (context) => Portofolio(),
   // kolom 9
-  '/dashboardUMKM': (context) => DashboardUmkm(),
+  '/dashboardUMKM': (context) =>
+      DashboardUmkm(), // search ganti saldo, pinjaman dibikin slider (kasih ada 3/5 item), bagian what's on your mind bagusin lgi + disitu mau ditaro apa aja (pake icon ?), di dashboard UMKM mau ditaro apa lagi ?
   // kolom 10
-  '/listPinjaman': (context) => listPinjaman(),
-  '/Pembayaran': (context) => Pembayaran(),
-  '/rincianPinjaman': (context) => rincianPinjaman(),
+  '/listPinjaman': (context) =>
+      listPinjaman(), // tab button (terbaru, selesai, semua), card buat pinjaman (tampilannya) di list view builder
+  '/Pembayaran': (context) => Pembayaran(), //aman
+  '/rincianPinjaman': (context) => rincianPinjaman(), //aman
   // kolom 11
-  '/DataIdentitasUMKM': (context) => DataIdentitasUMKM(),
-  '/PengajuanPinjamanPage': (context) => PengajuanPinjamanPage(),
-  '/InformasiBankPage': (context) => InformasiBankPage(),
+  '/DataIdentitasUMKM': (context) => DataIdentitasUMKM(), //aman
+  '/PengajuanPinjamanPage': (context) => PengajuanPinjamanPage(), //aman
+  '/InformasiBankPage': (context) => InformasiBankPage(), // dihapus
   // kolom 12
-  '/BankAndCardsPage': (context) => BankAndCardsPage(),
-  '/TambahRekeningPage': (context) => TambahRekeningPage(),
+  '/BankAndCardsPage': (context) => BankAndCardsPage(), //aman
+  '/TambahRekeningPage': (context) => TambahRekeningPage(), //aman
   // kolom 14
-  '/CallCenterPage': (context) => CallCenterPage(),
-  '/FAQPage': (context) => FAQPage(),
-  '/HelpCenterPage': (context) => HelpCenterPage(),
-  '/PoinHelpPage': (context) => PoinHelpPage(),
+  '/CallCenterPage': (context) => CallCenterPage(), // aman
+  '/FAQPage': (context) => FAQPage(), //aman
+  '/HelpCenterPage': (context) => HelpCenterPage(), //aman
+  '/PoinHelpPage': (context) => PoinHelpPage(), //aman
 };
