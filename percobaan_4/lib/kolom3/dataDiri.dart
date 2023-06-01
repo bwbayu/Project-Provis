@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 class dataDiri extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Data Diri',
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Color(0xFF2E2961),
         appBar: AppBar(
           leading: IconButton(
@@ -220,7 +217,6 @@ class dataDiri extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }

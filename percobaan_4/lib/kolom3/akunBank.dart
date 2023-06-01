@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 class akunBank extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Akun Bank',
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Color(0xFF2E2961),
         appBar: AppBar(
           leading: IconButton(
@@ -79,7 +76,6 @@ class akunBank extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }

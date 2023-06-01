@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 class detailPortofolio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Tubes',
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Color(0xFF2E2960),
         appBar: AppBar(
           backgroundColor: Color(0xFF2E2960),
           automaticallyImplyLeading: true,
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
         body: SafeArea(
@@ -407,7 +406,6 @@ class detailPortofolio extends StatelessWidget {
             ),
           ),
         ),
-      ),
     ); //Material APP
   }
 }

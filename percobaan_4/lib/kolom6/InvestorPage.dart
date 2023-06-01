@@ -33,7 +33,7 @@ class InvestorPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 16.0),
-                  Icon(Icons.notifications, color: Colors.white),
+                  NotificationButton(), // Replace with NotificationButton widget
                 ],
               ),
               SizedBox(height: 16.0),
@@ -253,6 +253,7 @@ class InvestorPage extends StatelessWidget {
                     child: IconButton(
                       onPressed: () {
                         // Handle customer service button tap
+                        Navigator.pushNamed(context, 'HelpCenterPage');
                       },
                       icon: Icon(Icons.headset),
                       color: Colors.black,
@@ -264,6 +265,43 @@ class InvestorPage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class NotificationButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<String>(
+      onSelected: (value) {
+        // Handle notification options
+        if (value == 'option1') {
+          // Perform action for option 1
+        } else if (value == 'option2') {
+          // Perform action for option 2
+        }
+      },
+      itemBuilder: (BuildContext context) => [
+        PopupMenuItem<String>(
+          value: 'option1',
+          child: Container(
+            width: 200, // Adjust the width to your preference
+            child: Text('Halo Selamat Datang di Aplikasi DAUS'),
+          ),
+        ),
+        PopupMenuItem<String>(
+          value: 'option2',
+          child: Container(
+            width: 200, // Adjust the width to your preference
+            child: Text('Halo Investor'),
+          ),
+        ),
+      ],
+      child: Icon(
+        Icons.notifications,
+        size: 30,
+        color: Colors.white,
       ),
     );
   }

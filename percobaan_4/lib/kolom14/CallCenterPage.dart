@@ -271,8 +271,7 @@ class CallCenterPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Handle Lanjutkan button tap
-                  // Navigator.pushNamed(context, 'dashboardInvestor');
-                  Navigator.pushNamed(context, '/dashboardUMKM');
+                  Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 60),

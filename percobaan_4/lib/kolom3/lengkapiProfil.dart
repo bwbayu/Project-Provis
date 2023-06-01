@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 class formVerifikasi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Complete Profile',
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Color(0xFF2E2961),
         appBar: AppBar(
           leading: IconButton(
@@ -159,7 +156,6 @@ class formVerifikasi extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }

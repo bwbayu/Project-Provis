@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 class Portofolio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Tubes',
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Color(0xFF2E2960),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Color(0xFF977EF2),
           title: Text(
             'PORTOFOLIO',
@@ -227,76 +225,82 @@ class Portofolio extends StatelessWidget {
                           shrinkWrap: true,
                           itemCount: 10,
                           itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-                              child: Container(
-                                width: double.infinity,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: Image.network(
-                                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
-                                        width: double.infinity,
-                                        height: 120,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: double.infinity,
-                                      height: 80,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                      ),
-                                      child: Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(20, 0, 20, 0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Total Pendanaan',
-                                                  style: TextStyle(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Colors.black,
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  'Rp. xxxxx',
-                                                  style: TextStyle(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Colors.black,
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Text(
-                                              'Status Pendanaan',
-                                              style: TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                color: Colors.black,
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ],
+                            return InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, '/detailPortofolio');
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: Image.network(
+                                          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                                          width: double.infinity,
+                                          height: 120,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      Container(
+                                        width: double.infinity,
+                                        height: 80,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Total Pendanaan',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Readex Pro',
+                                                      color: Colors.black,
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'Rp. xxxxx',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Readex Pro',
+                                                      color: Colors.black,
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Text(
+                                                'Status Pendanaan',
+                                                style: TextStyle(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: Colors.black,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             );
@@ -310,7 +314,6 @@ class Portofolio extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }

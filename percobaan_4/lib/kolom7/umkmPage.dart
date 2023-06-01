@@ -4,20 +4,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 class UMKMPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'UMKM Page',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Page(),
-    );
-  }
-}
-
-class Page extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.purple[200]!,
         appBar: AppBar(
@@ -26,7 +12,6 @@ class Page extends StatelessWidget {
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.pop(context),
           ),
-          title: Text(''),
         ),
         body: Container(
           decoration: BoxDecoration(
@@ -79,25 +64,37 @@ class Page extends StatelessWidget {
                         Expanded(
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20.0),
-                            child: ElevatedButton(
-                                onPressed: () {},
-                                child: Text('Status',
-                                    style: TextStyle(color: Colors.black)),
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.white,
-                                    onPrimary: Colors.black)),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(16.0),
+                                child: Text(
+                                  'Status',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                         Expanded(
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20.0),
-                            child: ElevatedButton(
-                                onPressed: () {},
-                                child: Text('Rating',
-                                    style: TextStyle(color: Colors.black)),
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.white,
-                                    onPrimary: Colors.black)),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(16.0),
+                                child: Text(
+                                  'Rating',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -178,6 +175,7 @@ class Page extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           // Tambahkan kode aksi yang ingin Anda jalankan saat tombol ditekan
+                          Navigator.pushNamed(context, '/MulaiPendanaanInvestor');
                         },
                         child: Text(
                           'Mulai Pendanaan',
@@ -225,7 +223,7 @@ class Page extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Tambahkan kode aksi yang ingin Anda jalankan saat tombol ditekan
+                          Navigator.pushNamed(context, '/IdentitasUsaha');
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class SyaratKetentuan extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'New Page',
-      theme: ThemeData(primarySwatch: Colors.purple),
-      home: NewPage(),
-    );
-  }
-}
+// class SyaratKetentuan extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'New Page',
+//       theme: ThemeData(primarySwatch: Colors.purple),
+//       home: NewPage(),
+//     );
+//   }
+// }
 
-class NewPage extends StatelessWidget {
+class SyaratKetentuan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

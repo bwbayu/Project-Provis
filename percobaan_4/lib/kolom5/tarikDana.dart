@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 class tarikDana extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Tubes',
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: const Color(0xFF2E2960),
         appBar: AppBar(
           backgroundColor: Color(0xFF2E2960),
@@ -168,7 +165,6 @@ class tarikDana extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }

@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 class isiDana extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-      title: 'Tubes',
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Color(0xFF2E2960),
         appBar: AppBar(
           backgroundColor: Color(0xFF2E2960),
@@ -132,7 +128,6 @@ class isiDana extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }

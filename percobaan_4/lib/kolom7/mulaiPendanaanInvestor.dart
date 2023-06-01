@@ -1,17 +1,19 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
-class MulaiPendanaanInvestor extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Pendanaan Investor',
-      theme: ThemeData(primarySwatch: Colors.purple),
-      home: Page(),
-    );
-  }
-}
+// class MulaiPendanaanInvestor extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Pendanaan Investor',
+//       theme: ThemeData(primarySwatch: Colors.purple),
+//       home: Page(),
+//     );
+//   }
+// }
 
-class Page extends StatelessWidget {
+class MulaiPendanaanInvestor extends StatelessWidget {
   double _loanAmount = 0;
   double _interestRate = 0.14;
   int _tenor = 12;
@@ -130,7 +132,8 @@ class Page extends StatelessWidget {
                   padding: EdgeInsets.all(20.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      // Tambahkan kode aksi yang ingin Anda jalankan saat tombol ditekan
+                      // SALDO USER BAKAL BERKURANG DAN DANA PINJAMAN BAKAL BERTAMBAH
+                          Navigator.pushNamed(context, '/dashboardInvestor');
                     },
                     child: Text(
                       "Lanjutkan",
@@ -144,7 +147,9 @@ class Page extends StatelessWidget {
                 Padding(
                     padding: EdgeInsets.all(20.0),
                     child: InkWell(
-                        onTap: null,
+                        onTap: (){
+                          Navigator.pushNamed(context, '/SyaratKetentuan');
+                        },
                         child: Text("Syarat dan Ketentuan",
                             style: TextStyle(
                                 decoration: TextDecoration.underline,

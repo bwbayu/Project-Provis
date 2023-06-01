@@ -50,12 +50,12 @@ class _DashboardInvestorState extends State<DashboardInvestor> {
             NavigationDestination(
               icon: Icon(Icons.list),
               selectedIcon: Icon(Icons.list),
-              label: 'List',
+              label: 'Portofolio',
             ),
             NavigationDestination(
               icon: Icon(Icons.list),
               selectedIcon: Icon(Icons.list),
-              label: 'Portofolio',
+              label: 'UMKM List',
             ),
             NavigationDestination(
               icon: Icon(Icons.account_balance_wallet),

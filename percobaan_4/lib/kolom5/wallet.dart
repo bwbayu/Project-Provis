@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 class wallet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-      title: 'Tubes',
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: const Color(0xFF2E2960),
         body: SafeArea(
           top: true,
@@ -235,7 +231,6 @@ class wallet extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }
