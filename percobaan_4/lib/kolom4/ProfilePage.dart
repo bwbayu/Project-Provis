@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:percobaan_4/Kolom1/WelcomePage.dart';
 
 class profilePage extends StatelessWidget {
   @override
@@ -114,7 +115,12 @@ class profilePage extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               // Handle Setting App button tap
-              Navigator.pushNamed(context, '/welcomePage');
+              // Navigator.pushNamed(context, '/welcomePage');
+              Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (BuildContext context) => WelcomePage()),
+              (route) => false, // Remove all previous routes from the stack
+            );
             },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(300, 60),
