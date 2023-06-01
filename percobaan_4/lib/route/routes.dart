@@ -105,5 +105,5 @@ final Map<String, WidgetBuilder> routes = {
   '/CallCenterPage': (context) => CallCenterPage(),
   '/FAQPage': (context) => FAQPage(),
   '/HelpCenterPage': (context) => HelpCenterPage(),
-  '/PoinHelpPage': (context) => PoinHelpPage(),
+  '/PoinHelpPage': (context) => PoinHelpPage(title: ''),
 };
