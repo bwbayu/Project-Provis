@@ -5,17 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 class PengajuanPinjamanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Pengajuan Pinjaman',
-      home: Page(),
-      debugShowCheckedModeBanner: false, // Remove the debug banner
-    );
-  }
-}
-
-class Page extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(45, 41, 96, 1),
       body: SafeArea(
@@ -30,6 +19,7 @@ class Page extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       // Back button action
+                      Navigator.pop(context);
                     },
                     icon: SvgPicture.asset(
                       'asset/images/vector.svg',
@@ -323,7 +313,8 @@ class Page extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Handle button tap
+                    // LANJUT KE LIST PINJAMAN, INFORMASI BANK GA PERLU
+                    Navigator.pushNamed(context, '/dashboardUMKM');
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(120, 40),

@@ -4,11 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class formData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-      title: 'Tubes',
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Color(0xFF2E2960),
         appBar: AppBar(
           backgroundColor: Color(0xFF2E2960),
@@ -181,7 +177,6 @@ class formData extends StatelessWidget {
             ),
           ),
         ),
-      ),
     ); //Material APP
   }
 }

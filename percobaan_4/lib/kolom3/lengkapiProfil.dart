@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class formVerifikasi extends StatelessWidget {
   @override
@@ -149,7 +148,8 @@ class formVerifikasi extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/dashboardInvestor');
+                    // Navigator.pushNamed(context, '/dashboardInvestor');
+                    Navigator.pushNamed(context, '/dashboardUMKM');
                   },
                   child:
                       Text('Lanjutkan', style: TextStyle(color: Colors.black)),

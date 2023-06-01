@@ -3,17 +3,6 @@ import 'package:flutter/material.dart';
 class listUMKM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Pendanaan',
-      home: Page(),
-      debugShowCheckedModeBanner: false, // Remove the debug banner
-    );
-  }
-}
-
-class Page extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(45, 41, 96, 1),
       body: SingleChildScrollView(

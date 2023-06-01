@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 class listPinjaman extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Tubes',
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Color(0xFF2E2960),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Color(0xFF977EF2),
           title: Text(
             'PINJAMAN',
@@ -223,7 +221,10 @@ class listPinjaman extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // BUTTON AJUKAN PINJAMAN
+                    Navigator.pushNamed(context, '/DataIdentitasUMKM');
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     onPrimary: Colors.black,
@@ -261,72 +262,80 @@ class listPinjaman extends StatelessWidget {
                           shrinkWrap: true,
                           itemCount: 10,
                           itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-                              child: Container(
-                                width: double.infinity,
-                                height: 200,
-                                child: Column(
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: Image.network(
-                                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
-                                        width: double.infinity,
-                                        height: 120,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: double.infinity,
-                                      height: 80,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                      ),
-                                      child: Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(20, 0, 20, 0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Total Pinjaman',
-                                                  style: TextStyle(
-                                                    fontFamily: 'Roboto',
-                                                    color: Colors.black,
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  'Rp. xxxxx',
-                                                  style: TextStyle(
-                                                    fontFamily: 'Roboto',
-                                                    color: Colors.black,
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Text(
-                                              'Status Pinjaman',
-                                              style: TextStyle(
-                                                fontFamily: 'Roboto',
-                                                color: Colors.black,
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ],
+                            return InkWell(
+                              onTap: () {
+                                // Aksi ketika item diklik
+                                // Contoh aksi: Tampilkan detail pinjaman
+                                Navigator.pushNamed(
+                                    context, '/rincianPinjaman');
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 200,
+                                  child: Column(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: Image.network(
+                                          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                                          width: double.infinity,
+                                          height: 120,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      Container(
+                                        width: double.infinity,
+                                        height: 80,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Total Pinjaman',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Roboto',
+                                                      color: Colors.black,
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'Rp. xxxxx',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Roboto',
+                                                      color: Colors.black,
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Text(
+                                                'Status Pinjaman',
+                                                style: TextStyle(
+                                                  fontFamily: 'Roboto',
+                                                  color: Colors.black,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             );
@@ -340,7 +349,6 @@ class listPinjaman extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }

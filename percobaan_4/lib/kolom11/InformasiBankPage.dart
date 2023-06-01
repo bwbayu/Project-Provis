@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class InformasiBankPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Page(),
-    );
-  }
-}
+// class InformasiBankPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: Page(),
+//     );
+//   }
+// }
 
-class Page extends StatelessWidget {
+class InformasiBankPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

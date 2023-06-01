@@ -102,8 +102,8 @@ final Map<String, WidgetBuilder> routes = {
   '/BankAndCardsPage': (context) => BankAndCardsPage(), //aman
   '/TambahRekeningPage': (context) => TambahRekeningPage(), //aman
   // kolom 14
-  '/CallCenterPage': (context) => CallCenterPage(), // aman
-  '/FAQPage': (context) => FAQPage(), //aman
-  '/HelpCenterPage': (context) => HelpCenterPage(), //aman
-  '/PoinHelpPage': (context) => PoinHelpPage(), //aman
+  '/CallCenterPage': (context) => CallCenterPage(),
+  '/FAQPage': (context) => FAQPage(),
+  '/HelpCenterPage': (context) => HelpCenterPage(),
+  '/PoinHelpPage': (context) => PoinHelpPage(),
 };
