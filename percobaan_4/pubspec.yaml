@@ -1,14 +1,5 @@
 name: percobaan_4
 description: A new Flutter project.
-<<<<<<< HEAD
-
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
-
-version: 1.0.0+1
-
-environment:
-  sdk: ">=2.19.2 <3.0.0"
-=======
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -16,7 +7,6 @@ version: 1.0.0+1
 
 environment:
   sdk: '>=2.19.2 <3.0.0'
->>>>>>> 459359f3b47d10d745dabf6b97a7b032b56c18b7
 
 dependencies:
   image_picker: ^0.8.4+4

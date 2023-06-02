@@ -91,76 +91,90 @@ class InvestorPage extends StatelessWidget {
               CarouselSlider(
                 items: [
                   // Konten 1
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Image.network(
-                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
-                        width: double.infinity,
-                        height: 140,
-                        fit: BoxFit.cover,
-                      ),
-                      Container(
-                        color: Colors.green,
-                        padding: EdgeInsets.all(16.0),
-                        child: Text(
-                          'Konten 1',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
+                  GestureDetector(
+                    onTap: () {
+                      // Aksi ketika item diklik
+                      // Contoh aksi: Tampilkan halaman /UMKMPage
+                      Navigator.pushNamed(context, '/UMKMPage');
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Image.network(
+                          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                          width: double.infinity,
+                          height: 140,
+                          fit: BoxFit.cover,
+                        ),
+                        Container(
+                          color: Colors.green,
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            'Konten 1',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        padding: EdgeInsets.all(16.0),
-                        child: Text(
-                          'Rp xxx',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.bold,
+                        Container(
+                          color: Colors.white,
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            'Rp xxx',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   // Konten 2
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Image.network(
-                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
-                        width: double.infinity,
-                        height: 140,
-                        fit: BoxFit.cover,
-                      ),
-                      Container(
-                        color: Colors.green,
-                        padding: EdgeInsets.all(16.0),
-                        child: Text(
-                          'Konten 2',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
+                  GestureDetector(
+                    onTap: () {
+                      // Aksi ketika item diklik
+                      // Contoh aksi: Tampilkan halaman /UMKMPage
+                      Navigator.pushNamed(context, '/UMKMPage');
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Image.network(
+                          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                          width: double.infinity,
+                          height: 140,
+                          fit: BoxFit.cover,
+                        ),
+                        Container(
+                          color: Colors.green,
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            'Konten 2',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        padding: EdgeInsets.all(16.0),
-                        child: Text(
-                          'Rp xxx',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.bold,
+                        Container(
+                          color: Colors.white,
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            'Rp xxx',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   // Konten 3
                   // Tambahkan konten berikutnya sesuai kebutuhan
