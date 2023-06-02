@@ -117,6 +117,7 @@ class Portofolio extends StatelessWidget {
               fontSize: 22,
             ),
           ),
+          elevation: 0,
         ),
         body: SafeArea(
           top: true,
@@ -261,14 +262,14 @@ class Portofolio extends StatelessWidget {
                 ),
               ),
               Expanded(
-                  child: TabBarView(
-                    children: [
-                      myColumn,
-                      myColumn,
-                      myColumn,
-                    ],
-                  ),
+                child: TabBarView(
+                  children: [
+                    myColumn,
+                    myColumn,
+                    myColumn,
+                  ],
                 ),
+              ),
             ],
           ),
         ),
