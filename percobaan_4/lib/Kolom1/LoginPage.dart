@@ -6,23 +6,27 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(45, 41, 96, 1),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: SvgPicture.asset(
+            'asset/images/vector.svg',
+            width: 30,
+            height: 30,
+          ),
+        ),
+        title: Text(''),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              IconButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: SvgPicture.asset(
-                  'asset/images/vector.svg',
-                  width: 30,
-                  height: 30,
-                ),
-              ),
-              SizedBox(height: 16),
               Text(
                 'Tumbuhkan bisnis anda TEST',
                 style: TextStyle(
