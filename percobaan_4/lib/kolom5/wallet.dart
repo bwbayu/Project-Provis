@@ -4,9 +4,21 @@ class wallet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFF2E2960),
-        body: SafeArea(
-          top: true,
+      backgroundColor: Colors.purple[200]!,
+      body: SafeArea(
+        top: true,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.purple[200]!,
+                Colors.purple[800]!,
+              ],
+            ),
+          ),
           child: Column(
             children: [
               Padding(
@@ -64,7 +76,7 @@ class wallet extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context,'/tarikDana');
+                            Navigator.pushNamed(context, '/tarikDana');
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -115,8 +127,7 @@ class wallet extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context,'/isiDana');
-
+                            Navigator.pushNamed(context, '/isiDana');
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -231,6 +242,7 @@ class wallet extends StatelessWidget {
             ],
           ),
         ),
+      ),
     );
   }
 }
