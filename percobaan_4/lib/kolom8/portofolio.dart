@@ -14,6 +14,7 @@ class Portofolio extends StatelessWidget {
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: 10,
                     itemBuilder: (BuildContext context, int index) {
                       return InkWell(
@@ -117,6 +118,7 @@ class Portofolio extends StatelessWidget {
               fontSize: 22,
             ),
           ),
+          elevation: 0,
         ),
         body: SafeArea(
           top: true,
@@ -261,14 +263,14 @@ class Portofolio extends StatelessWidget {
                 ),
               ),
               Expanded(
-                  child: TabBarView(
-                    children: [
-                      myColumn,
-                      myColumn,
-                      myColumn,
-                    ],
-                  ),
+                child: TabBarView(
+                  children: [
+                    myColumn,
+                    myColumn,
+                    myColumn,
+                  ],
                 ),
+              ),
             ],
           ),
         ),
