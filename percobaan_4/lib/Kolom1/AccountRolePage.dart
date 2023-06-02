@@ -5,7 +5,7 @@ class RolePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(45, 41, 96, 1),
+      backgroundColor: Colors.purple[200]!,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -22,85 +22,98 @@ class RolePage extends StatelessWidget {
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: 16),
-              Image.asset(
-                'asset/images/logo-daus-saja.png',
-                width: 300,
-                height: 300,
-              ),
-              SizedBox(height: 10),
-              Text(
-                'DAUS',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.purple[200]!,
+                Colors.purple[800]!,
+              ],
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 16),
+                Image.asset(
+                  'asset/images/logo-daus-saja.png',
+                  width: 300,
+                  height: 300,
                 ),
-              ),
-              Text(
-                'Step to a better future?',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                ),
-              ),
-              SizedBox(height: 50),
-              Text(
-                'Tell me, who you are?',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                ),
-              ),
-              SizedBox(height: 10),
-              Column(
-                children: <Widget>[
-                  ElevatedButton(
-                    onPressed: () {
-                      // REGISTER DENGAN JENIS_USER = INVESTOR
-                      Navigator.pushNamed(context, '/registerPage');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(300, 80),
-                      backgroundColor: Color.fromARGB(255, 148, 227, 191),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                    ),
-                    child: Text('Investor'),
+                SizedBox(height: 10),
+                Text(
+                  'DAUS',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
-                  SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      // REGISTER DENGAN JENIS_USER = BORROWER
-                      Navigator.pushNamed(context, '/registerPage');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(300, 80),
-                      backgroundColor: Color.fromARGB(255, 252, 181, 143),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                    ),
-                    child: Text('UMKM'),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Text(
-                // MASUK KE DASHBOARD INVESTOR SEBAGAI VISITOR (KALAU BIKIN)
-                'Not now',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
                 ),
-              ),
-              SizedBox(height: 30),
-            ],
+                Text(
+                  'Step to a better future?',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(height: 50),
+                Text(
+                  'Tell me, who you are?',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Column(
+                  children: <Widget>[
+                    ElevatedButton(
+                      onPressed: () {
+                        // REGISTER DENGAN JENIS_USER = INVESTOR
+                        Navigator.pushNamed(context, '/registerPage');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(300, 80),
+                        backgroundColor: Color.fromARGB(255, 148, 227, 191),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                      ),
+                      child: Text('Investor'),
+                    ),
+                    SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        // REGISTER DENGAN JENIS_USER = BORROWER
+                        Navigator.pushNamed(context, '/registerPage');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(300, 80),
+                        backgroundColor: Color.fromARGB(255, 252, 181, 143),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                      ),
+                      child: Text('UMKM'),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Text(
+                  // MASUK KE DASHBOARD INVESTOR SEBAGAI VISITOR (KALAU BIKIN)
+                  'Not now',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(height: 30),
+              ],
+            ),
           ),
         ),
       ),
