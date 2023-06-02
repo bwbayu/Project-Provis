@@ -2,16 +2,26 @@ import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
   final List<String> imageList = [
-    'asset/images/kubo1.jpg',
-    'asset/images/kubo2.jpg',
-    'asset/images/kubo3.jpg',
+    'asset/images/Illustration-1.png',
+    'asset/images/Illustration-1.png',
+    'asset/images/Illustration-1.png',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(45, 41, 96, 1),
+      backgroundColor: Colors.purple[200]!,
       body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.purple[200]!,
+              Colors.purple[800]!,
+            ],
+          ),
+        ),
         height: MediaQuery.of(context).size.height,
         child: ListView(
           children: <Widget>[
