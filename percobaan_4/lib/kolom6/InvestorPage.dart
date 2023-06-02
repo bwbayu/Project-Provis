@@ -1,4 +1,110 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+
+// berikut kode yg ingin dijadikan slider
+
+// body: SafeArea(
+//           top: true,
+//           child: Column(
+//             children: [
+//               Flexible(
+//                 child: SingleChildScrollView(
+//                   child: Column(
+//                     children: [
+//                       Padding(
+//                         padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+//                         child: ListView.builder(
+//                           padding: EdgeInsets.zero,
+//                           shrinkWrap: true,
+//                           itemCount: 10,
+//                           itemBuilder: (BuildContext context, int index) {
+//                             return InkWell(
+//                               onTap: () {
+//                                 // Aksi ketika item diklik
+//                                 // Contoh aksi: Tampilkan detail pinjaman
+//                                 Navigator.pushNamed(
+//                                     context, '/UMKMPage');
+//                               },
+//                               child: Padding(
+//                                 padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+//                                 child: Container(
+//                                   width: double.infinity,
+//                                   height: 200,
+//                                   child: Column(
+//                                     children: [
+//                                       ClipRRect(
+//                                         borderRadius: BorderRadius.circular(8),
+//                                         child: Image.network(
+//                                           'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+//                                           width: double.infinity,
+//                                           height: 120,
+//                                           fit: BoxFit.cover,
+//                                         ),
+//                                       ),
+//                                       Container(
+//                                         width: double.infinity,
+//                                         height: 80,
+//                                         decoration: BoxDecoration(
+//                                           color: Colors.white,
+//                                         ),
+//                                         child: Padding(
+//                                           padding:
+//                                               EdgeInsets.fromLTRB(20, 0, 20, 0),
+//                                           child: Row(
+//                                             mainAxisAlignment:
+//                                                 MainAxisAlignment.spaceBetween,
+//                                             children: [
+//                                               Column(
+//                                                 mainAxisAlignment:
+//                                                     MainAxisAlignment.center,
+//                                                 crossAxisAlignment:
+//                                                     CrossAxisAlignment.start,
+//                                                 children: [
+//                                                   Text(
+//                                                     'Total Pinjaman',
+//                                                     style: TextStyle(
+//                                                       fontFamily: 'Roboto',
+//                                                       color: Colors.black,
+//                                                       fontSize: 14,
+//                                                     ),
+//                                                   ),
+//                                                   Text(
+//                                                     'Rp. xxxxx',
+//                                                     style: TextStyle(
+//                                                       fontFamily: 'Roboto',
+//                                                       color: Colors.black,
+//                                                       fontSize: 14,
+//                                                     ),
+//                                                   ),
+//                                                 ],
+//                                               ),
+//                                               Text(
+//                                                 'Status Pinjaman',
+//                                                 style: TextStyle(
+//                                                   fontFamily: 'Roboto',
+//                                                   color: Colors.black,
+//                                                   fontSize: 14,
+//                                                 ),
+//                                               ),
+//                                             ],
+//                                           ),
+//                                         ),
+//                                       ),
+//                                     ],
+//                                   ),
+//                                 ),
+//                               ),
+//                             );
+//                           },
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
 
 class InvestorPage extends StatelessWidget {
   @override
@@ -86,74 +192,90 @@ class InvestorPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 8.0),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Container(
-                          color: Colors.green,
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(
-                            'Left Container',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+              CarouselSlider(
+                items: [
+                  // Konten 1
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Image.network(
+                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                        width: double.infinity,
+                        height: 140,
+                        fit: BoxFit.cover,
+                      ),
+                      Container(
+                        color: Colors.green,
+                        padding: EdgeInsets.all(16.0),
+                        child: Text(
+                          'Konten 1',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Container(
-                          color: Colors.white,
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(
-                            'Rp xxx',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      ),
+                      Container(
+                        color: Colors.white,
+                        padding: EdgeInsets.all(16.0),
+                        child: Text(
+                          'Rp xxx',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  SizedBox(width: 16.0),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Container(
-                          color: Colors.green,
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(
-                            'Right Container',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                  // Konten 2
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Image.network(
+                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                        width: double.infinity,
+                        height: 140,
+                        fit: BoxFit.cover,
+                      ),
+                      Container(
+                        color: Colors.green,
+                        padding: EdgeInsets.all(16.0),
+                        child: Text(
+                          'Konten 2',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Container(
-                          color: Colors.white,
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(
-                            'Rp xxx',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      ),
+                      Container(
+                        color: Colors.white,
+                        padding: EdgeInsets.all(16.0),
+                        child: Text(
+                          'Rp xxx',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
+                  // Konten 3
+                  // Tambahkan konten berikutnya sesuai kebutuhan
                 ],
+                options: CarouselOptions(
+                  height: 280,
+                  enableInfiniteScroll: false,
+                  viewportFraction: 1,
+                  enlargeCenterPage: false,
+                ),
               ),
-              SizedBox(height: 16.0),
               Text(
                 "What's on your mind?",
                 style: TextStyle(
