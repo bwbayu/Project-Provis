@@ -40,10 +40,11 @@ class LoginScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Tumbuhkan bisnis anda TEST',
+                          'Tumbuhkan bisnis anda',
                           style: TextStyle(
+                            fontFamily: 'Outfit',
                             fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                             color: Colors.white,
                           ),
                         ),
@@ -51,7 +52,8 @@ class LoginScreen extends StatelessWidget {
                           'dengan cepat tanpa risau!',
                           style: TextStyle(
                             fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Outfit',
+                            fontWeight: FontWeight.w600,
                             color: Colors.white,
                           ),
                         ),
@@ -60,6 +62,8 @@ class LoginScreen extends StatelessWidget {
                           'Email',
                           style: TextStyle(
                             fontSize: 18,
+                            fontFamily: 'Outfit',
+                            fontWeight: FontWeight.w400,
                             color: Colors.white,
                           ),
                         ),
@@ -70,6 +74,12 @@ class LoginScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: TextField(
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.symmetric(
@@ -82,6 +92,8 @@ class LoginScreen extends StatelessWidget {
                           'Password',
                           style: TextStyle(
                             fontSize: 18,
+                            fontFamily: 'Outfit',
+                            fontWeight: FontWeight.w400,
                             color: Colors.white,
                           ),
                         ),
@@ -93,6 +105,12 @@ class LoginScreen extends StatelessWidget {
                           ),
                           child: TextField(
                             obscureText: true,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.symmetric(
@@ -119,6 +137,8 @@ class LoginScreen extends StatelessWidget {
                             'Masuk',
                             style: TextStyle(
                               fontSize: 18,
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.w600,
                               color: Colors.white,
                             ),
                           ),
@@ -133,7 +153,8 @@ class LoginScreen extends StatelessWidget {
                               'Lupa Password?',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.w700,
                                 color: Colors.white,
                               ),
                             ),
@@ -145,6 +166,8 @@ class LoginScreen extends StatelessWidget {
                             'atau masuk dengan',
                             style: TextStyle(
                               fontSize: 12,
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.w400,
                               color: Colors.white,
                             ),
                           ),
@@ -183,6 +206,8 @@ class LoginScreen extends StatelessWidget {
                               'Belum punya akun?',
                               style: TextStyle(
                                 fontSize: 16,
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.w400,
                                 color: Colors.white,
                               ),
                             ),
@@ -196,9 +221,10 @@ class LoginScreen extends StatelessWidget {
                               child: Text(
                                 'Daftar Sekarang',
                                 style: TextStyle(
+                                  fontFamily: 'Outfit',
+                                  fontWeight: FontWeight.w600,
                                   fontSize: 16,
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
