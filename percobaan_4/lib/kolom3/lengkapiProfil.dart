@@ -226,6 +226,8 @@ class formVerifikasi extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
+                  // Butuh penanda buat bedain umkm dan investor
+                  // biar redirect ke dashboardnya masing-masing
                   child: ElevatedButton(
                     onPressed: () {
                       // Navigator.pushNamed(context, '/dashboardInvestor');
