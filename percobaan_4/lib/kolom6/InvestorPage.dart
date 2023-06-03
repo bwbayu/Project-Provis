@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 // test
 class InvestorPage extends StatelessWidget {
@@ -133,10 +134,13 @@ class InvestorPage extends StatelessWidget {
                                           ),
                                           child: Column(
                                             children: [
-                                              Icon(
-                                                Icons.monetization_on,
-                                                color: Color.fromARGB(
-                                                    1000, 168, 81, 223),
+                                              SvgPicture.asset(
+                                                'asset/images/topup.svg',
+                                                width:
+                                                    24.0, // Sesuaikan ukuran ikon
+                                                height: 24.0,
+                                                color: Color.fromARGB(1000, 168,
+                                                    81, 223), // Warna ikon
                                               ), // Ikon di atas tombol
                                               SizedBox(
                                                   height:
@@ -174,10 +178,13 @@ class InvestorPage extends StatelessWidget {
                                           ),
                                           child: Column(
                                             children: [
-                                              Icon(
-                                                Icons.monetization_on,
-                                                color: Color.fromARGB(
-                                                    1000, 168, 81, 223),
+                                              SvgPicture.asset(
+                                                'asset/images/transfer.svg',
+                                                width:
+                                                    24.0, // Sesuaikan ukuran ikon
+                                                height: 24.0,
+                                                color: Color.fromARGB(1000, 168,
+                                                    81, 223), // Warna ikon
                                               ), // Ikon di atas tombol
                                               SizedBox(
                                                   height:
@@ -189,7 +196,7 @@ class InvestorPage extends StatelessWidget {
                                             height:
                                                 4.0), // Jarak antara tombol dan teks
                                         Text(
-                                          'Top Up Saldo',
+                                          'Transfer',
                                           style: TextStyle(
                                             fontSize: 12.0,
                                             fontWeight: FontWeight.bold,
@@ -215,10 +222,13 @@ class InvestorPage extends StatelessWidget {
                                           ),
                                           child: Column(
                                             children: [
-                                              Icon(
-                                                Icons.monetization_on,
-                                                color: Color.fromARGB(
-                                                    1000, 168, 81, 223),
+                                              SvgPicture.asset(
+                                                'asset/images/request.svg',
+                                                width:
+                                                    24.0, // Sesuaikan ukuran ikon
+                                                height: 24.0,
+                                                color: Color.fromARGB(1000, 168,
+                                                    81, 223), // Warna ikon
                                               ), // Ikon di atas tombol
                                               SizedBox(
                                                   height:
@@ -230,7 +240,7 @@ class InvestorPage extends StatelessWidget {
                                             height:
                                                 4.0), // Jarak antara tombol dan teks
                                         Text(
-                                          'Top Up Saldo',
+                                          'Request',
                                           style: TextStyle(
                                             fontSize: 12.0,
                                             fontWeight: FontWeight.bold,
@@ -256,10 +266,13 @@ class InvestorPage extends StatelessWidget {
                                           ),
                                           child: Column(
                                             children: [
-                                              Icon(
-                                                Icons.monetization_on,
-                                                color: Color.fromARGB(
-                                                    1000, 168, 81, 223),
+                                              SvgPicture.asset(
+                                                'asset/images/history.svg',
+                                                width:
+                                                    24.0, // Sesuaikan ukuran ikon
+                                                height: 24.0,
+                                                color: Color.fromARGB(1000, 168,
+                                                    81, 223), // Warna ikon
                                               ), // Ikon di atas tombol
                                               SizedBox(
                                                   height:
@@ -271,7 +284,7 @@ class InvestorPage extends StatelessWidget {
                                             height:
                                                 4.0), // Jarak antara tombol dan teks
                                         Text(
-                                          'Top Up Saldo',
+                                          'History',
                                           style: TextStyle(
                                             fontSize: 12.0,
                                             fontWeight: FontWeight.bold,
