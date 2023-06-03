@@ -47,6 +47,7 @@ class listPinjaman extends StatelessWidget {
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: 10,
                     itemBuilder: (BuildContext context, int index) {
                       return InkWell(
@@ -149,6 +150,7 @@ class listPinjaman extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
+          elevation: 0,
         ),
         body: SafeArea(
           top: true,
@@ -293,6 +295,7 @@ class listPinjaman extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(height: 16),
               Expanded(
                 child: TabBarView(
                   children: [
