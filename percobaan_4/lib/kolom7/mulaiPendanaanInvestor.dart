@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 // class MulaiPendanaanInvestor extends StatelessWidget {
 //   @override
@@ -21,11 +22,21 @@ class MulaiPendanaanInvestor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.purple[200]!,
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: SvgPicture.asset(
+            'asset/images/vector.svg',
+            width: 30,
+            height: 30,
+          ),
         ),
+        title: Text(''),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -133,7 +144,7 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       // SALDO USER BAKAL BERKURANG DAN DANA PINJAMAN BAKAL BERTAMBAH
-                          Navigator.pushNamed(context, '/dashboardInvestor');
+                      Navigator.pushNamed(context, '/dashboardInvestor');
                     },
                     child: Text(
                       "Lanjutkan",
@@ -147,7 +158,7 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                 Padding(
                     padding: EdgeInsets.all(20.0),
                     child: InkWell(
-                        onTap: (){
+                        onTap: () {
                           Navigator.pushNamed(context, '/SyaratKetentuan');
                         },
                         child: Text("Syarat dan Ketentuan",
