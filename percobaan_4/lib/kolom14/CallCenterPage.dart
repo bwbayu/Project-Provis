@@ -46,102 +46,38 @@ class CallCenterPage extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 32.0),
-                Text(
-                  'Email',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
+                Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Column(children: [
+                        ListTile(
+                          title: Text('Email',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('customer.service@xyz.com'),
+                        ),
+                        ListTile(
+                          title: Text('Telepon',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('0800-123-4567'),
+                        ),
+                        ListTile(
+                          title: Text('Waktu Operasional',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text(
+                              'Senin - Jumat 09:00 - 18:00\nTidak termasuk hari libur nasional'),
+                        ),
+                        ListTile(
+                          title: Text('Alamat',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text(
+                              'Jalan Jendral Sudirman No. 123, Jakarta, 3432'),
+                        ),
+                      ]),
+                    ),
                   ),
-                  textAlign: TextAlign.justify,
                 ),
-                Text(
-                  'customer.service@xyz.com',
-                  style: TextStyle(
-                    color: Colors.purple,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-                SizedBox(height: 16.0),
-                Text(
-                  'Telepon',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-                Text(
-                  '0800-123-4567',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.0,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-                Text(
-                  'Waktu operasional',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.0,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-                Text(
-                  'Senin - Jumat 09:00 - 18:00',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.0,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-                Text(
-                  'tidak termasuk hari libur nasional',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.0,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-                SizedBox(height: 32.0),
-                Text(
-                  'Alamat',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-                Text(
-                  'Jalan Jendral Sudirman No. 123',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.0,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-                Text(
-                  'Kota ABC',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.0,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-                Text(
-                  '12345',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.0,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-                SizedBox(height: 18.0),
                 Text(
                   'Layanan Pengaduan',
                   style: TextStyle(
