@@ -1,23 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 // test
 class tarikDana extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFF2E2960),
-        appBar: AppBar(
-          backgroundColor: Color(0xFF2E2960),
-          automaticallyImplyLeading: true,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {
-              Navigator.of(context).pop();
-
-            },
+      backgroundColor: Colors.purple[200]!,
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: SvgPicture.asset(
+            'asset/images/vector.svg',
+            width: 30,
+            height: 30,
           ),
         ),
-        body: SafeArea(
-          top: true,
+        title: Text(''),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: SafeArea(
+        top: true,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.purple[200]!,
+                Colors.purple[800]!,
+              ],
+            ),
+          ),
           child: Column(
             children: [
               Padding(
@@ -42,8 +60,7 @@ class tarikDana extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                 child: ElevatedButton(
                   onPressed: () {
-                            Navigator.pushNamed(context,'/TambahRekeningPage');
-                    
+                    Navigator.pushNamed(context, '/TambahRekeningPage');
                   },
                   style: ElevatedButton.styleFrom(
                     primary: const Color(0xFFFCB58F),
@@ -165,6 +182,7 @@ class tarikDana extends StatelessWidget {
             ],
           ),
         ),
+      ),
     );
   }
 }
