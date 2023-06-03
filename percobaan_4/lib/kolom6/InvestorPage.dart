@@ -7,15 +7,27 @@ class InvestorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
+        Positioned.fill(
+          top: 200,
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("asset/images/backgroundsaldo.png"),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+        ),
         SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
-              image: DecorationImage(
-                image:
-                    AssetImage("asset/images/background.jpg"), // Latar belakang
-                fit: BoxFit.cover,
-              ),
+              color: Colors.white,
+              // image: DecorationImage(
+              //   image:
+              //       AssetImage("asset/images/background.jpg"), // Latar belakang
+              //   fit: BoxFit.cover,
+              // ),
             ),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -26,30 +38,35 @@ class InvestorPage extends StatelessWidget {
                   Row(
                     children: [
                       CircleAvatar(
-                        radius: 25, // Menentukan ukuran radius foto bulat
-                        backgroundImage: AssetImage(
-                            'asset/images/avatar.jpeg'), // Gambar yang digunakan untuk foto bulat
+                        radius: 20,
+                        backgroundImage: AssetImage('asset/images/avatar.jpeg'),
                       ),
-
-                      //   child: Container(
-                      //     decoration: BoxDecoration(
-                      //       color: Colors.white,
-                      //       borderRadius: BorderRadius.circular(20.0),
-                      //     ),
-                      //     child: TextField(
-                      //       style: TextStyle(color: Colors.black),
-                      //       decoration: InputDecoration(
-                      //         hintText: 'Search',
-                      //         hintStyle: TextStyle(color: Colors.grey),
-                      //         border: InputBorder.none,
-                      //         contentPadding:
-                      //             EdgeInsets.symmetric(horizontal: 16.0),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                      SizedBox(width: 40.0),
-                      NotificationButton(), // Replace with NotificationButton widget
+                      SizedBox(width: 10.0),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Hello',
+                            style: TextStyle(
+                              fontSize: 12.0,
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            'John Doe',
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 300.0),
+                      NotificationButton(), // Ganti dengan widget yang sesuai untuk tombol notifikasi
                     ],
                   ),
                   SizedBox(height: 16.0),
