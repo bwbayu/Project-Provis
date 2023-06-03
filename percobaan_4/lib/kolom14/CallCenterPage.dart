@@ -41,7 +41,7 @@ class CallCenterPage extends StatelessWidget {
                 Text(
                   'Kontak Kami',
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 24.0,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
