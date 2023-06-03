@@ -6,58 +6,60 @@ class DataIdentitasUMKM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(45, 41, 96, 1),
+      backgroundColor: Colors.purple[200]!,
+      appBar: AppBar(
+        backgroundColor: Colors.purple[200]!,
+        automaticallyImplyLeading: true,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: SvgPicture.asset(
+            'asset/images/vector.svg',
+            width: 30,
+            height: 30,
+          ),
+        ),
+        elevation: 0,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      // Back button action
-                      Navigator.pop(context);
-                    },
-                    icon: SvgPicture.asset(
-                      'asset/images/vector.svg',
-                      width: 30,
-                      height: 30,
+              Align(
+                alignment: Alignment.centerRight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    CircleAvatar(child: Text('1')),
+                    Transform.rotate(
+                      angle: 270.0 *
+                          (3.14 /
+                              180.0), // Rotate by 90 degrees as a double value
+                      child: SvgPicture.asset(
+                        'asset/images/sequence_arrow1.svg',
+                      ),
                     ),
-                  ),
-                  Spacer(),
-                  Row(
-                    children: [
-                      CircleAvatar(child: Text('1')),
-                      Transform.rotate(
-                        angle: 270.0 *
-                            (3.14 /
-                                180.0), // Rotate by 90 degrees as a double value
-                        child: SvgPicture.asset(
-                          'asset/images/sequence_arrow1.svg',
-                        ),
+                    CircleAvatar(
+                      backgroundColor: Color.fromARGB(255, 146, 143, 146),
+                      child: Text('2'),
+                    ),
+                    Transform.rotate(
+                      angle: 270.0 *
+                          (3.14 /
+                              180.0), // Rotate by 90 degrees as a double value
+                      child: SvgPicture.asset(
+                        'asset/images/sequence_arrow1.svg',
                       ),
-                      CircleAvatar(
-                        backgroundColor: Color.fromARGB(255, 146, 143, 146),
-                        child: Text('2'),
-                      ),
-                      Transform.rotate(
-                        angle: 270.0 *
-                            (3.14 /
-                                180.0), // Rotate by 90 degrees as a double value
-                        child: SvgPicture.asset(
-                          'asset/images/sequence_arrow1.svg',
-                        ),
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Color.fromARGB(255, 146, 143, 146),
-                        child: Text('3'),
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Color.fromARGB(255, 146, 143, 146),
+                      child: Text('3'),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 16.0),
               Text(
