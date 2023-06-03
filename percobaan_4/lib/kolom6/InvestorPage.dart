@@ -7,31 +7,31 @@ class InvestorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-              color: Colors.white,
-            ),
-          ),
-          Positioned.fill(
-            bottom: MediaQuery.of(context).size.height - 250,
-            child: Container(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-                image: DecorationImage(
-                  image: AssetImage("asset/images/backgroundsaldo.png"),
-                  fit: BoxFit.cover,
+                color: Colors.white,
+              ),
+            ),
+            Positioned.fill(
+              bottom: MediaQuery.of(context).size.height - 250,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
+                  image: DecorationImage(
+                    image: AssetImage("asset/images/backgroundsaldo.png"),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
-          ),
-          SingleChildScrollView(
-            child: Container(
+            Container(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -343,119 +343,119 @@ class InvestorPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 8.0),
-                    CarouselSlider(
-                      items: [
-                        // Konten 1
-                        GestureDetector(
-                          onTap: () {
-                            // Aksi ketika item diklik
-                            // Contoh aksi: Tampilkan halaman /UMKMPage
-                            Navigator.pushNamed(context, '/UMKMPage');
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Image.network(
-                                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
-                                width: double.infinity,
-                                height: 140,
-                                fit: BoxFit.cover,
+                    Flexible(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                              child: ListView.builder(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: 10,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, '/detailPortofolio');
+                                    },
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(20, 0, 20, 20),
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 200,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              child: Image.network(
+                                                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                                                width: double.infinity,
+                                                height: 120,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: double.infinity,
+                                              height: 80,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    20, 0, 20, 0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          'Total Pendanaan',
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Colors.black,
+                                                            fontSize: 14,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          'Rp. xxxxx',
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Colors.black,
+                                                            fontSize: 14,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Text(
+                                                      'Status Pendanaan',
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color: Colors.black,
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
-                              Container(
-                                color: Colors.green,
-                                padding: EdgeInsets.all(16.0),
-                                child: Text(
-                                  'Konten 1',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                color: Colors.white,
-                                padding: EdgeInsets.all(16.0),
-                                child: Text(
-                                  'Rp xxx',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        // Konten 2
-                        GestureDetector(
-                          onTap: () {
-                            // Aksi ketika item diklik
-                            // Contoh aksi: Tampilkan halaman /UMKMPage
-                            Navigator.pushNamed(context, '/UMKMPage');
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Image.network(
-                                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
-                                width: double.infinity,
-                                height: 140,
-                                fit: BoxFit.cover,
-                              ),
-                              Container(
-                                color: Colors.green,
-                                padding: EdgeInsets.all(16.0),
-                                child: Text(
-                                  'Konten 2',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                color: Colors.white,
-                                padding: EdgeInsets.all(16.0),
-                                child: Text(
-                                  'Rp xxx',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        // Konten 3
-                        // Tambahkan konten berikutnya sesuai kebutuhan
-                      ],
-                      options: CarouselOptions(
-                        height: 280,
-                        enableInfiniteScroll: false,
-                        viewportFraction: 1,
-                        enlargeCenterPage: false,
                       ),
                     ),
-                    Text(
-                      "What's on your mind?",
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(height: 16.0),
                   ],
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
