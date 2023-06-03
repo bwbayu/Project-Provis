@@ -74,6 +74,12 @@ class LoginScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: TextField(
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.symmetric(
@@ -99,6 +105,12 @@ class LoginScreen extends StatelessWidget {
                           ),
                           child: TextField(
                             obscureText: true,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.symmetric(
