@@ -16,25 +16,37 @@ class BankAndCardsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(45, 41, 96, 1),
-      body: Padding(
+      backgroundColor: Colors.purple[200]!,
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: SvgPicture.asset(
+            'asset/images/vector.svg',
+            width: 30,
+            height: 30,
+          ),
+        ),
+        title: Text(''),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Container(
         padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.purple[200]!,
+              Colors.purple[800]!,
+            ],
+          ),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            IconButton(
-              onPressed: () {
-                // Facebook button action
-                  Navigator.pop(context);
-
-              },
-              icon: SvgPicture.asset(
-                'asset/images/vector.svg',
-                width: 30,
-                height: 30,
-              ),
-            ),
-            SizedBox(height: 16),
             Text(
               'Bank Account',
               style: TextStyle(

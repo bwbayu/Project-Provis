@@ -6,7 +6,22 @@ class PengajuanPinjamanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(45, 41, 96, 1),
+      backgroundColor: Colors.purple[200]!,
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: SvgPicture.asset(
+            'asset/images/vector.svg',
+            width: 30,
+            height: 30,
+          ),
+        ),
+        title: Text(''),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16.0),
@@ -16,17 +31,6 @@ class PengajuanPinjamanPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      // Back button action
-                      Navigator.pop(context);
-                    },
-                    icon: SvgPicture.asset(
-                      'asset/images/vector.svg',
-                      width: 30,
-                      height: 30,
-                    ),
-                  ),
                   Spacer(),
                   Row(
                     children: [
