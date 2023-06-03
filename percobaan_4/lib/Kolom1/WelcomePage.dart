@@ -10,61 +10,64 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.purple[200]!,
-              Colors.purple[800]!,
-            ],
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image:
+                    AssetImage("asset/images/background.jpg"), // Latar belakang
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-        ),
-        height: MediaQuery.of(context).size.height,
-        child: ListView(
-          children: <Widget>[
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.only(left: 0),
-                child: Image.asset(
-                  'asset/images/logo-daus.png',
-                  width: 100,
-                  height: 50,
-                ),
-              ),
-            ),
-            SizedBox(height: 60),
-            Expanded(
-              child: ImageSlider(imageList: imageList),
-            ),
-            SizedBox(height: 60),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/loginPage');
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(300, 50),
-                  backgroundColor: Color.fromARGB(255, 151, 126, 242),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
+          Container(
+            height: MediaQuery.of(context).size.height,
+            child: ListView(
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 0, top: 10),
+                    child: Image.asset(
+                      'asset/images/logo-daus-saja.png',
+                      width: 35,
+                      height: 35,
+                    ),
                   ),
                 ),
-                child: Text(
-                  'Lanjutkan',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
+                SizedBox(height: 60),
+                Expanded(
+                  child: ImageSlider(imageList: imageList),
+                ),
+                SizedBox(height: 60),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/loginPage');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(300, 50),
+                      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                    ),
+                    child: Text(
+                      'Lanjutkan',
+                      style: TextStyle(
+                          fontFamily: 'Outfit',
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18,
+                          color: Color.fromARGB(1000, 168, 81, 223)),
+                    ),
                   ),
                 ),
-              ),
+                SizedBox(height: 16),
+              ],
             ),
-            SizedBox(height: 16),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
