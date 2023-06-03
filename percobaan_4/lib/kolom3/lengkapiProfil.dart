@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class formVerifikasi extends StatelessWidget {
   @override
@@ -62,106 +63,162 @@ class formVerifikasi extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 8.0),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/dataDiri');
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.black,
-                            radius: 4.0,
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Button pressed callback
+                          Navigator.pushNamed(context, '/dataDiri');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                          SizedBox(width: 8.0),
-                          Text('Data Diri',
-                              style: TextStyle(color: Colors.black)),
-                        ],
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 32.0, vertical: 16.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25.0),
+                          backgroundColor: Colors.purple[200]!,
+                          padding: EdgeInsets.zero,
+                        ),
+                        child: ListTile(
+                          leading: FaIcon(
+                            FontAwesomeIcons.solidIdCard,
+                            size: 50,
+                            color: Color(0xFFF7F8F9),
+                          ),
+                          title: Text(
+                            'Data Diri',
+                            style: TextStyle(
+                              fontFamily: 'Outfit',
+                              color: Color(0xFFF7F8F9),
+                              fontSize: 25,
+                            ),
+                          ),
+                          subtitle: Text(
+                            'Gunakan e-ktp ataupun Surat Keterangan Pengganti (SKP) KTP untuk mendaftar',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xFFF2F5F8),
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
                         ),
                       ),
                     ),
                     SizedBox(height: 8.0),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/formData');
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.black,
-                            radius: 4.0,
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Button pressed callback
+                          Navigator.pushNamed(context, '/formData');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                          SizedBox(width: 8.0),
-                          Text('Dokumen',
-                              style: TextStyle(color: Colors.black)),
-                        ],
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 32.0, vertical: 16.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25.0),
+                          backgroundColor: Colors.purple[200]!,
+                          padding: EdgeInsets.zero,
+                        ),
+                        child: ListTile(
+                          leading: FaIcon(
+                            FontAwesomeIcons.solidIdCard,
+                            size: 50,
+                            color: Color(0xFFF7F8F9),
+                          ),
+                          title: Text(
+                            'Dokumen',
+                            style: TextStyle(
+                              fontFamily: 'Outfit',
+                              color: Color(0xFFF7F8F9),
+                              fontSize: 25,
+                            ),
+                          ),
+                          subtitle: Text(
+                            'Gunakan e-ktp ataupun Surat Keterangan Pengganti (SKP) KTP untuk mendaftar',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xFFF2F5F8),
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
                         ),
                       ),
                     ),
                     SizedBox(height: 8.0),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/akunBank');
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.black,
-                            radius: 4.0,
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Button pressed callback
+                          Navigator.pushNamed(context, '/akunBank');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                          SizedBox(width: 8.0),
-                          Text('Akun Bank',
-                              style: TextStyle(color: Colors.black)),
-                        ],
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 32.0, vertical: 16.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25.0),
+                          backgroundColor: Colors.purple[200]!,
+                          padding: EdgeInsets.zero,
+                        ),
+                        child: ListTile(
+                          leading: FaIcon(
+                            FontAwesomeIcons.solidIdCard,
+                            size: 50,
+                            color: Color(0xFFF7F8F9),
+                          ),
+                          title: Text(
+                            'Akun Bank',
+                            style: TextStyle(
+                              fontFamily: 'Outfit',
+                              color: Color(0xFFF7F8F9),
+                              fontSize: 25,
+                            ),
+                          ),
+                          subtitle: Text(
+                            'Gunakan e-ktp ataupun Surat Keterangan Pengganti (SKP) KTP untuk mendaftar',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xFFF2F5F8),
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
                         ),
                       ),
                     ),
                     SizedBox(height: 8.0),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/formTTD');
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.black,
-                            radius: 4.0,
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Button pressed callback
+                          Navigator.pushNamed(context, '/formTTD');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                          SizedBox(width: 8.0),
-                          Text('Tanda tangan',
-                              style: TextStyle(color: Colors.black)),
-                        ],
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 32.0, vertical: 16.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25.0),
+                          backgroundColor: Colors.purple[200]!,
+                          padding: EdgeInsets.zero,
+                        ),
+                        child: ListTile(
+                          leading: FaIcon(
+                            FontAwesomeIcons.solidIdCard,
+                            size: 50,
+                            color: Color(0xFFF7F8F9),
+                          ),
+                          title: Text(
+                            'Tanda Tangan',
+                            style: TextStyle(
+                              fontFamily: 'Outfit',
+                              color: Color(0xFFF7F8F9),
+                              fontSize: 25,
+                            ),
+                          ),
+                          subtitle: Text(
+                            'Gunakan e-ktp ataupun Surat Keterangan Pengganti (SKP) KTP untuk mendaftar',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xFFF2F5F8),
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
                         ),
                       ),
                     ),
