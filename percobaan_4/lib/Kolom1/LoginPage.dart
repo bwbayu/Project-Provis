@@ -42,8 +42,8 @@ class LoginScreen extends StatelessWidget {
                         Text(
                           'Tumbuhkan bisnis anda',
                           style: TextStyle(
-                            fontFamily: 'Outfit',
                             fontSize: 24,
+                            fontFamily: 'Outfit',
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
                           ),
@@ -127,8 +127,8 @@ class LoginScreen extends StatelessWidget {
                           },
                           style: ElevatedButton.styleFrom(
                             minimumSize: Size(double.infinity, 70),
-                            backgroundColor: Color.fromARGB(255, 148, 227,
-                                191), // Set the desired button color here
+                            backgroundColor: Colors
+                                .white, // Set the desired button color here
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
@@ -139,7 +139,7 @@ class LoginScreen extends StatelessWidget {
                               fontSize: 18,
                               fontFamily: 'Outfit',
                               fontWeight: FontWeight.w600,
-                              color: Colors.white,
+                              color: Color.fromARGB(1000, 168, 81, 223),
                             ),
                           ),
                         ),
