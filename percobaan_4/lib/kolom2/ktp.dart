@@ -1,22 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class formKTP extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Color(0xFF2D2960),
-        appBar: AppBar(
-          backgroundColor: Color(0xFF2E2960),
-          automaticallyImplyLeading: true,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+    return Container(
+        child: Scaffold(
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        backgroundColor: Colors.purple[200]!,
+        automaticallyImplyLeading: true,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: SvgPicture.asset(
+            'asset/images/vector.svg',
+            width: 30,
+            height: 30,
           ),
         ),
-        body: SafeArea(
-          top: true,
+        elevation: 0,
+      ),
+      body: SafeArea(
+        top: true,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.purple[200]!,
+                Colors.purple[800]!,
+              ],
+            ),
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -25,11 +44,11 @@ class formKTP extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.fromLTRB(30, 10, 10, 0),
                 child: Container(
-                  width: double.infinity,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF2D2960),
-                  ),
+                  // width: double.infinity,
+                  // height: 100,
+                  // decoration: BoxDecoration(
+                  //   color: Colors.purple[800]!,
+                  // ),
                   child: ListTile(
                     title: Text(
                       'Foto KTP',
@@ -47,7 +66,7 @@ class formKTP extends StatelessWidget {
                         fontWeight: FontWeight.w300,
                       ),
                     ),
-                    tileColor: Color(0xFF2D2960),
+                    tileColor: Colors.transparent,
                   ),
                 ),
               ),
@@ -100,9 +119,6 @@ class formKTP extends StatelessWidget {
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF2D2960),
-                  ),
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Padding(
@@ -137,6 +153,7 @@ class formKTP extends StatelessWidget {
             ],
           ),
         ),
-    );
+      ),
+    ));
   }
 }
