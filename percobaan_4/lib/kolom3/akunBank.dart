@@ -83,11 +83,30 @@ class akunBank extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   child: ElevatedButton(
                     onPressed: () {
+                      // Navigator.pushNamed(context, '/dashboardInvestor');
                       Navigator.pop(context);
                     },
-                    child: Text('Lanjutkan',
-                        style: TextStyle(color: Colors.black)),
-                    style: ElevatedButton.styleFrom(primary: Color(0xFF977EF2)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF977EF2),
+                      textStyle: TextStyle(fontSize: 16),
+                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 20,
+                      ),
+                    ),
+                    child: Text(
+                      'Lanjutkan',
+                      style: TextStyle(
+                        fontFamily: 'Readex Pro',
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ],
