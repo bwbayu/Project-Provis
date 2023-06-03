@@ -1,25 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class isiDana extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFF2E2960),
-        appBar: AppBar(
-          backgroundColor: Color(0xFF2E2960),
-          automaticallyImplyLeading: true,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+      backgroundColor: Colors.purple[200]!,
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: SvgPicture.asset(
+            'asset/images/vector.svg',
+            width: 30,
+            height: 30,
           ),
-          actions: [],
-          centerTitle: true,
-          elevation: 4,
         ),
-        body: SafeArea(
-          top: true,
+        title: Text(''),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: SafeArea(
+        top: true,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.purple[200]!,
+                Colors.purple[800]!,
+              ],
+            ),
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -29,7 +44,6 @@ class isiDana extends StatelessWidget {
                   width: double.infinity,
                   height: 60,
                   decoration: BoxDecoration(
-                    color: Color(0xFF2D2960),
                     shape: BoxShape.rectangle,
                   ),
                   child: Padding(
@@ -128,6 +142,7 @@ class isiDana extends StatelessWidget {
             ],
           ),
         ),
+      ),
     );
   }
 }
