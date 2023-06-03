@@ -113,3 +113,27 @@
 #         session.close()
 #         return {"message": "User was deleted successfully"}
 #     return {"message": "User not found"}
+
+# # GET ALL BANK DATA
+# @app.get("/getBank")
+# def get_bank(session: Session = Depends(get_session)):
+#     bank_data = session.query(models.BankModel).all()
+#     return {"bank": bank_data}
+
+# # GET ALL PERSONAL DATA OF USER
+# @app.get("/getPersonalData")
+# def get_personal_data(session: Session = Depends(get_session)):
+#     personal_data = session.query(models.PersonalDataModel).all()
+#     return {"personal_data": personal_data}
+
+# # ADD WALLET
+# @app.post("/addWallet")
+# def add_wallet(wallet_data: schemas.WalletSchema, user_id: int, session=Depends(get_session)):
+#     user = session.query(models.UserModel).get(user_id)
+#     if user is None:
+#         return {"error": "User not found"}
+#     wallet = models.WalletModel(**wallet_data.dict(), user_id=user_id)
+#     session.add(wallet)
+#     session.commit()
+#     session.refresh(wallet)
+#     return {"wallet": wallet}
