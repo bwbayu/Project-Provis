@@ -6,7 +6,7 @@ class formData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.purple[200]!,
       appBar: AppBar(
         backgroundColor: Colors.purple[200]!,
         automaticallyImplyLeading: true,
