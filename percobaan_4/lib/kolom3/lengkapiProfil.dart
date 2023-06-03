@@ -79,7 +79,7 @@ class formVerifikasi extends StatelessWidget {
                         ),
                         child: ListTile(
                           leading: FaIcon(
-                            FontAwesomeIcons.solidIdCard,
+                            FontAwesomeIcons.idCard,
                             size: 50,
                             color: Color(0xFFF7F8F9),
                           ),
@@ -119,7 +119,7 @@ class formVerifikasi extends StatelessWidget {
                         ),
                         child: ListTile(
                           leading: FaIcon(
-                            FontAwesomeIcons.solidIdCard,
+                            FontAwesomeIcons.file,
                             size: 50,
                             color: Color(0xFFF7F8F9),
                           ),
