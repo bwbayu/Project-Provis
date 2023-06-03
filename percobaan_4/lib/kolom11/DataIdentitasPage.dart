@@ -21,6 +21,25 @@ class DataIdentitasUMKM extends StatelessWidget {
           ),
         ),
         elevation: 0,
+        actions: [
+          Row(
+            children: [
+              CircleAvatar(child: Text('1')),
+              Transform.rotate(
+                angle: 270.0 *
+                    (3.14 / 180.0), // Rotate by 90 degrees as a double value
+                child: SvgPicture.asset(
+                  'asset/images/sequence_arrow1.svg',
+                ),
+              ),
+              CircleAvatar(
+                backgroundColor: Color.fromARGB(255, 146, 143, 146),
+                child: Text('2'),
+              ),
+              SizedBox(width: 10), // Add a right gap of 10 pixels
+            ],
+          ),
+        ],
       ),
       body: SafeArea(
         child: Container(
@@ -39,40 +58,6 @@ class DataIdentitasUMKM extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      CircleAvatar(child: Text('1')),
-                      Transform.rotate(
-                        angle: 270.0 *
-                            (3.14 /
-                                180.0), // Rotate by 90 degrees as a double value
-                        child: SvgPicture.asset(
-                          'asset/images/sequence_arrow1.svg',
-                        ),
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Color.fromARGB(255, 146, 143, 146),
-                        child: Text('2'),
-                      ),
-                      Transform.rotate(
-                        angle: 270.0 *
-                            (3.14 /
-                                180.0), // Rotate by 90 degrees as a double value
-                        child: SvgPicture.asset(
-                          'asset/images/sequence_arrow1.svg',
-                        ),
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Color.fromARGB(255, 146, 143, 146),
-                        child: Text('3'),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 16.0),
                 Text(
                   'Lengkapi Data Usaha',
                   style: TextStyle(
@@ -97,7 +82,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: DropdownButtonFormField<String>(
-                    items: ['Segitiga', 'Bulat', 'Persegi'].map((String value) {
+                    items: ['Rendah', 'Menengah', 'Tinggi'].map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
@@ -218,7 +203,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                   child: TextField(
                     style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
-                      hintText: '1 digit 😁',
+                      hintText: '1 juta',
                       hintStyle:
                           TextStyle(color: Color.fromARGB(255, 110, 109, 109)),
                       border: InputBorder.none,
@@ -246,7 +231,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                   child: TextField(
                     style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
-                      hintText: 'Toko Usman Tokopedia',
+                      hintText: 'Cek Toko Sebelah',
                       hintStyle:
                           TextStyle(color: Color.fromARGB(255, 110, 109, 109)),
                       border: InputBorder.none,
@@ -274,7 +259,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                   child: TextField(
                     style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
-                      hintText: 'Saya',
+                      hintText: 'Budi Saya',
                       hintStyle:
                           TextStyle(color: Color.fromARGB(255, 110, 109, 109)),
                       border: InputBorder.none,
@@ -377,6 +362,10 @@ class DataIdentitasUMKM extends StatelessWidget {
                       backgroundColor: Color.fromARGB(255, 151, 126, 242),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 20,
                       ),
                     ),
                     child: Text(

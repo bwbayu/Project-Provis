@@ -8,6 +8,8 @@ class PengajuanPinjamanPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.purple[200]!,
       appBar: AppBar(
+        backgroundColor: Colors.purple[200]!,
+        automaticallyImplyLeading: true,
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -18,9 +20,25 @@ class PengajuanPinjamanPage extends StatelessWidget {
             height: 30,
           ),
         ),
-        title: Text(''),
-        backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          Row(
+            children: [
+              CircleAvatar(child: Text('1')),
+              Transform.rotate(
+                angle: 270.0 *
+                    (3.14 / 180.0), // Rotate by 90 degrees as a double value
+                child: SvgPicture.asset(
+                  'asset/images/sequence_arrow1.svg',
+                ),
+              ),
+              CircleAvatar(
+                child: Text('2'),
+              ),
+              SizedBox(width: 10), // Add a right gap of 10 pixels
+            ],
+          ),
+        ],
       ),
       body: SafeArea(
         child: Container(
@@ -40,36 +58,6 @@ class PengajuanPinjamanPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Spacer(),
-                    Row(
-                      children: [
-                        CircleAvatar(child: Text('1')),
-                        Transform.rotate(
-                          angle: 270.0 *
-                              (3.14 /
-                                  180.0), // Rotate by 90 degrees as a double value
-                          child: SvgPicture.asset(
-                            'asset/images/sequence_arrow1.svg',
-                          ),
-                        ),
-                        CircleAvatar(child: Text('2')),
-                        Transform.rotate(
-                          angle: 270.0 *
-                              (3.14 /
-                                  180.0), // Rotate by 90 degrees as a double value
-                          child: SvgPicture.asset(
-                            'asset/images/sequence_arrow1.svg',
-                          ),
-                        ),
-                        CircleAvatar(child: Text('3')),
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16.0),
                 Text(
                   'Pengajuan Pinjaman',
                   style: TextStyle(
@@ -344,7 +332,11 @@ class PengajuanPinjamanPage extends StatelessWidget {
                       minimumSize: Size(120, 40),
                       backgroundColor: Color.fromARGB(255, 151, 126, 242),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 20,
                       ),
                     ),
                     child: Text(
