@@ -175,15 +175,21 @@ class formVerifikasi extends StatelessWidget {
                       Navigator.pushNamed(context, '/dashboardUMKM');
                     },
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(120, 40),
-                      backgroundColor: Color.fromARGB(255, 151, 126, 242),
+                      backgroundColor: Color(0xFF977EF2),
+                      textStyle: TextStyle(fontSize: 16),
+                      elevation: 3,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 20,
                       ),
                     ),
                     child: Text(
                       'Lanjutkan',
                       style: TextStyle(
+                        fontFamily: 'Readex Pro',
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
