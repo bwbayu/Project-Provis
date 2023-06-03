@@ -116,35 +116,37 @@ class formKTP extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  child: Align(
-                    alignment: Alignment.bottomRight,
+              Spacer(),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 20, 10, 10),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          'Lanjutkan',
-                          style: TextStyle(
-                            fontFamily: 'Readex Pro',
-                            color: Colors.white,
-                          ),
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        'Lanjutkan',
+                        style: TextStyle(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF977EF2),
-                          elevation: 3,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 10,
-                          ),
-                        ),
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF977EF2),
+                      textStyle: TextStyle(fontSize: 16),
+                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 10,
                       ),
                     ),
                   ),

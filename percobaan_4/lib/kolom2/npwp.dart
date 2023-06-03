@@ -164,26 +164,32 @@ class formNPWP extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 20, 10, 10),
-                    child: Align(
-                      alignment: Alignment.bottomRight,
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: EdgeInsets.all(16),
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: Text(
-                          'Lanjutkan',
-                          style: TextStyle(
-                            fontFamily: 'Readex Pro',
-                            color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            'Lanjutkan',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF977EF2),
+                          backgroundColor: Color(0xFF977EF2),
+                          textStyle: TextStyle(fontSize: 16),
                           elevation: 3,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
+                            borderRadius: BorderRadius.circular(20),
                           ),
                           padding: EdgeInsets.symmetric(
                             horizontal: 16,
