@@ -42,7 +42,6 @@ class isiDana extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(20, 10, 10, 0),
                 child: Container(
                   width: double.infinity,
-                  height: 60,
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                   ),
