@@ -21,7 +21,7 @@ class InformasiAkunPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
@@ -34,7 +34,7 @@ class InformasiAkunPage extends StatelessWidget {
               ],
             ),
           ),
-          child: Padding(
+          child: SingleChildScrollView(
             padding: EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,65 +47,40 @@ class InformasiAkunPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Nama : ',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Column(children: [
+                        ListTile(
+                          title: Text('Nama',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('Budi Jonathan'),
+                        ),
+                        ListTile(
+                          title: Text('Tempat Lahir',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('Jakarta'),
+                        ),
+                        ListTile(
+                          title: Text('Tanggal Lahir',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('02-03-2010'),
+                        ),
+                        ListTile(
+                          title: Text('Jenis Kelamin',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('Pria'),
+                        ),
+                        ListTile(
+                          title: Text('Kategori Usaha',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('Menengah'),
+                        ),
+                      ]),
                     ),
-                    SizedBox(height: 3),
-                    Text(
-                      'Tempat Lahir :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      'Tanggal Lahir :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      'Jenis Kelamin :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      'Agama :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      'Status perkawinan :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      'Pendidikan Terakhir :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
                 SizedBox(height: 16),
                 Container(
@@ -114,74 +89,55 @@ class InformasiAkunPage extends StatelessWidget {
                   color: Colors.white,
                 ),
                 SizedBox(height: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Status Kewarganegaraan :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Column(children: [
+                        ListTile(
+                          title: Text('Status Kewarganegaraan',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('Indonesia'),
+                        ),
+                        ListTile(
+                          title: Text('Alamat Lengkap',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('Jalan Mangga Besar III No. 17'),
+                        ),
+                        ListTile(
+                          title: Text('Provinsi',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('Jawa Timur'),
+                        ),
+                        ListTile(
+                          title: Text('Kabupaten/kota',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('Malang'),
+                        ),
+                        ListTile(
+                          title: Text('Kecamatan',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('Lawang'),
+                        ),
+                        ListTile(
+                          title: Text('Kelurahan',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('Bedali'),
+                        ),
+                        ListTile(
+                          title: Text('RT/RW',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('06/07'),
+                        ),
+                        ListTile(
+                          title: Text('Kode Pos',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text('60256'),
+                        ),
+                      ]),
                     ),
-                    SizedBox(height: 3),
-                    Text(
-                      'Alamat Lengkap :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      'Provinsi :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      'Kabupaten/kota :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      'Kecamatan :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      'Kelurahan :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      'RT/RW :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      'Kode pos :',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                  ],
+                  ),
                 ),
               ],
             ),
