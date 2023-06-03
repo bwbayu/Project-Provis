@@ -23,7 +23,7 @@ class _DashboardInvestorState extends State<DashboardInvestor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(45, 41, 96, 1),
+      backgroundColor: Colors.purple[200]!,
       body: IndexedStack(
         index: currentIndex,
         children: screens,
