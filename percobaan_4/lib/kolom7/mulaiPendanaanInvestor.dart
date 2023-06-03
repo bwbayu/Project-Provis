@@ -140,7 +140,7 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(20.0),
+                  padding: EdgeInsets.fromLTRB(0, 20, 10, 10),
                   child: ElevatedButton(
                     onPressed: () {
                       // SALDO USER BAKAL BERKURANG DAN DANA PINJAMAN BAKAL BERTAMBAH
@@ -148,10 +148,18 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                     },
                     child: Text(
                       "Lanjutkan",
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xFF977EF2),
+                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 50,
+                        vertical: 20,
+                      ),
                     ),
                   ),
                 ),
