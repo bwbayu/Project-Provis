@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class UMKMPage extends StatelessWidget {
   @override
@@ -7,11 +8,19 @@ class UMKMPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.purple[200]!,
         appBar: AppBar(
-          backgroundColor: Colors.purple[800]!,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: SvgPicture.asset(
+              'asset/images/vector.svg',
+              width: 30,
+              height: 30,
+            ),
           ),
+          title: Text(''),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
         ),
         body: Container(
           decoration: BoxDecoration(
@@ -43,8 +52,11 @@ class UMKMPage extends StatelessWidget {
                             width: MediaQuery.of(context).size.width,
                             margin: EdgeInsets.symmetric(horizontal: 5.0),
                             decoration: BoxDecoration(
-                                color: Color(0xFF977EF2),
-                                border: Border.all(color: Colors.white)),
+                              color: Color(0xFF977EF2),
+                              border: Border.all(color: Colors.transparent),
+                              borderRadius:
+                                  BorderRadius.circular(10.0), // Rounded edges
+                            ),
                             child: Center(
                               child: Text(
                                 'UMKM image $i',
@@ -175,7 +187,8 @@ class UMKMPage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           // Tambahkan kode aksi yang ingin Anda jalankan saat tombol ditekan
-                          Navigator.pushNamed(context, '/MulaiPendanaanInvestor');
+                          Navigator.pushNamed(
+                              context, '/MulaiPendanaanInvestor');
                         },
                         child: Text(
                           'Mulai Pendanaan',
