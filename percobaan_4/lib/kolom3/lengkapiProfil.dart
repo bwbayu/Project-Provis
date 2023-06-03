@@ -79,7 +79,7 @@ class formVerifikasi extends StatelessWidget {
                         ),
                         child: ListTile(
                           leading: FaIcon(
-                            FontAwesomeIcons.idCard,
+                            FontAwesomeIcons.user,
                             size: 50,
                             color: Color(0xFFF7F8F9),
                           ),
@@ -92,7 +92,7 @@ class formVerifikasi extends StatelessWidget {
                             ),
                           ),
                           subtitle: Text(
-                            'Gunakan e-ktp ataupun Surat Keterangan Pengganti (SKP) KTP untuk mendaftar',
+                            'Informasi identitas lengkap yang akan digunakan dalam aplikasi',
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFFF2F5F8),
@@ -132,7 +132,7 @@ class formVerifikasi extends StatelessWidget {
                             ),
                           ),
                           subtitle: Text(
-                            'Gunakan e-ktp ataupun Surat Keterangan Pengganti (SKP) KTP untuk mendaftar',
+                            'Dokumen yang diperlukan adalah KTP dan NPWP (opsional)',
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFFF2F5F8),
@@ -159,7 +159,7 @@ class formVerifikasi extends StatelessWidget {
                         ),
                         child: ListTile(
                           leading: FaIcon(
-                            FontAwesomeIcons.solidIdCard,
+                            FontAwesomeIcons.dollarSign,
                             size: 50,
                             color: Color(0xFFF7F8F9),
                           ),
@@ -172,7 +172,7 @@ class formVerifikasi extends StatelessWidget {
                             ),
                           ),
                           subtitle: Text(
-                            'Gunakan e-ktp ataupun Surat Keterangan Pengganti (SKP) KTP untuk mendaftar',
+                            'Masukkan akun bank yang akan dipakai untuk transaksi',
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFFF2F5F8),
@@ -199,7 +199,7 @@ class formVerifikasi extends StatelessWidget {
                         ),
                         child: ListTile(
                           leading: FaIcon(
-                            FontAwesomeIcons.solidIdCard,
+                            FontAwesomeIcons.signature,
                             size: 50,
                             color: Color(0xFFF7F8F9),
                           ),
@@ -212,7 +212,7 @@ class formVerifikasi extends StatelessWidget {
                             ),
                           ),
                           subtitle: Text(
-                            'Gunakan e-ktp ataupun Surat Keterangan Pengganti (SKP) KTP untuk mendaftar',
+                            'Tanda tangan digital diperlukan untuk konfirmasi persetujuan',
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFFF2F5F8),
@@ -226,6 +226,8 @@ class formVerifikasi extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
+                  // Butuh penanda buat bedain umkm dan investor
+                  // biar redirect ke dashboardnya masing-masing
                   child: ElevatedButton(
                     onPressed: () {
                       // Navigator.pushNamed(context, '/dashboardInvestor');

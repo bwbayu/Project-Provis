@@ -5,35 +5,40 @@ class RolePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: SvgPicture.asset(
-            'asset/images/vector.svg',
-            width: 30,
-            height: 30,
-          ),
-        ),
-        title: Text(''),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.purple[200]!,
-                Colors.purple[800]!,
-              ],
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                      "asset/images/background.jpg"), // Latar belakang
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Column(
+                children: [
+                  AppBar(
+                    leading: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: SvgPicture.asset(
+                        'asset/images/vector.svg',
+                        width: 30,
+                        height: 30,
+                      ),
+                    ),
+                    title: Text(''),
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                  ),
+                ],
+              ),
             ),
           ),
-          child: Center(
+          Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -114,7 +119,7 @@ class RolePage extends StatelessWidget {
               ],
             ),
           ),
-        ),
+        ],
       ),
     );
   }
