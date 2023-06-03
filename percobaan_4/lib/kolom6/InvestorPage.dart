@@ -357,8 +357,7 @@ class InvestorPage extends StatelessWidget {
                                 itemBuilder: (BuildContext context, int index) {
                                   return InkWell(
                                     onTap: () {
-                                      Navigator.pushNamed(
-                                          context, '/detailPortofolio');
+                                      Navigator.pushNamed(context, '/UMKMPage');
                                     },
                                     child: Padding(
                                       padding:
