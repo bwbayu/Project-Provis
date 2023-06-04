@@ -48,8 +48,8 @@ class _DashboardInvestorState extends State<DashboardInvestor> {
               label: 'Home',
             ),
             NavigationDestination(
-              icon: Icon(Icons.list),
-              selectedIcon: Icon(Icons.list),
+              icon: Icon(Icons.book),
+              selectedIcon: Icon(Icons.book),
               label: 'Portofolio',
             ),
             NavigationDestination(
