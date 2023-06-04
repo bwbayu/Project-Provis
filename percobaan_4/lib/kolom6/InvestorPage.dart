@@ -80,6 +80,15 @@ class InvestorPage extends StatelessWidget {
                             width: 200,
                             height: 200,
                             decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black
+                                      .withOpacity(0.2), // Warna bayangan
+                                  blurRadius: 7.0, // Ukuran blur bayangan
+                                  offset:
+                                      Offset(1, 2), // Posisi bayangan (x, y)
+                                ),
+                              ],
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.white,
                             ),
@@ -87,7 +96,8 @@ class InvestorPage extends StatelessWidget {
                               children: [
                                 SizedBox(height: 15.0),
                                 Padding(
-                                  padding: EdgeInsets.all(5),
+                                  padding: EdgeInsets.only(
+                                      right: 20, left: 20, top: 5, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -96,7 +106,8 @@ class InvestorPage extends StatelessWidget {
                                         'Balance',
                                         style: TextStyle(
                                           fontSize: 18.0,
-                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Outfit',
+                                          fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
                                       ),
@@ -104,7 +115,8 @@ class InvestorPage extends StatelessWidget {
                                         'Rp.5.000.000',
                                         style: TextStyle(
                                           fontSize: 18.0,
-                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Outfit',
+                                          fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
                                       ),
@@ -112,192 +124,197 @@ class InvestorPage extends StatelessWidget {
                                     ],
                                   ),
                                 ),
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal:
+                                          16.0), // Padding kiri dan kanan
+                                  child: Divider(
+                                    color: Colors.black
+                                        .withOpacity(0.3), // Warna garis
+                                    height: 1.0, // Tinggi garis
+                                    thickness: 1.0, // Ketebalan garis
+                                  ),
+                                ),
                                 SizedBox(height: 30.0),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        ElevatedButton(
-                                          onPressed: () {
-                                            // Handle Isi Dana button tap
-                                            Navigator.pushNamed(context, '/isiDana');
-
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            primary: Color.fromARGB(
-                                                255, 240, 240, 240),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0),
+                                Padding(
+                                  padding: EdgeInsets.only(right: 20, left: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              // Handle Isi Dana button tap
+                                              Navigator.pushNamed(
+                                                  context, '/isiDana');
+                                            },
+                                            child: Container(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Color.fromARGB(
+                                                    255, 240, 240, 240),
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  SvgPicture.asset(
+                                                    'asset/images/topup.svg',
+                                                    width: 24.0,
+                                                    height: 24.0,
+                                                    color: Color.fromARGB(
+                                                        1000, 168, 81, 223),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
-                                          child: Column(
-                                            children: [
-                                              SvgPicture.asset(
-                                                'asset/images/topup.svg',
-                                                width:
-                                                    24.0, // Sesuaikan ukuran ikon
-                                                height: 24.0,
-                                                color: Color.fromARGB(1000, 168,
-                                                    81, 223), // Warna ikon
-                                              ), // Ikon di atas tombol
-                                              SizedBox(
-                                                  height:
-                                                      8.0), // Jarak antara ikon dan teks
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                            height:
-                                                4.0), // Jarak antara tombol dan teks
-                                        Text(
-                                          'Top Up Saldo',
-                                          style: TextStyle(
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(width: 16.0),
-                                    Column(
-                                      children: [
-                                        ElevatedButton(
-                                          onPressed: () {
-                                            // Handle Isi Dana button tap
-                                            Navigator.pushNamed(context, '/tarikDana');
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            primary: Color.fromARGB(
-                                                255, 240, 240, 240),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'Top Up Saldo',
+                                            style: TextStyle(
+                                              fontSize: 12.0,
+                                              fontFamily: 'Outfit',
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black,
                                             ),
                                           ),
-                                          child: Column(
-                                            children: [
-                                              SvgPicture.asset(
-                                                'asset/images/transfer.svg',
-                                                width:
-                                                    24.0, // Sesuaikan ukuran ikon
-                                                height: 24.0,
-                                                color: Color.fromARGB(1000, 168,
-                                                    81, 223), // Warna ikon
-                                              ), // Ikon di atas tombol
-                                              SizedBox(
-                                                  height:
-                                                      8.0), // Jarak antara ikon dan teks
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                            height:
-                                                4.0), // Jarak antara tombol dan teks
-                                        Text(
-                                          'Transfer',
-                                          style: TextStyle(
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(width: 16.0),
-                                    Column(
-                                      children: [
-                                        ElevatedButton(
-                                          onPressed: () {
-                                            // Handle Isi Dana button tap
-                                            // Navigator.pushNamed(context, '/tarikDana');
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            primary: Color.fromARGB(
-                                                255, 240, 240, 240),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0),
+                                        ],
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          // Handle Transfer button tap
+                                          Navigator.pushNamed(
+                                              context, '/tarikDana');
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Color.fromARGB(
+                                                    255, 240, 240, 240),
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  SvgPicture.asset(
+                                                    'asset/images/transfer.svg',
+                                                    width: 24.0,
+                                                    height: 24.0,
+                                                    color: Color.fromARGB(
+                                                        1000, 168, 81, 223),
+                                                  ),
+                                                  SizedBox(height: 8.0),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          child: Column(
-                                            children: [
-                                              SvgPicture.asset(
-                                                'asset/images/request.svg',
-                                                width:
-                                                    24.0, // Sesuaikan ukuran ikon
-                                                height: 24.0,
-                                                color: Color.fromARGB(1000, 168,
-                                                    81, 223), // Warna ikon
-                                              ), // Ikon di atas tombol
-                                              SizedBox(
-                                                  height:
-                                                      8.0), // Jarak antara ikon dan teks
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                            height:
-                                                4.0), // Jarak antara tombol dan teks
-                                        Text(
-                                          'Request',
-                                          style: TextStyle(
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(width: 16.0),
-                                    Column(
-                                      children: [
-                                        ElevatedButton(
-                                          onPressed: () {
-                                            // Handle Isi Dana button tap
-                                            // Navigator.pushNamed(context, '/tarikDana');
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            primary: Color.fromARGB(
-                                                255, 240, 240, 240),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0),
+                                            SizedBox(height: 12.0),
+                                            Text(
+                                              'Transfer',
+                                              style: TextStyle(
+                                                fontSize: 12.0,
+                                                fontFamily: 'Outfit',
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black,
+                                              ),
                                             ),
-                                          ),
-                                          child: Column(
-                                            children: [
-                                              SvgPicture.asset(
-                                                'asset/images/history.svg',
-                                                width:
-                                                    24.0, // Sesuaikan ukuran ikon
-                                                height: 24.0,
-                                                color: Color.fromARGB(1000, 168,
-                                                    81, 223), // Warna ikon
-                                              ), // Ikon di atas tombol
-                                              SizedBox(
-                                                  height:
-                                                      8.0), // Jarak antara ikon dan teks
-                                            ],
-                                          ),
+                                          ],
                                         ),
-                                        SizedBox(
-                                            height:
-                                                4.0), // Jarak antara tombol dan teks
-                                        Text(
-                                          'History',
-                                          style: TextStyle(
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                          ),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          // Handle Request button tap
+                                          // Navigator.pushNamed(context, '/tarikDana');
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Color.fromARGB(
+                                                    255, 240, 240, 240),
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  SvgPicture.asset(
+                                                    'asset/images/card.svg',
+                                                    width: 24.0,
+                                                    height: 24.0,
+                                                    color: Color.fromARGB(
+                                                        1000, 168, 81, 223),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(height: 12.0),
+                                            Text(
+                                              'Request',
+                                              style: TextStyle(
+                                                fontSize: 12.0,
+                                                fontFamily: 'Outfit',
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  ],
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          // Handle History button tap
+                                          // Navigator.pushNamed(context, '/tarikDana');
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Color.fromARGB(
+                                                    255, 240, 240, 240),
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  SvgPicture.asset(
+                                                    'asset/images/history.svg',
+                                                    width: 24.0,
+                                                    height: 24.0,
+                                                    color: Color.fromARGB(
+                                                        1000, 168, 81, 223),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(height: 12.0),
+                                            Text(
+                                              'History',
+                                              style: TextStyle(
+                                                fontSize: 12.0,
+                                                fontFamily: 'Outfit',
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -306,44 +323,50 @@ class InvestorPage extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 20.0),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              // Handle Verifikasi Akun button tap
-                              Navigator.pushNamed(context, '/formVerifikasi');
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromRGBO(151, 126, 242, 1),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
+                    Center(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width *
+                            0.8, // Menggunakan 80% dari lebar layar
+                        height: 50,
+
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Handle Verifikasi Akun button tap
+                            Navigator.pushNamed(context, '/formVerifikasi');
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromRGBO(151, 126, 242, 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
                             ),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 12.0),
-                              child: Text(
-                                'Verifikasi Akun',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 12.0),
+                            child: Text(
+                              'Verifikasi Akun',
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
                               ),
                             ),
                           ),
                         ),
-                      ],
+                      ),
                     ),
                     SizedBox(height: 16.0),
                     SizedBox(height: 8.0),
-                    Text(
-                      'Rekomendasi',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                    Padding(
+                      padding: EdgeInsets.only(left: 16.0), // Padding kiri
+                      child: Text(
+                        'Rekomendasi',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: 'Outfit',
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                     SizedBox(height: 8.0),
@@ -456,7 +479,7 @@ class InvestorPage extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
