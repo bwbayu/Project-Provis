@@ -137,7 +137,7 @@ class listPinjaman extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Color(0xFF2E2960),
+        backgroundColor: Colors.purple[200]!,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Color(0xFF977EF2),
@@ -154,158 +154,171 @@ class listPinjaman extends StatelessWidget {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                height: 180,
-                decoration: BoxDecoration(
-                  color: Color(0xFF977EF2),
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(25),
-                    bottomRight: Radius.circular(25),
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.purple[200]!,
+                  Colors.purple[800]!,
+                ],
+              ),
+            ),
+            child: Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 180,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF977EF2),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(25),
+                      bottomRight: Radius.circular(25),
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFD2D2D2),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Total Pinjaman',
+                                  style: TextStyle(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Rp. xxxxxxxxxx',
+                                  style: TextStyle(
+                                    fontFamily: 'Outfit',
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Total Pinjaman Aktif',
+                                  style: TextStyle(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Text(
+                                  'Rp. xxxxxxxxx',
+                                  style: TextStyle(
+                                    fontFamily: 'Outfit',
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Pinjaman On Process',
+                                  style: TextStyle(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Text(
+                                  'Rp. xxxxxxx',
+                                  style: TextStyle(
+                                    fontFamily: 'Outfit',
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFD2D2D2),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Total Pinjaman',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                'Rp. xxxxxxxxxx',
-                                style: TextStyle(
-                                  fontFamily: 'Outfit',
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                SizedBox(
+                  height: 70,
+                  child: TabBar(
+                    tabs: [
+                      Tab(
+                        text: "Terbaru",
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Total Pinjaman Aktif',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Text(
-                                'Rp. xxxxxxxxx',
-                                style: TextStyle(
-                                  fontFamily: 'Outfit',
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                      Tab(
+                        text: "Selesai",
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Pinjaman On Process',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Text(
-                                'Rp. xxxxxxx',
-                                style: TextStyle(
-                                  fontFamily: 'Outfit',
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                      Tab(
+                        text: "Semua",
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 70,
-                child: TabBar(
-                  tabs: [
-                    Tab(
-                      text: "Terbaru",
-                    ),
-                    Tab(
-                      text: "Selesai",
-                    ),
-                    Tab(
-                      text: "Semua",
-                    ),
-                  ],
+                SizedBox(height: 16),
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      myColumn,
+                      myColumn,
+                      myColumn,
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 16),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    myColumn,
-                    myColumn,
-                    myColumn,
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

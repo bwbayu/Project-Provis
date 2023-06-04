@@ -40,10 +40,24 @@ class InformasiAkunPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Center(
-                  child: Icon(
-                    Icons.account_circle,
-                    size: 80,
-                    color: Colors.white,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      CircleAvatar(
+                        radius: 40,
+                        backgroundImage: AssetImage('asset/images/avatar.jpeg'),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Profile Photo',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontFamily: 'Outfit',
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: 16),
