@@ -230,8 +230,8 @@ class formVerifikasi extends StatelessWidget {
                   // biar redirect ke dashboardnya masing-masing
                   child: ElevatedButton(
                     onPressed: () {
-                      // Navigator.pushNamed(context, '/dashboardInvestor');
-                      Navigator.pushNamed(context, '/dashboardUMKM');
+                      Navigator.pushNamed(context, '/dashboardInvestor');
+                      // Navigator.pushNamed(context, '/dashboardUMKM');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF977EF2),

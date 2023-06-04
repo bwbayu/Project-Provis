@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -70,7 +69,7 @@ class InvestorPage extends StatelessWidget {
                           ],
                         ),
                         Spacer(),
-                        NotificationButton(), // Ganti dengan widget yang sesuai untuk tombol notifikasi
+                        NotificationButton(),
                       ],
                     ),
                     SizedBox(height: 16.0),
@@ -123,6 +122,8 @@ class InvestorPage extends StatelessWidget {
                                         ElevatedButton(
                                           onPressed: () {
                                             // Handle Isi Dana button tap
+                                            Navigator.pushNamed(context, '/isiDana');
+
                                           },
                                           style: ElevatedButton.styleFrom(
                                             primary: Color.fromARGB(
@@ -167,6 +168,7 @@ class InvestorPage extends StatelessWidget {
                                         ElevatedButton(
                                           onPressed: () {
                                             // Handle Isi Dana button tap
+                                            Navigator.pushNamed(context, '/tarikDana');
                                           },
                                           style: ElevatedButton.styleFrom(
                                             primary: Color.fromARGB(
@@ -211,6 +213,7 @@ class InvestorPage extends StatelessWidget {
                                         ElevatedButton(
                                           onPressed: () {
                                             // Handle Isi Dana button tap
+                                            // Navigator.pushNamed(context, '/tarikDana');
                                           },
                                           style: ElevatedButton.styleFrom(
                                             primary: Color.fromARGB(
@@ -255,6 +258,7 @@ class InvestorPage extends StatelessWidget {
                                         ElevatedButton(
                                           onPressed: () {
                                             // Handle Isi Dana button tap
+                                            // Navigator.pushNamed(context, '/tarikDana');
                                           },
                                           style: ElevatedButton.styleFrom(
                                             primary: Color.fromARGB(
