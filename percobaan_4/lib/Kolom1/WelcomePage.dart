@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class WelcomePage extends StatelessWidget {
   final List<String> imageList = [
     'asset/images/Illustration-1.png',
-    'asset/images/Illustration-1.png',
-    'asset/images/Illustration-1.png',
+    'asset/images/collaboration.png',
+    'asset/images/upgrade.png',
   ];
 
   @override
