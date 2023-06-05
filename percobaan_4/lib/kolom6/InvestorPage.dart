@@ -122,8 +122,8 @@ class InvestorPage extends StatelessWidget {
                                         ElevatedButton(
                                           onPressed: () {
                                             // Handle Isi Dana button tap
-                                            Navigator.pushNamed(context, '/isiDana');
-
+                                            Navigator.pushNamed(
+                                                context, '/isiDana');
                                           },
                                           style: ElevatedButton.styleFrom(
                                             primary: Color.fromARGB(
@@ -168,7 +168,8 @@ class InvestorPage extends StatelessWidget {
                                         ElevatedButton(
                                           onPressed: () {
                                             // Handle Isi Dana button tap
-                                            Navigator.pushNamed(context, '/tarikDana');
+                                            Navigator.pushNamed(
+                                                context, '/tarikDana');
                                           },
                                           style: ElevatedButton.styleFrom(
                                             primary: Color.fromARGB(
@@ -428,15 +429,15 @@ class InvestorPage extends StatelessWidget {
                                                         ),
                                                       ],
                                                     ),
-                                                    Text(
-                                                      'Status Pendanaan',
-                                                      style: TextStyle(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        color: Colors.black,
-                                                        fontSize: 14,
-                                                      ),
-                                                    ),
+                                                    // Text(
+                                                    //   'Status Pendanaan',
+                                                    //   style: TextStyle(
+                                                    //     fontFamily:
+                                                    //         'Readex Pro',
+                                                    //     color: Colors.black,
+                                                    //     fontSize: 14,
+                                                    //   ),
+                                                    // ),
                                                   ],
                                                 ),
                                               ),
