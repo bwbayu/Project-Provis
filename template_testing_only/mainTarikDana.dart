@@ -108,7 +108,13 @@ class _TarikTunaiPageState extends State<TarikTunaiPage>
                   children: [
                     Icon(Icons.attach_money),
                     SizedBox(width: 8),
-                    Text('Nominal Amount'),
+                    Text(
+                      'Rp10.000.000,00',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ],
                 ),
                 SizedBox(height: 8),
@@ -135,7 +141,7 @@ class _TarikTunaiPageState extends State<TarikTunaiPage>
                             child: SizedBox(
                               width: double.infinity,
                               height: 100,
-                              child: Center(child: Text('Amount 1')),
+                              child: Center(child: Text('Rp10.000,00')),
                             ),
                           ),
                           SizedBox(height: 8),
@@ -147,7 +153,7 @@ class _TarikTunaiPageState extends State<TarikTunaiPage>
                             child: SizedBox(
                               width: double.infinity,
                               height: 100,
-                              child: Center(child: Text('Amount 2')),
+                              child: Center(child: Text('Rp20.000,00')),
                             ),
                           ),
                           SizedBox(height: 8),
@@ -159,7 +165,7 @@ class _TarikTunaiPageState extends State<TarikTunaiPage>
                             child: SizedBox(
                               width: double.infinity,
                               height: 100,
-                              child: Center(child: Text('Amount 3')),
+                              child: Center(child: Text('Rp50.000,00')),
                             ),
                           ),
                         ],
@@ -177,7 +183,7 @@ class _TarikTunaiPageState extends State<TarikTunaiPage>
                             child: SizedBox(
                               width: double.infinity,
                               height: 100,
-                              child: Center(child: Text('Amount 4')),
+                              child: Center(child: Text('Rp100.000,00')),
                             ),
                           ),
                           SizedBox(height: 8),
@@ -189,7 +195,7 @@ class _TarikTunaiPageState extends State<TarikTunaiPage>
                             child: SizedBox(
                               width: double.infinity,
                               height: 100,
-                              child: Center(child: Text('Amount 5')),
+                              child: Center(child: Text('Rp200.000,00')),
                             ),
                           ),
                           SizedBox(height: 8),
@@ -201,7 +207,7 @@ class _TarikTunaiPageState extends State<TarikTunaiPage>
                             child: SizedBox(
                               width: double.infinity,
                               height: 100,
-                              child: Center(child: Text('Amount 6')),
+                              child: Center(child: Text('Rp500.000,00')),
                             ),
                           ),
                         ],
