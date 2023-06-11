@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:percobaan_4/model.dart';
 
 class formVerifikasi extends StatelessWidget {
   @override
@@ -224,30 +226,36 @@ class formVerifikasi extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   // Butuh penanda buat bedain umkm dan investor
                   // biar redirect ke dashboardnya masing-masing
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/dashboardInvestor');
-                      // Navigator.pushNamed(context, '/dashboardUMKM');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF977EF2),
-                      textStyle: TextStyle(fontSize: 16),
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                  child: Consumer<Login>(
+                    builder:(context, login, child) =>
+                    ElevatedButton(
+                      onPressed: () {
+                        if(login.jenis_user == "Investor"){
+                        Navigator.pushNamed(context, '/dashboardInvestor');
+                        }else{
+                        Navigator.pushNamed(context, '/dashboardUMKM');
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF977EF2),
+                        textStyle: TextStyle(fontSize: 16),
+                        elevation: 3,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 32,
+                          vertical: 20,
+                        ),
                       ),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 32,
-                        vertical: 20,
-                      ),
-                    ),
-                    child: Text(
-                      'Lanjutkan',
-                      style: TextStyle(
-                        fontFamily: 'Readex Pro',
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                      child: Text(
+                        'Lanjutkan',
+                        style: TextStyle(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),

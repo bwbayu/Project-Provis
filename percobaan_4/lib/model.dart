@@ -64,6 +64,7 @@ class Register extends ChangeNotifier{
       'email': email,
       'nomor_hp': nomorhp,
       'jenis_user': jenis_user,
+      'status_akun': "Not Verified",
     });
 
     final response = await http.post(url, headers: headers, body: body);
@@ -151,6 +152,12 @@ class VerifikasiAkun extends ChangeNotifier{
   String _pend_terakhir = "";
   String _alamat = "";
   String _status_kewarganegaraan = "";
+  String _provinsi = "";
+  String _kota = "";
+  String _kecamatan = "";
+  String _kelurahan = "";
+  String _rtrw = "";
+  String _kodepos = "";
 
   // SETTER GETTER
   String get nama => _nama;
@@ -200,9 +207,69 @@ class VerifikasiAkun extends ChangeNotifier{
     _status_kewarganegaraan = value;
     notifyListeners();
   }
+  set provinsi(String value){
+    _provinsi = value;
+    notifyListeners();
+  }
+  set kota(String value){
+    _kota = value;
+    notifyListeners();
+  }
+  set kecamatan(String value){
+    _kecamatan = value;
+    notifyListeners();
+  }
+  set kelurahan(String value){
+    _kelurahan = value;
+    notifyListeners();
+  }
+  set rtrw(String value){
+    _rtrw = value;
+    notifyListeners();
+  }
+  set kodepos(String value){
+    _kodepos = value;
+    notifyListeners();
+  }
 
-  // POST VERIFIKASI DATA
+  // PUT VERIFIKASI DATA
+  late Future<int> respPost;
+  Future<int> VerifyProcess(int user_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/updatePersonalData/' + user_id.toString());
+    final headers = {'Content-Type': 'application/json'};
+    final body = jsonEncode({
+      'id_user': user_id,
+      'foto_ktp': "temp_ktp",
+      'foto_npwp': "temp_npwp",
+      "ttd": "temp_ttd",
+      "nama": nama,
+      "tempat_lahir": tempat_lahir,
+      "tgl_lahir": "temp_tgl_lahir",
+      "jenis_kelamin": jenis_kelamin,
+      "agama": agama,
+      "status_perkawinan": status_perkawinan,
+      "pend_terakhir": pend_terakhir,
+      "alamat": '$alamat, $_provinsi, $_kota, $_kecamatan, $_kelurahan, $_rtrw, $_kodepos',
+      "status_kewarganegaraan": status_kewarganegaraan,
+    });
 
+    try {
+      final response = await http.put(url, headers: headers, body: body);
+
+      if (response.statusCode == 200) {
+        return response.statusCode;
+      } else if (response.statusCode == 422) {
+        print('Validation Error: ${response.body}');
+        return response.statusCode;
+      } else {
+        print('Error: ${response.statusCode}');
+        return response.statusCode;
+      }
+    } catch (e) {
+      print('Exception: $e');
+      return 0;
+    }
+  }
 
 }
 

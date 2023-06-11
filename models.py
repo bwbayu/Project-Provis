@@ -11,6 +11,7 @@ class UserModel(Base):
     email = Column(String(100), nullable=False)
     nomor_hp = Column(String(100), nullable=False)
     jenis_user = Column(String(20), nullable=False)
+    status_akun = Column(String(100), nullable=False)
     
     personal_data = relationship('PersonalDataModel', uselist=False, back_populates='user')
     banks = relationship('BankModel', back_populates='user')
@@ -27,7 +28,7 @@ class PersonalDataModel(Base):
     ttd = Column(String(100))
     nama = Column(String(100))
     tempat_lahir = Column(String(100))
-    tgl_lahir = Column(Date)
+    tgl_lahir = Column(String(100))
     jenis_kelamin = Column(String(20))
     agama = Column(String(20))
     status_perkawinan = Column(String(20))
