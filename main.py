@@ -6,6 +6,7 @@ import models
 # database
 from database import Base, engine, SessionLocal
 from sqlalchemy.orm import Session
+from sqlalchemy.sql.expression import or_
 
 # create local db
 Base.metadata.create_all(engine)
@@ -39,6 +40,15 @@ def get_user(session: Session = Depends(get_session)):
 @app.post("/addUser")
 async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session)):
     try:
+        # Check if email or phone number already exists
+        existing_user = db.query(models.UserModel).filter(or_(
+            models.UserModel.email == user.email,
+            models.UserModel.nomor_hp == user.nomor_hp
+        )).first()
+        if existing_user:
+            raise HTTPException(status_code=400, detail="Email or phone number already exists")
+
+        # create new user
         user_data = models.UserModel(
             username=user.username,
             password=user.password,
@@ -83,6 +93,15 @@ async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session))
 
     return {"message": "User data added successfully"}
 
+# LOGIN
+@app.post("/login")
+async def login(user: schemas.LoginSchema, db: Session = Depends(get_session)):
+    user_data = db.query(models.UserModel).filter(models.UserModel.email == user.email).first()
+    if user_data is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    if user_data.password != user.password:
+        raise HTTPException(status_code=401, detail="Incorrect password")
+    return {"message": "Login success", "user_id": user_data.user_id, "jenis_user": user_data.jenis_user}
 
 # GET USER BY ID
 @app.get("/getUserById/{user_id}")

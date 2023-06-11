@@ -9,6 +9,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Register()),
+        ChangeNotifierProvider(create: (_) => Login()),
       ],
       child: MyApp(),
       )

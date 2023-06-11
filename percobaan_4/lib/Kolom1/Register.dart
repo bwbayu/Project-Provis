@@ -203,12 +203,20 @@ class RegisterPage extends StatelessWidget {
                           ElevatedButton(
                             onPressed: () async {
                               // MASUK LOGIN PAGE
-                              final register = Provider.of<Register>(context, listen: false);
-                              // Insert data
-                              await register.addUser();
-
-                              // Check the response and navigate accordingly
-                              Navigator.pushNamed(context, '/loginPage');
+                              try {
+                                final statusCode = await register.addUser();
+                                // Registration successful, navigate to login page
+                                if(statusCode == 200){
+                                  Navigator.pushNamed(context, '/loginPage');
+                                }
+                              } catch (error) {
+                                // Registration failed, display the error message using a Snackbar
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Registration Error: ${error.toString()}'),
+                                  ),
+                                );
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                               minimumSize: Size(double.infinity, 70),
