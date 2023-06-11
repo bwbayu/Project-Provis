@@ -9,6 +9,7 @@ environment:
   sdk: ">=2.19.2 <3.0.0"
 
 dependencies:
+  dropdown_search: ^2.0.1
   image_picker: ^0.8.8
   flutter_svg: ^1.0.0
   google_fonts: ^2.0.0
