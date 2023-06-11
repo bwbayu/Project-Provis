@@ -59,7 +59,7 @@ class tarikDana extends StatelessWidget {
                     Navigator.pushNamed(context, '/TambahRekeningPage');
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: const Color(0xFFFCB58F),
+                    primary: Colors.purple[200]!,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
@@ -67,19 +67,19 @@ class tarikDana extends StatelessWidget {
                   child: ListTile(
                     leading: const Icon(
                       Icons.add,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                     title: Text(
                       'Tambah Rekening',
                       style: TextStyle(
                         fontFamily: 'Outfit',
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 20,
                       ),
                     ),
                     trailing: const Icon(
                       Icons.arrow_forward_ios,
-                      color: Colors.black,
+                      color: Colors.white,
                       size: 20,
                     ),
                   ),
@@ -92,7 +92,7 @@ class tarikDana extends StatelessWidget {
                   height: 50,
                   decoration: BoxDecoration(),
                   child: Text(
-                    'Rekening bank',
+                    'Rekening Bank',
                     style: TextStyle(
                       fontFamily: 'Readex Pro',
                       color: Colors.white,
@@ -120,7 +120,7 @@ class tarikDana extends StatelessWidget {
                                 width: double.infinity,
                                 height: 70,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF94E3BF),
+                                  color: Colors.purple[800]!,
                                   borderRadius: BorderRadius.circular(25),
                                 ),
                                 child: Padding(
@@ -134,9 +134,9 @@ class tarikDana extends StatelessWidget {
                                         'Bank',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
-                                          color: Colors.black,
+                                          color: Colors.white,
                                           fontWeight: FontWeight.normal,
-                                          fontSize: 28,
+                                          fontSize: 22,
                                         ),
                                       ),
                                       Padding(
@@ -148,16 +148,18 @@ class tarikDana extends StatelessWidget {
                                               'Nama Orang',
                                               style: TextStyle(
                                                 fontFamily: 'Readex Pro',
+                                                color: Colors.white,
                                                 fontWeight: FontWeight.normal,
-                                                fontSize: 20,
+                                                fontSize: 18,
                                               ),
                                             ),
                                             Text(
                                               '12345678909',
                                               style: TextStyle(
                                                 fontFamily: 'Readex Pro',
+                                                color: Colors.white,
                                                 fontWeight: FontWeight.normal,
-                                                fontSize: 20,
+                                                fontSize: 16,
                                               ),
                                             ),
                                           ],

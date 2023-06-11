@@ -75,9 +75,9 @@ class isiDana extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'Transfer Bank',
-                    textAlign: TextAlign.left,
                     style: TextStyle(
                         fontSize: 20,
+                        fontFamily: 'Outfit',
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
@@ -101,27 +101,27 @@ class isiDana extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                color: const Color(0xFF94E3BF),
+                                color: Colors.purple[800]!,
                                 child: ListTile(
                                   onTap: () {
                                     // Add your onTap logic here
                                   },
                                   leading: Icon(
                                     Icons.account_balance,
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     size: 30,
                                   ),
                                   title: Text(
                                     'Bank',
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontSize: 22,
                                     ),
                                   ),
                                   trailing: Icon(
                                     Icons.arrow_forward_ios,
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     size: 20,
                                   ),
                                 ),
