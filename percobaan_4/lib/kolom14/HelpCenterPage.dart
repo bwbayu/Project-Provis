@@ -2,17 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:percobaan_4/kolom14/PoinHelpPage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-// class HelpCenterPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Help Center',
-//       home: Page(),
-//       debugShowCheckedModeBanner: false, // Remove the debug banner
-//     );
-//   }
-// }
-
 class HelpCenterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

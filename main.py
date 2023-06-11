@@ -1,4 +1,6 @@
-from fastapi import FastAPI, Body, Depends
+from fastapi import FastAPI, Body, Depends,Response,Request,HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from typing import Union
 import schemas
 import models
 # database
@@ -18,6 +20,13 @@ def get_session():
 
 # API METHOD
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # ==================================== USER =================================================
 # GET ALL USER
@@ -28,54 +37,64 @@ def get_user(session: Session = Depends(get_session)):
 
 # ADD USER (page register)
 @app.post("/addUser")
-def add_user(user: schemas.UserSchema, personal_data: schemas.PersonalDataSchema, session: Session = Depends(get_session)):
-    # CREATE NEW DATA USER
-    user_data = models.UserModel(**user.dict())
-    session.add(user_data)
-    session.commit()
-    session.refresh(user_data)
+async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session)):
+    try:
+        user_data = models.UserModel(
+            username=user.username,
+            password=user.password,
+            c_password=user.c_password,
+            email=user.email,
+            nomor_hp=user.nomor_hp,
+            jenis_user=user.jenis_user
+        )
+        db.add(user_data)
+        db.commit()
+        db.refresh(user_data)
+        # Create new personal data for the user
+        personal_data = models.PersonalDataModel(user_id=user_data.user_id)
+        db.add(personal_data)
+        db.commit()
+        db.refresh(personal_data)
+        # Create new wallet for the user
+        wallet = models.WalletModel(
+            user_id=user_data.user_id,
+            saldo=0
+        )
+        db.add(wallet)
+        db.commit()
+        db.refresh(wallet)
+        if user_data.jenis_user == "Investor":
+            # Create new data penyediaDana for the user
+            penyedia_dana = models.PenyediaDanaModel(user_id=user_data.user_id)
+            db.add(penyedia_dana)
+            db.commit()
+            db.refresh(penyedia_dana)
+        elif user_data.jenis_user == "Borrower":
+            # Create new data pemilikUMKM for the user
+            pemilik_umkm = models.PemilikUmkmModel(user_id=user_data.user_id)
+            db.add(pemilik_umkm)
+            db.commit()
+            db.refresh(pemilik_umkm)
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=400, detail=str(e))
+    finally:
+        db.close()
 
-    # Create new data wallet for the user
-    wallet_data = models.WalletModel(user_id=user_data.user_id, saldo=0.0)
-    session.add(wallet_data)
-    session.commit()
-    session.refresh(wallet_data)
+    return {"message": "User data added successfully"}
 
-    # Create new personal data for the user
-    personal_data_model = models.PersonalDataModel(user_id=user_data.user_id, **personal_data.dict())
-    session.add(personal_data_model)
-    session.commit()
-    session.refresh(personal_data_model)
-
-    msg = ""
-    if user_data.jenis_user == "Investor":
-        # Create new data penyediaDana for the user
-        penyedia_dana = models.PenyediaDanaModel(user_id=user_data.user_id)
-        session.add(penyedia_dana)
-        session.commit()
-        session.refresh(penyedia_dana)
-        msg = "investor"
-    elif user_data.jenis_user == "Borrower":
-        # Create new data pemilikUMKM for the user
-        pemilik_umkm = models.PemilikUmkmModel(user_id=user_data.user_id)
-        session.add(pemilik_umkm)
-        session.commit()
-        session.refresh(pemilik_umkm)
-        msg = "borrower"
-    return {"user": user_data, "wallet": wallet_data, "msg": msg}
 
 # GET USER BY ID
-@app.get("/getUser/{user_id}")
+@app.get("/getUserById/{user_id}")
 def get_user_by_id(user_id: int, session: Session = Depends(get_session)):
     db_user = session.query(models.UserModel).get(user_id)
     return {"user": db_user}
 
 # ==================================== Personal Data =================================================
 # ADD PERSONAL DATA (page ktp, npwp, ttd, data_diri)
-@app.post("/addPersonalData/{user_id}")
-def add_personal_data(user_id:int, personal_data: schemas.PersonalDataSchema, session: Session = Depends(get_session)):
+@app.post("/addPersonalData")
+def add_personal_data(personal_data: schemas.PersonalDataSchema, session: Session = Depends(get_session)):
     personal_data = models.PersonalDataModel(**personal_data.dict())
-    personal_data.user_id = user_id
     session.add(personal_data)
     session.commit()
     session.refresh(personal_data)
@@ -197,3 +216,4 @@ def get_umkm_by_umkm_id(umkm_id: int, session=Depends(get_session)):
 # ==================================== PENDANAAN =================================================
 
 # ADD PEMBAYARAN BY PINJAMAN_ID (page pembayaran)
+

@@ -10,18 +10,19 @@ class UserSchema(BaseModel):
     jenis_user: str
 
 class PersonalDataSchema(BaseModel):
-    foto_ktp: str = Field(default='')
-    foto_npwp: str = Field(default='')
-    ttd: str = Field(default='')
-    nama: str = Field(default='')
-    tempat_lahir: str = Field(default='')
+    id_user: int
+    foto_ktp: str
+    foto_npwp: str
+    ttd: str
+    nama: str
+    tempat_lahir: str
     tgl_lahir: date
-    jenis_kelamin: str = Field(default='')
-    agama: str = Field(default='')
-    status_perkawinan: str = Field(default='')
-    pend_terakhir: str = Field(default='')
-    alamat: str = Field(default='')
-    status_kewarganegaraan: str = Field(default='')
+    jenis_kelamin: str
+    agama: str
+    status_perkawinan: str
+    pend_terakhir: str
+    alamat: str
+    status_kewarganegaraan: str
 
 class BankSchema(BaseModel):
     nama_bank: str
