@@ -132,3 +132,68 @@ class Login extends ChangeNotifier{
     return response.statusCode;
   }
 }
+
+class VerifikasiAkun extends ChangeNotifier{
+  String _nama = "";
+  String _tempat_lahir = "";
+  String _tgl_lahir = "";
+  String _jenis_kelamin = "";
+  String _agama = "";
+  String _status_perkawinan = "";
+  String _pend_terakhir = "";
+  String _alamat = "";
+  String _status_kewarganegaraan = "";
+
+  // SETTER GETTER
+  String get nama => _nama;
+  String get tempat_lahir => _tempat_lahir;
+  String get tgl_lahir => _tgl_lahir;
+  String get jenis_kelamin => _jenis_kelamin;
+  String get agama => _agama;
+  String get status_perkawinan => _status_perkawinan;
+  String get pend_terakhir => _pend_terakhir;
+  String get alamat => _alamat;
+  String get status_kewarganegaraan => _status_kewarganegaraan;
+
+  set nama(String value){
+    _nama = value;
+    notifyListeners();
+  }
+
+  set tempat_lahir(String value){
+    _tempat_lahir = value;
+    notifyListeners();
+  }
+  set tgl_lahir(String value){
+    _tgl_lahir = value;
+    notifyListeners();
+  }
+  set jenis_kelamin(String value){
+    _jenis_kelamin = value;
+    notifyListeners();
+  }
+  set agama(String value){
+    _agama = value;
+    notifyListeners();
+  }
+  set status_perkawinan(String value){
+    _status_perkawinan = value;
+    notifyListeners();
+  }
+  set pend_terakhir(String value){
+    _pend_terakhir = value;
+    notifyListeners();
+  }
+  set alamat(String value){
+    _alamat = value;
+    notifyListeners();
+  }
+  set status_kewarganegaraan(String value){
+    _status_kewarganegaraan = value;
+    notifyListeners();
+  }
+
+  // POST VERIFIKASI DATA
+  
+
+}
