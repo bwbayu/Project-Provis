@@ -35,6 +35,7 @@ class wallet extends StatelessWidget {
                           'Saldo',
                           style: TextStyle(
                             fontFamily: 'Outfit',
+                            fontWeight: FontWeight.bold,
                             color: Colors.black,
                             fontSize: 24,
                           ),
@@ -51,6 +52,7 @@ class wallet extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
                                 color: Colors.black,
                                 fontSize: 18,
                               ),
@@ -80,6 +82,7 @@ class wallet extends StatelessWidget {
                               'Tarik Dana',
                               style: TextStyle(
                                 fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 fontSize: 16,
                               ),
@@ -100,6 +103,7 @@ class wallet extends StatelessWidget {
                             'Total Dana Keluar',
                             style: TextStyle(
                               fontFamily: 'Outfit',
+                              fontWeight: FontWeight.bold,
                               color: Colors.white,
                               fontSize: 16,
                             ),
@@ -131,6 +135,7 @@ class wallet extends StatelessWidget {
                               'Isi Dana',
                               style: TextStyle(
                                 fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 fontSize: 16,
                               ),
@@ -151,6 +156,7 @@ class wallet extends StatelessWidget {
                             'Total Dana Masuk',
                             style: TextStyle(
                               fontFamily: 'Outfit',
+                              fontWeight: FontWeight.bold,
                               color: Colors.white,
                               fontSize: 16,
                             ),
@@ -209,6 +215,7 @@ class wallet extends StatelessWidget {
                                     'keterangan',
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                       fontSize: 18,
                                     ),
