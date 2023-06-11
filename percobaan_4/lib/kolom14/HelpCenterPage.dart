@@ -6,33 +6,14 @@ class HelpCenterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: SvgPicture.asset(
-            'asset/images/vector.svg',
-            width: 30,
-            height: 30,
-          ),
-        ),
-        title: Text(''),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.purple[200]!,
-                Colors.purple[800]!,
-              ],
+            image: DecorationImage(
+              image:
+                  AssetImage("asset/images/background.jpg"), // Latar belakang
+              fit: BoxFit.cover,
             ),
           ),
           child: Padding(
@@ -40,6 +21,21 @@ class HelpCenterPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                AppBar(
+                  leading: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: SvgPicture.asset(
+                      'asset/images/vector.svg',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                  title: Text(''),
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -155,7 +151,7 @@ class HelpButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 148, 226, 191),
+        color: Colors.purple[200]!,
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: ListTile(
