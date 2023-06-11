@@ -324,12 +324,16 @@ class dataDiri extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.all(16),
                             child: ElevatedButton(
+<<<<<<< HEAD
                               onPressed: () async {
                                 final statusCode =
                                     await verif.VerifyProcess(login.user_id);
                                 if (statusCode == 200) {
                                   // verify berhasil
                                 }
+=======
+                              onPressed: (){
+>>>>>>> 58642ebe8781e5f302a038887bdf66f1bf6743ef
                                 Navigator.pop(context);
                               },
                               child: Padding(

@@ -29,18 +29,17 @@ class CallCenterPage extends StatelessWidget {
                       height: 30,
                     ),
                   ),
-                  title: Text(''),
+                  title: Text(
+                    'Kontak Kami',
+                    style: TextStyle(
+                      fontSize: 22.0,
+                      fontFamily: 'Outfit',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
                   backgroundColor: Colors.transparent,
                   elevation: 0,
-                ),
-                Text(
-                  'Kontak Kami',
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    fontFamily: 'Outfit',
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(20.0),

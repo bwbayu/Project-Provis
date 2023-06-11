@@ -50,8 +50,7 @@ class wallet extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Consumer<Wallet>(
-                              builder: (context, wallet, child) =>
-                              Text(
+                              builder: (context, wallet, child) => Text(
                                 'Rp. ' + wallet.saldo.toString(),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -117,7 +116,7 @@ class wallet extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                           child: Text(
-                            'Rp. xxxxx',
+                            'Rp5.000.000,00',
                             style: TextStyle(
                               fontFamily: 'Outfit',
                               color: Colors.white,
@@ -170,7 +169,7 @@ class wallet extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                           child: Text(
-                            'Rp. xxxxx',
+                            'Rp1.000.000,00',
                             style: TextStyle(
                               fontFamily: 'Outfit',
                               color: Colors.white,
@@ -226,7 +225,7 @@ class wallet extends StatelessWidget {
                                     ),
                                   ),
                                   subtitle: Text(
-                                    'Rp. xxxxxxx',
+                                    'Rp50.000,00',
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
                                       color: Colors.white,

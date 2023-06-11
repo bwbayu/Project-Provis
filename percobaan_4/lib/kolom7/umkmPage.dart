@@ -3,6 +3,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class UMKMPage extends StatelessWidget {
+  final List<String> umkmImages = [
+    'asset/images/umkm_image_1.jpg',
+    'asset/images/umkm_image_2.jpg',
+    'asset/images/umkm_image_3.jpg',
+    'asset/images/umkm_image_4.jpg',
+    'asset/images/umkm_image_5.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +46,6 @@ class UMKMPage extends StatelessWidget {
                   viewportFraction: 0.8,
                   enlargeCenterPage: true,
                   autoPlay: true,
-                  initialPage: 2,
                 ),
                 items: [1, 2, 3, 4, 5].map((i) {
                   return Builder(
@@ -52,11 +59,9 @@ class UMKMPage extends StatelessWidget {
                           borderRadius:
                               BorderRadius.circular(10.0), // Rounded edges
                         ),
-                        child: Center(
-                          child: Text(
-                            'UMKM image $i',
-                            style: TextStyle(fontSize: 16.0),
-                          ),
+                        child: Image.asset(
+                          umkmImages[i - 1], // Select the image based on index
+                          fit: BoxFit.cover,
                         ),
                       );
                     },
