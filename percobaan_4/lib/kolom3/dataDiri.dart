@@ -1,9 +1,12 @@
+import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:percobaan_4/model.dart';
 
 class dataDiri extends StatelessWidget {
+  final format = DateFormat("yyyy-MM-dd");
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,8 +40,7 @@ class dataDiri extends StatelessWidget {
               children: [
                 SingleChildScrollView(
                   child: Consumer2<VerifikasiAkun, Login>(
-                    builder: (context, verif, login, child) =>
-                    Column(
+                    builder: (context, verif, login, child) => Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -66,7 +68,7 @@ class dataDiri extends StatelessWidget {
                                     labelText: 'Nama sesuai KTP',
                                   ),
                                   style: TextStyle(color: Colors.black),
-                                  onChanged: (value){
+                                  onChanged: (value) {
                                     verif.nama = value;
                                   },
                                 ),
@@ -75,17 +77,26 @@ class dataDiri extends StatelessWidget {
                                     labelText: 'Tempat lahir sesuai KTP',
                                   ),
                                   style: TextStyle(color: Colors.black),
-                                  onChanged: (value){
+                                  onChanged: (value) {
                                     verif.tempat_lahir = value;
                                   },
                                 ),
-                                TextFormField(
+                                DateTimeField(
                                   decoration: InputDecoration(
                                     labelText: 'Tanggal lahir sesuai KTP',
                                   ),
-                                  style: TextStyle(color: Colors.black),
-                                  onChanged: (value){
-                                    verif.tgl_lahir = value;
+                                  format: format,
+                                  onChanged: (value) {
+                                    verif.tgl_lahir = value as String;
+                                  },
+                                  onShowPicker: (context, currentValue) {
+                                    return showDatePicker(
+                                      context: context,
+                                      firstDate: DateTime(1900),
+                                      initialDate:
+                                          currentValue ?? DateTime.now(),
+                                      lastDate: DateTime(2100),
+                                    );
                                   },
                                 ),
                                 Row(
@@ -187,7 +198,7 @@ class dataDiri extends StatelessWidget {
                                   ),
                                   maxLines: null,
                                   style: TextStyle(color: Colors.black),
-                                  onChanged: (value){
+                                  onChanged: (value) {
                                     verif.alamat = value;
                                   },
                                 ),
@@ -240,7 +251,6 @@ class dataDiri extends StatelessWidget {
                                   }).toList(),
                                   onChanged: (value) {
                                     verif.kecamatan = value!;
-
                                   },
                                   decoration: InputDecoration(
                                     labelText: 'Kecamatan',
@@ -259,7 +269,6 @@ class dataDiri extends StatelessWidget {
                                   }).toList(),
                                   onChanged: (value) {
                                     verif.kelurahan = value!;
-                                    
                                   },
                                   decoration: InputDecoration(
                                     labelText: 'Kelurahan',
@@ -273,7 +282,7 @@ class dataDiri extends StatelessWidget {
                                           labelText: 'RT/RW',
                                         ),
                                         style: TextStyle(color: Colors.black),
-                                        onChanged: (value){
+                                        onChanged: (value) {
                                           verif.rtrw = value;
                                         },
                                       ),
@@ -284,7 +293,7 @@ class dataDiri extends StatelessWidget {
                                           labelText: 'Kode Pos',
                                         ),
                                         style: TextStyle(color: Colors.black),
-                                        onChanged: (value){
+                                        onChanged: (value) {
                                           verif.kodepos = value;
                                         },
                                       ),
@@ -316,8 +325,9 @@ class dataDiri extends StatelessWidget {
                             padding: EdgeInsets.all(16),
                             child: ElevatedButton(
                               onPressed: () async {
-                                final statusCode = await verif.VerifyProcess(login.user_id);
-                                if(statusCode == 200){
+                                final statusCode =
+                                    await verif.VerifyProcess(login.user_id);
+                                if (statusCode == 200) {
                                   // verify berhasil
                                 }
                                 Navigator.pop(context);
