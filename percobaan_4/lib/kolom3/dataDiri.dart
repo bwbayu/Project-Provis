@@ -87,7 +87,7 @@ class dataDiri extends StatelessWidget {
                                   ),
                                   format: format,
                                   onChanged: (value) {
-                                    verif.tgl_lahir = value.toString();
+                                    verif.tgl_lahir = format.format(value!);
                                   },
                                   onShowPicker: (context, currentValue) {
                                     return showDatePicker(
@@ -324,7 +324,7 @@ class dataDiri extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.all(16),
                             child: ElevatedButton(
-                              onPressed: (){
+                              onPressed: () {
                                 Navigator.pop(context);
                               },
                               child: Padding(
