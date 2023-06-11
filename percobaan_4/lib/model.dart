@@ -78,6 +78,7 @@ class Login extends ChangeNotifier{
   String _password = "";
   int _user_id = 0;
   String _jenis_user = "";
+  
 
   // SETTER GETTER
   String get email => _email;
@@ -130,6 +131,13 @@ class Login extends ChangeNotifier{
       jenis_user = responseData['jenis_user'];
     }
     return response.statusCode;
+  }
+
+  void reset(){
+    email = "";
+    password = "";
+    user_id = 0;
+    jenis_user = "";
   }
 }
 
@@ -194,6 +202,32 @@ class VerifikasiAkun extends ChangeNotifier{
   }
 
   // POST VERIFIKASI DATA
-  
+
 
 }
+
+class Wallet extends ChangeNotifier{
+  double saldo;
+  int wallet_id;
+
+  Wallet({required this.saldo, required this.wallet_id});
+
+  // map dari json ke atribut
+  void setFromJson(Map<String, dynamic> json){
+    saldo = json['wallet_user']['saldo'];
+    wallet_id = json['wallet_user']['wallet_id'];
+    notifyListeners();
+  }
+
+  // ambil data dari api secara async
+  Future<void> fetchData(int user_id) async{
+    final response = await http.get(Uri.parse("http://127.0.0.1:8000/users/$user_id/wallet"));
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        setFromJson(data);
+      } else {
+        throw Exception('Failed to fetch user wallet');
+      }
+  }
+}
+
