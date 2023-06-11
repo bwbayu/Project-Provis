@@ -4,7 +4,6 @@ class wallet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
       body: SafeArea(
         top: true,
         child: Container(
@@ -24,7 +23,7 @@ class wallet extends StatelessWidget {
                   width: double.infinity,
                   height: 200,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFFCB58F),
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Column(
@@ -36,7 +35,7 @@ class wallet extends StatelessWidget {
                           'Saldo',
                           style: TextStyle(
                             fontFamily: 'Outfit',
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 24,
                           ),
                         ),
@@ -52,7 +51,7 @@ class wallet extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Outfit',
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 18,
                               ),
                             ),
@@ -87,7 +86,7 @@ class wallet extends StatelessWidget {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFFFCB58F),
+                            primary: Colors.purple[200]!,
                             elevation: 3,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
@@ -138,7 +137,7 @@ class wallet extends StatelessWidget {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFFFCB58F),
+                            primary: Colors.purple[200]!,
                             elevation: 3,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
@@ -201,7 +200,7 @@ class wallet extends StatelessWidget {
                                 width: 100,
                                 height: 60,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF94E3BF),
+                                  color: Colors.purple[800]!,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: ListTile(
@@ -209,7 +208,7 @@ class wallet extends StatelessWidget {
                                     'keterangan',
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontSize: 18,
                                     ),
                                   ),
@@ -217,13 +216,13 @@ class wallet extends StatelessWidget {
                                     'Rp. xxxxxxx',
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontSize: 20,
                                     ),
                                   ),
                                   trailing: Icon(
                                     Icons.arrow_forward_ios,
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     size: 20,
                                   ),
                                 ),
