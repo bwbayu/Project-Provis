@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
 class listPinjaman extends StatelessWidget {
+  final List<String> umkmImages = [
+    'asset/images/umkm_image_5.jpg',
+    'asset/images/umkm_image_3.jpg',
+    'asset/images/umkm_image_2.jpg',
+    'asset/images/umkm_image_1.jpg',
+    'asset/images/umkm_image_4.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     Column myColumn = Column(
@@ -48,7 +56,7 @@ class listPinjaman extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 10,
+                    itemCount: umkmImages.length,
                     itemBuilder: (BuildContext context, int index) {
                       return InkWell(
                         onTap: () {
@@ -67,8 +75,8 @@ class listPinjaman extends StatelessWidget {
                               children: [
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(
-                                    'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                                  child: Image.asset(
+                                    umkmImages[index],
                                     width: double.infinity,
                                     height: 120,
                                     fit: BoxFit.cover,
@@ -101,7 +109,7 @@ class listPinjaman extends StatelessWidget {
                                               ),
                                             ),
                                             Text(
-                                              'Rp. xxxxx',
+                                              'Rp20.000.000,00',
                                               style: TextStyle(
                                                 fontFamily: 'Readex Pro',
                                                 color: Colors.black,
@@ -208,7 +216,7 @@ class listPinjaman extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  'Rp. xxxxxxxxxx',
+                                  'Rp20.000.000,00',
                                   style: TextStyle(
                                     fontFamily: 'Outfit',
                                     color: Colors.black,
@@ -244,7 +252,7 @@ class listPinjaman extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  'Rp. xxxxxxxxx',
+                                  'Rp20.000.000,00',
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 18,
@@ -280,7 +288,7 @@ class listPinjaman extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  'Rp. xxxxxxx',
+                                  'Rp20.000.000,00',
                                   style: TextStyle(
                                     fontFamily: 'Outfit',
                                     fontWeight: FontWeight.w500,
