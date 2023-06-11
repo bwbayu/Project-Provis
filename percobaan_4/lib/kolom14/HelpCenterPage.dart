@@ -32,22 +32,17 @@ class HelpCenterPage extends StatelessWidget {
                       height: 30,
                     ),
                   ),
-                  title: Text(''),
+                  title: Text(
+                    'Bantuan',
+                    style: TextStyle(
+                      fontFamily: 'Outfit',
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                      fontSize: 22,
+                    ),
+                  ),
                   backgroundColor: Colors.transparent,
                   elevation: 0,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Bantuan',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
                 ),
                 SizedBox(height: 16.0),
                 HelpButton(
