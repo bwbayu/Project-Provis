@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percobaan_4/Kolom1/WelcomePage.dart';
+import 'package:provider/provider.dart';
+import 'package:percobaan_4/model.dart';
 
 class profilePage extends StatelessWidget {
   @override
@@ -116,25 +118,29 @@ class profilePage extends StatelessWidget {
               child: Text('Setting App', style: TextStyle(color: Colors.white)),
             ),
             SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                // Handle Setting App button tap
-                // Navigator.pushNamed(context, '/welcomePage');
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => WelcomePage()),
-                  (route) => false, // Remove all previous routes from the stack
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(300, 60),
-                backgroundColor: Colors.purple[800]!,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
+            Consumer<Login>(
+              builder: (context, login, child) =>
+              ElevatedButton(
+                onPressed: () {
+                  // Handle Setting App button tap
+                  // reset variable in login
+                  login.reset();
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => WelcomePage()),
+                    (route) => false, // Remove all previous routes from the stack
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(300, 60),
+                  backgroundColor: Colors.purple[800]!,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
                 ),
+                child: Text('Log Out', style: TextStyle(color: Colors.white)),
               ),
-              child: Text('Log Out', style: TextStyle(color: Colors.white)),
             ),
             Spacer(),
           ],

@@ -10,6 +10,8 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => Register()),
         ChangeNotifierProvider(create: (_) => Login()),
+        ChangeNotifierProvider(create: (_) => Wallet(saldo: 0, wallet_id: 0)),
+        ChangeNotifierProvider(create: (_) => VerifikasiAkun()),
       ],
       child: MyApp(),
       )
