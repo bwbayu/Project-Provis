@@ -106,15 +106,15 @@ class Portofolio extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Color(0xFF2E2960),
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Color(0xFF977EF2),
+          backgroundColor: Colors.white,
           title: Text(
-            'PORTOFOLIO',
+            'Portofolio',
             style: TextStyle(
               fontFamily: 'Outfit',
-              color: Colors.white,
+              fontWeight: FontWeight.w700,
+              color: Colors.black,
               fontSize: 22,
             ),
           ),
@@ -125,13 +125,9 @@ class Portofolio extends StatelessWidget {
           child: Container(
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.purple[200]!,
-                  Colors.purple[800]!,
-                ],
+              image: DecorationImage(
+                image: AssetImage("asset/images/background.jpg"),
+                fit: BoxFit.cover,
               ),
             ),
             child: Column(
@@ -140,7 +136,7 @@ class Portofolio extends StatelessWidget {
                   width: double.infinity,
                   height: 180,
                   decoration: BoxDecoration(
-                    color: Color(0xFF977EF2),
+                    color: Colors.white,
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(25),
                       bottomRight: Radius.circular(25),
@@ -149,26 +145,36 @@ class Portofolio extends StatelessWidget {
                   child: Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+                        padding: EdgeInsets.fromLTRB(5, 5, 10, 0),
                         child: Container(
                           width: double.infinity,
                           height: 50,
                           decoration: BoxDecoration(
-                            color: Color(0xFFD2D2D2),
-                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                              image: AssetImage("asset/images/background.jpg"),
+                              fit: BoxFit.cover,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
                           ),
                           child: Padding(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  'Total Portofolio',
-                                  style: TextStyle(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(10.0, 5, 10, 5),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                  child: Text(
+                                    'Total Portofolio',
+                                    style: TextStyle(
+                                      fontFamily: 'Outfit',
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                    ),
                                   ),
                                 ),
                                 Text(
@@ -201,7 +207,8 @@ class Portofolio extends StatelessWidget {
                                 Text(
                                   'Total Pendanaan Aktif',
                                   style: TextStyle(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Outfit',
+                                    fontWeight: FontWeight.w500,
                                     color: Colors.black,
                                     fontSize: 16,
                                   ),
@@ -209,10 +216,10 @@ class Portofolio extends StatelessWidget {
                                 Text(
                                   'Rp. xxxxxxxxx',
                                   style: TextStyle(
-                                    fontFamily: 'Outfit',
                                     color: Colors.black,
                                     fontSize: 18,
-                                    fontWeight: FontWeight.normal,
+                                    fontFamily: 'Outfit',
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ],
@@ -236,7 +243,8 @@ class Portofolio extends StatelessWidget {
                                 Text(
                                   'Pendanaan on process',
                                   style: TextStyle(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Outfit',
+                                    fontWeight: FontWeight.w500,
                                     color: Colors.black,
                                     fontSize: 16,
                                   ),
@@ -245,9 +253,9 @@ class Portofolio extends StatelessWidget {
                                   'Rp. xxxxxxx',
                                   style: TextStyle(
                                     fontFamily: 'Outfit',
+                                    fontWeight: FontWeight.w500,
                                     color: Colors.black,
                                     fontSize: 20,
-                                    fontWeight: FontWeight.normal,
                                   ),
                                 ),
                               ],
@@ -272,6 +280,12 @@ class Portofolio extends StatelessWidget {
                         text: "Semua",
                       ),
                     ],
+                    labelStyle: TextStyle(
+                      fontFamily: 'Outfit',
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
                   ),
                 ),
                 Expanded(

@@ -91,7 +91,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                               onChanged: (value){
                                 login.email = value;
-                              },
+                              }
                             ),
                           ),
                           SizedBox(height: 16),
@@ -132,6 +132,9 @@ class LoginScreen extends StatelessWidget {
                           ElevatedButton(
                             onPressed: () async{
                               // MASUK KE DASHBOARD INVESTOR DAN BORROWER
+                              if(login.email == "" || login.password == ""){
+                                print("kosong");
+                              }
                               final statusCode = await login.loginProcess();
                               print(statusCode);
                               if(statusCode == 200){

@@ -4,7 +4,6 @@ class wallet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
       body: SafeArea(
         top: true,
         child: Container(
@@ -24,7 +23,7 @@ class wallet extends StatelessWidget {
                   width: double.infinity,
                   height: 200,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFFCB58F),
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Column(
@@ -36,7 +35,8 @@ class wallet extends StatelessWidget {
                           'Saldo',
                           style: TextStyle(
                             fontFamily: 'Outfit',
-                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
                             fontSize: 24,
                           ),
                         ),
@@ -52,7 +52,8 @@ class wallet extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Outfit',
-                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
                                 fontSize: 18,
                               ),
                             ),
@@ -80,14 +81,15 @@ class wallet extends StatelessWidget {
                             child: Text(
                               'Tarik Dana',
                               style: TextStyle(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 fontSize: 16,
                               ),
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFFFCB58F),
+                            primary: Colors.purple[200]!,
                             elevation: 3,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
@@ -100,7 +102,8 @@ class wallet extends StatelessWidget {
                           child: Text(
                             'Total Dana Keluar',
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.bold,
                               color: Colors.white,
                               fontSize: 16,
                             ),
@@ -111,7 +114,7 @@ class wallet extends StatelessWidget {
                           child: Text(
                             'Rp. xxxxx',
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Outfit',
                               color: Colors.white,
                               fontSize: 18,
                             ),
@@ -131,14 +134,15 @@ class wallet extends StatelessWidget {
                             child: Text(
                               'Isi Dana',
                               style: TextStyle(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 fontSize: 16,
                               ),
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFFFCB58F),
+                            primary: Colors.purple[200]!,
                             elevation: 3,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
@@ -151,7 +155,8 @@ class wallet extends StatelessWidget {
                           child: Text(
                             'Total Dana Masuk',
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.bold,
                               color: Colors.white,
                               fontSize: 16,
                             ),
@@ -162,7 +167,7 @@ class wallet extends StatelessWidget {
                           child: Text(
                             'Rp. xxxxx',
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Outfit',
                               color: Colors.white,
                               fontSize: 18,
                             ),
@@ -180,6 +185,7 @@ class wallet extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 20,
+                      fontFamily: 'Outfit',
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
@@ -201,7 +207,7 @@ class wallet extends StatelessWidget {
                                 width: 100,
                                 height: 60,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF94E3BF),
+                                  color: Colors.purple[800]!,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: ListTile(
@@ -209,7 +215,8 @@ class wallet extends StatelessWidget {
                                     'keterangan',
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
-                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
                                       fontSize: 18,
                                     ),
                                   ),
@@ -217,13 +224,13 @@ class wallet extends StatelessWidget {
                                     'Rp. xxxxxxx',
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontSize: 20,
                                     ),
                                   ),
                                   trailing: Icon(
                                     Icons.arrow_forward_ios,
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     size: 20,
                                   ),
                                 ),
