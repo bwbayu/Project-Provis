@@ -16,31 +16,12 @@ class TambahRekeningPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: SvgPicture.asset(
-            'asset/images/vector.svg',
-            width: 30,
-            height: 30,
-          ),
-        ),
-        title: Text(''),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      backgroundColor: Colors.transparent,
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.purple[200]!,
-              Colors.purple[800]!,
-            ],
+          image: DecorationImage(
+            image: AssetImage("asset/images/background.jpg"), // Latar belakang
+            fit: BoxFit.cover,
           ),
         ),
         child: Stack(
@@ -51,10 +32,26 @@ class TambahRekeningPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    AppBar(
+                      leading: IconButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        icon: SvgPicture.asset(
+                          'asset/images/vector.svg',
+                          width: 30,
+                          height: 30,
+                        ),
+                      ),
+                      title: Text(''),
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                    ),
                     Text(
                       'Nomor Rekening',
                       style: TextStyle(
                         fontSize: 18,
+                        fontFamily: 'Outfit',
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -63,7 +60,7 @@ class TambahRekeningPage extends StatelessWidget {
                     Container(
                       height: 50,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 148, 227, 191),
+                        color: Colors.purple[800]!,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: TextField(
@@ -82,6 +79,7 @@ class TambahRekeningPage extends StatelessWidget {
                       'Nama Bank',
                       style: TextStyle(
                         fontSize: 18,
+                        fontFamily: 'Outfit',
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -90,7 +88,7 @@ class TambahRekeningPage extends StatelessWidget {
                     Container(
                       height: 50,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 148, 227, 191),
+                        color: Colors.purple[800]!,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: DropdownButtonFormField<String>(
@@ -114,6 +112,7 @@ class TambahRekeningPage extends StatelessWidget {
                       'Nama Pemilik Rekening',
                       style: TextStyle(
                         fontSize: 18,
+                        fontFamily: 'Outfit',
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -122,7 +121,7 @@ class TambahRekeningPage extends StatelessWidget {
                     Container(
                       height: 50,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 148, 227, 191),
+                        color: Colors.purple[800]!,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: TextField(

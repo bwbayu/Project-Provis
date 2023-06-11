@@ -16,33 +16,14 @@ class FAQPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: SvgPicture.asset(
-            'asset/images/vector.svg',
-            width: 30,
-            height: 30,
-          ),
-        ),
-        title: Text(''),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.purple[200]!,
-                Colors.purple[800]!,
-              ],
+            image: DecorationImage(
+              image:
+                  AssetImage("asset/images/background.jpg"), // Latar belakang
+              fit: BoxFit.cover,
             ),
           ),
           child: Padding(
@@ -50,6 +31,21 @@ class FAQPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                AppBar(
+                  leading: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: SvgPicture.asset(
+                      'asset/images/vector.svg',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                  title: Text(''),
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -99,27 +95,27 @@ class FAQPage extends StatelessWidget {
                                   width: 100,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFF94E3BF),
+                                    color: Colors.purple[800]!,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: ListTile(
                                     leading: Icon(
                                       Icons.question_mark,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       size: 30,
                                     ),
                                     title: Text(
                                       'Pertanyaan',
                                       style: TextStyle(
                                         fontFamily: 'Outfit',
-                                        color: Colors.black,
-                                        fontSize: 22,
+                                        color: Colors.white,
+                                        fontSize: 20,
                                       ),
                                     ),
                                     trailing: IconButton(
                                       icon: Icon(
                                         Icons.arrow_forward_ios,
-                                        color: Colors.black,
+                                        color: Colors.white,
                                         size: 20,
                                       ),
                                       onPressed: () {},
