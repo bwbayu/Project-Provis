@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:percobaan_4/model.dart';
+
 
 class RolePage extends StatelessWidget {
   @override
@@ -75,40 +78,48 @@ class RolePage extends StatelessWidget {
                               SizedBox(
                                 width: 300,
                                 height: 80,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    // REGISTER WITH JENIS_USER = INVESTOR
-                                    Navigator.pushNamed(
-                                        context, '/registerPage');
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        Color.fromARGB(255, 148, 227, 191),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(40),
+                                child: Consumer<Register>(
+                                  builder:(context, register, child) => 
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      // REGISTER WITH JENIS_USER = INVESTOR
+                                      register.jenis_user = "Investor";
+                                      Navigator.pushNamed(
+                                          context, '/registerPage');
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          Color.fromARGB(255, 148, 227, 191),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(40),
+                                      ),
                                     ),
+                                    child: Text('Investor'),
                                   ),
-                                  child: Text('Investor'),
                                 ),
                               ),
                               SizedBox(height: 10),
                               SizedBox(
                                 width: 300,
                                 height: 80,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    // REGISTER WITH JENIS_USER = BORROWER
-                                    Navigator.pushNamed(
-                                        context, '/registerPage');
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        Color.fromARGB(255, 252, 181, 143),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(40),
+                                child: Consumer<Register>(
+                                  builder: (context, register, child) =>
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      // REGISTER WITH JENIS_USER = BORROWER
+                                      register.jenis_user = "Borrower";
+                                      Navigator.pushNamed(
+                                          context, '/registerPage');
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          Color.fromARGB(255, 252, 181, 143),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(40),
+                                      ),
                                     ),
+                                    child: Text('UMKM'),
                                   ),
-                                  child: Text('UMKM'),
                                 ),
                               ),
                             ],

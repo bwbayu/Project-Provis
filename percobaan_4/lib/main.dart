@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:percobaan_4/Kolom1/WelcomePage.dart';
 import 'package:percobaan_4/route/routes.dart';
+import 'package:provider/provider.dart';
+import 'model.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Register()),
+      ],
+      child: MyApp(),
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {
