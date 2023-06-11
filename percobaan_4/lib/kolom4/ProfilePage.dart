@@ -5,16 +5,11 @@ class profilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.purple[200]!,
-              Colors.purple[800]!,
-            ],
+          image: DecorationImage(
+            image: AssetImage("asset/images/background.jpg"), // Latar belakang
+            fit: BoxFit.cover,
           ),
         ),
         child: Column(
@@ -30,7 +25,7 @@ class profilePage extends StatelessWidget {
                 child: Container(
                   width: 350,
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 253, 181, 144),
+                    color: Colors.purple[200]!,
                     borderRadius: BorderRadius.circular(25),
                   ),
                   padding: EdgeInsets.all(16),
@@ -65,7 +60,7 @@ class profilePage extends StatelessWidget {
                         child: Icon(
                           Icons.account_circle,
                           size: 40,
-                          color: Colors.green,
+                          color: Colors.purple[800]!,
                         ),
                       ),
                     ],
@@ -81,7 +76,7 @@ class profilePage extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(300, 60),
-                backgroundColor: Color.fromARGB(255, 148, 226, 191),
+                backgroundColor: Colors.purple[800]!,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
@@ -97,7 +92,8 @@ class profilePage extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(300, 60),
-                backgroundColor: Color.fromARGB(255, 148, 226, 191),
+                backgroundColor: Colors.purple[800]!,
+                // backgroundColor: Color.fromARGB(255, 148, 226, 191),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
@@ -112,7 +108,7 @@ class profilePage extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(300, 60),
-                backgroundColor: Color.fromARGB(255, 148, 226, 191),
+                backgroundColor: Colors.purple[800]!,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
@@ -133,7 +129,7 @@ class profilePage extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(300, 60),
-                backgroundColor: Color.fromARGB(255, 148, 226, 191),
+                backgroundColor: Colors.purple[800]!,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),

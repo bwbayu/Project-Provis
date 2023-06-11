@@ -5,33 +5,15 @@ class InformasiAkunPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: SvgPicture.asset(
-            'asset/images/vector.svg',
-            width: 30,
-            height: 30,
-          ),
-        ),
-        title: Text(''),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      backgroundColor: Colors.transparent,
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.purple[200]!,
-                Colors.purple[800]!,
-              ],
+            image: DecorationImage(
+              image:
+                  AssetImage("asset/images/background.jpg"), // Latar belakang
+              fit: BoxFit.cover,
             ),
           ),
           child: SingleChildScrollView(
@@ -39,6 +21,21 @@ class InformasiAkunPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                AppBar(
+                  leading: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: SvgPicture.asset(
+                      'asset/images/vector.svg',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                  title: Text(''),
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                ),
                 Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

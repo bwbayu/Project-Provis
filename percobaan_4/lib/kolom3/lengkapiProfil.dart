@@ -8,13 +8,9 @@ class formVerifikasi extends StatelessWidget {
     return Container(
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.purple[200]!,
-              Colors.purple[800]!,
-            ],
+          image: DecorationImage(
+            image: AssetImage("asset/images/background.jpg"), // Latar belakang
+            fit: BoxFit.cover,
           ),
         ),
         child: Scaffold(
@@ -74,7 +70,7 @@ class formVerifikasi extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          backgroundColor: Colors.purple[200]!,
+                          backgroundColor: Colors.purple[800]!,
                           padding: EdgeInsets.zero,
                         ),
                         child: ListTile(
@@ -114,7 +110,7 @@ class formVerifikasi extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          backgroundColor: Colors.purple[200]!,
+                          backgroundColor: Colors.purple[800]!,
                           padding: EdgeInsets.zero,
                         ),
                         child: ListTile(
@@ -154,7 +150,7 @@ class formVerifikasi extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          backgroundColor: Colors.purple[200]!,
+                          backgroundColor: Colors.purple[800]!,
                           padding: EdgeInsets.zero,
                         ),
                         child: ListTile(
@@ -194,13 +190,13 @@ class formVerifikasi extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          backgroundColor: Colors.purple[200]!,
+                          backgroundColor: Colors.purple[800]!,
                           padding: EdgeInsets.zero,
                         ),
                         child: ListTile(
                           leading: FaIcon(
                             FontAwesomeIcons.signature,
-                            size: 50,
+                            size: 32,
                             color: Color(0xFFF7F8F9),
                           ),
                           title: Text(
