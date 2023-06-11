@@ -5,6 +5,14 @@ import 'package:percobaan_4/model.dart';
 
 // test
 class InvestorPage extends StatelessWidget {
+  final List<String> umkmImages = [
+    'asset/images/umkm_image_1.jpg',
+    'asset/images/umkm_image_2.jpg',
+    'asset/images/umkm_image_3.jpg',
+    'asset/images/umkm_image_4.jpg',
+    'asset/images/umkm_image_5.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,8 +68,7 @@ class InvestorPage extends StatelessWidget {
                               ),
                             ),
                             Consumer<Login>(
-                              builder: (context, login, child) =>
-                              Text(
+                              builder: (context, login, child) => Text(
                                 login.email,
                                 style: TextStyle(
                                   fontSize: 18.0,
@@ -109,7 +116,7 @@ class InvestorPage extends StatelessWidget {
                                       ),
                                       Consumer<Wallet>(
                                         builder: (context, wallet, child) =>
-                                        Text(
+                                            Text(
                                           "Rp. " + wallet.saldo.toString(),
                                           style: TextStyle(
                                             fontSize: 18.0,
@@ -343,7 +350,7 @@ class InvestorPage extends StatelessWidget {
                                 padding: EdgeInsets.zero,
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
-                                itemCount: 10,
+                                itemCount: umkmImages.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return InkWell(
                                     onTap: () {
@@ -365,8 +372,8 @@ class InvestorPage extends StatelessWidget {
                                             ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(8),
-                                              child: Image.network(
-                                                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                                              child: Image.asset(
+                                                umkmImages[index],
                                                 width: double.infinity,
                                                 height: 120,
                                                 fit: BoxFit.cover,
@@ -376,7 +383,8 @@ class InvestorPage extends StatelessWidget {
                                               width: double.infinity,
                                               height: 80,
                                               decoration: BoxDecoration(
-                                                color: Colors.white,
+                                                color: Color.fromRGBO(
+                                                    151, 126, 242, 1),
                                               ),
                                               child: Padding(
                                                 padding: EdgeInsets.fromLTRB(
@@ -401,32 +409,23 @@ class InvestorPage extends StatelessWidget {
                                                                 'Outfit',
                                                             fontWeight:
                                                                 FontWeight.w600,
-                                                            color: Colors.black,
+                                                            color: Colors.white,
                                                             fontSize: 14,
                                                           ),
                                                         ),
                                                         Text(
-                                                          'Rp. xxxxx',
+                                                          'Rp2.000.000,00',
                                                           style: TextStyle(
                                                             fontFamily:
                                                                 'Outfit',
                                                             fontWeight:
                                                                 FontWeight.w500,
-                                                            color: Colors.black,
+                                                            color: Colors.white,
                                                             fontSize: 14,
                                                           ),
                                                         ),
                                                       ],
                                                     ),
-                                                    // Text(
-                                                    //   'Status Pendanaan',
-                                                    //   style: TextStyle(
-                                                    //     fontFamily:
-                                                    //         'Readex Pro',
-                                                    //     color: Colors.black,
-                                                    //     fontSize: 14,
-                                                    //   ),
-                                                    // ),
                                                   ],
                                                 ),
                                               ),
