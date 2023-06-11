@@ -38,17 +38,17 @@ class BankAndCardsPage extends StatelessWidget {
                   height: 30,
                 ),
               ),
-              title: Text(''),
+              title: Text(
+                'Bank Account',
+                style: TextStyle(
+                  fontFamily: 'Outfit',
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                  fontSize: 22,
+                ),
+              ),
               backgroundColor: Colors.transparent,
               elevation: 0,
-            ),
-            Text(
-              'Bank Account',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
             ),
             SizedBox(height: 16),
             ElevatedButton(

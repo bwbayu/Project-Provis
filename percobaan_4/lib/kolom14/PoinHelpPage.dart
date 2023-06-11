@@ -33,18 +33,17 @@ class PoinHelpPage extends StatelessWidget {
                       height: 30,
                     ),
                   ),
-                  title: Text(''),
+                  title: Text(
+                    "$title",
+                    style: TextStyle(
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Outfit',
+                      color: Colors.white,
+                    ),
+                  ),
                   backgroundColor: Colors.transparent,
                   elevation: 0,
-                ),
-                Text(
-                  "$title",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Outfit',
-                    color: Colors.white,
-                  ),
                 ),
                 SizedBox(height: 16.0),
                 Text(

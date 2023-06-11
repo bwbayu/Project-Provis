@@ -47,6 +47,7 @@ class TambahRekeningPage extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       elevation: 0,
                     ),
+                    SizedBox(height: 16),
                     Text(
                       'Nomor Rekening',
                       style: TextStyle(
