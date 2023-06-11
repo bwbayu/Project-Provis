@@ -78,6 +78,7 @@ class Login extends ChangeNotifier{
   String _password = "";
   int _user_id = 0;
   String _jenis_user = "";
+  
 
   // SETTER GETTER
   String get email => _email;
