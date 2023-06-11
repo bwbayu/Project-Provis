@@ -5,39 +5,35 @@ class isiDana extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: SvgPicture.asset(
-            'asset/images/vector.svg',
-            width: 30,
-            height: 30,
-          ),
-        ),
-        title: Text(''),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: SafeArea(
         top: true,
         child: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.purple[200]!,
-                Colors.purple[800]!,
-              ],
+            image: DecorationImage(
+              image:
+                  AssetImage("asset/images/background.jpg"), // Latar belakang
+              fit: BoxFit.cover,
             ),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              AppBar(
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: SvgPicture.asset(
+                    'asset/images/vector.svg',
+                    width: 30,
+                    height: 30,
+                  ),
+                ),
+                title: Text(''),
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+              ),
               Padding(
                 padding: EdgeInsets.fromLTRB(20, 10, 10, 0),
                 child: Container(
