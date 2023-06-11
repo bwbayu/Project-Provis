@@ -298,3 +298,56 @@ class Wallet extends ChangeNotifier{
   }
 }
 
+class ProfileData extends ChangeNotifier{
+  String nama = "";
+  String tempat_lahir = "";
+  String tgl_lahir = "";
+  String jenis_kelamin = "";
+  String agama = "";
+  String status_perkawinan = "";
+  String pend_terakhir = "";
+  String alamat = "";
+  String status_kewarganegaraan = "";
+  String provinsi = "";
+  String kabkota = "";
+  String kecamatan = "";
+  String kelurahan = "";
+  String rtrw = "";
+  String kodepos = "";
+
+  // map dari json ke atribut
+  void setFromJson(Map<String, dynamic> json){
+    nama = json['personal_data']['nama'];
+    tempat_lahir = json['personal_data']['tempat_lahir'];
+    tgl_lahir = json['personal_data']['tgl_lahir'];
+    jenis_kelamin = json['personal_data']['jenis_kelamin'];
+    agama = json['personal_data']['agama'];
+    status_perkawinan = json['personal_data']['status_perkawinan'];
+    pend_terakhir = json['personal_data']['pend_terakhir'];
+    alamat = json['personal_data']['alamat'];
+    // Splitting the alamat into separate variables
+    final alamatParts = alamat.split(', ');
+    if (alamatParts.length >= 6) {
+      alamat = alamatParts[0];
+      provinsi = alamatParts[1];
+      kabkota = alamatParts[2];
+      kecamatan = alamatParts[3];
+      kelurahan = alamatParts[4];
+      rtrw = alamatParts[5];
+      kodepos = alamatParts[6];
+    }
+    status_kewarganegaraan = json['personal_data']['status_kewarganegaraan'];
+    notifyListeners();
+  }
+
+  // ambil data dari api secara async
+  Future<void> fetchData(int user_id) async{
+    final response = await http.get(Uri.parse("http://127.0.0.1:8000/getPersonalData/"+user_id.toString()));
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        setFromJson(data);
+      } else {
+        throw Exception('Failed to fetch user wallet');
+      }
+  }
+}

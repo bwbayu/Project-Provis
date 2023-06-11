@@ -12,6 +12,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => Login()),
         ChangeNotifierProvider(create: (_) => Wallet(saldo: 0, wallet_id: 0)),
         ChangeNotifierProvider(create: (_) => VerifikasiAkun()),
+        ChangeNotifierProvider(create: (_) => ProfileData()),
       ],
       child: MyApp(),
       )
