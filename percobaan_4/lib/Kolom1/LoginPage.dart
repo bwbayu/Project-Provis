@@ -38,8 +38,8 @@ class LoginScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.all(16),
-                    child: Consumer<Login>(
-                      builder: (context, login, child) =>
+                    child: Consumer2<Login, Wallet>(
+                      builder: (context, login, wallet, child) =>
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -130,39 +130,41 @@ class LoginScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 32),
                           ElevatedButton(
-                            onPressed: () async{
-                              // MASUK KE DASHBOARD INVESTOR DAN BORROWER
-                              if(login.email == "" || login.password == ""){
-                                print("kosong");
-                              }
-                              final statusCode = await login.loginProcess();
-                              print(statusCode);
-                              if(statusCode == 200){
-                                if(login.jenis_user == "Investor"){
-                                  Navigator.pushNamed(context, '/dashboardInvestor');
-                                }else{
-                                  Navigator.pushNamed(context, '/dashboardUMKM');
+                              onPressed: () async{
+                                // MASUK KE DASHBOARD INVESTOR DAN BORROWER
+                                if(login.email == "" || login.password == ""){
+                                  print("kosong");
                                 }
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: Size(double.infinity, 70),
-                              backgroundColor: Colors
-                                  .white, // Set the desired button color here
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
+                                final statusCode = await login.loginProcess();
+                                print(statusCode);
+                                if(statusCode == 200){
+                                  // fetch data wallet
+                                  await wallet.fetchData(login.user_id);
+                                  if(login.jenis_user == "Investor"){
+                                    Navigator.pushNamed(context, '/dashboardInvestor');
+                                  }else{
+                                    Navigator.pushNamed(context, '/dashboardUMKM');
+                                  }
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: Size(double.infinity, 70),
+                                backgroundColor: Colors
+                                    .white, // Set the desired button color here
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                              ),
+                              child: Text(
+                                'Masuk',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'Outfit',
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromARGB(1000, 168, 81, 223),
+                                ),
                               ),
                             ),
-                            child: Text(
-                              'Masuk',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'Outfit',
-                                fontWeight: FontWeight.w600,
-                                color: Color.fromARGB(1000, 168, 81, 223),
-                              ),
-                            ),
-                          ),
                           SizedBox(height: 32),
                           Center(
                             child: GestureDetector(
