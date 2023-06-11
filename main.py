@@ -55,24 +55,39 @@ async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session))
             c_password=user.c_password,
             email=user.email,
             nomor_hp=user.nomor_hp,
-            jenis_user=user.jenis_user
+            jenis_user=user.jenis_user,
+            status_akun="Not Verified",
         )
         db.add(user_data)
         db.commit()
         db.refresh(user_data)
+
         # Create new personal data for the user
-        personal_data = models.PersonalDataModel(user_id=user_data.user_id)
+        personal_data = models.PersonalDataModel(
+            user_id=user_data.user_id,
+            nama = "",
+            foto_ktp = "",
+            foto_npwp = "",
+            ttd = "",
+            tempat_lahir = "",
+            tgl_lahir = "",
+            jenis_kelamin = "",
+            alamat = "",
+            agama = "",
+            status_perkawinan = "",
+            pend_terakhir = "",
+            status_kewarganegaraan = "",
+        )
         db.add(personal_data)
         db.commit()
         db.refresh(personal_data)
+
         # Create new wallet for the user
-        wallet = models.WalletModel(
-            user_id=user_data.user_id,
-            saldo=0
-        )
+        wallet = models.WalletModel(user_id=user_data.user_id, saldo=0)
         db.add(wallet)
         db.commit()
         db.refresh(wallet)
+
         if user_data.jenis_user == "Investor":
             # Create new data penyediaDana for the user
             penyedia_dana = models.PenyediaDanaModel(user_id=user_data.user_id)
@@ -85,9 +100,11 @@ async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session))
             db.add(pemilik_umkm)
             db.commit()
             db.refresh(pemilik_umkm)
+
     except Exception as e:
         db.rollback()
         raise HTTPException(status_code=400, detail=str(e))
+
     finally:
         db.close()
 

@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 
 class listPinjaman extends StatelessWidget {
+  final List<String> umkmImages = [
+    'asset/images/umkm_image_5.jpg',
+    'asset/images/umkm_image_3.jpg',
+    'asset/images/umkm_image_2.jpg',
+    'asset/images/umkm_image_1.jpg',
+    'asset/images/umkm_image_4.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     Column myColumn = Column(
       children: [
         Padding(
-          padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
+          padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
           child: ElevatedButton(
             onPressed: () {
               // BUTTON AJUKAN PINJAMAN
@@ -48,12 +56,10 @@ class listPinjaman extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 10,
+                    itemCount: umkmImages.length,
                     itemBuilder: (BuildContext context, int index) {
                       return InkWell(
                         onTap: () {
-                          // Aksi ketika item diklik
-                          // Contoh aksi: Tampilkan detail pinjaman
                           Navigator.pushNamed(context, '/rincianPinjaman');
                         },
                         child: Padding(
@@ -61,12 +67,16 @@ class listPinjaman extends StatelessWidget {
                           child: Container(
                             width: double.infinity,
                             height: 200,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                             child: Column(
+                              mainAxisSize: MainAxisSize.max,
                               children: [
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(
-                                    'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                                  child: Image.asset(
+                                    umkmImages[index],
                                     width: double.infinity,
                                     height: 120,
                                     fit: BoxFit.cover,
@@ -93,15 +103,15 @@ class listPinjaman extends StatelessWidget {
                                             Text(
                                               'Total Pinjaman',
                                               style: TextStyle(
-                                                fontFamily: 'Roboto',
+                                                fontFamily: 'Readex Pro',
                                                 color: Colors.black,
                                                 fontSize: 14,
                                               ),
                                             ),
                                             Text(
-                                              'Rp. xxxxx',
+                                              'Rp20.000.000,00',
                                               style: TextStyle(
-                                                fontFamily: 'Roboto',
+                                                fontFamily: 'Readex Pro',
                                                 color: Colors.black,
                                                 fontSize: 14,
                                               ),
@@ -111,7 +121,7 @@ class listPinjaman extends StatelessWidget {
                                         Text(
                                           'Status Pinjaman',
                                           style: TextStyle(
-                                            fontFamily: 'Roboto',
+                                            fontFamily: 'Readex Pro',
                                             color: Colors.black,
                                             fontSize: 14,
                                           ),
@@ -137,17 +147,16 @@ class listPinjaman extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.purple[200]!,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Color(0xFF977EF2),
+          backgroundColor: Colors.white,
           title: Text(
-            'PINJAMAN',
+            'Pinjaman',
             style: TextStyle(
               fontFamily: 'Outfit',
-              color: Colors.white,
+              fontWeight: FontWeight.w700,
+              color: Colors.black,
               fontSize: 22,
-              fontWeight: FontWeight.bold,
             ),
           ),
           elevation: 0,
@@ -157,13 +166,9 @@ class listPinjaman extends StatelessWidget {
           child: Container(
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.purple[200]!,
-                  Colors.purple[800]!,
-                ],
+              image: DecorationImage(
+                image: AssetImage("asset/images/background.jpg"),
+                fit: BoxFit.cover,
               ),
             ),
             child: Column(
@@ -172,40 +177,46 @@ class listPinjaman extends StatelessWidget {
                   width: double.infinity,
                   height: 180,
                   decoration: BoxDecoration(
-                    color: Color(0xFF977EF2),
+                    color: Colors.white,
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(25),
                       bottomRight: Radius.circular(25),
                     ),
                   ),
                   child: Column(
-                    mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+                        padding: EdgeInsets.fromLTRB(5, 5, 10, 0),
                         child: Container(
                           width: double.infinity,
                           height: 50,
                           decoration: BoxDecoration(
-                            color: Color(0xFFD2D2D2),
-                            borderRadius: BorderRadius.circular(20),
+                            color: Color.fromRGBO(151, 126, 242, 1),
+                            borderRadius: BorderRadius.circular(15),
                           ),
                           child: Padding(
                             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  'Total Pinjaman',
-                                  style: TextStyle(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(10.0, 5, 10, 5),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                  child: Text(
+                                    'Total Pinjaman',
+                                    style: TextStyle(
+                                      fontFamily: 'Outfit',
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                    ),
                                   ),
                                 ),
                                 Text(
-                                  'Rp. xxxxxxxxxx',
+                                  'Rp20.000.000,00',
                                   style: TextStyle(
                                     fontFamily: 'Outfit',
                                     color: Colors.black,
@@ -234,18 +245,19 @@ class listPinjaman extends StatelessWidget {
                                 Text(
                                   'Total Pinjaman Aktif',
                                   style: TextStyle(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Outfit',
+                                    fontWeight: FontWeight.w500,
                                     color: Colors.black,
                                     fontSize: 16,
                                   ),
                                 ),
                                 Text(
-                                  'Rp. xxxxxxxxx',
+                                  'Rp20.000.000,00',
                                   style: TextStyle(
-                                    fontFamily: 'Outfit',
                                     color: Colors.black,
                                     fontSize: 18,
-                                    fontWeight: FontWeight.normal,
+                                    fontFamily: 'Outfit',
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ],
@@ -267,20 +279,21 @@ class listPinjaman extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Pinjaman On Process',
+                                  'Pinjaman on process',
                                   style: TextStyle(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Outfit',
+                                    fontWeight: FontWeight.w500,
                                     color: Colors.black,
                                     fontSize: 16,
                                   ),
                                 ),
                                 Text(
-                                  'Rp. xxxxxxx',
+                                  'Rp20.000.000,00',
                                   style: TextStyle(
                                     fontFamily: 'Outfit',
+                                    fontWeight: FontWeight.w500,
                                     color: Colors.black,
                                     fontSize: 20,
-                                    fontWeight: FontWeight.normal,
                                   ),
                                 ),
                               ],
@@ -305,9 +318,14 @@ class listPinjaman extends StatelessWidget {
                         text: "Semua",
                       ),
                     ],
+                    labelStyle: TextStyle(
+                      fontFamily: 'Outfit',
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
                   ),
                 ),
-                SizedBox(height: 16),
                 Expanded(
                   child: TabBarView(
                     children: [

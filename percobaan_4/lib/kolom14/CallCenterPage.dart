@@ -5,31 +5,11 @@ class CallCenterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: SvgPicture.asset(
-            'asset/images/vector.svg',
-            width: 30,
-            height: 30,
-          ),
-        ),
-        title: Text(''),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.purple[200]!,
-              Colors.purple[800]!,
-            ],
+          image: DecorationImage(
+            image: AssetImage("asset/images/background.jpg"), // Latar belakang
+            fit: BoxFit.cover,
           ),
         ),
         child: SingleChildScrollView(
@@ -38,13 +18,28 @@ class CallCenterPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Kontak Kami',
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                AppBar(
+                  leading: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: SvgPicture.asset(
+                      'asset/images/vector.svg',
+                      width: 30,
+                      height: 30,
+                    ),
                   ),
+                  title: Text(
+                    'Kontak Kami',
+                    style: TextStyle(
+                      fontSize: 22.0,
+                      fontFamily: 'Outfit',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
                 ),
                 Padding(
                   padding: EdgeInsets.all(20.0),
@@ -82,6 +77,7 @@ class CallCenterPage extends StatelessWidget {
                   'Layanan Pengaduan',
                   style: TextStyle(
                     fontSize: 18.0,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -91,6 +87,7 @@ class CallCenterPage extends StatelessWidget {
                   'Nama',
                   style: TextStyle(
                     fontSize: 16,
+                    fontFamily: 'Outfit',
                     color: Colors.white,
                   ),
                 ),
@@ -117,6 +114,7 @@ class CallCenterPage extends StatelessWidget {
                   'Email',
                   style: TextStyle(
                     fontSize: 16,
+                    fontFamily: 'Outfit',
                     color: Colors.white,
                   ),
                 ),
@@ -143,6 +141,7 @@ class CallCenterPage extends StatelessWidget {
                   'Nomor Telepon',
                   style: TextStyle(
                     fontSize: 16,
+                    fontFamily: 'Outfit',
                     color: Colors.white,
                   ),
                 ),
@@ -170,6 +169,7 @@ class CallCenterPage extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
+                    fontFamily: 'Outfit',
                   ),
                 ),
                 Container(
@@ -199,6 +199,7 @@ class CallCenterPage extends StatelessWidget {
                   'Saran dan Kritik',
                   style: TextStyle(
                     fontSize: 16,
+                    fontFamily: 'Outfit',
                     color: Colors.white,
                   ),
                 ),
@@ -237,6 +238,7 @@ class CallCenterPage extends StatelessWidget {
                     'Lanjutkan',
                     style: TextStyle(
                       fontSize: 18,
+                      fontFamily: 'Outfit',
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),

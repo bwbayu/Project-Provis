@@ -22,43 +22,39 @@ class MulaiPendanaanInvestor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: SvgPicture.asset(
-            'asset/images/vector.svg',
-            width: 30,
-            height: 30,
-          ),
-        ),
-        title: Text(''),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.purple[200]!,
-              Colors.purple[800]!,
-            ],
+          image: DecorationImage(
+            image: AssetImage("asset/images/background.jpg"), // Latar belakang
+            fit: BoxFit.cover,
           ),
         ),
         child: Scrollbar(
           child: SingleChildScrollView(
             child: Column(
               children: [
+                AppBar(
+                  leading: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: SvgPicture.asset(
+                      'asset/images/vector.svg',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                  title: Text(''),
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                ),
                 Padding(
                   padding: EdgeInsets.all(20.0),
                   child: Text(
                     'Mulai Pendanaan',
                     style: TextStyle(
                         fontSize: 24,
+                        fontFamily: 'Outfit',
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
@@ -70,23 +66,47 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                       padding: EdgeInsets.all(20.0),
                       child: Column(children: [
                         ListTile(
-                          title: Text('Lama Tenor',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          title: Text(
+                            'Lama Tenor',
+                            style: TextStyle(
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
                           subtitle: Text('$_tenor Bulan'),
                         ),
                         ListTile(
-                          title: Text('Bunga Efektif',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          title: Text(
+                            'Bunga Efektif',
+                            style: TextStyle(
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
                           subtitle: Text('${_interestRate * 100}% per tahun'),
                         ),
                         ListTile(
-                          title: Text('Frekuensi Angsuran Bunga',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          title: Text(
+                            'Frekuensi Angsuran Bunga',
+                            style: TextStyle(
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
                           subtitle: Text('Bulanan'),
                         ),
                         ListTile(
-                          title: Text('Frekuensi Angsuran Pokok',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          title: Text(
+                            'Frekuensi Angsuran Pokok',
+                            style: TextStyle(
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
                           subtitle: Text('Bulanan'),
                         ),
                       ]),
@@ -98,6 +118,7 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                   child: Text('Jumlah Pemberian Pinjaman',
                       style: TextStyle(
                           fontSize: 24,
+                          fontFamily: 'Outfit',
                           fontWeight: FontWeight.bold,
                           color: Colors.white)),
                 ),
@@ -123,16 +144,37 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                     child: Column(
                       children: [
                         ListTile(
-                            title: Text('Jumlah Pinjaman'),
+                            title: Text(
+                              'Jumlah Pinjaman',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
                             subtitle:
                                 Text('Rp ${_loanAmount.toStringAsFixed(2)}')),
                         ListTile(
-                            title: Text('Bunga'),
+                            title: Text(
+                              'Bunga',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
                             subtitle: Text(
                                 'Rp ${(_loanAmount * _interestRate).toStringAsFixed(2)}')),
                         Divider(),
                         ListTile(
-                            title: Text('Target Pengembalian'),
+                            title: Text(
+                              'Target Pengembalian',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
                             subtitle: Text(
                                 'Rp ${(_loanAmount * (1 + _interestRate)).toStringAsFixed(2)}')),
                       ],
@@ -148,7 +190,10 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                     },
                     child: Text(
                       "Lanjutkan",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                          fontFamily: 'Outfit',
+                          color: Colors.white,
+                          fontSize: 16),
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xFF977EF2),

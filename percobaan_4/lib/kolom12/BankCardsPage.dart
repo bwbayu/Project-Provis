@@ -16,44 +16,39 @@ class BankAndCardsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: SvgPicture.asset(
-            'asset/images/vector.svg',
-            width: 30,
-            height: 30,
-          ),
-        ),
-        title: Text(''),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.purple[200]!,
-              Colors.purple[800]!,
-            ],
+          image: DecorationImage(
+            image: AssetImage("asset/images/background.jpg"), // Latar belakang
+            fit: BoxFit.cover,
           ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'Bank Account',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+            AppBar(
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: SvgPicture.asset(
+                  'asset/images/vector.svg',
+                  width: 30,
+                  height: 30,
+                ),
               ),
+              title: Text(
+                'Bank Account',
+                style: TextStyle(
+                  fontFamily: 'Outfit',
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                  fontSize: 22,
+                ),
+              ),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
             ),
             SizedBox(height: 16),
             ElevatedButton(
@@ -62,7 +57,7 @@ class BankAndCardsPage extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(double.infinity, 60),
-                backgroundColor: Color.fromARGB(255, 148, 226, 191),
+                backgroundColor: Colors.purple[800]!,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -117,7 +112,7 @@ class BankAndCardsPage extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(double.infinity, 60),
-                backgroundColor: Color.fromARGB(255, 148, 226, 191),
+                backgroundColor: Colors.purple[800]!,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),

@@ -8,6 +8,7 @@ class UserSchema(BaseModel):
     email: str
     nomor_hp: str
     jenis_user: str
+    status_akun: str
 
 class LoginSchema(BaseModel):
     email: str
@@ -20,7 +21,7 @@ class PersonalDataSchema(BaseModel):
     ttd: str
     nama: str
     tempat_lahir: str
-    tgl_lahir: date
+    tgl_lahir: str
     jenis_kelamin: str
     agama: str
     status_perkawinan: str

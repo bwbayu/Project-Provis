@@ -6,51 +6,13 @@ class DataIdentitasUMKM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        backgroundColor: Colors.purple[200]!,
-        automaticallyImplyLeading: true,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: SvgPicture.asset(
-            'asset/images/vector.svg',
-            width: 30,
-            height: 30,
-          ),
-        ),
-        elevation: 0,
-        actions: [
-          Row(
-            children: [
-              CircleAvatar(child: Text('1')),
-              Transform.rotate(
-                angle: 270.0 *
-                    (3.14 / 180.0), // Rotate by 90 degrees as a double value
-                child: SvgPicture.asset(
-                  'asset/images/sequence_arrow1.svg',
-                ),
-              ),
-              CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 146, 143, 146),
-                child: Text('2'),
-              ),
-              SizedBox(width: 10), // Add a right gap of 10 pixels
-            ],
-          ),
-        ],
-      ),
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.purple[200]!,
-                Colors.purple[800]!,
-              ],
+            image: DecorationImage(
+              image:
+                  AssetImage("asset/images/background.jpg"), // Latar belakang
+              fit: BoxFit.cover,
             ),
           ),
           child: SingleChildScrollView(
@@ -58,10 +20,46 @@ class DataIdentitasUMKM extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                AppBar(
+                  backgroundColor: Colors.transparent,
+                  automaticallyImplyLeading: true,
+                  leading: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: SvgPicture.asset(
+                      'asset/images/vector.svg',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                  elevation: 0,
+                  actions: [
+                    Row(
+                      children: [
+                        CircleAvatar(child: Text('1')),
+                        Transform.rotate(
+                          angle: 270.0 *
+                              (3.14 /
+                                  180.0), // Rotate by 90 degrees as a double value
+                          child: SvgPicture.asset(
+                            'asset/images/sequence_arrow1.svg',
+                          ),
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Color.fromARGB(255, 146, 143, 146),
+                          child: Text('2'),
+                        ),
+                        SizedBox(width: 10), // Add a right gap of 10 pixels
+                      ],
+                    ),
+                  ],
+                ),
                 Text(
                   'Lengkapi Data Usaha',
                   style: TextStyle(
                     fontSize: 18,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -71,6 +69,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                   'Bentuk UMKM',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -102,6 +101,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                   'Jumlah Karyawan',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -129,6 +129,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                 Text(
                   'Kontak UMKM',
                   style: TextStyle(
+                    fontFamily: 'Outfit',
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -158,6 +159,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                   'Kategori Usaha',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -189,6 +191,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                   'Omset Bulanan',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -216,6 +219,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                 Text(
                   'Nama Usaha/Toko',
                   style: TextStyle(
+                    fontFamily: 'Outfit',
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -245,6 +249,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                   'Pemilik Usaha/Toko',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -272,6 +277,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                 Text(
                   'Alamat Usaha/Toko',
                   style: TextStyle(
+                    fontFamily: 'Outfit',
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -301,6 +307,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                   'Deskripsi Usaha/Toko',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -342,7 +349,8 @@ class DataIdentitasUMKM extends StatelessWidget {
                     child: Text(
                       'Unggah Foto',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontFamily: 'Outfit',
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
@@ -371,6 +379,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                     child: Text(
                       'Lanjutkan',
                       style: TextStyle(
+                        fontFamily: 'Outfit',
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,

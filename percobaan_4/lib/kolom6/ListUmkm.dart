@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
 class listUMKM extends StatelessWidget {
+  final List<String> umkmImages = [
+    'asset/images/umkm_image_5.jpg',
+    'asset/images/umkm_image_4.jpg',
+    'asset/images/umkm_image_3.jpg',
+    'asset/images/umkm_image_2.jpg',
+    'asset/images/umkm_image_1.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +49,7 @@ class listUMKM extends StatelessWidget {
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: 10,
+                          itemCount: umkmImages.length,
                           itemBuilder: (BuildContext context, int index) {
                             return InkWell(
                               onTap: () {
@@ -58,8 +66,8 @@ class listUMKM extends StatelessWidget {
                                     children: [
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(8),
-                                        child: Image.network(
-                                          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                                        child: Image.asset(
+                                          umkmImages[index],
                                           width: double.infinity,
                                           height: 120,
                                           fit: BoxFit.cover,
@@ -87,15 +95,15 @@ class listUMKM extends StatelessWidget {
                                                   Text(
                                                     'Total Pinjaman',
                                                     style: TextStyle(
-                                                      fontFamily: 'Roboto',
+                                                      fontFamily: 'Outfit',
                                                       color: Colors.black,
                                                       fontSize: 14,
                                                     ),
                                                   ),
                                                   Text(
-                                                    'Rp. xxxxx',
+                                                    'Rp15.000.000,00',
                                                     style: TextStyle(
-                                                      fontFamily: 'Roboto',
+                                                      fontFamily: 'Outfit',
                                                       color: Colors.black,
                                                       fontSize: 14,
                                                     ),
@@ -105,7 +113,7 @@ class listUMKM extends StatelessWidget {
                                               Text(
                                                 'Status Pinjaman',
                                                 style: TextStyle(
-                                                  fontFamily: 'Roboto',
+                                                  fontFamily: 'Outfit',
                                                   color: Colors.black,
                                                   fontSize: 14,
                                                 ),

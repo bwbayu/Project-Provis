@@ -6,51 +6,14 @@ class PengajuanPinjamanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        backgroundColor: Colors.purple[200]!,
-        automaticallyImplyLeading: true,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: SvgPicture.asset(
-            'asset/images/vector.svg',
-            width: 30,
-            height: 30,
-          ),
-        ),
-        elevation: 0,
-        actions: [
-          Row(
-            children: [
-              CircleAvatar(child: Text('1')),
-              Transform.rotate(
-                angle: 270.0 *
-                    (3.14 / 180.0), // Rotate by 90 degrees as a double value
-                child: SvgPicture.asset(
-                  'asset/images/sequence_arrow1.svg',
-                ),
-              ),
-              CircleAvatar(
-                child: Text('2'),
-              ),
-              SizedBox(width: 10), // Add a right gap of 10 pixels
-            ],
-          ),
-        ],
-      ),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.purple[200]!,
-                Colors.purple[800]!,
-              ],
+            image: DecorationImage(
+              image:
+                  AssetImage("asset/images/background.jpg"), // Latar belakang
+              fit: BoxFit.cover,
             ),
           ),
           child: SingleChildScrollView(
@@ -58,10 +21,45 @@ class PengajuanPinjamanPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                AppBar(
+                  backgroundColor: Colors.transparent,
+                  automaticallyImplyLeading: true,
+                  leading: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: SvgPicture.asset(
+                      'asset/images/vector.svg',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                  elevation: 0,
+                  actions: [
+                    Row(
+                      children: [
+                        CircleAvatar(child: Text('1')),
+                        Transform.rotate(
+                          angle: 270.0 *
+                              (3.14 /
+                                  180.0), // Rotate by 90 degrees as a double value
+                          child: SvgPicture.asset(
+                            'asset/images/sequence_arrow1.svg',
+                          ),
+                        ),
+                        CircleAvatar(
+                          child: Text('2'),
+                        ),
+                        SizedBox(width: 10), // Add a right gap of 10 pixels
+                      ],
+                    ),
+                  ],
+                ),
                 Text(
                   'Pengajuan Pinjaman',
                   style: TextStyle(
                     fontSize: 18,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -71,6 +69,7 @@ class PengajuanPinjamanPage extends StatelessWidget {
                   'Jumlah Pinjaman',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -99,6 +98,7 @@ class PengajuanPinjamanPage extends StatelessWidget {
                   'Tenor Pinjaman',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -133,6 +133,7 @@ class PengajuanPinjamanPage extends StatelessWidget {
                   'Jenis Agunan',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -167,6 +168,7 @@ class PengajuanPinjamanPage extends StatelessWidget {
                   'Bunga Pinjaman',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -201,6 +203,7 @@ class PengajuanPinjamanPage extends StatelessWidget {
                   'Frekuensi Angsuran Pokok',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -235,6 +238,7 @@ class PengajuanPinjamanPage extends StatelessWidget {
                   'Frekuensi Angsuran Bunga',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -269,6 +273,7 @@ class PengajuanPinjamanPage extends StatelessWidget {
                   'Tujuan Pinjaman',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -297,6 +302,7 @@ class PengajuanPinjamanPage extends StatelessWidget {
                   'Deskripsi Pinjaman',
                   style: TextStyle(
                     fontSize: 14,
+                    fontFamily: 'Outfit',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -343,6 +349,7 @@ class PengajuanPinjamanPage extends StatelessWidget {
                       'Lanjutkan',
                       style: TextStyle(
                         fontSize: 16,
+                        fontFamily: 'Outfit',
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:percobaan_4/model.dart';
 
 class wallet extends StatelessWidget {
   @override
@@ -47,14 +49,16 @@ class wallet extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
-                              'Rp. xxxxxxxxx',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: 'Outfit',
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 18,
+                            Consumer<Wallet>(
+                              builder: (context, wallet, child) => Text(
+                                'Rp. ' + wallet.saldo.toString(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'Outfit',
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                ),
                               ),
                             ),
                           ],
@@ -112,7 +116,7 @@ class wallet extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                           child: Text(
-                            'Rp. xxxxx',
+                            'Rp5.000.000,00',
                             style: TextStyle(
                               fontFamily: 'Outfit',
                               color: Colors.white,
@@ -165,7 +169,7 @@ class wallet extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                           child: Text(
-                            'Rp. xxxxx',
+                            'Rp1.000.000,00',
                             style: TextStyle(
                               fontFamily: 'Outfit',
                               color: Colors.white,
@@ -221,7 +225,7 @@ class wallet extends StatelessWidget {
                                     ),
                                   ),
                                   subtitle: Text(
-                                    'Rp. xxxxxxx',
+                                    'Rp50.000,00',
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
                                       color: Colors.white,
