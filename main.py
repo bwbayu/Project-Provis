@@ -55,7 +55,8 @@ async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session))
             c_password=user.c_password,
             email=user.email,
             nomor_hp=user.nomor_hp,
-            jenis_user=user.jenis_user
+            jenis_user=user.jenis_user,
+            status_akun="Not Verified",
         )
         db.add(user_data)
         db.commit()
