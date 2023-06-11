@@ -4,37 +4,33 @@ class listUMKM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFF977EF2),
-        title: Text(
-          'List UMKM',
-          style: TextStyle(
-            fontFamily: 'Outfit',
-            color: Colors.white,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        elevation: 0,
-      ),
       body: SafeArea(
         top: true,
         child: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.purple[200]!,
-                Colors.purple[800]!,
-              ],
+            image: DecorationImage(
+              image:
+                  AssetImage("asset/images/background.jpg"), // Latar belakang
+              fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
+              AppBar(
+                automaticallyImplyLeading: false,
+                backgroundColor: Colors.transparent,
+                title: Text(
+                  'List UMKM',
+                  style: TextStyle(
+                    fontFamily: 'Outfit',
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                elevation: 0,
+              ),
               Flexible(
                 child: SingleChildScrollView(
                   child: Column(
