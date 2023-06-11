@@ -35,6 +35,7 @@ class wallet extends StatelessWidget {
                           'Saldo',
                           style: TextStyle(
                             fontFamily: 'Outfit',
+                            fontWeight: FontWeight.bold,
                             color: Colors.black,
                             fontSize: 24,
                           ),
@@ -51,6 +52,7 @@ class wallet extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
                                 color: Colors.black,
                                 fontSize: 18,
                               ),
@@ -79,7 +81,8 @@ class wallet extends StatelessWidget {
                             child: Text(
                               'Tarik Dana',
                               style: TextStyle(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 fontSize: 16,
                               ),
@@ -99,7 +102,8 @@ class wallet extends StatelessWidget {
                           child: Text(
                             'Total Dana Keluar',
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.bold,
                               color: Colors.white,
                               fontSize: 16,
                             ),
@@ -110,7 +114,7 @@ class wallet extends StatelessWidget {
                           child: Text(
                             'Rp. xxxxx',
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Outfit',
                               color: Colors.white,
                               fontSize: 18,
                             ),
@@ -130,7 +134,8 @@ class wallet extends StatelessWidget {
                             child: Text(
                               'Isi Dana',
                               style: TextStyle(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 fontSize: 16,
                               ),
@@ -150,7 +155,8 @@ class wallet extends StatelessWidget {
                           child: Text(
                             'Total Dana Masuk',
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.bold,
                               color: Colors.white,
                               fontSize: 16,
                             ),
@@ -161,7 +167,7 @@ class wallet extends StatelessWidget {
                           child: Text(
                             'Rp. xxxxx',
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Outfit',
                               color: Colors.white,
                               fontSize: 18,
                             ),
@@ -179,6 +185,7 @@ class wallet extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 20,
+                      fontFamily: 'Outfit',
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
@@ -208,6 +215,7 @@ class wallet extends StatelessWidget {
                                     'keterangan',
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                       fontSize: 18,
                                     ),
