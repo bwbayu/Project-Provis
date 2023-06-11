@@ -5,39 +5,35 @@ class rincianPinjaman extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: SvgPicture.asset(
-            'asset/images/vector.svg',
-            width: 30,
-            height: 30,
-          ),
-        ),
-        title: Text(''),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: SafeArea(
         top: true,
         child: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.purple[200]!,
-                Colors.purple[800]!,
-              ],
+            image: DecorationImage(
+              image:
+                  AssetImage("asset/images/background.jpg"), // Latar belakang
+              fit: BoxFit.cover,
             ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              AppBar(
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: SvgPicture.asset(
+                    'asset/images/vector.svg',
+                    width: 30,
+                    height: 30,
+                  ),
+                ),
+                title: Text(''),
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+              ),
               Padding(
                 padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
                 child: Container(
@@ -52,7 +48,7 @@ class rincianPinjaman extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: 'Outfit',
                           color: Colors.white,
-                          fontSize: 24,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -60,7 +56,7 @@ class rincianPinjaman extends StatelessWidget {
                         width: 100,
                         height: 30,
                         decoration: BoxDecoration(
-                          color: Color(0xFF94E3BF),
+                          color: Colors.purple[200]!,
                         ),
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
@@ -68,9 +64,8 @@ class rincianPinjaman extends StatelessWidget {
                             'Status',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Colors.black,
-                              fontSize: 16,
+                              fontFamily: 'Outfit',
+                              color: Colors.white,
                             ),
                           ),
                         ),
@@ -94,8 +89,9 @@ class rincianPinjaman extends StatelessWidget {
                           Text(
                             'Dana Pinjaman',
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Outfit',
                               color: Colors.white,
+                              fontWeight: FontWeight.bold,
                               fontSize: 16,
                             ),
                           ),
@@ -103,7 +99,7 @@ class rincianPinjaman extends StatelessWidget {
                             width: double.infinity,
                             height: 40,
                             decoration: BoxDecoration(
-                              color: Color(0xFF94E3BF),
+                              color: Colors.purple[200]!,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Padding(
@@ -111,9 +107,10 @@ class rincianPinjaman extends StatelessWidget {
                               child: Text(
                                 'Rp.xxxxxx',
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.white,
                                 ),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
@@ -130,16 +127,17 @@ class rincianPinjaman extends StatelessWidget {
                           Text(
                             'Dana Pengembalian',
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Outfit',
                               color: Colors.white,
-                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
                             ),
                           ),
                           Container(
                             width: double.infinity,
                             height: 40,
                             decoration: BoxDecoration(
-                              color: Color(0xFF94E3BF),
+                              color: Colors.purple[200]!,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Padding(
@@ -147,9 +145,10 @@ class rincianPinjaman extends StatelessWidget {
                               child: Text(
                                 'Rp.xxxxxx',
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.white,
                                 ),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
@@ -174,8 +173,9 @@ class rincianPinjaman extends StatelessWidget {
                           Text(
                             'Waktu Pendanaan',
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Outfit',
                               color: Colors.white,
+                              fontWeight: FontWeight.bold,
                               fontSize: 16,
                             ),
                           ),
@@ -183,7 +183,7 @@ class rincianPinjaman extends StatelessWidget {
                             width: double.infinity,
                             height: 40,
                             decoration: BoxDecoration(
-                              color: Color(0xFF94E3BF),
+                              color: Colors.purple[200]!,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Padding(
@@ -191,9 +191,10 @@ class rincianPinjaman extends StatelessWidget {
                               child: Text(
                                 'dd/mm/yyyy',
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.white,
                                 ),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
@@ -210,8 +211,9 @@ class rincianPinjaman extends StatelessWidget {
                           Text(
                             'Waktu Tenggang',
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Outfit',
                               color: Colors.white,
+                              fontWeight: FontWeight.bold,
                               fontSize: 16,
                             ),
                           ),
@@ -219,7 +221,7 @@ class rincianPinjaman extends StatelessWidget {
                             width: double.infinity,
                             height: 40,
                             decoration: BoxDecoration(
-                              color: Color(0xFF94E3BF),
+                              color: Colors.purple[200]!,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Padding(
@@ -227,9 +229,10 @@ class rincianPinjaman extends StatelessWidget {
                               child: Text(
                                 'dd/mm/yyyy',
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.white,
                                 ),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
@@ -244,7 +247,7 @@ class rincianPinjaman extends StatelessWidget {
                 child: Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFCB58F),
+                      color: Colors.purple[800]!,
                       borderRadius: BorderRadius.circular(24),
                     ),
                     child: Padding(
@@ -267,7 +270,8 @@ class rincianPinjaman extends StatelessWidget {
                                     Text(
                                       'Lama Tenor',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Outfit',
+                                        fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 16,
                                       ),
@@ -275,10 +279,8 @@ class rincianPinjaman extends StatelessWidget {
                                     Text(
                                       'x bulan',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Outfit',
                                         color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.normal,
                                       ),
                                     ),
                                   ],
@@ -295,7 +297,8 @@ class rincianPinjaman extends StatelessWidget {
                                     Text(
                                       'Bunga Efektif',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Outfit',
+                                        fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 16,
                                       ),
@@ -303,10 +306,8 @@ class rincianPinjaman extends StatelessWidget {
                                     Text(
                                       '00,00%',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Outfit',
                                         color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.normal,
                                       ),
                                     ),
                                   ],
@@ -328,7 +329,8 @@ class rincianPinjaman extends StatelessWidget {
                                     Text(
                                       'Frekuensi Angsuran Pokok',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Outfit',
+                                        fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 16,
                                       ),
@@ -336,10 +338,8 @@ class rincianPinjaman extends StatelessWidget {
                                     Text(
                                       'x bulan',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Outfit',
                                         color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.normal,
                                       ),
                                     ),
                                   ],
@@ -356,7 +356,8 @@ class rincianPinjaman extends StatelessWidget {
                                     Text(
                                       'Frekuensi Angsuran Bunga',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Outfit',
+                                        fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 16,
                                       ),
@@ -364,10 +365,8 @@ class rincianPinjaman extends StatelessWidget {
                                     Text(
                                       'Bulanan',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Outfit',
                                         color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.normal,
                                       ),
                                     ),
                                   ],
@@ -397,7 +396,7 @@ class rincianPinjaman extends StatelessWidget {
                   child: Text(
                     'Bayar',
                     style: TextStyle(
-                      fontFamily: 'Readex Pro',
+                      fontFamily: 'Outfit',
                       color: Colors.white,
                       fontSize: 18,
                     ),

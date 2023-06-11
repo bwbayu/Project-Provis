@@ -87,7 +87,7 @@ class listUMKM extends StatelessWidget {
                                                   Text(
                                                     'Total Pinjaman',
                                                     style: TextStyle(
-                                                      fontFamily: 'Roboto',
+                                                      fontFamily: 'Outfit',
                                                       color: Colors.black,
                                                       fontSize: 14,
                                                     ),
@@ -95,7 +95,7 @@ class listUMKM extends StatelessWidget {
                                                   Text(
                                                     'Rp. xxxxx',
                                                     style: TextStyle(
-                                                      fontFamily: 'Roboto',
+                                                      fontFamily: 'Outfit',
                                                       color: Colors.black,
                                                       fontSize: 14,
                                                     ),
@@ -105,7 +105,7 @@ class listUMKM extends StatelessWidget {
                                               Text(
                                                 'Status Pinjaman',
                                                 style: TextStyle(
-                                                  fontFamily: 'Roboto',
+                                                  fontFamily: 'Outfit',
                                                   color: Colors.black,
                                                   fontSize: 14,
                                                 ),

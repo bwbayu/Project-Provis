@@ -5,36 +5,31 @@ class Pembayaran extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200]!,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: SvgPicture.asset(
-            'asset/images/vector.svg',
-            width: 30,
-            height: 30,
-          ),
-        ),
-        title: Text(''),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.purple[200]!,
-              Colors.purple[800]!,
-            ],
+          image: DecorationImage(
+            image: AssetImage("asset/images/background.jpg"), // Latar belakang
+            fit: BoxFit.cover,
           ),
         ),
         child: Column(
           children: [
+            AppBar(
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: SvgPicture.asset(
+                  'asset/images/vector.svg',
+                  width: 30,
+                  height: 30,
+                ),
+              ),
+              title: Text(''),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
@@ -57,7 +52,7 @@ class Pembayaran extends StatelessWidget {
                           width: double.infinity,
                           height: 150,
                           decoration: BoxDecoration(
-                            color: Color(0xFFFCB58F),
+                            color: Colors.purple[800]!,
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Padding(
@@ -73,16 +68,16 @@ class Pembayaran extends StatelessWidget {
                                     Text(
                                       'Jumlah pinjaman',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
-                                        color: Colors.black,
+                                        fontFamily: 'Outfit',
+                                        color: Colors.white,
                                         fontSize: 16,
                                       ),
                                     ),
                                     Text(
                                       'Rp. xxxxxxxx',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
-                                        color: Colors.black,
+                                        fontFamily: 'Outfit',
+                                        color: Colors.white,
                                         fontSize: 16,
                                       ),
                                     ),
@@ -95,16 +90,16 @@ class Pembayaran extends StatelessWidget {
                                     Text(
                                       'Bunga',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
-                                        color: Colors.black,
+                                        fontFamily: 'Outfit',
+                                        color: Colors.white,
                                         fontSize: 16,
                                       ),
                                     ),
                                     Text(
                                       'Rp. xxxxxxxx',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
-                                        color: Colors.black,
+                                        fontFamily: 'Outfit',
+                                        color: Colors.white,
                                         fontSize: 16,
                                       ),
                                     ),
@@ -117,16 +112,16 @@ class Pembayaran extends StatelessWidget {
                                     Text(
                                       'Jumlah pengembalian',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
-                                        color: Colors.black,
+                                        fontFamily: 'Outfit',
+                                        color: Colors.white,
                                         fontSize: 16,
                                       ),
                                     ),
                                     Text(
                                       'Rp. xxxxxxxx',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
-                                        color: Colors.black,
+                                        fontFamily: 'Outfit',
+                                        color: Colors.white,
                                         fontSize: 16,
                                       ),
                                     ),
@@ -144,7 +139,7 @@ class Pembayaran extends StatelessWidget {
                           child: Text(
                             'Ajukan Perpanjangan',
                             style: TextStyle(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Outfit',
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -175,6 +170,7 @@ class Pembayaran extends StatelessWidget {
                           'Jumlah Pengembalian',
                           style: TextStyle(
                             color: Colors.black,
+                            fontFamily: 'Outfit',
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
@@ -183,6 +179,7 @@ class Pembayaran extends StatelessWidget {
                           'Rp.xxxxxxxx',
                           style: TextStyle(
                             color: Colors.black,
+                            fontFamily: 'Outfit',
                             fontSize: 14,
                           ),
                         ),
@@ -202,6 +199,7 @@ class Pembayaran extends StatelessWidget {
                           'Bayar',
                           style: TextStyle(
                             color: Colors.white,
+                            fontFamily: 'Outfit',
                             fontSize: 18,
                           ),
                         ),
