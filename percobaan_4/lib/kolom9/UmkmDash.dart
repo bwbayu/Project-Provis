@@ -96,7 +96,8 @@ class UmkmDash extends StatelessWidget {
                                         'Balance',
                                         style: TextStyle(
                                           fontSize: 18.0,
-                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Outfit',
+                                          fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
                                       ),
@@ -104,7 +105,8 @@ class UmkmDash extends StatelessWidget {
                                         'Rp.5.000.000',
                                         style: TextStyle(
                                           fontSize: 18.0,
-                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Outfit',
+                                          fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
                                       ),
@@ -146,7 +148,8 @@ class UmkmDash extends StatelessWidget {
                                             'Top Up Saldo',
                                             style: TextStyle(
                                               fontSize: 12.0,
-                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Outfit',
+                                              fontWeight: FontWeight.w600,
                                               color: Colors.black,
                                             ),
                                           ),
@@ -182,7 +185,8 @@ class UmkmDash extends StatelessWidget {
                                             'Transfer',
                                             style: TextStyle(
                                               fontSize: 12.0,
-                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Outfit',
+                                              fontWeight: FontWeight.w600,
                                               color: Colors.black,
                                             ),
                                           ),
@@ -217,7 +221,8 @@ class UmkmDash extends StatelessWidget {
                                             'Card',
                                             style: TextStyle(
                                               fontSize: 12.0,
-                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Outfit',
+                                              fontWeight: FontWeight.w600,
                                               color: Colors.black,
                                             ),
                                           ),
@@ -252,7 +257,8 @@ class UmkmDash extends StatelessWidget {
                                             'History',
                                             style: TextStyle(
                                               fontSize: 12.0,
-                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Outfit',
+                                              fontWeight: FontWeight.w600,
                                               color: Colors.black,
                                             ),
                                           ),
@@ -268,44 +274,53 @@ class UmkmDash extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 20.0),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              // Handle Verifikasi Akun button tap
-                              Navigator.pushNamed(context, '/formVerifikasi');
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromRGBO(151, 126, 242, 1),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 50.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                // Handle Verifikasi Akun button tap
+                                Navigator.pushNamed(context, '/formVerifikasi');
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    Color.fromRGBO(151, 126, 242, 1),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
                               ),
-                            ),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 12.0),
-                              child: Text(
-                                'Verifikasi Akun',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10.0),
+                                child: Text(
+                                  'Verifikasi Akun',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontFamily: 'Outfit',
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     SizedBox(height: 16.0),
                     SizedBox(height: 8.0),
-                    Text(
-                      'Rekomendasi',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                    Padding(
+                      padding: EdgeInsets.only(right: 20.0),
+                      child: Text(
+                        'Trending Pendanaan',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: 'Outfit',
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                     SizedBox(height: 8.0),
@@ -374,7 +389,9 @@ class UmkmDash extends StatelessWidget {
                                                           'Total Pendanaan',
                                                           style: TextStyle(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Outfit',
+                                                            fontWeight:
+                                                                FontWeight.w600,
                                                             color: Colors.black,
                                                             fontSize: 14,
                                                           ),
@@ -383,7 +400,9 @@ class UmkmDash extends StatelessWidget {
                                                           'Rp. xxxxx',
                                                           style: TextStyle(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Outfit',
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                             color: Colors.black,
                                                             fontSize: 14,
                                                           ),
