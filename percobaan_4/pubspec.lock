@@ -82,6 +82,7 @@ packages:
     source: hosted
     version: "1.0.5"
 <<<<<<< HEAD
+<<<<<<< HEAD
   datetime_picker_formfield_new:
     dependency: "direct main"
     description:
@@ -91,6 +92,8 @@ packages:
     source: hosted
     version: "2.1.0"
 =======
+=======
+>>>>>>> 58642ebe8781e5f302a038887bdf66f1bf6743ef
   dropdown_search:
     dependency: "direct main"
     description:
@@ -99,6 +102,9 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+<<<<<<< HEAD
+>>>>>>> 58642ebe8781e5f302a038887bdf66f1bf6743ef
+=======
 >>>>>>> 58642ebe8781e5f302a038887bdf66f1bf6743ef
   fake_async:
     dependency: transitive
