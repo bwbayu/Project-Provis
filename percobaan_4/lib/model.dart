@@ -42,7 +42,8 @@ class Register extends ChangeNotifier{
     notifyListeners(); 
   }
 
-  // ADD DATA REGISTER
+  // POST REGISTER DATA
+
   late Future<int> respPost;
   bool isLoading = false;
 
@@ -68,6 +69,66 @@ class Register extends ChangeNotifier{
     final response = await http.post(url, headers: headers, body: body);
     isLoading = false;
     notifyListeners();
+    return response.statusCode;
+  }
+}
+
+class Login extends ChangeNotifier{
+  String _email= "";
+  String _password = "";
+  int _user_id = 0;
+  String _jenis_user = "";
+
+  // SETTER GETTER
+  String get email => _email;
+  String get password => _password;
+  int get user_id => _user_id;
+  String get jenis_user => _jenis_user;
+  set email(String value) { 
+    _email = value;
+    notifyListeners(); 
+  }
+  set password(String value) { 
+    _password = value;
+    notifyListeners(); 
+  }
+  set user_id(int value) { 
+      _user_id = value;
+      notifyListeners(); 
+    }
+  set jenis_user(String value) {
+    _jenis_user = value;
+    notifyListeners();
+  }
+
+  // POST LOGIN DATA
+  late Future<int> respPost;
+  bool isLoading = false;
+
+  Login() {
+    respPost = Future.value(0);
+    isLoading = false;
+  }
+
+  Future<int> loginProcess() async {
+    isLoading = true;
+    notifyListeners();
+    final url = Uri.parse('http://127.0.0.1:8000/login');
+    final headers = {'Content-Type': 'application/json'};
+    final body = jsonEncode({
+      'email': email,
+      'password': password,
+    });
+
+    final response = await http.post(url, headers: headers, body: body);
+    final responseData = jsonDecode(response.body);
+    isLoading = false;
+    notifyListeners();
+
+    if (response.statusCode == 200) {
+      user_id = responseData['user_id'];
+      jenis_user = responseData['jenis_user'];
+    }
     return response.statusCode;
   }
 }

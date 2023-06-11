@@ -9,6 +9,10 @@ class UserSchema(BaseModel):
     nomor_hp: str
     jenis_user: str
 
+class LoginSchema(BaseModel):
+    email: str
+    password: str
+
 class PersonalDataSchema(BaseModel):
     id_user: int
     foto_ktp: str
