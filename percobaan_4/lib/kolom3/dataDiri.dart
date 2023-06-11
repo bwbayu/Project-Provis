@@ -87,7 +87,7 @@ class dataDiri extends StatelessWidget {
                                   ),
                                   format: format,
                                   onChanged: (value) {
-                                    verif.tgl_lahir = value as String;
+                                    verif.tgl_lahir = value.toString();
                                   },
                                   onShowPicker: (context, currentValue) {
                                     return showDatePicker(
