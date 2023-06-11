@@ -126,6 +126,26 @@ def get_user_by_id(user_id: int, session: Session = Depends(get_session)):
     db_user = session.query(models.UserModel).get(user_id)
     return {"user": db_user}
 
+# UPDATE STATUS AKUN
+@app.put("/updateStatusAkun/{user_id}")
+def update_status_akun(user_id: int, session: Session = Depends(get_session)):
+    db_user = session.query(models.UserModel).get(user_id)
+    db_personal_data = session.query(models.PersonalDataModel).filter(models.PersonalDataModel.user_id == db_user.user_id).first()
+    all_variables_not_empty = True
+
+    for variable in db_personal_data.__dict__:
+        if isinstance(db_personal_data.__dict__[variable], str) and db_personal_data.__dict__[variable] == "":
+            all_variables_not_empty = False
+            break
+
+    if all_variables_not_empty:
+        db_user.status_akun = "Verified"
+        session.commit()
+        session.refresh(db_user)
+        return {"message": "Account status updated successfully."}
+    else:
+        return {"message": "One or more personal data variables are empty."}
+
 # ==================================== Personal Data =================================================
 # ADD PERSONAL DATA (page ktp, npwp, ttd, data_diri)
 @app.post("/addPersonalData")
