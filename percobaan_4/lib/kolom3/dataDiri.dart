@@ -324,44 +324,33 @@ class dataDiri extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.all(16),
                             child: ElevatedButton(
-                              onPressed: () async {
-                                final statusCode =
-                                    await verif.VerifyProcess(login.user_id);
-                                if (statusCode == 200) {
-                                  // verify berhasil
-                                }
-                                onPressed:
-                                () {
-                                  Navigator.pop(context);
-                                };
-                                child:
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Text(
-                                    'Lanjutkan',
-                                    style: TextStyle(
-                                      fontFamily: 'Readex Pro',
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                );
-                                style:
-                                ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFF977EF2),
-                                  textStyle: TextStyle(fontSize: 16),
-                                  elevation: 3,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 10,
-                                  ),
-                                );
+                              onPressed: (){
+                                Navigator.pop(context);
                               },
-                              child: null,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(
+                                  'Lanjutkan',
+                                  style: TextStyle(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Color(0xFF977EF2),
+                                textStyle: TextStyle(fontSize: 16),
+                                elevation: 3,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 10,
+                                ),
+                              ),
                             ),
                           ),
                         ),
