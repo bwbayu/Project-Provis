@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-// class FAQPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'FAQ',
-//       home: Page(),
-//       debugShowCheckedModeBanner: false, // Remove the debug banner
-//     );
-//   }
-// }
+class FAQPage extends StatefulWidget {
+  @override
+  _FAQPageState createState() => _FAQPageState();
+}
 
-class FAQPage extends StatelessWidget {
+class _FAQPageState extends State<FAQPage> {
+  List<Item> _data = generateItems(10);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,8 +17,7 @@ class FAQPage extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image:
-                  AssetImage("asset/images/background.jpg"), // Latar belakang
+              image: AssetImage("asset/images/background.jpg"),
               fit: BoxFit.cover,
             ),
           ),
@@ -42,23 +37,17 @@ class FAQPage extends StatelessWidget {
                       height: 30,
                     ),
                   ),
-                  title: Text(''),
+                  title: Text(
+                    'FAQ',
+                    style: TextStyle(
+                      fontFamily: 'Outfit',
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                      fontSize: 22,
+                    ),
+                  ),
                   backgroundColor: Colors.transparent,
                   elevation: 0,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'FAQ',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 8.0),
-                  ],
                 ),
                 SizedBox(height: 16.0),
                 TextField(
@@ -78,55 +67,60 @@ class FAQPage extends StatelessWidget {
                 SizedBox(height: 32.0),
                 Expanded(
                   child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                          child: ListView.builder(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: 10,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                                child: Container(
-                                  width: 100,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    color: Colors.purple[800]!,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: ListTile(
-                                    leading: Icon(
-                                      Icons.question_mark,
-                                      color: Colors.white,
-                                      size: 30,
-                                    ),
+                    child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: _data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: ExpansionPanelList(
+                              expansionCallback:
+                                  (int itemIndex, bool isExpanded) {
+                                setState(() {
+                                  _data[index].isExpanded = !isExpanded;
+                                });
+                              },
+                              children: [
+                                ExpansionPanel(
+                                  headerBuilder:
+                                      (BuildContext context, bool isExpanded) {
+                                    return ListTile(
+                                      title: Text(
+                                        _data[index].headerValue,
+                                        style: TextStyle(
+                                          fontFamily: 'Outfit',
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  body: ListTile(
                                     title: Text(
-                                      'Pertanyaan',
+                                      _data[index].expandedValue,
                                       style: TextStyle(
                                         fontFamily: 'Outfit',
-                                        color: Colors.white,
-                                        fontSize: 20,
                                       ),
                                     ),
-                                    trailing: IconButton(
-                                      icon: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Colors.white,
-                                        size: 20,
-                                      ),
-                                      onPressed: () {},
+                                    subtitle: const Text(
+                                      'To delete this panel, tap the trash can icon',
                                     ),
+                                    trailing: const Icon(Icons.delete),
+                                    onTap: () {
+                                      setState(() {
+                                        _data.removeAt(index);
+                                      });
+                                    },
                                   ),
+                                  isExpanded: _data[index].isExpanded,
                                 ),
-                              );
-                            },
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -137,4 +131,25 @@ class FAQPage extends StatelessWidget {
       ),
     );
   }
+}
+
+class Item {
+  Item({
+    required this.expandedValue,
+    required this.headerValue,
+    this.isExpanded = false,
+  });
+
+  String expandedValue;
+  String headerValue;
+  bool isExpanded;
+}
+
+List<Item> generateItems(int numberOfItems) {
+  return List<Item>.generate(numberOfItems, (int index) {
+    return Item(
+      headerValue: 'Pertanyaan ${index + 1}',
+      expandedValue: 'Jawaban ${index + 1}',
+    );
+  });
 }
