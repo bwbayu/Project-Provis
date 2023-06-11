@@ -150,10 +150,7 @@ class Portofolio extends StatelessWidget {
                           width: double.infinity,
                           height: 50,
                           decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage("asset/images/background.jpg"),
-                              fit: BoxFit.cover,
-                            ),
+                            color: Color.fromRGBO(151, 126, 242, 1),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Padding(
