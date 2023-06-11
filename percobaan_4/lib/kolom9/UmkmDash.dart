@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:percobaan_4/model.dart';
+import 'package:provider/provider.dart';
 
 class UmkmDash extends StatelessWidget {
   @override
@@ -56,13 +58,15 @@ class UmkmDash extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             ),
-                            Text(
-                              'John Doe',
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                fontFamily: 'Outfit',
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
+                            Consumer<Login>(
+                              builder: (context, login, child) => Text(
+                                login.email,
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontFamily: 'Outfit',
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ],
@@ -101,13 +105,16 @@ class UmkmDash extends StatelessWidget {
                                           color: Colors.black,
                                         ),
                                       ),
-                                      Text(
-                                        'Rp.5.000.000',
-                                        style: TextStyle(
-                                          fontSize: 18.0,
-                                          fontFamily: 'Outfit',
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.black,
+                                      Consumer<Wallet>(
+                                        builder: (context, wallet, child) =>
+                                            Text(
+                                          "Rp. " + wallet.saldo.toString(),
+                                          style: TextStyle(
+                                            fontSize: 18.0,
+                                            fontFamily: 'Outfit',
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.black,
+                                          ),
                                         ),
                                       ),
                                       // Tambahkan widget lainnya di sini jika diperlukan
