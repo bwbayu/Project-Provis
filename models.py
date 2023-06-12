@@ -35,6 +35,8 @@ class PersonalDataModel(Base):
     pend_terakhir = Column(String(100))
     alamat = Column(String(100))
     status_kewarganegaraan = Column(String(10))
+    nomor_npwp = Column(String(20))
+    pemilik_npwp = Column(String(100))
     
     user = relationship('UserModel', back_populates='personal_data')
 
@@ -44,8 +46,7 @@ class BankModel(Base):
     user_id = Column(Integer, ForeignKey('user.user_id'), nullable=False)
     nama_bank = Column(String(100), nullable=False)
     nomor_rekening = Column(String(100), nullable=False)
-    nama_pemilik_umkm = Column(String(100), nullable=False)
-    jenis_rekening = Column(String(100), nullable=False)
+    nama_pemilik_bank = Column(String(100), nullable=False)
 
     user = relationship('UserModel', back_populates='banks')
 

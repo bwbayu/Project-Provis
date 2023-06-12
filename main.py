@@ -89,6 +89,8 @@ async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session))
             status_perkawinan = "",
             pend_terakhir = "",
             status_kewarganegaraan = "",
+            nomor_npwp = "",
+            pemilik_npwp = ""
         )
         db.add(personal_data)
         db.commit()
@@ -177,15 +179,6 @@ def update_status_akun(user_id: int, session: Session = Depends(get_session)):
         return {"message": "One or more personal data variables are empty."}
 
 # ==================================== Personal Data =================================================
-# ADD PERSONAL DATA (page ktp, npwp, ttd, data_diri)
-@app.post("/addPersonalData")
-def add_personal_data(personal_data: schemas.PersonalDataSchema, session: Session = Depends(get_session)):
-    personal_data = models.PersonalDataModel(**personal_data.dict())
-    session.add(personal_data)
-    session.commit()
-    session.refresh(personal_data)
-    return {"personal_data": personal_data}
-
 # UPDATE PERSONAL DATA (page ktp, npwp, ttd, data_diri)
 @app.put("/updatePersonalData/{user_id}")
 def update_personal_data(user_id: int, personal_data: schemas.PersonalDataSchema, session: Session = Depends(get_session)):
@@ -205,6 +198,8 @@ def update_personal_data(user_id: int, personal_data: schemas.PersonalDataSchema
         db_personal_data.pend_terakhir = personal_data.pend_terakhir
         db_personal_data.alamat = personal_data.alamat
         db_personal_data.status_kewarganegaraan = personal_data.status_kewarganegaraan
+        db_personal_data.nomor_npwp = personal_data.nomor_npwp
+        db_personal_data.pemilik_npwp = personal_data.pemilik_npwp
         session.commit()
         session.refresh(db_personal_data)
         return db_personal_data
@@ -227,8 +222,7 @@ def add_bank(bank_data: schemas.BankSchema, user_id: int, session=Depends(get_se
         user_id=user_id,
         nama_bank=bank_data.nama_bank,
         nomor_rekening=bank_data.nomor_rekening,
-        nama_pemilik_umkm=bank_data.nama_pemilik_umkm,
-        jenis_rekening = bank_data.nama_bank
+        nama_pemilik_bank=bank_data.nama_pemilik_bank
     )
     session.add(bank)
     session.commit()

@@ -3,32 +3,21 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Register extends ChangeNotifier{
-  // String _username = "";
   String _password = "";
-  // String _cpassword = "";
   String _email = "";
   String _nomorhp = "";
   String _jenis_user = "";
 
   // GETTER SETTER
-  // String get username => _username;
   String get password => _password;
-  // String get cpassword => _cpassword;
   String get email => _email;
   String get nomorhp => _nomorhp;
   String get jenis_user => _jenis_user;
-  // set username(String value) { 
-  //   _username = value;
-  //   notifyListeners(); 
-  // }
+
   set password(String value) { 
     _password = value;
     notifyListeners(); 
   }
-  // set cpassword(String value) { 
-  //   _cpassword = value;
-  //   notifyListeners(); 
-  // }
   set email(String value) { 
     _email = value;
     notifyListeners(); 
@@ -161,6 +150,8 @@ class VerifikasiAkun extends ChangeNotifier{
   String _foto_ktp = "";
   String _foto_npwp = "";
   String _ttd = "";
+  String _nomor_npwp = "";
+  String _pemilik_npwp = "";
 
   // SETTER GETTER
   String get nama => _nama;
@@ -175,6 +166,8 @@ class VerifikasiAkun extends ChangeNotifier{
   String get foto_ktp => _foto_ktp;
   String get foto_npwp => _foto_npwp;
   String get ttd => _ttd;
+  String get nomor_npwp => _nomor_npwp;
+  String get pemilik_npwp => _pemilik_npwp;
 
   set nama(String value){
     _nama = value;
@@ -237,6 +230,14 @@ class VerifikasiAkun extends ChangeNotifier{
     _kodepos = value;
     notifyListeners();
   }
+  set nomor_npwp(String value){
+    _nomor_npwp = value;
+    notifyListeners();
+  }
+  set pemilik_npwp(String value){
+    _pemilik_npwp = value;
+    notifyListeners();
+  }
 
   // PUT VERIFIKASI DATA
   late Future<int> respPost;
@@ -257,6 +258,8 @@ class VerifikasiAkun extends ChangeNotifier{
       "pend_terakhir": pend_terakhir,
       "alamat": '$alamat, $_provinsi, $_kota, $_kecamatan, $_kelurahan, $_rtrw, $_kodepos',
       "status_kewarganegaraan": status_kewarganegaraan,
+      "nomor_npwp": "nomor_npwp",
+      "pemilik_npwp": "pemilik_npwp",
     });
 
     try {
@@ -301,30 +304,19 @@ class VerifikasiAkun extends ChangeNotifier{
   }
 
   String _status_akun = "";
-  // bool _isStatusFetched = false;
   String get status_akun => _status_akun;
-  // bool get isStatusFetched => _isStatusFetched;
   // map dari json ke atribut
   void setFromJson(Map<String, dynamic> json){
     _status_akun = json['user']['status_akun'];
-    // _isStatusFetched = true;
     notifyListeners();
   }
 
   // ambil data dari api secara async
-  // int temp = 0;
   Future<void> fetchStatusAkun(int user_id) async{
-    // if(temp != user_id){
-    //   _isStatusFetched = false;
-    // }
-    // if (_isStatusFetched) {
-    //   return;
-    // }
     final response = await http.get(Uri.parse("http://127.0.0.1:8000/getUserById/"+user_id.toString()));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setFromJson(data);
-        // temp = user_id;
       } else {
         throw Exception('Failed to fetch user data');
       }
@@ -373,8 +365,6 @@ class ProfileData extends ChangeNotifier{
   String rtrw = "";
   String kodepos = "";
 
-  // bool _isDataFetched = false;
-  // bool get isDataFetched => _isDataFetched;
 
   // map dari json ke atribut
   void setFromJson(Map<String, dynamic> json){
@@ -404,20 +394,11 @@ class ProfileData extends ChangeNotifier{
   }
 
   // ambil data dari api secara async
-  // int temp = 0;
   Future<void> fetchData(int user_id) async{
-    // if (temp != user_id) {
-    //   _isDataFetched = false;
-    // }
-    // if (_isDataFetched) {
-    //   return;
-    // }
     final response = await http.get(Uri.parse("http://127.0.0.1:8000/getPersonalData/"+user_id.toString()));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setFromJson(data);
-        // _isDataFetched = true;
-        // temp = user_id;
       } else {
         throw Exception('Failed to fetch user wallet');
       }
@@ -454,8 +435,7 @@ class BankData extends ChangeNotifier{
       'user_id': user_id,
       'nama_bank': nama_bank,
       'nomor_rekening': nomor_rekening,
-      'nama_pemilik_umkm': nama_pemilik_bank,
-      "jenis_rekening":"temp"
+      'nama_pemilik_bank': nama_pemilik_bank,
     });
 
     final response = await http.post(url, headers: headers, body: body);
@@ -465,11 +445,12 @@ class BankData extends ChangeNotifier{
 
 // GET BANK USER
 class DataBank{
+  int bank_id;
   String nama_bank;
   String nomor_rekening;
   String nama_pemilik_bank;
   // constructor
-  DataBank({required this.nama_bank, required this.nomor_rekening, required this.nama_pemilik_bank});
+  DataBank({required this.bank_id, required this.nama_bank, required this.nomor_rekening, required this.nama_pemilik_bank});
 }
 
 class Bank{
@@ -478,10 +459,11 @@ class Bank{
   Bank(Map<String, dynamic> json){
     var data = json['bank_user'];
     for(var val in data){
+      var bank_id = val['bank_id'];
       var nama_bank = val['nama_bank'];
       var nomor_rekening = val['nomor_rekening'];
-      var nama_pemilik_bank = val['nama_pemilik_umkm'];
-      listBank.add(DataBank(nama_bank: nama_bank, nomor_rekening: nomor_rekening, nama_pemilik_bank: nama_pemilik_bank));
+      var nama_pemilik_bank = val['nama_pemilik_bank'];
+      listBank.add(DataBank(bank_id: bank_id, nama_bank: nama_bank, nomor_rekening: nomor_rekening, nama_pemilik_bank: nama_pemilik_bank));
     }
   }
 

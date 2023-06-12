@@ -28,13 +28,14 @@ class PersonalDataSchema(BaseModel):
     pend_terakhir: str
     alamat: str
     status_kewarganegaraan: str
+    nomor_npwp: str
+    pemilik_npwp: str
 
 class BankSchema(BaseModel):
     user_id: int
     nama_bank: str
     nomor_rekening: str
-    nama_pemilik_umkm: str
-    jenis_rekening: str
+    nama_pemilik_bank: str
 
 class WalletSchema(BaseModel):
     saldo: float
