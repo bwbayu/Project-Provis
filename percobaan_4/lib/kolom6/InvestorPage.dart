@@ -136,8 +136,8 @@ class InvestorPage extends StatelessWidget {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 10.0),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 5),
                                       child: Column(
                                         children: [
                                           CircleAvatar(
@@ -173,8 +173,8 @@ class InvestorPage extends StatelessWidget {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.0),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 5),
                                       child: Column(
                                         children: [
                                           CircleAvatar(
@@ -210,8 +210,8 @@ class InvestorPage extends StatelessWidget {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.0),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 5),
                                       child: Column(
                                         children: [
                                           CircleAvatar(
@@ -246,8 +246,8 @@ class InvestorPage extends StatelessWidget {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.0),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 5),
                                       child: Column(
                                         children: [
                                           CircleAvatar(

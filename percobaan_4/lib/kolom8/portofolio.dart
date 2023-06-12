@@ -204,7 +204,7 @@ class Portofolio extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -240,7 +240,7 @@ class Portofolio extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

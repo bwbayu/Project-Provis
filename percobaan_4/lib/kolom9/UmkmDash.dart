@@ -173,7 +173,7 @@ class UmkmDash extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.symmetric(
-                                          horizontal: 16.0),
+                                          horizontal: 10.0),
                                       child: Column(
                                         children: [
                                           CircleAvatar(
@@ -210,7 +210,7 @@ class UmkmDash extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.symmetric(
-                                          horizontal: 16.0),
+                                          horizontal: 10.0),
                                       child: Column(
                                         children: [
                                           CircleAvatar(
@@ -246,7 +246,7 @@ class UmkmDash extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.symmetric(
-                                          horizontal: 16.0),
+                                          horizontal: 10.0),
                                       child: Column(
                                         children: [
                                           CircleAvatar(
