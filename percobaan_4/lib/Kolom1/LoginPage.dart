@@ -38,8 +38,8 @@ class LoginScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.all(16),
-                    child: Consumer2<Login, Wallet>(
-                      builder: (context, login, wallet, child) =>
+                    child: Consumer4<Login, Wallet, ProfileData, VerifikasiAkun>(
+                      builder: (context, login, wallet, profile, verif, child) =>
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -140,7 +140,10 @@ class LoginScreen extends StatelessWidget {
                                 if(statusCode == 200){
                                   // fetch data wallet
                                   await wallet.fetchData(login.user_id);
+                                  // fetch data profile
+                                  await profile.fetchData(login.user_id);
                                   // fetch data status akun
+                                  await verif.fetchStatusAkun(login.user_id);
                                   if(login.jenis_user == "Investor"){
                                     Navigator.pushNamed(context, '/dashboardInvestor');
                                   }else{

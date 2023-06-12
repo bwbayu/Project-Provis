@@ -292,9 +292,9 @@ class InvestorPage extends StatelessWidget {
                     SizedBox(height: 20.0),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 50.0),
-                      child: Consumer2<Login, VerifikasiAkun>(
-                        builder: (context, login, verif, child) {
-                          verif.fetchStatusAkun(login.user_id);
+                      child: Consumer<VerifikasiAkun>(
+                        builder: (context, verif, child) {
+                          // verif.fetchStatusAkun(login.user_id);
                           return verif.status_akun == "Verified"
                               ? SizedBox()
                               : Row(

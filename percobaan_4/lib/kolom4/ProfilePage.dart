@@ -16,7 +16,7 @@ class profilePage extends StatelessWidget {
         ),
         child: Consumer2<Login, ProfileData>(
           builder: (context, login, profile, child){
-            profile.fetchData(login.user_id);
+            // profile.fetchData(login.user_id);
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

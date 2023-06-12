@@ -226,15 +226,21 @@ class formVerifikasi extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   // Butuh penanda buat bedain umkm dan investor
                   // biar redirect ke dashboardnya masing-masing
-                  child: Consumer2<Login, VerifikasiAkun>(
-                    builder:(context, login, verif, child) =>
+                  child: Consumer3<Login, VerifikasiAkun, ProfileData>(
+                    builder:(context, login, verif, profile, child) =>
                     ElevatedButton(
                       onPressed: () async {
+                        // add data diri
                         final statusCode = await verif.VerifyProcess(login.user_id);
                         if(statusCode == 200){
-                          // verify berhasil
-                          final statusCode1 = verif.updateUser(login.user_id);
+                          // verify berhasil, update status akun
+                          final statusCode1 = await verif.updateUser(login.user_id);
                           print(statusCode1);
+                          // fetch data profile
+                          await profile.fetchData(login.user_id);
+                          // fetch data status akun
+                          await verif.fetchStatusAkun(login.user_id);
+                          print(verif.status_akun);
                           if(login.jenis_user == "Investor" && statusCode1 == 200){
                             Navigator.pushNamed(context, '/dashboardInvestor');
                           }else{

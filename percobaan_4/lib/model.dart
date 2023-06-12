@@ -245,9 +245,9 @@ class VerifikasiAkun extends ChangeNotifier{
     final headers = {'Content-Type': 'application/json'};
     final body = jsonEncode({
       'id_user': user_id,
-      'foto_ktp': foto_ktp,
-      'foto_npwp': foto_npwp,
-      "ttd": ttd,
+      'foto_ktp': "foto_ktp",
+      'foto_npwp': "foto_npwp",
+      "ttd": "ttd",
       "nama": nama,
       "tempat_lahir": tempat_lahir,
       "tgl_lahir": tgl_lahir,

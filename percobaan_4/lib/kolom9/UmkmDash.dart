@@ -293,7 +293,7 @@ class UmkmDash extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 50.0),
                       child: Consumer2<Login, VerifikasiAkun>(
                         builder: (context, login, verif, child) {
-                          verif.fetchStatusAkun(login.user_id);
+                          // verif.fetchStatusAkun(login.user_id);
                           return verif.status_akun == "Verified"
                               ? SizedBox()
                               : Row(
