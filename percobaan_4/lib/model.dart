@@ -502,3 +502,22 @@ class BankUser with ChangeNotifier{
     }
   }
 }
+
+// MENAMPILKAN LIST BANK DI ISI SALDO
+class OurBankData {
+  String namaBank;
+  String iconBank;
+
+  OurBankData({required this.namaBank, required this.iconBank});
+}
+
+class OurBank with ChangeNotifier {
+  List<OurBankData> _bankList = [
+    OurBankData(namaBank: 'BRI', iconBank: 'logo-daus-saja.png'),
+    OurBankData(namaBank: 'BNI', iconBank: 'logo-daus-saja.png'),
+    OurBankData(namaBank: 'BCA', iconBank: 'logo-daus-saja.png'),
+    OurBankData(namaBank: 'Mandiri', iconBank: 'logo-daus-saja.png'),
+  ];
+
+  List<OurBankData> get bankList => _bankList;
+}

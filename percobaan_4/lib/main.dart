@@ -15,6 +15,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => ProfileData()),
         ChangeNotifierProvider(create: (_) => BankData()),
         ChangeNotifierProvider(create: (_) => BankUser()),
+        ChangeNotifierProvider(create: (_) => OurBank()),
       ],
       child: MyApp(),
       )

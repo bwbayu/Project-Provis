@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:percobaan_4/model.dart';
+import 'package:provider/provider.dart';
 
 class isiDana extends StatelessWidget {
   @override
@@ -85,53 +87,57 @@ class isiDana extends StatelessWidget {
               ),
               Flexible(
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                        child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: 10,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                color: Colors.purple[800]!,
-                                child: ListTile(
-                                  onTap: () {
-                                    // Add your onTap logic here
-                                  },
-                                  leading: Icon(
-                                    Icons.account_balance,
-                                    color: Colors.white,
-                                    size: 30,
+                  child: Consumer2<Login, OurBank>(
+                      builder: (context, login, bank, child) {
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: bank.bankList.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
-                                  title: Text(
-                                    'Bank',
-                                    style: TextStyle(
-                                      fontFamily: 'Outfit',
+                                  color: Colors.purple[800]!,
+                                  child: ListTile(
+                                    onTap: () {
+                                      // Add your onTap logic here
+                                    },
+                                    leading: Icon(
+                                      Icons.account_balance,
                                       color: Colors.white,
-                                      fontSize: 22,
+                                      size: 30,
+                                    ),
+                                    title: Text(
+                                      bank.bankList[index].namaBank,
+                                      style: TextStyle(
+                                        fontFamily: 'Outfit',
+                                        color: Colors.white,
+                                        fontSize: 22,
+                                      ),
+                                    ),
+                                    trailing: Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: Colors.white,
+                                      size: 20,
                                     ),
                                   ),
-                                  trailing: Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: Colors.white,
-                                    size: 20,
-                                  ),
                                 ),
-                              ),
-                            );
-                          },
+                              );
+                            },
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    );
+                  }),
                 ),
               ),
             ],
