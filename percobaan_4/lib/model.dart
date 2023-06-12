@@ -158,6 +158,9 @@ class VerifikasiAkun extends ChangeNotifier{
   String _kelurahan = "";
   String _rtrw = "";
   String _kodepos = "";
+  String _foto_ktp = "";
+  String _foto_npwp = "";
+  String _ttd = "";
 
   // SETTER GETTER
   String get nama => _nama;
@@ -169,6 +172,9 @@ class VerifikasiAkun extends ChangeNotifier{
   String get pend_terakhir => _pend_terakhir;
   String get alamat => _alamat;
   String get status_kewarganegaraan => _status_kewarganegaraan;
+  String get foto_ktp => _foto_ktp;
+  String get foto_npwp => _foto_npwp;
+  String get ttd => _ttd;
 
   set nama(String value){
     _nama = value;
@@ -239,12 +245,12 @@ class VerifikasiAkun extends ChangeNotifier{
     final headers = {'Content-Type': 'application/json'};
     final body = jsonEncode({
       'id_user': user_id,
-      'foto_ktp': "temp_ktp",
-      'foto_npwp': "temp_npwp",
-      "ttd": "temp_ttd",
+      'foto_ktp': foto_ktp,
+      'foto_npwp': foto_npwp,
+      "ttd": ttd,
       "nama": nama,
       "tempat_lahir": tempat_lahir,
-      "tgl_lahir": "temp_tgl_lahir",
+      "tgl_lahir": tgl_lahir,
       "jenis_kelamin": jenis_kelamin,
       "agama": agama,
       "status_perkawinan": status_perkawinan,
@@ -271,6 +277,47 @@ class VerifikasiAkun extends ChangeNotifier{
     }
   }
 
+  // UPDATE STATUS AKUN
+  Future<int> updateUser(int user_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/updateStatusAkun/' + user_id.toString());
+    final headers = {'Content-Type': 'application/json'};
+
+    try {
+      final response = await http.put(url, headers: headers);
+
+      if (response.statusCode == 200) {
+        return response.statusCode;
+      } else if (response.statusCode == 422) {
+        print('Validation Error: ${response.body}');
+        return response.statusCode;
+      } else {
+        print('Error: ${response.statusCode}');
+        return response.statusCode;
+      }
+    } catch (e) {
+      print('Exception: $e');
+      return 0;
+    }
+  }
+
+  String _status_akun = "";
+  String get status_akun => _status_akun;
+  // map dari json ke atribut
+  void setFromJson(Map<String, dynamic> json){
+    _status_akun = json['user']['status_akun'];
+    notifyListeners();
+  }
+
+  // ambil data dari api secara async
+  Future<void> fetchStatusAkun(int user_id) async{
+    final response = await http.get(Uri.parse("http://127.0.0.1:8000/getUserById/"+user_id.toString()));
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        setFromJson(data);
+      } else {
+        throw Exception('Failed to fetch user data');
+      }
+  }
 }
 
 class Wallet extends ChangeNotifier{
@@ -326,15 +373,17 @@ class ProfileData extends ChangeNotifier{
     pend_terakhir = json['personal_data']['pend_terakhir'];
     alamat = json['personal_data']['alamat'];
     // Splitting the alamat into separate variables
-    final alamatParts = alamat.split(', ');
-    if (alamatParts.length >= 6) {
-      alamat = alamatParts[0];
-      provinsi = alamatParts[1];
-      kabkota = alamatParts[2];
-      kecamatan = alamatParts[3];
-      kelurahan = alamatParts[4];
-      rtrw = alamatParts[5];
-      kodepos = alamatParts[6];
+    if(alamat != ""){
+      final alamatParts = alamat.split(', ');
+      if (alamatParts.length >= 6) {
+        alamat = alamatParts[0];
+        provinsi = alamatParts[1];
+        kabkota = alamatParts[2];
+        kecamatan = alamatParts[3];
+        kelurahan = alamatParts[4];
+        rtrw = alamatParts[5];
+        kodepos = alamatParts[6];
+      }
     }
     status_kewarganegaraan = json['personal_data']['status_kewarganegaraan'];
     notifyListeners();
@@ -349,5 +398,44 @@ class ProfileData extends ChangeNotifier{
       } else {
         throw Exception('Failed to fetch user wallet');
       }
+  }
+}
+
+class BankData extends ChangeNotifier{
+  String _nama_bank = "";
+  String _nomor_rekening = "";
+  String _nama_pemilik_bank = "";
+
+  String get nama_bank => _nama_bank; 
+  String get nomor_rekening => _nomor_rekening; 
+  String get nama_pemilik_bank => _nama_pemilik_bank;
+
+  set nama_bank(String value){
+    _nama_bank = value;
+    notifyListeners();
+  }
+  set nomor_rekening(String value) { 
+    _nomor_rekening = value;
+    notifyListeners(); 
+  }
+  set nama_pemilik_bank(String value) { 
+    _nama_pemilik_bank = value;
+    notifyListeners(); 
+  }
+
+  // ADD DATA BANK
+  Future<int> addBankData(int user_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/addBank/$user_id');
+    final headers = {'Content-Type': 'application/json'};
+    final body = jsonEncode({
+      'user_id': user_id,
+      'nama_bank': nama_bank,
+      'nomor_rekening': nomor_rekening,
+      'nama_pemilik_umkm': nama_pemilik_bank,
+      "jenis_rekening":"temp"
+    });
+
+    final response = await http.post(url, headers: headers, body: body);
+    return response.statusCode;
   }
 }

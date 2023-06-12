@@ -30,6 +30,7 @@ class PersonalDataSchema(BaseModel):
     status_kewarganegaraan: str
 
 class BankSchema(BaseModel):
+    user_id: int
     nama_bank: str
     nomor_rekening: str
     nama_pemilik_umkm: str

@@ -226,14 +226,20 @@ class formVerifikasi extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   // Butuh penanda buat bedain umkm dan investor
                   // biar redirect ke dashboardnya masing-masing
-                  child: Consumer<Login>(
-                    builder:(context, login, child) =>
+                  child: Consumer2<Login, VerifikasiAkun>(
+                    builder:(context, login, verif, child) =>
                     ElevatedButton(
-                      onPressed: () {
-                        if(login.jenis_user == "Investor"){
-                        Navigator.pushNamed(context, '/dashboardInvestor');
-                        }else{
-                        Navigator.pushNamed(context, '/dashboardUMKM');
+                      onPressed: () async {
+                        final statusCode = await verif.VerifyProcess(login.user_id);
+                        if(statusCode == 200){
+                          // verify berhasil
+                          final statusCode1 = verif.updateUser(login.user_id);
+                          print(statusCode1);
+                          if(login.jenis_user == "Investor" && statusCode1 == 200){
+                            Navigator.pushNamed(context, '/dashboardInvestor');
+                          }else{
+                            Navigator.pushNamed(context, '/dashboardUMKM');
+                          }
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -249,7 +255,7 @@ class formVerifikasi extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Lanjutkan',
+                        'Submit',
                         style: TextStyle(
                           fontFamily: 'Readex Pro',
                           fontSize: 16,

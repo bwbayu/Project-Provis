@@ -136,8 +136,8 @@ class InvestorPage extends StatelessWidget {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 10.0),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 5),
                                       child: Column(
                                         children: [
                                           CircleAvatar(
@@ -173,8 +173,8 @@ class InvestorPage extends StatelessWidget {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.0),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 5),
                                       child: Column(
                                         children: [
                                           CircleAvatar(
@@ -210,8 +210,8 @@ class InvestorPage extends StatelessWidget {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.0),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 5),
                                       child: Column(
                                         children: [
                                           CircleAvatar(
@@ -246,8 +246,8 @@ class InvestorPage extends StatelessWidget {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.0),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 5),
                                       child: Column(
                                         children: [
                                           CircleAvatar(
@@ -292,37 +292,46 @@ class InvestorPage extends StatelessWidget {
                     SizedBox(height: 20.0),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 50.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: ElevatedButton(
-                              onPressed: () {
-                                // Handle Verifikasi Akun button tap
-                                Navigator.pushNamed(context, '/formVerifikasi');
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    Color.fromRGBO(151, 126, 242, 1),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                              ),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10.0),
-                                child: Text(
-                                  'Verifikasi Akun',
-                                  style: TextStyle(
-                                    fontSize: 18.0,
-                                    fontFamily: 'Outfit',
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      child: Consumer2<Login, VerifikasiAkun>(
+                        builder: (context, login, verif, child) {
+                          verif.fetchStatusAkun(login.user_id);
+                          return verif.status_akun == "Verified"
+                              ? SizedBox()
+                              : Row(
+                                  children: [
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          // Handle Verifikasi Akun button tap
+                                          Navigator.pushNamed(
+                                              context, '/formVerifikasi');
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              Color.fromRGBO(151, 126, 242, 1),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30.0),
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10.0),
+                                          child: Text(
+                                            'Verifikasi Akun',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontFamily: 'Outfit',
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                        },
                       ),
                     ),
                     SizedBox(height: 16.0),
