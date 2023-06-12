@@ -301,19 +301,30 @@ class VerifikasiAkun extends ChangeNotifier{
   }
 
   String _status_akun = "";
+  // bool _isStatusFetched = false;
   String get status_akun => _status_akun;
+  // bool get isStatusFetched => _isStatusFetched;
   // map dari json ke atribut
   void setFromJson(Map<String, dynamic> json){
     _status_akun = json['user']['status_akun'];
+    // _isStatusFetched = true;
     notifyListeners();
   }
 
   // ambil data dari api secara async
+  // int temp = 0;
   Future<void> fetchStatusAkun(int user_id) async{
+    // if(temp != user_id){
+    //   _isStatusFetched = false;
+    // }
+    // if (_isStatusFetched) {
+    //   return;
+    // }
     final response = await http.get(Uri.parse("http://127.0.0.1:8000/getUserById/"+user_id.toString()));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setFromJson(data);
+        // temp = user_id;
       } else {
         throw Exception('Failed to fetch user data');
       }
@@ -362,6 +373,9 @@ class ProfileData extends ChangeNotifier{
   String rtrw = "";
   String kodepos = "";
 
+  // bool _isDataFetched = false;
+  // bool get isDataFetched => _isDataFetched;
+
   // map dari json ke atribut
   void setFromJson(Map<String, dynamic> json){
     nama = json['personal_data']['nama'];
@@ -390,11 +404,20 @@ class ProfileData extends ChangeNotifier{
   }
 
   // ambil data dari api secara async
+  // int temp = 0;
   Future<void> fetchData(int user_id) async{
+    // if (temp != user_id) {
+    //   _isDataFetched = false;
+    // }
+    // if (_isDataFetched) {
+    //   return;
+    // }
     final response = await http.get(Uri.parse("http://127.0.0.1:8000/getPersonalData/"+user_id.toString()));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setFromJson(data);
+        // _isDataFetched = true;
+        // temp = user_id;
       } else {
         throw Exception('Failed to fetch user wallet');
       }
@@ -438,4 +461,7 @@ class BankData extends ChangeNotifier{
     final response = await http.post(url, headers: headers, body: body);
     return response.statusCode;
   }
+
+  // GET DATA BANK USER
+
 }
