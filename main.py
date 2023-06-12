@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Union
 import schemas
 import models
+import bcrypt
 # database
 from database import Base, engine, SessionLocal
 from sqlalchemy.orm import Session
@@ -40,6 +41,8 @@ def get_user(session: Session = Depends(get_session)):
 @app.post("/addUser")
 async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session)):
     try:
+        print("Adding user:", user.username) # Debugging statement
+
         # Check if email or phone number already exists
         existing_user = db.query(models.UserModel).filter(or_(
             models.UserModel.email == user.email,
@@ -48,11 +51,14 @@ async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session))
         if existing_user:
             raise HTTPException(status_code=400, detail="Email or phone number already exists")
 
+        # Hash the password
+        hashed_password = bcrypt.hashpw(user.password.encode('utf-8'), bcrypt.gensalt())
+
         # create new user
         user_data = models.UserModel(
             username=user.username,
-            password=user.password,
-            c_password=user.c_password,
+            password=hashed_password,
+            c_password=hashed_password,
             email=user.email,
             nomor_hp=user.nomor_hp,
             jenis_user=user.jenis_user,
@@ -102,6 +108,7 @@ async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session))
             db.refresh(pemilik_umkm)
 
     except Exception as e:
+        print("Error:", e) # Debugging statement
         db.rollback()
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -116,7 +123,7 @@ async def login(user: schemas.LoginSchema, db: Session = Depends(get_session)):
     user_data = db.query(models.UserModel).filter(models.UserModel.email == user.email).first()
     if user_data is None:
         raise HTTPException(status_code=404, detail="User not found")
-    if user_data.password != user.password:
+    if not bcrypt.checkpw(user.password.encode('utf-8'), user_data.password):
         raise HTTPException(status_code=401, detail="Incorrect password")
     return {"message": "Login success", "user_id": user_data.user_id, "jenis_user": user_data.jenis_user}
 
@@ -279,3 +286,6 @@ def get_umkm_by_umkm_id(umkm_id: int, session=Depends(get_session)):
 
 # ADD PEMBAYARAN BY PINJAMAN_ID (page pembayaran)
 
+# ==================================== PEMINJAMAN =================================================
+
+#ADD UMKM
