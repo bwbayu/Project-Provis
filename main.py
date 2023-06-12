@@ -131,7 +131,24 @@ async def login(user: schemas.LoginSchema, db: Session = Depends(get_session)):
         raise HTTPException(status_code=404, detail="User not found")
     if not bcrypt.checkpw(user.password.encode('utf-8'), user_data.password):
         raise HTTPException(status_code=401, detail="Incorrect password")
-    return {"message": "Login success", "user_id": user_data.user_id, "jenis_user": user_data.jenis_user}
+
+    # Set expiration time (1 hour from now)
+    exp = datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+
+    # Generate JWT token
+    token_data = {
+        "user_id": user_data.user_id,
+        "email": user_data.email,
+        "exp": exp
+    }
+    token = jwt.encode(token_data, SECRET_KEY, algorithm="HS256")
+
+    return {
+        "message": "Login success",
+        "token": token,
+        "user_id": user_data.user_id,
+        "jenis_user": user_data.jenis_user
+    }
 
 # GET USER BY ID
 @app.get("/getUserById/{user_id}")
