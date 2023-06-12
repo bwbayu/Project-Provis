@@ -236,7 +236,7 @@ def add_bank(bank_data: schemas.BankSchema, user_id: int, session=Depends(get_se
     return {"bank": bank}
 
 # GET BANK BY USER_ID (page tarik_dana, bankAndCards)
-@app.get("/users/{user_id}/banks")
+@app.get("/getBank/{user_id}")
 def get_user_banks(user_id: int,session=Depends(get_session)):
     user = session.query(models.UserModel).get(user_id)
     if user is None:

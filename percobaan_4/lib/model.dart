@@ -461,7 +461,62 @@ class BankData extends ChangeNotifier{
     final response = await http.post(url, headers: headers, body: body);
     return response.statusCode;
   }
+}
 
-  // GET DATA BANK USER
+// GET BANK USER
+class DataBank{
+  String nama_bank;
+  String nomor_rekening;
+  String nama_pemilik_bank;
+  // constructor
+  DataBank({required this.nama_bank, required this.nomor_rekening, required this.nama_pemilik_bank});
+}
 
+class Bank{
+  List<DataBank> listBank = <DataBank>[];
+
+  Bank(Map<String, dynamic> json){
+    var data = json['bank_user'];
+    for(var val in data){
+      var nama_bank = val['nama_bank'];
+      var nomor_rekening = val['nomor_rekening'];
+      var nama_pemilik_bank = val['nama_pemilik_umkm'];
+      listBank.add(DataBank(nama_bank: nama_bank, nomor_rekening: nomor_rekening, nama_pemilik_bank: nama_pemilik_bank));
+    }
+  }
+
+  factory Bank.fromJson(Map<String, dynamic> json){
+    return Bank(json);
+  }
+}
+
+class BankUser with ChangeNotifier{
+  Bank? bank;
+  bool isLoading = false;
+
+  Future<int> fetchDataBank(int user_id) async{
+    isLoading = true;
+    notifyListeners();
+
+    try{
+      String url = "http://127.0.0.1:8000/getBank/$user_id";
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        bank = Bank.fromJson(jsonDecode(response.body));
+      } else if (response.statusCode == 422) {
+        print('Validation Error: ${response.body}');
+      } else {
+        print('Error: ${response.statusCode}');
+      }
+      isLoading = false;
+      notifyListeners();
+      return response.statusCode;
+    }catch(e){
+      print('Exception: $e');
+      isLoading = false;
+      notifyListeners();
+      return 0;
+    }
+  }
 }

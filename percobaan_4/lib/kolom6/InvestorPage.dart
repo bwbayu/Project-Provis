@@ -175,38 +175,45 @@ class InvestorPage extends StatelessWidget {
                                     Padding(
                                       padding:
                                           EdgeInsets.symmetric(horizontal: 5),
-                                      child: Column(
-                                        children: [
-                                          CircleAvatar(
-                                            radius: 30.0,
-                                            backgroundColor: Color.fromARGB(
-                                                255, 240, 240, 240),
-                                            child: IconButton(
-                                              icon: SvgPicture.asset(
-                                                'asset/images/transfer.svg',
-                                                width: 24.0,
-                                                height: 24.0,
-                                                color: Color.fromARGB(
-                                                    1000, 168, 81, 223),
+                                      child: Consumer2<BankUser, Login>(
+                                        builder: (context, dataBank, login, child) =>
+                                        Column(
+                                          children: [
+                                            CircleAvatar(
+                                              radius: 30.0,
+                                              backgroundColor: Color.fromARGB(
+                                                  255, 240, 240, 240),
+                                              child: IconButton(
+                                                icon: SvgPicture.asset(
+                                                  'asset/images/transfer.svg',
+                                                  width: 24.0,
+                                                  height: 24.0,
+                                                  color: Color.fromARGB(
+                                                      1000, 168, 81, 223),
+                                                ),
+                                                onPressed: () async {
+                                                  // Handle Transfer button tap
+                                                  // fetch data bank user
+                                                  final statusCode = await dataBank.fetchDataBank(login.user_id);
+                                                  print(statusCode);
+                                                  if(statusCode == 200) {
+                                                    Navigator.pushNamed(context, '/tarikDana');
+                                                  } 
+                                                },
                                               ),
-                                              onPressed: () {
-                                                // Handle Transfer button tap
-                                                Navigator.pushNamed(
-                                                    context, '/tarikDana');
-                                              },
                                             ),
-                                          ),
-                                          SizedBox(height: 4.0),
-                                          Text(
-                                            'Transfer',
-                                            style: TextStyle(
-                                              fontSize: 12.0,
-                                              fontFamily: 'Outfit',
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black,
+                                            SizedBox(height: 4.0),
+                                            Text(
+                                              'Transfer',
+                                              style: TextStyle(
+                                                fontSize: 12.0,
+                                                fontFamily: 'Outfit',
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black,
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     Padding(

@@ -15,8 +15,8 @@ class TambahRekeningPage extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Consumer2<Login, BankData>(
-          builder: (context, login, bank, child) =>
+        child: Consumer3<Login, BankData, BankUser>(
+          builder: (context, login, bank, dataBank, child) =>
           Stack(
             children: [
               SingleChildScrollView(
@@ -145,8 +145,12 @@ class TambahRekeningPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () async {
                       // Handle Lanjutkan button tap
+                      // menambahkan data bank user
                       final int statusCode = await bank.addBankData(login.user_id);
                       print(statusCode);
+                      // fetch data bank user
+                      final int statusCode1 = await dataBank.fetchDataBank(login.user_id);
+                      print(statusCode1);
                       Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(

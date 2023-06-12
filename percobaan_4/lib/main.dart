@@ -14,6 +14,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => VerifikasiAkun()),
         ChangeNotifierProvider(create: (_) => ProfileData()),
         ChangeNotifierProvider(create: (_) => BankData()),
+        ChangeNotifierProvider(create: (_) => BankUser()),
       ],
       child: MyApp(),
       )
