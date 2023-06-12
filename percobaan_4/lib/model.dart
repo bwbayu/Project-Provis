@@ -258,8 +258,8 @@ class VerifikasiAkun extends ChangeNotifier{
       "pend_terakhir": pend_terakhir,
       "alamat": '$alamat, $_provinsi, $_kota, $_kecamatan, $_kelurahan, $_rtrw, $_kodepos',
       "status_kewarganegaraan": status_kewarganegaraan,
-      "nomor_npwp": "nomor_npwp",
-      "pemilik_npwp": "pemilik_npwp",
+      "nomor_npwp": nomor_npwp,
+      "pemilik_npwp": pemilik_npwp,
     });
 
     try {
