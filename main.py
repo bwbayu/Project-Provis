@@ -191,9 +191,15 @@ def get_personal_data_by_user_id(user_id: int, session: Session = Depends(get_se
 # ==================================== BANK =================================================
 
 # ADD DATA BANK (page tambah_rekening, akun_bank)
-@app.post("/addBank")
+@app.post("/addBank/{user_id}")
 def add_bank(bank_data: schemas.BankSchema, user_id: int, session=Depends(get_session)):
-    bank = models.BankModel(**bank_data.dict(), user_id=user_id)
+    bank = models.BankModel(
+        user_id=user_id,
+        nama_bank=bank_data.nama_bank,
+        nomor_rekening=bank_data.nomor_rekening,
+        nama_pemilik_umkm=bank_data.nama_pemilik_umkm,
+        jenis_rekening = bank_data.nama_bank
+    )
     session.add(bank)
     session.commit()
     session.refresh(bank)

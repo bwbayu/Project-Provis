@@ -400,3 +400,42 @@ class ProfileData extends ChangeNotifier{
       }
   }
 }
+
+class BankData extends ChangeNotifier{
+  String _nama_bank = "";
+  String _nomor_rekening = "";
+  String _nama_pemilik_bank = "";
+
+  String get nama_bank => _nama_bank; 
+  String get nomor_rekening => _nomor_rekening; 
+  String get nama_pemilik_bank => _nama_pemilik_bank;
+
+  set nama_bank(String value){
+    _nama_bank = value;
+    notifyListeners();
+  }
+  set nomor_rekening(String value) { 
+    _nomor_rekening = value;
+    notifyListeners(); 
+  }
+  set nama_pemilik_bank(String value) { 
+    _nama_pemilik_bank = value;
+    notifyListeners(); 
+  }
+
+  // ADD DATA BANK
+  Future<int> addBankData(int user_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/addBank/$user_id');
+    final headers = {'Content-Type': 'application/json'};
+    final body = jsonEncode({
+      'user_id': user_id,
+      'nama_bank': nama_bank,
+      'nomor_rekening': nomor_rekening,
+      'nama_pemilik_umkm': nama_pemilik_bank,
+      "jenis_rekening":"temp"
+    });
+
+    final response = await http.post(url, headers: headers, body: body);
+    return response.statusCode;
+  }
+}
