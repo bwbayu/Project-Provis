@@ -114,6 +114,11 @@ async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session))
             db.add(pemilik_umkm)
             db.commit()
             db.refresh(pemilik_umkm)
+            # Create new data Umkm for borrower
+            umkm = models.UMKMModel(pemilik_id=pemilik_umkm.pemilik_id)
+            db.add(umkm)
+            db.commit()
+            db.refresh(umkm)
 
     except Exception as e:
         print("Error:", e) # Debugging statement
@@ -135,7 +140,7 @@ async def login(user: schemas.LoginSchema, db: Session = Depends(get_session)):
         raise HTTPException(status_code=401, detail="Incorrect password")
 
     # Set expiration time (1 hour from now)
-    exp = datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+    exp = datetime.utcnow() + timedelta(hours=1)
 
     # Generate JWT token
     token_data = {
@@ -162,20 +167,40 @@ def get_user_by_id(user_id: int, session: Session = Depends(get_session)):
 @app.put("/updateStatusAkun/{user_id}")
 def update_status_akun(user_id: int, session: Session = Depends(get_session)):
     db_user = session.query(models.UserModel).get(user_id)
-    db_personal_data = session.query(models.PersonalDataModel).filter(models.PersonalDataModel.user_id == db_user.user_id).first()
-    all_variables_not_empty = True
+    if db_user is None:
+        return {"message": "User not found"}
 
+    db_personal_data = session.query(models.PersonalDataModel).filter_by(user_id=user_id).first()
+    all_variables_not_empty = True
     for variable in db_personal_data.__dict__:
         if isinstance(db_personal_data.__dict__[variable], str) and db_personal_data.__dict__[variable] == "":
             all_variables_not_empty = False
             break
 
+    if db_user.jenis_user == "Borrower":
+        pemilik_umkm = session.query(models.PemilikUmkmModel).filter_by(user_id=user_id).first()
+        if pemilik_umkm is None:
+            return {"message": "Pemilik UMKM not found"}
+
+        db_umkm_user = session.query(models.UMKMModel).filter_by(pemilik_id=pemilik_umkm.pemilik_id).first()
+        if db_umkm_user is None:
+            return {"message": "UMKM not found"}
+
+        for variable in db_umkm_user.__dict__:
+            print(db_umkm_user.__dict__[variable])
+            if db_umkm_user.__dict__[variable] == None:
+                all_variables_not_empty = False
+                break
+    print(all_variables_not_empty)
     if all_variables_not_empty:
         db_user.status_akun = "Verified"
         session.commit()
         session.refresh(db_user)
         return {"message": "Account status updated successfully."}
     else:
+        db_user.status_akun = "Not Verified"
+        session.commit()
+        session.refresh(db_user)
         return {"message": "One or more personal data variables are empty."}
 
 # ==================================== Personal Data =================================================
@@ -258,29 +283,26 @@ def get_riwayat_saldo_by_user_id(user_id: int, session=Depends(get_session)):
     return {"riwayat_saldo": wallet.riwayat_saldo}
 
 # ==================================== UMKM =================================================
-# ADD DATA UMKM (page data_identitas_usaha)
-@app.post("/addUmkm/{user_id}")
-def add_umkm(user_id:int, umkm_data: schemas.UMKMSchema, session=Depends(get_session)):
-    # cari pemilik_umkm berdasarkan user_id
+# UPDATE DATA UMKM (page data_identitas_usaha)
+@app.put("/updateUMKM/{user_id}")
+def update_umkm(user_id: int, umkm_data: schemas.UMKMSchema, session=Depends(get_session)):
     pemilik_umkm = session.query(models.PemilikUmkmModel).filter_by(user_id=user_id).first()
-    id_pemilik = pemilik_umkm.pemilik_id
-    # add data umkm
-    umkm = models.UMKMModel(
-        pemilik_id=id_pemilik,
-        bentuk_umkm = umkm_data.bentuk_umkm,
-        nama_umkm = umkm_data.nama_umkm,
-        alamat_umkm = umkm_data.alamat_umkm,
-        kategori_umkm = umkm_data.kategori_umkm,
-        deskripsi_umkm = umkm_data.deskripsi_umkm,
-        kontak_umkm = umkm_data.kontak_umkm,
-        jumlah_karyawan = umkm_data.jumlah_karyawan,
-        omset_bulanan = umkm_data.omset_bulanan,
-        foto_umkm = umkm_data.foto_umkm,
-    )
-    session.add(umkm)
-    session.commit()
-    session.refresh(umkm)
-    return {"umkm": umkm}
+    umkm = session.query(models.UMKMModel).filter_by(pemilik_id=pemilik_umkm.pemilik_id).first()
+    if umkm:
+        umkm.pemilik_id = pemilik_umkm.pemilik_id
+        umkm.bentuk_umkm = umkm_data.bentuk_umkm
+        umkm.nama_umkm = umkm_data.nama_umkm
+        umkm.alamat_umkm = umkm_data.alamat_umkm
+        umkm.kategori_umkm = umkm_data.kategori_umkm
+        umkm.deskripsi_umkm = umkm_data.deskripsi_umkm
+        umkm.kontak_umkm = umkm_data.kontak_umkm
+        umkm.jumlah_karyawan = umkm_data.jumlah_karyawan
+        umkm.omset_bulanan = umkm_data.omset_bulanan
+        umkm.foto_umkm = umkm_data.foto_umkm
+        session.commit()
+        session.refresh(umkm)
+        return {"umkm": umkm}
+    return {"message": "Pemilik UMKM is not found"}
 
 # GET UMKM BY UMKM_ID (Page identitas_usaha, rincian_umkm, rincian_portofolio)
 @app.get("/getUmkm/{umkm_id}")

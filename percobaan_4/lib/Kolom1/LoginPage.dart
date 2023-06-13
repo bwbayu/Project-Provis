@@ -142,6 +142,8 @@ class LoginScreen extends StatelessWidget {
                                   await wallet.fetchData(login.user_id);
                                   // fetch data profile
                                   await profile.fetchData(login.user_id);
+                                  // update user
+                                  await verif.updateUser(login.user_id);
                                   // fetch data status akun
                                   await verif.fetchStatusAkun(login.user_id);
                                   // fetch data bank

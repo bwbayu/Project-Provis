@@ -324,13 +324,35 @@ class dataDiri extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.all(16),
                             child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.pop(context);
+                              onPressed: () async {
+                                // post data diri ke database
+                                if (verif.nama != "" &&
+                                    verif.tempat_lahir != "" &&
+                                    verif.tgl_lahir != "" &&
+                                    verif.jenis_kelamin != "" &&
+                                    verif.agama != "" &&
+                                    verif.status_perkawinan != "" &&
+                                    verif.pend_terakhir != "" &&
+                                    verif.alamat != "" &&
+                                    verif.status_kewarganegaraan != "") {
+                                  final statusCode = await verif.VerifyProcess(login.user_id);
+                                      print(statusCode);
+                                  if (statusCode == 200) {
+                                    Navigator.pop(context);
+                                  }
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                          'Error: Data diri belum lengkap!'),
+                                    ),
+                                  );
+                                }
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Text(
-                                  'Lanjutkan',
+                                  'Submit Data',
                                   style: TextStyle(
                                     fontFamily: 'Readex Pro',
                                     fontSize: 16,

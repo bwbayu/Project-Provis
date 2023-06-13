@@ -18,7 +18,7 @@ class listPinjaman extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               // BUTTON AJUKAN PINJAMAN
-              Navigator.pushNamed(context, '/DataIdentitasUMKM');
+              Navigator.pushNamed(context, '/PengajuanPinjamanPage');
             },
             style: ElevatedButton.styleFrom(
               primary: Colors.white,

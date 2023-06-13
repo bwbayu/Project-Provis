@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
@@ -37,26 +36,6 @@ class DataIdentitasUMKM extends StatelessWidget {
                       ),
                     ),
                     elevation: 0,
-                    actions: [
-                      Row(
-                        children: [
-                          CircleAvatar(child: Text('1')),
-                          Transform.rotate(
-                            angle: 270.0 *
-                                (3.14 /
-                                    180.0), // Rotate by 90 degrees as a double value
-                            child: SvgPicture.asset(
-                              'asset/images/sequence_arrow1.svg',
-                            ),
-                          ),
-                          CircleAvatar(
-                            backgroundColor: Color.fromARGB(255, 146, 143, 146),
-                            child: Text('2'),
-                          ),
-                          SizedBox(width: 10), // Add a right gap of 10 pixels
-                        ],
-                      ),
-                    ],
                   ),
                   Text(
                     'Lengkapi Data Usaha',
@@ -349,18 +328,25 @@ class DataIdentitasUMKM extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomRight,
                     child: ElevatedButton(
-                      onPressed: () async{
-                        // LANJUT KE PENGAJUAN PINJAMAN
-                        // post data umkm
-                        final statusCode = await umkm.addUmkm(login.user_id);
-                        print(statusCode);
-                        if (statusCode == 200) {
-                          Navigator.pushNamed(
-                              context, '/PengajuanPinjamanPage');
+                      onPressed: () async {
+                        // cek variable null
+                        if (umkm.bentuk_umkm != "" &&
+                            umkm.jumlah_karyawan != 0 &&
+                            umkm.kontak_umkm != "" &&
+                            umkm.kategori_umkm != "" &&
+                            umkm.omset_bulanan != 0.0 &&
+                            umkm.nama_umkm != "" &&
+                            umkm.alamat_umkm != "" &&
+                            umkm.deskripsi_umkm != "") {
+                          final statusCode =
+                              await umkm.updateUMKM(login.user_id);
+                          if (statusCode == 200) {
+                            Navigator.pop(context);
+                          }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text('Error: Add umkm failed.'),
+                              content: Text('Error: Data UMKM belum lengkap!'),
                             ),
                           );
                         }
@@ -377,7 +363,7 @@ class DataIdentitasUMKM extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Lanjutkan',
+                        'Submit Data',
                         style: TextStyle(
                           fontFamily: 'Outfit',
                           fontSize: 16,

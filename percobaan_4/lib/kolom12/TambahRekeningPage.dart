@@ -146,11 +146,15 @@ class TambahRekeningPage extends StatelessWidget {
                     onPressed: () async {
                       // Handle Lanjutkan button tap
                       // menambahkan data bank user
-                      final int statusCode = await bank.addBankData(login.user_id);
-                      print(statusCode);
-                      // fetch data bank user
-                      final int statusCode1 = await dataBank.fetchDataBank(login.user_id);
-                      print(statusCode1);
+                      if(bank.nama_bank != "" && bank.nomor_rekening != "" && bank.nama_pemilik_bank != ""){
+                        final int statusCode = await bank.addBankData(login.user_id);
+                        print(statusCode);
+                        // fetch data bank user
+                        final int statusCode1 = await dataBank.fetchDataBank(login.user_id);
+                        print(statusCode1);
+                        // reset data form
+                        bank.reset();
+                      }
                       Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(

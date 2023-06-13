@@ -85,24 +85,24 @@ class PemilikUmkmModel(Base):
     user_id = Column(Integer, ForeignKey('user.user_id'), unique=True)
 
     user_model = relationship('UserModel', back_populates='pemilik_umkm')
-    umkm = relationship('UMKMModel', back_populates='pemilik_umkm')
+    umkm = relationship('UMKMModel', uselist=False, back_populates='pemilik_umkm')
 
 class UMKMModel(Base):
     __tablename__ = 'umkm'
 
     umkm_id = Column(Integer, primary_key=True, autoincrement=True)
-    pemilik_id = Column(Integer, ForeignKey('pemilikUMKM.pemilik_id'))
-    bentuk_umkm = Column(String(100), nullable=False)
-    nama_umkm = Column(String(100), nullable=False)
-    alamat_umkm = Column(String(100), nullable=False)
-    kategori_umkm = Column(String(100), nullable=False)
-    deskripsi_umkm = Column(Text, nullable=False)
-    kontak_umkm = Column(String(100), nullable=False)
-    jumlah_karyawan = Column(Integer, nullable=False)
-    omset_bulanan = Column(Numeric(precision=12, scale=2), nullable=False)
-    foto_umkm = Column(String(100), nullable=False)
+    pemilik_id = Column(Integer, ForeignKey('pemilikUMKM.pemilik_id'), unique=True)
+    bentuk_umkm = Column(String(100))
+    nama_umkm = Column(String(100))
+    alamat_umkm = Column(String(100))
+    kategori_umkm = Column(String(100))
+    deskripsi_umkm = Column(Text)
+    kontak_umkm = Column(String(100))
+    jumlah_karyawan = Column(Integer)
+    omset_bulanan = Column(Numeric(precision=12, scale=2))
+    foto_umkm = Column(String(100))
 
-    pemilik_umkm = relationship('PemilikUmkmModel', back_populates='umkm')
+    pemilik_umkm = relationship('PemilikUmkmModel',back_populates='umkm')
     pinjaman_model = relationship('PinjamanModel', back_populates='umkm_model')
 
 class PinjamanModel(Base):

@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 from datetime import date
+from decimal import Decimal
 
 class UserSchema(BaseModel):
     username: str
@@ -53,7 +54,7 @@ class UMKMSchema(BaseModel):
     deskripsi_umkm: str
     kontak_umkm: str
     jumlah_karyawan: int
-    omset_bulanan: float
+    omset_bulanan: Decimal
     foto_umkm: str
 
 class PinjamanSchema(BaseModel):
@@ -62,8 +63,6 @@ class PinjamanSchema(BaseModel):
     tenor_pinjaman: str
     bunga_pinjaman: str
     frekuensi_angsuran_pokok: str
-    tgl_pengajuan: date
-    tgl_tenggang: date
     status_pinjaman: str
     tujuan_pinjaman: str
     pinjaman_terkumpul: float

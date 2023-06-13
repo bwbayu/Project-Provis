@@ -322,6 +322,26 @@ class VerifikasiAkun extends ChangeNotifier{
         throw Exception('Failed to fetch user data');
       }
   }
+
+  void reset(){
+    nama = "";
+    tempat_lahir = "";
+    tgl_lahir = "";
+    jenis_kelamin = "";
+    agama = "";
+    status_perkawinan = "";
+    pend_terakhir = "";
+    alamat = "";
+    status_kewarganegaraan = "";
+    provinsi = "";
+    kota = "";
+    kecamatan = "";
+    kelurahan = "";
+    rtrw = "";
+    kodepos = "";
+    nomor_npwp = "";
+    pemilik_npwp = "";
+  }
 }
 
 class Wallet extends ChangeNotifier{
@@ -347,6 +367,7 @@ class Wallet extends ChangeNotifier{
         throw Exception('Failed to fetch user wallet');
       }
   }
+
 }
 
 class ProfileData extends ChangeNotifier{
@@ -441,6 +462,12 @@ class BankData extends ChangeNotifier{
 
     final response = await http.post(url, headers: headers, body: body);
     return response.statusCode;
+  }
+
+  void reset(){
+    nama_bank = "";
+    nomor_rekening = "";
+    nama_pemilik_bank = "";
   }
 }
 
@@ -593,24 +620,24 @@ class UmkmProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<int> addUmkm(int user_id) async {
-    final url = Uri.parse('http://127.0.0.1:8000/addUmkm/$user_id');
+  Future<int> updateUMKM(int user_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/updateUMKM/$user_id');
     final headers = {'Content-Type': 'application/json'};
     final umkmData = {
       'pemilik_id': 0,
       'bentuk_umkm': bentuk_umkm,
+      'jumlah_karyawan': jumlah_karyawan,
+      'kontak_umkm': kontak_umkm,
+      'kategori_umkm': kategori_umkm,
+      'omset_bulanan': omset_bulanan,
       'nama_umkm': nama_umkm,
       'alamat_umkm': alamat_umkm,
-      'kategori_umkm': kategori_umkm,
       'deskripsi_umkm': deskripsi_umkm,
-      'kontak_umkm': kontak_umkm,
-      'jumlah_karyawan': jumlah_karyawan,
-      'omset_bulanan': omset_bulanan,
-      'foto_umkm': "foto_umkm",
+      'foto_umkm': "foto_umkm"
     };
     final body = jsonEncode(umkmData);
-
-    final response = await http.post(url, headers: headers, body: body);
+    print(body);
+    final response = await http.put(url, headers: headers, body: body);
     final responseData = jsonDecode(response.body);
     if (response.statusCode == 200) {
       _umkm_id = responseData['umkm']['umkm_id'];
@@ -618,6 +645,17 @@ class UmkmProvider extends ChangeNotifier {
     }
     
     return response.statusCode;
+  }
+
+  void reset(){
+    bentuk_umkm = '';
+    nama_umkm = '';
+    alamat_umkm = '';
+    kategori_umkm = '';
+    deskripsi_umkm = '';
+    kontak_umkm = '';
+    jumlah_karyawan = 0;
+    omset_bulanan = 0.0;
   }
 }
 
@@ -685,7 +723,8 @@ class PinjamanProvider extends ChangeNotifier {
       "bunga_pinjaman": bunga_pinjaman,
       "frekuensi_angsuran_pokok": frekuensi_angsuran,
       "status_pinjaman": "Open",
-      "tujuan_pinjaman": tujuan_pinjaman
+      "tujuan_pinjaman": tujuan_pinjaman,
+      "pinjaman_terkumpul": 0
     };
     final body = jsonEncode(pinjamanData);
 
