@@ -194,11 +194,8 @@ class InvestorPage extends StatelessWidget {
                                                 onPressed: () async {
                                                   // Handle Transfer button tap
                                                   // fetch data bank user
-                                                  final statusCode = await dataBank.fetchDataBank(login.user_id);
-                                                  print(statusCode);
-                                                  if(statusCode == 200) {
-                                                    Navigator.pushNamed(context, '/tarikDana');
-                                                  } 
+                                                  // final statusCode = await dataBank.fetchDataBank(login.user_id);
+                                                  Navigator.pushNamed(context, '/tarikDana');
                                                 },
                                               ),
                                             ),

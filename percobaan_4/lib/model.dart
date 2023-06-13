@@ -244,6 +244,7 @@ class VerifikasiAkun extends ChangeNotifier{
   Future<int> VerifyProcess(int user_id) async {
     final url = Uri.parse('http://127.0.0.1:8000/updatePersonalData/' + user_id.toString());
     final headers = {'Content-Type': 'application/json'};
+    final alamatValue = alamat.isNotEmpty ? '$alamat, $_provinsi, $_kota, $_kecamatan, $_kelurahan, $_rtrw, $_kodepos' : '';
     final body = jsonEncode({
       'id_user': user_id,
       'foto_ktp': "foto_ktp",
@@ -256,7 +257,7 @@ class VerifikasiAkun extends ChangeNotifier{
       "agama": agama,
       "status_perkawinan": status_perkawinan,
       "pend_terakhir": pend_terakhir,
-      "alamat": '$alamat, $_provinsi, $_kota, $_kecamatan, $_kelurahan, $_rtrw, $_kodepos',
+      "alamat": alamatValue,
       "status_kewarganegaraan": status_kewarganegaraan,
       "nomor_npwp": nomor_npwp,
       "pemilik_npwp": pemilik_npwp,

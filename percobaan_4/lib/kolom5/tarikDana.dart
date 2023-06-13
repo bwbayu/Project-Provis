@@ -106,83 +106,114 @@ class tarikDana extends StatelessWidget {
               ),
               Flexible(
                 child: SingleChildScrollView(
-                  child: Consumer<BankUser>(
-                    builder: (context, dataBank, child){
-                      return dataBank.isLoading ? CircularProgressIndicator() 
-                      : dataBank.bank != null ?
-                        Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                              child: ListView.builder(
-                                padding: EdgeInsets.zero,
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: dataBank.bank!.listBank.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 70,
-                                      decoration: BoxDecoration(
-                                        color: Colors.purple[800]!,
-                                        borderRadius: BorderRadius.circular(25),
-                                      ),
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              dataBank.bank!.listBank[index].nama_bank,
-                                              style: TextStyle(
-                                                fontFamily: 'Outfit',
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.normal,
-                                                fontSize: 22,
+                  child:
+                      Consumer<BankUser>(builder: (context, dataBank, child) {
+                    return dataBank.isLoading
+                        ? CircularProgressIndicator()
+                        : dataBank.bank != null
+                            ? Column(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                    child: ListView.builder(
+                                      padding: EdgeInsets.zero,
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount: dataBank.bank!.listBank.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              20, 5, 20, 5),
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              primary: Colors.purple[800],
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
                                               ),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      10, 0, 10, 0),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(
-                                                  0, 10, 0, 10),
-                                              child: Column(
+                                            onPressed: () {
+                                              // Add your onPressed logic here
+                                            },
+                                            child: Container(
+                                              width: double.infinity,
+                                              height: 70,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    dataBank.bank!.listBank[index].nama_pemilik_bank,
+                                                    dataBank
+                                                        .bank!
+                                                        .listBank[index]
+                                                        .nama_bank,
                                                     style: TextStyle(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Outfit',
                                                       color: Colors.white,
-                                                      fontWeight: FontWeight.normal,
-                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontSize: 22,
                                                     ),
                                                   ),
-                                                  Text(
-                                                    dataBank.bank!.listBank[index].nomor_rekening,
-                                                    style: TextStyle(
-                                                      fontFamily: 'Readex Pro',
-                                                      color: Colors.white,
-                                                      fontWeight: FontWeight.normal,
-                                                      fontSize: 16,
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 10, 0, 10),
+                                                    child: Column(
+                                                      children: [
+                                                        Text(
+                                                          dataBank
+                                                              .bank!
+                                                              .listBank[index]
+                                                              .nama_pemilik_bank,
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                            fontSize: 18,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          dataBank
+                                                              .bank!
+                                                              .listBank[index]
+                                                              .nomor_rekening,
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                            fontSize: 16,
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                      ),
+                                          ),
+                                        );
+                                      },
                                     ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ) : SizedBox();
-                    }
-                  ),
+                                  ),
+                                ],
+                              )
+                            : SizedBox();
+                  }),
                 ),
               ),
             ],

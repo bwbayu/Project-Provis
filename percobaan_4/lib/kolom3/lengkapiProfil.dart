@@ -146,46 +146,6 @@ class formVerifikasi extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           // Button pressed callback
-                          Navigator.pushNamed(context, '/akunBank');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          backgroundColor: Colors.purple[800]!,
-                          padding: EdgeInsets.zero,
-                        ),
-                        child: ListTile(
-                          leading: FaIcon(
-                            FontAwesomeIcons.dollarSign,
-                            size: 50,
-                            color: Color(0xFFF7F8F9),
-                          ),
-                          title: Text(
-                            'Akun Bank',
-                            style: TextStyle(
-                              fontFamily: 'Outfit',
-                              color: Color(0xFFF7F8F9),
-                              fontSize: 25,
-                            ),
-                          ),
-                          subtitle: Text(
-                            'Masukkan akun bank yang akan dipakai untuk transaksi',
-                            style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xFFF2F5F8),
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 8.0),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // Button pressed callback
                           Navigator.pushNamed(context, '/formTTD');
                         },
                         style: ElevatedButton.styleFrom(
@@ -227,24 +187,36 @@ class formVerifikasi extends StatelessWidget {
                   // Butuh penanda buat bedain umkm dan investor
                   // biar redirect ke dashboardnya masing-masing
                   child: Consumer3<Login, VerifikasiAkun, ProfileData>(
-                    builder:(context, login, verif, profile, child) =>
-                    ElevatedButton(
+                    builder: (context, login, verif, profile, child) =>
+                        ElevatedButton(
                       onPressed: () async {
                         // add data diri
-                        final statusCode = await verif.VerifyProcess(login.user_id);
-                        if(statusCode == 200){
+                        final statusCode =
+                            await verif.VerifyProcess(login.user_id);
+                        if (statusCode == 200) {
                           // verify berhasil, update status akun
-                          final statusCode1 = await verif.updateUser(login.user_id);
+                          final statusCode1 =
+                              await verif.updateUser(login.user_id);
                           print(statusCode1);
-                          // fetch data profile
-                          await profile.fetchData(login.user_id);
                           // fetch data status akun
                           await verif.fetchStatusAkun(login.user_id);
-                          print(verif.status_akun);
-                          if(login.jenis_user == "Investor" && statusCode1 == 200){
-                            Navigator.pushNamed(context, '/dashboardInvestor');
-                          }else{
-                            Navigator.pushNamed(context, '/dashboardUMKM');
+                          if (verif.status_akun == "Verified") {
+                            // fetch data profile
+                            await profile.fetchData(login.user_id);
+                            print(verif.status_akun);
+                            if (login.jenis_user == "Investor") {
+                              Navigator.pushNamed(
+                                  context, '/dashboardInvestor');
+                            } else {
+                              Navigator.pushNamed(context, '/dashboardUMKM');
+                            }
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content:
+                                    Text('Error: Data akun belum lengkap!'),
+                              ),
+                            );
                           }
                         }
                       },
