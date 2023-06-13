@@ -113,42 +113,7 @@ class PengajuanPinjamanPage extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: DropdownButtonFormField<String>(
-                    items: ['Hari', 'Bulan', 'Tahun'].map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (value) {},
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    ),
-                    dropdownColor: Colors.white,
-                  ),
-                ),
-                SizedBox(height: 16.0),
-                Text(
-                  'Jenis Agunan',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Outfit',
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(height: 8.0),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: DropdownButtonFormField<String>(
-                    items: ['Satu', 'Dua', 'Tiga'].map((String value) {
+                    items: ['1 Bulan', '3 Bulan', '6 Bulan', '12 Bulan'].map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
@@ -183,7 +148,7 @@ class PengajuanPinjamanPage extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: DropdownButtonFormField<String>(
-                    items: ['5', '10', '15'].map((String value) {
+                    items: ['5%', '10%'].map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
@@ -218,42 +183,7 @@ class PengajuanPinjamanPage extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: DropdownButtonFormField<String>(
-                    items: ['1', '2', '3'].map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (value) {},
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    ),
-                    dropdownColor: Colors.white,
-                  ),
-                ),
-                SizedBox(height: 16.0),
-                Text(
-                  'Frekuensi Angsuran Bunga',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Outfit',
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(height: 8.0),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: DropdownButtonFormField<String>(
-                    items: ['1', '2', '3'].map((String value) {
+                    items: ['per bulan', 'di akhir tenor'].map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
@@ -292,35 +222,6 @@ class PengajuanPinjamanPage extends StatelessWidget {
                     style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                       hintText: 'Masukkan Tujuan Pinjaman',
-                      hintStyle: TextStyle(color: Colors.black),
-                      border: InputBorder.none,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 16.0),
-                Text(
-                  'Deskripsi Pinjaman',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Outfit',
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(height: 8.0),
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextField(
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
-                      hintText: 'Masukkan Deskripsi Pinjaman',
                       hintStyle: TextStyle(color: Colors.black),
                       border: InputBorder.none,
                     ),

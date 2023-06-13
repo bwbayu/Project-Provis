@@ -522,3 +522,179 @@ class OurBank with ChangeNotifier {
 
   List<OurBankData> get bankList => _bankList;
 }
+
+class UmkmProvider extends ChangeNotifier {
+  String _bentuk_umkm = '';
+  String _nama_umkm = '';
+  String _alamat_umkm = '';
+  String _kategori_umkm = '';
+  String _deskripsi_umkm = '';
+  String _kontak_umkm = '';
+  int _jumlah_karyawan = 0;
+  double _omset_bulanan = 0.0;
+  String _foto_umkm = '';
+  int _umkm_id = 0;
+  int _pemilik_id =0;
+
+  String get bentuk_umkm => _bentuk_umkm;
+  String get nama_umkm => _nama_umkm;
+  String get alamat_umkm => _alamat_umkm;
+  String get kategori_umkm => _kategori_umkm;
+  String get deskripsi_umkm => _deskripsi_umkm;
+  String get kontak_umkm => _kontak_umkm;
+  int get jumlah_karyawan => _jumlah_karyawan;
+  double get omset_bulanan => _omset_bulanan;
+  String get foto_umkm => _foto_umkm;
+  int get umkm_id => _umkm_id;
+  int get pemilik_id => _pemilik_id;
+
+  set bentuk_umkm(String value) {
+    _bentuk_umkm = value;
+    notifyListeners();
+  }
+
+  set nama_umkm(String value) {
+    _nama_umkm = value;
+    notifyListeners();
+  }
+
+  set alamat_umkm(String value) {
+    _alamat_umkm = value;
+    notifyListeners();
+  }
+
+  set kategori_umkm(String value) {
+    _kategori_umkm = value;
+    notifyListeners();
+  }
+
+  set deskripsi_umkm(String value) {
+    _deskripsi_umkm = value;
+    notifyListeners();
+  }
+
+  set kontak_umkm(String value) {
+    _kontak_umkm = value;
+    notifyListeners();
+  }
+
+  set jumlah_karyawan(int value) {
+    _jumlah_karyawan = value;
+    notifyListeners();
+  }
+
+  set omset_bulanan(double value) {
+    _omset_bulanan = value;
+    notifyListeners();
+  }
+
+  set foto_umkm(String value) {
+    _foto_umkm = value;
+    notifyListeners();
+  }
+
+  Future<int> addUmkm(int user_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/addUmkm/$user_id');
+    final headers = {'Content-Type': 'application/json'};
+    final umkmData = {
+      'pemilik_id': 0,
+      'bentuk_umkm': bentuk_umkm,
+      'nama_umkm': nama_umkm,
+      'alamat_umkm': alamat_umkm,
+      'kategori_umkm': kategori_umkm,
+      'deskripsi_umkm': deskripsi_umkm,
+      'kontak_umkm': kontak_umkm,
+      'jumlah_karyawan': jumlah_karyawan,
+      'omset_bulanan': omset_bulanan,
+      'foto_umkm': "foto_umkm",
+    };
+    final body = jsonEncode(umkmData);
+
+    final response = await http.post(url, headers: headers, body: body);
+    final responseData = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      _umkm_id = responseData['umkm']['umkm_id'];
+      _pemilik_id = responseData['umkm']['pemilik_id'];
+    }
+    
+    return response.statusCode;
+  }
+}
+
+class PinjamanProvider extends ChangeNotifier {
+  String _tenor_pinjaman = '';
+  String _bunga_pinjaman = '';
+  String _frekuensi_angsuran = '';
+  String _status_pinjaman = '';
+  String _tujuan_pinjaman = '';
+  double _jumlah_pinjaman = 0.0;
+  double _pinjaman_terkumpul = 0.0;
+  int _pinjaman_id = 0;
+
+  String get tenor_pinjaman => _tenor_pinjaman;
+  String get bunga_pinjaman => _bunga_pinjaman;
+  String get frekuensi_angsuran => _frekuensi_angsuran;
+  String get status_pinjaman => _status_pinjaman;
+  String get tujuan_pinjaman => _tujuan_pinjaman;
+  double get jumlah_pinjaman => _jumlah_pinjaman;
+  double get pinjaman_terkumpul => _pinjaman_terkumpul;
+  int get pinjaman_id => _pinjaman_id;
+
+  set tenor_pinjaman(String value) {
+    _tenor_pinjaman = value;
+    notifyListeners();
+  }
+
+  set bunga_pinjaman(String value) {
+    _bunga_pinjaman = value;
+    notifyListeners();
+  }
+
+  set frekuensi_angsuran(String value) {
+    _frekuensi_angsuran = value;
+    notifyListeners();
+  }
+
+  set status_pinjaman(String value) {
+    _status_pinjaman = value;
+    notifyListeners();
+  }
+
+  set tujuan_pinjaman(String value) {
+    _tujuan_pinjaman = value;
+    notifyListeners();
+  }
+
+  set jumlah_pinjaman(double value) {
+    _jumlah_pinjaman = value;
+    notifyListeners();
+  }
+
+  set pinjaman_terkumpul(double value) {
+    _pinjaman_terkumpul = value;
+    notifyListeners();
+  }
+
+  Future<int> addPinjamanUmkm(int umkm_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/addPinjamanUmkm/$umkm_id');
+    final headers = {'Content-Type': 'application/json'};
+    final pinjamanData = {
+      "umkm_id": umkm_id,
+      "jumlah_pinjaman": jumlah_pinjaman,
+      "tenor_pinjaman": tenor_pinjaman,
+      "bunga_pinjaman": bunga_pinjaman,
+      "frekuensi_angsuran_pokok": frekuensi_angsuran,
+      "status_pinjaman": "Open",
+      "tujuan_pinjaman": tujuan_pinjaman
+    };
+    final body = jsonEncode(pinjamanData);
+
+    final response = await http.post(url, headers: headers, body: body);
+    final responseData = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      _pinjaman_id = responseData['pinjaman_id'];
+    }
+    
+    return response.statusCode;
+  }
+}

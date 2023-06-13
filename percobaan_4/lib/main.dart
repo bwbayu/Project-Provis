@@ -16,6 +16,8 @@ void main() {
         ChangeNotifierProvider(create: (_) => BankData()),
         ChangeNotifierProvider(create: (_) => BankUser()),
         ChangeNotifierProvider(create: (_) => OurBank()),
+        ChangeNotifierProvider(create: (_) => UmkmProvider()),
+        ChangeNotifierProvider(create: (_) => PinjamanProvider()),
       ],
       child: MyApp(),
       )

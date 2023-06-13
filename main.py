@@ -4,7 +4,7 @@ from typing import Union
 import schemas
 import models
 import bcrypt
-import datetime
+from datetime import datetime, timedelta
 import jwt
 # database
 from database import Base, engine, SessionLocal
@@ -265,7 +265,18 @@ def add_umkm(user_id:int, umkm_data: schemas.UMKMSchema, session=Depends(get_ses
     pemilik_umkm = session.query(models.PemilikUmkmModel).filter_by(user_id=user_id).first()
     id_pemilik = pemilik_umkm.pemilik_id
     # add data umkm
-    umkm = models.UMKMModel(**umkm_data.dict(), pemilik_id=id_pemilik)
+    umkm = models.UMKMModel(
+        pemilik_id=id_pemilik,
+        bentuk_umkm = umkm_data.bentuk_umkm,
+        nama_umkm = umkm_data.nama_umkm,
+        alamat_umkm = umkm_data.alamat_umkm,
+        kategori_umkm = umkm_data.kategori_umkm,
+        deskripsi_umkm = umkm_data.deskripsi_umkm,
+        kontak_umkm = umkm_data.kontak_umkm,
+        jumlah_karyawan = umkm_data.jumlah_karyawan,
+        omset_bulanan = umkm_data.omset_bulanan,
+        foto_umkm = umkm_data.foto_umkm,
+    )
     session.add(umkm)
     session.commit()
     session.refresh(umkm)
@@ -278,6 +289,34 @@ def get_umkm_by_umkm_id(umkm_id: int, session=Depends(get_session)):
     if umkm is None:
         return {"error": "UMKM not found"}
     return {"umkm": umkm}
+
+# ADD PINJAMAN UMKM (page pengajuanPinjaman)
+@app.post("/addPinjamanUmkm/{umkm_id}")
+def add_pinjaman_umkm(umkm_id:int, pinjaman_umkm_data: schemas.PinjamanSchema, db=Depends(get_session)):
+    umkm = db.query(models.UMKMModel).get(umkm_id)
+    if umkm is None:
+        return {"message": "UMKM not found"}
+
+    current_date = datetime.now().date()
+    tgl_tenggang = current_date + timedelta(days=30)
+
+    pinjaman = models.PinjamanModel(
+        umkm_id = umkm_id,
+        jumlah_pinjaman= pinjaman_umkm_data.jumlah_pinjaman,
+        tenor_pinjaman= pinjaman_umkm_data.tenor_pinjaman,
+        bunga_pinjaman= pinjaman_umkm_data.bunga_pinjaman,
+        frekuensi_angsuran_pokok= pinjaman_umkm_data.frekuensi_angsuran_pokok,
+        tgl_pengajuan= current_date,
+        tgl_tenggang= tgl_tenggang,
+        status_pinjaman= pinjaman_umkm_data.status_pinjaman,
+        tujuan_pinjaman= pinjaman_umkm_data.tujuan_pinjaman,
+        pinjaman_terkumpul= 0
+    )
+
+    db.add(pinjaman)
+    db.commit()
+    db.refresh(pinjaman)
+    return pinjaman
 
 # ==================================== PINJAMAN =================================================
 
@@ -303,6 +342,4 @@ def get_umkm_by_umkm_id(umkm_id: int, session=Depends(get_session)):
 
 # ADD PEMBAYARAN BY PINJAMAN_ID (page pembayaran)
 
-# ==================================== PEMINJAMAN =================================================
 
-#ADD UMKM

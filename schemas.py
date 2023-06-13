@@ -45,6 +45,7 @@ class RiwayatSaldoSchema(BaseModel):
     saldo_transaksi: float
 
 class UMKMSchema(BaseModel):
+    pemilik_id: int
     bentuk_umkm: str
     nama_umkm: str
     alamat_umkm: str
@@ -56,6 +57,7 @@ class UMKMSchema(BaseModel):
     foto_umkm: str
 
 class PinjamanSchema(BaseModel):
+    umkm_id: int
     jumlah_pinjaman: float
     tenor_pinjaman: str
     bunga_pinjaman: str
