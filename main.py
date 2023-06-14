@@ -187,11 +187,9 @@ def update_status_akun(user_id: int, session: Session = Depends(get_session)):
             return {"message": "UMKM not found"}
 
         for variable in db_umkm_user.__dict__:
-            print(db_umkm_user.__dict__[variable])
             if db_umkm_user.__dict__[variable] == None:
                 all_variables_not_empty = False
                 break
-    print(all_variables_not_empty)
     if all_variables_not_empty:
         db_user.status_akun = "Verified"
         session.commit()
@@ -403,11 +401,7 @@ def get_pinjaman_by_status(session=Depends(get_session)):
         return {"message": "Pinjaman not found"}
     return {"pinjaman": pinjaman}
 
-# GET PINJAMAN WITH STATUS_PINJAMAN == OPEN (Page pendanaan)
-
 # GET PINJAMAN BY PINJAMAN_ID (Page rincian_umkm, pendanaan_investor, rincian_portofolio, pembayaran)
-
-# GET PINJAMAN BY USER_ID TOP 5 (Page dashboard_umkm)
 
 # ==================================== PENDANAAN =================================================
 

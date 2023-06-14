@@ -368,6 +368,9 @@ class UmkmDash extends StatelessWidget {
                                             itemCount: pinjaman.pinjamanList!.length > 5 ? 5 : pinjaman.pinjamanList!.length,
                                             itemBuilder: (BuildContext context,
                                                 int index) {
+                                                  print(pinjaman.pinjamanList![index].bungaPinjaman);
+                                                  print(pinjaman.pinjamanList![index].tenor);
+                                                  print(pinjaman.pinjamanList![index].frekuensiAngsuran);
                                               return InkWell(
                                                 onTap: () {
                                                   Navigator.pushNamed(

@@ -221,7 +221,7 @@ class UMKMPage extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         // Tambahkan kode aksi yang ingin Anda jalankan saat tombol ditekan
-                        Navigator.pushNamed(context, '/MulaiPendanaanInvestor');
+                        Navigator.pushNamed(context, '/MulaiPendanaanInvestor', arguments: index);
                       },
                       child: Text(
                         'Mulai Pendanaan',
