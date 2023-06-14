@@ -20,8 +20,7 @@ class rincianPinjaman extends StatelessWidget {
             ),
           ),
           child: Consumer<PinjamanUser>(
-            builder: (context, pinjaman, child) =>
-            Column(
+            builder: (context, pinjaman, child) => Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 AppBar(
@@ -49,7 +48,7 @@ class rincianPinjaman extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Pinjaman '+ (index + 1).toString(),
+                          'Pinjaman ' + (index + 1).toString(),
                           style: TextStyle(
                             fontFamily: 'Outfit',
                             color: Colors.white,
@@ -110,12 +109,15 @@ class rincianPinjaman extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
                                 child: Text(
-                                  'Rp.'+pinjaman.pinjamanList![index].jumlah_pinjaman.toString(),
+                                  'Rp.' +
+                                      pinjaman
+                                          .pinjamanList![index].jumlah_pinjaman
+                                          .toString(),
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
                                   ),
-                                  textAlign: TextAlign.center,
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
                             ),
@@ -153,7 +155,7 @@ class rincianPinjaman extends StatelessWidget {
                                     fontSize: 18,
                                     color: Colors.white,
                                   ),
-                                  textAlign: TextAlign.center,
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
                             ),
@@ -199,7 +201,7 @@ class rincianPinjaman extends StatelessWidget {
                                     fontSize: 18,
                                     color: Colors.white,
                                   ),
-                                  textAlign: TextAlign.center,
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
                             ),
@@ -237,7 +239,7 @@ class rincianPinjaman extends StatelessWidget {
                                     fontSize: 18,
                                     color: Colors.white,
                                   ),
-                                  textAlign: TextAlign.center,
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
                             ),
@@ -282,7 +284,8 @@ class rincianPinjaman extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        pinjaman.pinjamanList![index].tenor_pinjaman,
+                                        pinjaman.pinjamanList![index]
+                                            .tenor_pinjaman,
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -309,7 +312,8 @@ class rincianPinjaman extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        pinjaman.pinjamanList![index].bunga_pinjaman,
+                                        pinjaman.pinjamanList![index]
+                                            .bunga_pinjaman,
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -341,7 +345,8 @@ class rincianPinjaman extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        pinjaman.pinjamanList![index].frekuensi_angsuran_pokok,
+                                        pinjaman.pinjamanList![index]
+                                            .frekuensi_angsuran_pokok,
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
