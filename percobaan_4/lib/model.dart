@@ -560,8 +560,6 @@ class UmkmProvider extends ChangeNotifier {
   int _jumlah_karyawan = 0;
   double _omset_bulanan = 0.0;
   String _foto_umkm = '';
-  int _umkm_id = 0;
-  int _pemilik_id =0;
 
   String get bentuk_umkm => _bentuk_umkm;
   String get nama_umkm => _nama_umkm;
@@ -572,8 +570,6 @@ class UmkmProvider extends ChangeNotifier {
   int get jumlah_karyawan => _jumlah_karyawan;
   double get omset_bulanan => _omset_bulanan;
   String get foto_umkm => _foto_umkm;
-  int get umkm_id => _umkm_id;
-  int get pemilik_id => _pemilik_id;
 
   set bentuk_umkm(String value) {
     _bentuk_umkm = value;
@@ -636,13 +632,7 @@ class UmkmProvider extends ChangeNotifier {
       'foto_umkm': "foto_umkm"
     };
     final body = jsonEncode(umkmData);
-    print(body);
     final response = await http.put(url, headers: headers, body: body);
-    final responseData = jsonDecode(response.body);
-    if (response.statusCode == 200) {
-      _umkm_id = responseData['umkm']['umkm_id'];
-      _pemilik_id = responseData['umkm']['pemilik_id'];
-    }
     
     return response.statusCode;
   }
@@ -667,7 +657,6 @@ class PinjamanProvider extends ChangeNotifier {
   String _tujuan_pinjaman = '';
   double _jumlah_pinjaman = 0.0;
   double _pinjaman_terkumpul = 0.0;
-  int _pinjaman_id = 0;
 
   String get tenor_pinjaman => _tenor_pinjaman;
   String get bunga_pinjaman => _bunga_pinjaman;
@@ -676,7 +665,6 @@ class PinjamanProvider extends ChangeNotifier {
   String get tujuan_pinjaman => _tujuan_pinjaman;
   double get jumlah_pinjaman => _jumlah_pinjaman;
   double get pinjaman_terkumpul => _pinjaman_terkumpul;
-  int get pinjaman_id => _pinjaman_id;
 
   set tenor_pinjaman(String value) {
     _tenor_pinjaman = value;
@@ -713,11 +701,11 @@ class PinjamanProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<int> addPinjamanUmkm(int umkm_id) async {
-    final url = Uri.parse('http://127.0.0.1:8000/addPinjamanUmkm/$umkm_id');
+  Future<int> addPinjamanUmkm(int user_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/addPinjamanUmkm/$user_id');
     final headers = {'Content-Type': 'application/json'};
     final pinjamanData = {
-      "umkm_id": umkm_id,
+      "umkm_id": 0,
       "jumlah_pinjaman": jumlah_pinjaman,
       "tenor_pinjaman": tenor_pinjaman,
       "bunga_pinjaman": bunga_pinjaman,
@@ -729,11 +717,116 @@ class PinjamanProvider extends ChangeNotifier {
     final body = jsonEncode(pinjamanData);
 
     final response = await http.post(url, headers: headers, body: body);
-    final responseData = jsonDecode(response.body);
-    if (response.statusCode == 200) {
-      _pinjaman_id = responseData['pinjaman_id'];
-    }
     
     return response.statusCode;
+  }
+
+  void reset(){
+    tenor_pinjaman = '';
+    bunga_pinjaman = '';
+    frekuensi_angsuran = '';
+    status_pinjaman = '';
+    tujuan_pinjaman = '';
+    jumlah_pinjaman = 0.0;
+    pinjaman_terkumpul = 0.0;
+  }
+}
+
+// GET PINJAMAN
+class Pinjaman {
+  int pinjaman_id;
+  String tenor_pinjaman;
+  String frekuensi_angsuran_pokok;
+  String tgl_tenggang;
+  String tujuan_pinjaman;
+  int umkm_id;
+  double jumlah_pinjaman;
+  String bunga_pinjaman;
+  String tgl_pengajuan;
+  String status_pinjaman;
+  double pinjaman_terkumpul;
+
+  Pinjaman({
+    required this.pinjaman_id,
+    required this.tenor_pinjaman,
+    required this.frekuensi_angsuran_pokok,
+    required this.tgl_tenggang,
+    required this.tujuan_pinjaman,
+    required this.umkm_id,
+    required this.jumlah_pinjaman,
+    required this.bunga_pinjaman,
+    required this.tgl_pengajuan,
+    required this.status_pinjaman,
+    required this.pinjaman_terkumpul,
+  });
+
+  factory Pinjaman.fromJson(Map<String, dynamic> json) {
+    return Pinjaman(
+      pinjaman_id: json['pinjaman_id'],
+      tenor_pinjaman: json['tenor_pinjaman'],
+      frekuensi_angsuran_pokok: json['frekuensi_angsuran_pokok'],
+      tgl_tenggang: json['tgl_tenggang'],
+      tujuan_pinjaman: json['tujuan_pinjaman'],
+      umkm_id: json['umkm_id'],
+      jumlah_pinjaman: json['jumlah_pinjaman'],
+      bunga_pinjaman: json['bunga_pinjaman'],
+      tgl_pengajuan: json['tgl_pengajuan'],
+      status_pinjaman: json['status_pinjaman'],
+      pinjaman_terkumpul: json['pinjaman_terkumpul'],
+    );
+  }
+}
+
+class PinjamanUser with ChangeNotifier {
+  List<Pinjaman>? pinjamanList;
+  bool isLoading = false;
+
+  Future<int> fetchDataPinjaman(int user_id) async {
+    isLoading = true;
+    notifyListeners();
+
+    try {
+      String url = "http://127.0.0.1:8000/getPinjaman/$user_id";
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        var pinjamanData = data['pinjaman'];
+
+        if (pinjamanData != null) {
+          pinjamanList = List<Pinjaman>.from(
+            pinjamanData.map((json) => Pinjaman.fromJson(json)),
+          );
+          calculateTotalPinjaman();
+        } else {
+          pinjamanList = [];
+        }
+      } else if (response.statusCode == 422) {
+        print('Validation Error: ${response.body}');
+      } else {
+        print('Error: ${response.statusCode}');
+      }
+
+      isLoading = false;
+      notifyListeners();
+      return response.statusCode;
+    } catch (e) {
+      print('Exception: $e');
+      isLoading = false;
+      notifyListeners();
+      return 0;
+    }
+  }
+
+  // mencari total pinjaman
+  double _total_pinjaman = 0.0;
+  double get total_pinjaman => _total_pinjaman;
+  void calculateTotalPinjaman() {
+    _total_pinjaman = 0.0;
+    if (pinjamanList != null) {
+      for (var pinjaman in pinjamanList!) {
+        _total_pinjaman += pinjaman.jumlah_pinjaman;
+      }
+    }
   }
 }

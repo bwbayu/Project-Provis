@@ -38,8 +38,8 @@ class LoginScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.all(16),
-                    child: Consumer5<Login, Wallet, ProfileData, VerifikasiAkun, BankUser>(
-                      builder: (context, login, wallet, profile, verif, bank, child) =>
+                    child: Consumer6<Login, Wallet, ProfileData, VerifikasiAkun, BankUser, PinjamanUser>(
+                      builder: (context, login, wallet, profile, verif, bank, pinjaman, child) =>
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -151,6 +151,8 @@ class LoginScreen extends StatelessWidget {
                                   if(login.jenis_user == "Investor"){
                                     Navigator.pushNamed(context, '/dashboardInvestor');
                                   }else{
+                                    // fetch data list pinjaman user
+                                    await pinjaman.fetchDataPinjaman(login.user_id);
                                     Navigator.pushNamed(context, '/dashboardUMKM');
                                   }
                                 }

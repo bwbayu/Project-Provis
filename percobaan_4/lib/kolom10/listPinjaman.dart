@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:percobaan_4/model.dart';
+import 'package:provider/provider.dart';
 
 class listPinjaman extends StatelessWidget {
   final List<String> umkmImages = [
@@ -14,7 +16,7 @@ class listPinjaman extends StatelessWidget {
     Column myColumn = Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
+          padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
           child: ElevatedButton(
             onPressed: () {
               // BUTTON AJUKAN PINJAMAN
@@ -48,98 +50,124 @@ class listPinjaman extends StatelessWidget {
         ),
         Flexible(
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                  child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: umkmImages.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/rincianPinjaman');
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-                          child: Container(
-                            width: double.infinity,
-                            height: 200,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.asset(
-                                    umkmImages[index],
-                                    width: double.infinity,
-                                    height: 120,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                Container(
-                                  width: double.infinity,
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+            child: Consumer<PinjamanUser>(builder: (context, pinjaman, child) {
+              return pinjaman.isLoading
+                  ? CircularProgressIndicator()
+                  : pinjaman.pinjamanList != null
+                      ? Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                              child: ListView.builder(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: pinjaman.pinjamanList!.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, '/rincianPinjaman', arguments: index,);
+                                    },
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(20, 0, 20, 20),
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 200,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Text(
-                                              'Total Pinjaman',
-                                              style: TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                color: Colors.black,
-                                                fontSize: 14,
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              child: Image.asset(
+                                                umkmImages[1],
+                                                width: double.infinity,
+                                                height: 120,
+                                                fit: BoxFit.cover,
                                               ),
                                             ),
-                                            Text(
-                                              'Rp20.000.000,00',
-                                              style: TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                color: Colors.black,
-                                                fontSize: 14,
+                                            Container(
+                                              width: double.infinity,
+                                              height: 80,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    20, 0, 20, 0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          'Total Pinjaman',
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Colors.black,
+                                                            fontSize: 14,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          'Rp' +
+                                                              pinjaman
+                                                                  .pinjamanList![
+                                                                      index]
+                                                                  .jumlah_pinjaman
+                                                                  .toString(),
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Colors.black,
+                                                            fontSize: 14,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Text(
+                                                      'Pinjaman ' +
+                                                          pinjaman
+                                                              .pinjamanList![
+                                                                  index]
+                                                              .status_pinjaman,
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color: Colors.black,
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ],
                                         ),
-                                        Text(
-                                          'Status Pinjaman',
-                                          style: TextStyle(
-                                            fontFamily: 'Readex Pro',
-                                            color: Colors.black,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              ],
+                                  );
+                                },
+                              ),
                             ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
+                          ],
+                        )
+                      : SizedBox();
+            }),
           ),
         ),
       ],
@@ -175,7 +203,7 @@ class listPinjaman extends StatelessWidget {
               children: [
                 Container(
                   width: double.infinity,
-                  height: 180,
+                  height: 75,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -215,85 +243,16 @@ class listPinjaman extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Text(
-                                  'Rp20.000.000,00',
-                                  style: TextStyle(
-                                    fontFamily: 'Outfit',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
-                        child: Container(
-                          width: double.infinity,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Total Pinjaman Aktif',
-                                  style: TextStyle(
-                                    fontFamily: 'Outfit',
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                Text(
-                                  'Rp20.000.000,00',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontFamily: 'Outfit',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child: Container(
-                          width: double.infinity,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Pinjaman on process',
-                                  style: TextStyle(
-                                    fontFamily: 'Outfit',
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                Text(
-                                  'Rp20.000.000,00',
-                                  style: TextStyle(
-                                    fontFamily: 'Outfit',
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black,
-                                    fontSize: 20,
+                                Consumer<PinjamanUser>(
+                                  builder: (context, pinjaman, child) =>
+                                  Text(
+                                    'Rp'+ pinjaman.total_pinjaman.toString(),
+                                    style: TextStyle(
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                               ],

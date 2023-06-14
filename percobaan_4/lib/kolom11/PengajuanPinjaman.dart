@@ -20,15 +20,17 @@ class PengajuanPinjamanPage extends StatelessWidget {
           ),
           child: SingleChildScrollView(
             padding: EdgeInsets.all(16.0),
-            child: Consumer2<PinjamanProvider, UmkmProvider>(
-              builder: (context, pinjaman, umkm, child) => Column(
+            child: Consumer3<PinjamanProvider, Login, PinjamanUser>(
+              builder: (context, pinjaman, login, pinjamanUser, child) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppBar(
                     backgroundColor: Colors.transparent,
                     automaticallyImplyLeading: true,
                     leading: IconButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        // reset
+                        pinjaman.reset();
                         Navigator.of(context).pop();
                       },
                       icon: SvgPicture.asset(
@@ -227,16 +229,33 @@ class PengajuanPinjamanPage extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                     child: ElevatedButton(
                       onPressed: () async {
-                        // LANJUT KE LIST PINJAMAN, INFORMASI BANK GA PERLU
-                        // post data pinjaman
-                        final statusCode = await pinjaman.addPinjamanUmkm(1);
-                        print(statusCode);
-                        if (statusCode == 200) {
-                          Navigator.pushNamed(context, '/dashboardUMKM');
+                        // cek data
+                        if (pinjaman.jumlah_pinjaman != 0.0 &&
+                            pinjaman.tenor_pinjaman != "" &&
+                            pinjaman.bunga_pinjaman != "" &&
+                            pinjaman.frekuensi_angsuran != "" &&
+                            pinjaman.tujuan_pinjaman != 0.0) {
+                          // post data pinjaman
+                          final statusCode =
+                              await pinjaman.addPinjamanUmkm(login.user_id);
+                          print(statusCode);
+                          if (statusCode == 200) {
+                            // reset variable pinjaman
+                            pinjaman.reset();
+                            // fetch data pinjaman
+                            await pinjamanUser.fetchDataPinjaman(login.user_id);
+                            Navigator.pushNamed(context, '/dashboardUMKM');
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Error: Add pinjaman failed'),
+                              ),
+                            );
+                          }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text('Error: Add pinjaman failed'),
+                              content: Text('Error: Data pinjaman belum lengkap!'),
                             ),
                           );
                         }
