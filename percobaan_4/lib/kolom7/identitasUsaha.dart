@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:percobaan_4/model.dart';
+import 'package:provider/provider.dart';
 
 class IdentitasUsaha extends StatelessWidget {
   @override
@@ -15,147 +17,135 @@ class IdentitasUsaha extends StatelessWidget {
         ),
         child: Scrollbar(
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                AppBar(
-                  leading: IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: SvgPicture.asset(
-                      'asset/images/vector.svg',
-                      width: 30,
-                      height: 30,
+            child: Consumer<PinjamanUser>(
+              builder: (context, pinjaman, child) =>
+              Column(
+                children: [
+                  AppBar(
+                    leading: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: SvgPicture.asset(
+                        'asset/images/vector.svg',
+                        width: 30,
+                        height: 30,
+                      ),
+                    ),
+                    title: Text(''),
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      'Identitas Usaha',
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                   ),
-                  title: Text(''),
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                ),
-                Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Text(
-                    'Identitas Usaha',
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Card(
-                    child: Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Column(children: [
-                        ListTile(
-                          title: Text(
-                            'Bentuk Usaha',
-                            style: TextStyle(
-                              fontFamily: 'Outfit',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          subtitle: Text('CV'),
-                        ),
-                        ListTile(
-                          title: Text(
-                            'Domisili Usaha',
-                            style: TextStyle(
-                              fontFamily: 'Outfit',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          subtitle: Text('Jakarta'),
-                        ),
-                        ListTile(
-                          title: Text(
-                            'Tahun Pendirian Usaha',
-                            style: TextStyle(
-                              fontFamily: 'Outfit',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          subtitle: Text('2010'),
-                        ),
-                        ListTile(
-                          title: Text(
-                            'Group Usaha',
-                            style: TextStyle(
-                              fontFamily: 'Outfit',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          subtitle: Text('Konstruksi'),
-                        ),
-                        ListTile(
-                          title: Text(
-                            'Kategori Usaha',
-                            style: TextStyle(
-                              fontFamily: 'Outfit',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          subtitle: Text('Menengah'),
-                        ),
-                      ]),
-                    ),
-                  ),
-                ),
-                Padding(
+                  Padding(
                     padding: EdgeInsets.all(20.0),
                     child: Card(
-                        child: Padding(
-                            padding: EdgeInsets.all(20.0),
-                            child: Column(children: [
-                              ListTile(
-                                  title: Text(
-                                    'Nama Toko:',
-                                    style: TextStyle(
-                                      fontFamily: 'Outfit',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  subtitle: Text('Toko Sinar')),
-                              ListTile(
-                                  title: Text(
-                                    'Pemilik:',
-                                    style: TextStyle(
-                                      fontFamily: 'Outfit',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  subtitle: Text('Budi')),
-                              ListTile(
-                                  title: Text(
-                                    'Alamat:',
-                                    style: TextStyle(
-                                      fontFamily: 'Outfit',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  subtitle: Text('Jl. Merdeka No. 1')),
-                              ListTile(
-                                  title: Text(
-                                    'Deskripsi Toko:',
-                                    style: TextStyle(
-                                      fontFamily: 'Outfit',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  subtitle: Text(
-                                      'Toko yang menjual berbagai macam kebutuhan rumah tangga')),
-                            ]))))
-              ],
+                      child: Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Column(children: [
+                          ListTile(
+                            title: Text(
+                              'Nama UMKM',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            subtitle: Text(pinjaman.dataUMKM.nama_umkm),
+                          ),
+                          ListTile(
+                            title: Text(
+                              'Alamat UMKM',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            subtitle: Text(pinjaman.dataUMKM.alamat_umkm),
+                          ),
+                          ListTile(
+                            title: Text(
+                              'Bentuk UMKM',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            subtitle: Text(pinjaman.dataUMKM.bentuk_umkm),
+                          ),
+                          ListTile(
+                            title: Text(
+                              'Kategori UMKM',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            subtitle: Text(pinjaman.dataUMKM.kategori_umkm),
+                          ),
+                          ListTile(
+                            title: Text(
+                              'Kontak UMKM',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            subtitle: Text(pinjaman.dataUMKM.kontak_umkm),
+                          ),
+                          ListTile(
+                            title: Text(
+                              'Jumlah Karyawan',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            subtitle: Text(pinjaman.dataUMKM.jumlah_karyawan.toString()),
+                          ),
+                          ListTile(
+                            title: Text(
+                              'Omset per bulan',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            subtitle: Text(pinjaman.dataUMKM.omset_bulanan.toString()),
+                          ),
+                          ListTile(
+                            title: Text(
+                              'Deskripsi UMKM',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            subtitle: Text(pinjaman.dataUMKM.deskripsi_umkm),
+                          ),
+                        ]),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

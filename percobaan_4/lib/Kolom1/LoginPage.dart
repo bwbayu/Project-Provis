@@ -149,6 +149,9 @@ class LoginScreen extends StatelessWidget {
                                   // fetch data bank
                                   await bank.fetchDataBank(login.user_id);
                                   if(login.jenis_user == "Investor"){
+                                    // fetch data pinjaman status open
+                                    await pinjaman.fetchDataPinjamanOpen();
+                                    print(pinjaman.listPinjamanOpen!.length);
                                     Navigator.pushNamed(context, '/dashboardInvestor');
                                   }else{
                                     // fetch data list pinjaman user

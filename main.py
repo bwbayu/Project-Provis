@@ -302,14 +302,35 @@ def update_umkm(user_id: int, umkm_data: schemas.UMKMSchema, session=Depends(get
         session.commit()
         session.refresh(umkm)
         return {"umkm": umkm}
-    return {"message": "Pemilik UMKM is not found"}
+    return {"message": "Pemilik UMKM is not found", 'umkm': umkm}
 
-# GET UMKM BY UMKM_ID (Page identitas_usaha, rincian_umkm, rincian_portofolio)
-@app.get("/getUmkm/{umkm_id}")
-def get_umkm_by_umkm_id(umkm_id: int, session=Depends(get_session)):
-    umkm = session.query(models.UMKMModel).get(umkm_id)
+# GET UMKM BY user_id (Page identitas_usaha, rincian_umkm, rincian_portofolio)
+@app.get("/getUmkm/{user_id}")
+def get_umkm_by_user_id(user_id: int, session=Depends(get_session)):
+    # get user
+    user = session.query(models.UserModel).get(user_id)
+    if user is None:
+        return {"error": "User not found"}
+    # get pemilik umkm
+    pemilik_umkm = session.query(models.PemilikUmkmModel).filter_by(user_id=user_id).first()
+    if pemilik_umkm is None:
+        return {"error": "Pemilik UMKM is not found"}
+    # get umkm
+    umkm = session.query(models.UMKMModel).filter_by(pemilik_id=pemilik_umkm.pemilik_id).first()
     if umkm is None:
-        return {"error": "UMKM not found"}
+        return {"error": "UMKM is not found"}
+    return {"umkm": umkm}
+
+# GET UMKM BY PINJAMAN ID
+@app.get("/getUmkmByPinjaman/{pinjaman_id}")
+def get_umkm_by_pinjaman_id(pinjaman_id: int, session=Depends(get_session)):
+    # pinjaman
+    pinjaman = session.query(models.PinjamanModel).get(pinjaman_id)
+    if pinjaman is None:
+        return {"error": "Pinjaman is not found"}
+    umkm = session.query(models.UMKMModel).filter_by(umkm_id=pinjaman.umkm_id).first()
+    if umkm is None:
+        return {"error": "UMKM is not found"}
     return {"umkm": umkm}
 
 # ADD PINJAMAN UMKM (page pengajuanPinjaman)
@@ -370,6 +391,14 @@ def get_pinjaman_by_user_id(user_id: int, session=Depends(get_session)):
     # cari pinjaman berdasarkan umkm_id
     umkm_id = umkm.umkm_id
     pinjaman = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).all()
+    if pinjaman is None:
+        return {"message": "Pinjaman not found"}
+    return {"pinjaman": pinjaman}
+
+# GET PINJAMAN ALL WHERE STATUS_PINJAMAN == OPEN (investor)
+@app.get("/getOpenPinjaman")
+def get_pinjaman_by_status(session=Depends(get_session)):
+    pinjaman = session.query(models.PinjamanModel).filter_by(status_pinjaman="Open").all()
     if pinjaman is None:
         return {"message": "Pinjaman not found"}
     return {"pinjaman": pinjaman}

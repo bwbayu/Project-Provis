@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
+import 'dart:math';
 
 class listPinjaman extends StatelessWidget {
   final List<String> umkmImages = [
@@ -64,6 +65,8 @@ class listPinjaman extends StatelessWidget {
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: pinjaman.pinjamanList!.length,
                                 itemBuilder: (BuildContext context, int index) {
+                                  final Random random = Random();
+                                  final int randomIndex = random.nextInt(5);
                                   return InkWell(
                                     onTap: () {
                                       Navigator.pushNamed(
@@ -86,7 +89,7 @@ class listPinjaman extends StatelessWidget {
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                               child: Image.asset(
-                                                umkmImages[1],
+                                                umkmImages[randomIndex],
                                                 width: double.infinity,
                                                 height: 120,
                                                 fit: BoxFit.cover,

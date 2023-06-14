@@ -616,6 +616,7 @@ class UmkmProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // POST DATA UMKM
   Future<int> updateUMKM(int user_id) async {
     final url = Uri.parse('http://127.0.0.1:8000/updateUMKM/$user_id');
     final headers = {'Content-Type': 'application/json'};
@@ -637,6 +638,7 @@ class UmkmProvider extends ChangeNotifier {
     return response.statusCode;
   }
 
+  // RESET DATA UMKM
   void reset(){
     bentuk_umkm = '';
     nama_umkm = '';
@@ -778,6 +780,7 @@ class Pinjaman {
 }
 
 class PinjamanUser with ChangeNotifier {
+  // FETCH DATA PINJAMAN UNTUK USER UMKM
   List<Pinjaman>? pinjamanList;
   bool isLoading = false;
 
@@ -817,7 +820,7 @@ class PinjamanUser with ChangeNotifier {
       return 0;
     }
   }
-
+  
   // mencari total pinjaman
   double _total_pinjaman = 0.0;
   double get total_pinjaman => _total_pinjaman;
@@ -827,6 +830,97 @@ class PinjamanUser with ChangeNotifier {
       for (var pinjaman in pinjamanList!) {
         _total_pinjaman += pinjaman.jumlah_pinjaman;
       }
+    }
+  }
+
+  // FETCH DATA PINJAMAN YANG STATUSNYA OPEN UNTUK INVESTOR
+  List<Pinjaman>? listPinjamanOpen;
+  bool isLoading1 = false;
+
+  Future<int> fetchDataPinjamanOpen() async {
+    isLoading1 = true;
+    notifyListeners();
+
+    try {
+      String url = "http://127.0.0.1:8000/getOpenPinjaman";
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        var pinjamanData = data['pinjaman'];
+
+        if (pinjamanData != null) {
+          listPinjamanOpen = List<Pinjaman>.from(
+            pinjamanData.map((json) => Pinjaman.fromJson(json)),
+          );
+        } else {
+          listPinjamanOpen = [];
+        }
+      } else if (response.statusCode == 422) {
+        print('Validation Error: ${response.body}');
+      } else {
+        print('Error: ${response.statusCode}');
+      }
+
+      isLoading1 = false;
+      notifyListeners();
+      return response.statusCode;
+    } catch (e) {
+      print('Exception: $e');
+      isLoading1 = false;
+      notifyListeners();
+      return 0;
+    }
+  }
+
+  // FETCH DATA UMKM DARI PINJAMAN
+  UmkmProvider dataUMKM = UmkmProvider(); //menampung data umkm
+
+  // map dari json ke atribut
+  void setFromJson(Map<String, dynamic> json){
+    dataUMKM.bentuk_umkm = json['umkm']['bentuk_umkm'];
+    dataUMKM.nama_umkm = json['umkm']['nama_umkm'];
+    dataUMKM.alamat_umkm = json['umkm']['alamat_umkm'];
+    dataUMKM.kategori_umkm = json['umkm']['kategori_umkm'];
+    dataUMKM.deskripsi_umkm = json['umkm']['deskripsi_umkm'];
+    dataUMKM.kontak_umkm = json['umkm']['kontak_umkm'];
+    dataUMKM.jumlah_karyawan = json['umkm']['jumlah_karyawan'];
+    dataUMKM.omset_bulanan = json['umkm']['omset_bulanan'];
+    dataUMKM.foto_umkm = json['umkm']['foto_umkm'];
+    notifyListeners();
+  }
+
+  bool isLoading2 = true;
+  Future<int> fetchDataUmkm(int pinjaman_id) async {
+    isLoading2 = true;
+    notifyListeners();
+
+    try {
+      String url = "http://127.0.0.1:8000/getUmkmByPinjaman/$pinjaman_id";
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        if (data.containsKey('umkm')) {
+          setFromJson(data);
+        } else {
+          // Handle case when 'umkm' is not found in the response body
+          print('UMKM data not found in response');
+        }
+      } else if (response.statusCode == 422) {
+        print('Validation Error: ${response.body}');
+      } else {
+        print('Error: ${response.statusCode}');
+      }
+
+      isLoading2 = false;
+      notifyListeners();
+      return response.statusCode;
+    } catch (e) {
+      print('Exception: $e');
+      isLoading2 = false;
+      notifyListeners();
+      return 0;
     }
   }
 }

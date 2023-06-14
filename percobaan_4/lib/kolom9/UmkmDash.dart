@@ -365,7 +365,7 @@ class UmkmDash extends StatelessWidget {
                                             shrinkWrap: true,
                                             physics:
                                                 const NeverScrollableScrollPhysics(),
-                                            itemCount: pinjaman.pinjamanList!.length,
+                                            itemCount: pinjaman.pinjamanList!.length > 5 ? 5 : pinjaman.pinjamanList!.length,
                                             itemBuilder: (BuildContext context,
                                                 int index) {
                                               return InkWell(

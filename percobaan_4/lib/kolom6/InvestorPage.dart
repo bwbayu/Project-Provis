@@ -176,8 +176,9 @@ class InvestorPage extends StatelessWidget {
                                       padding:
                                           EdgeInsets.symmetric(horizontal: 5),
                                       child: Consumer2<BankUser, Login>(
-                                        builder: (context, dataBank, login, child) =>
-                                        Column(
+                                        builder:
+                                            (context, dataBank, login, child) =>
+                                                Column(
                                           children: [
                                             CircleAvatar(
                                               radius: 30.0,
@@ -195,7 +196,8 @@ class InvestorPage extends StatelessWidget {
                                                   // Handle Transfer button tap
                                                   // fetch data bank user
                                                   // final statusCode = await dataBank.fetchDataBank(login.user_id);
-                                                  Navigator.pushNamed(context, '/tarikDana');
+                                                  Navigator.pushNamed(
+                                                      context, '/tarikDana');
                                                 },
                                               ),
                                             ),
@@ -232,7 +234,8 @@ class InvestorPage extends StatelessWidget {
                                               ),
                                               onPressed: () {
                                                 // Handle Request button tap
-                                                Navigator.pushNamed(context, '/BankAndCardsPage');
+                                                Navigator.pushNamed(context,
+                                                    '/BankAndCardsPage');
                                               },
                                             ),
                                           ),
@@ -355,104 +358,172 @@ class InvestorPage extends StatelessWidget {
                     SizedBox(height: 8.0),
                     Flexible(
                       child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                              child: ListView.builder(
-                                padding: EdgeInsets.zero,
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: umkmImages.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return InkWell(
-                                    onTap: () {
-                                      Navigator.pushNamed(context, '/UMKMPage');
-                                    },
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(20, 0, 20, 20),
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: 200,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              child: Image.asset(
-                                                umkmImages[index],
-                                                width: double.infinity,
-                                                height: 120,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            Container(
-                                              width: double.infinity,
-                                              height: 80,
-                                              decoration: BoxDecoration(
-                                                color: Color.fromRGBO(
-                                                    151, 126, 242, 1),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    20, 0, 20, 0),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                        child: Consumer<PinjamanUser>(
+                            builder: (context, pinjaman, child) {
+                          return pinjaman.isLoading
+                              ? CircularProgressIndicator()
+                              : pinjaman.listPinjamanOpen != null
+                                  ? Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              0, 5, 0, 0),
+                                          child: ListView.builder(
+                                            padding: EdgeInsets.zero,
+                                            shrinkWrap: true,
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            itemCount: pinjaman.listPinjamanOpen!.length > 5 ? 5 : pinjaman.listPinjamanOpen!.length,
+                                            itemBuilder: (BuildContext context, int index) {
+                                              return InkWell(
+                                                onTap: () async {
+                                                  // fetch data umkm by pinjaman_id
+                                                  final statusCode = await pinjaman.fetchDataUmkm(pinjaman.listPinjamanOpen![index].pinjaman_id);
+                                                  if(statusCode == 200) {
+                                                    Navigator.pushNamed(context, '/UMKMPage', arguments: index);  
+                                                  }
+                                                },
+                                                child: Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      20, 0, 20, 20),
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    height: 200,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
                                                       children: [
-                                                        Text(
-                                                          'Total Pendanaan',
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                'Outfit',
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            color: Colors.white,
-                                                            fontSize: 14,
+                                                        ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                          child: Image.asset(
+                                                            umkmImages[index],
+                                                            width:
+                                                                double.infinity,
+                                                            height: 120,
+                                                            fit: BoxFit.cover,
                                                           ),
                                                         ),
-                                                        Text(
-                                                          'Rp2.000.000,00',
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                'Outfit',
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: Colors.white,
-                                                            fontSize: 14,
+                                                        Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height: 80,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    151,
+                                                                    126,
+                                                                    242,
+                                                                    1),
+                                                          ),
+                                                          child: Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(20, 0,
+                                                                    20, 0),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      'Total Pendanaan',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            'Outfit',
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            14,
+                                                                      ),
+                                                                    ),
+                                                                    Text(
+                                                                      'Rp'+pinjaman.listPinjamanOpen![index].jumlah_pinjaman.toString(),
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            'Outfit',
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            14,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      'Pendanaan Terkumpul',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            'Outfit',
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            14,
+                                                                      ),
+                                                                    ),
+                                                                    Text(
+                                                                      'Rp'+pinjaman.listPinjamanOpen![index].pinjaman_terkumpul.toString(),
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            'Outfit',
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            14,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                       ],
                                                     ),
-                                                  ],
+                                                  ),
                                                 ),
-                                              ),
-                                            ),
-                                          ],
+                                              );
+                                            },
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
+                                      ],
+                                    )
+                                  : SizedBox();
+                        }),
                       ),
                     ),
                   ],
