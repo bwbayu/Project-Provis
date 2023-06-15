@@ -1098,3 +1098,31 @@ class RiwayatWalletProvider extends ChangeNotifier{
     }
   }
 }
+
+// TARIK DAN ISI DANA
+class WithdrawalState extends ChangeNotifier {
+  String _showAdditionalInput = ""; // Initial value
+  double _nominal = 0.0;
+
+  String get showAdditionalInput => _showAdditionalInput; 
+  double get nominal => _nominal;
+
+  set showAdditionalInput(String value) {
+    _showAdditionalInput = value;
+    if(value != "custom"){
+    String numericValue = value.replaceAll(RegExp(r'[^0-9]'), '');
+    _nominal = double.parse(numericValue);
+    }
+    notifyListeners();
+  }
+
+  set nominal(double value) {
+    _nominal = value;
+    notifyListeners();
+  }
+
+  void reset(){
+    _nominal = 0.0;
+    notifyListeners();
+  }
+}

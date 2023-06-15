@@ -139,7 +139,7 @@ class tarikDana extends StatelessWidget {
                                                       10, 0, 10, 0),
                                             ),
                                             onPressed: () {
-                                              // Add your onPressed logic here
+                                              Navigator.pushNamed(context, '/tarikDanaPage', arguments:index);
                                             },
                                             child: Container(
                                               width: double.infinity,

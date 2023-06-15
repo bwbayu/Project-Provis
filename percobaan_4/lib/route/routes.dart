@@ -20,6 +20,8 @@ import 'package:percobaan_4/kolom4/ProfilePage.dart';
 import 'package:percobaan_4/kolom5/isiDana.dart';
 import 'package:percobaan_4/kolom5/tarikDana.dart';
 import 'package:percobaan_4/kolom5/wallet.dart';
+import 'package:percobaan_4/kolom5/mainIsiDana.dart';
+import 'package:percobaan_4/kolom5/mainTarikDana.dart';
 // kolom 6
 import 'package:percobaan_4/kolom6/DasboardInvestorPage.dart';
 // kolom 7
@@ -76,6 +78,8 @@ final Map<String, WidgetBuilder> routes = {
   '/isiDana': (context) => isiDana(), // data bank (icon sama nama bank),
   '/tarikDana': (context) => tarikDana(), //aman
   '/wallet': (context) => wallet(), // aman
+  '/isiDanaPage': (context) => IsiDanaPage(), // aman
+  '/tarikDanaPage': (context) => TarikDanaPage(), // aman
   // kolom 6
   '/dashboardInvestor': (context) =>
       DashboardInvestor(), // search ganti saldo, rekomendasi bisa di slider, whats on your mind mau apa aja,

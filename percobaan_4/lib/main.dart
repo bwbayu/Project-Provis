@@ -21,6 +21,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => PinjamanUser()),
         ChangeNotifierProvider(create: (_) => PendaaanProvider()),
         ChangeNotifierProvider(create: (_) => RiwayatWalletProvider()),
+        ChangeNotifierProvider(create: (_) => WithdrawalState()),
       ],
       child: MyApp(),
       )
