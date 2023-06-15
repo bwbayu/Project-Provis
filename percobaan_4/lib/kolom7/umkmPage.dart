@@ -121,6 +121,32 @@ class UMKMPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.all(20.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Tambahkan kode aksi yang ingin Anda jalankan saat tombol ditekan
+                        Navigator.pushNamed(context, '/MulaiPendanaanInvestor', arguments: index);
+                      },
+                      child: Text(
+                        'Mulai Pendanaan',
+                        style: TextStyle(
+                          fontFamily: 'Outfit',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 20,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        onPrimary: Colors.black,
+                        padding: EdgeInsets.all(20),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(20.0),
                   child: Card(
                     child: Padding(
                       padding: EdgeInsets.all(20.0),
@@ -210,43 +236,6 @@ class UMKMPage extends StatelessWidget {
                               ),
                             ),
                             subtitle: Text(pinjaman.listPinjamanOpen![index].tgl_tenggang)),
-                      ]),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Tambahkan kode aksi yang ingin Anda jalankan saat tombol ditekan
-                        Navigator.pushNamed(context, '/MulaiPendanaanInvestor', arguments: index);
-                      },
-                      child: Text(
-                        'Mulai Pendanaan',
-                        style: TextStyle(
-                          fontFamily: 'Outfit',
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.black,
-                        padding: EdgeInsets.all(20),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Card(
-                    child: Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Column(
-                        children: [
                           ListTile(
                             title: Text(
                               'Tujuan Penggalangan Dana',
@@ -259,8 +248,7 @@ class UMKMPage extends StatelessWidget {
                             subtitle: Text(
                                 pinjaman.listPinjamanOpen![index].tujuan_pinjaman),
                           ),
-                        ],
-                      ),
+                      ]),
                     ),
                   ),
                 ),

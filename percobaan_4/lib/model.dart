@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class Register extends ChangeNotifier{
+class Register extends ChangeNotifier {
   String _password = "";
   String _email = "";
   String _nomorhp = "";
@@ -14,21 +14,24 @@ class Register extends ChangeNotifier{
   String get nomorhp => _nomorhp;
   String get jenis_user => _jenis_user;
 
-  set password(String value) { 
+  set password(String value) {
     _password = value;
-    notifyListeners(); 
+    notifyListeners();
   }
-  set email(String value) { 
+
+  set email(String value) {
     _email = value;
-    notifyListeners(); 
+    notifyListeners();
   }
-  set nomorhp(String value) { 
+
+  set nomorhp(String value) {
     _nomorhp = value;
-    notifyListeners(); 
+    notifyListeners();
   }
-  set jenis_user(String value) { 
+
+  set jenis_user(String value) {
     _jenis_user = value;
-    notifyListeners(); 
+    notifyListeners();
   }
 
   // POST REGISTER DATA
@@ -63,30 +66,32 @@ class Register extends ChangeNotifier{
   }
 }
 
-class Login extends ChangeNotifier{
-  String _email= "";
+class Login extends ChangeNotifier {
+  String _email = "";
   String _password = "";
   int _user_id = 0;
   String _jenis_user = "";
-  
 
   // SETTER GETTER
   String get email => _email;
   String get password => _password;
   int get user_id => _user_id;
   String get jenis_user => _jenis_user;
-  set email(String value) { 
+  set email(String value) {
     _email = value;
-    notifyListeners(); 
+    notifyListeners();
   }
-  set password(String value) { 
+
+  set password(String value) {
     _password = value;
-    notifyListeners(); 
+    notifyListeners();
   }
-  set user_id(int value) { 
-      _user_id = value;
-      notifyListeners(); 
-    }
+
+  set user_id(int value) {
+    _user_id = value;
+    notifyListeners();
+  }
+
   set jenis_user(String value) {
     _jenis_user = value;
     notifyListeners();
@@ -123,7 +128,7 @@ class Login extends ChangeNotifier{
     return response.statusCode;
   }
 
-  void reset(){
+  void reset() {
     email = "";
     password = "";
     user_id = 0;
@@ -131,7 +136,7 @@ class Login extends ChangeNotifier{
   }
 }
 
-class VerifikasiAkun extends ChangeNotifier{
+class VerifikasiAkun extends ChangeNotifier {
   String _nama = "";
   String _tempat_lahir = "";
   String _tgl_lahir = "";
@@ -169,72 +174,87 @@ class VerifikasiAkun extends ChangeNotifier{
   String get nomor_npwp => _nomor_npwp;
   String get pemilik_npwp => _pemilik_npwp;
 
-  set nama(String value){
+  set nama(String value) {
     _nama = value;
     notifyListeners();
   }
 
-  set tempat_lahir(String value){
+  set tempat_lahir(String value) {
     _tempat_lahir = value;
     notifyListeners();
   }
-  set tgl_lahir(String value){
+
+  set tgl_lahir(String value) {
     _tgl_lahir = value;
     notifyListeners();
   }
-  set jenis_kelamin(String value){
+
+  set jenis_kelamin(String value) {
     _jenis_kelamin = value;
     notifyListeners();
   }
-  set agama(String value){
+
+  set agama(String value) {
     _agama = value;
     notifyListeners();
   }
-  set status_perkawinan(String value){
+
+  set status_perkawinan(String value) {
     _status_perkawinan = value;
     notifyListeners();
   }
-  set pend_terakhir(String value){
+
+  set pend_terakhir(String value) {
     _pend_terakhir = value;
     notifyListeners();
   }
-  set alamat(String value){
+
+  set alamat(String value) {
     _alamat = value;
     notifyListeners();
   }
-  set status_kewarganegaraan(String value){
+
+  set status_kewarganegaraan(String value) {
     _status_kewarganegaraan = value;
     notifyListeners();
   }
-  set provinsi(String value){
+
+  set provinsi(String value) {
     _provinsi = value;
     notifyListeners();
   }
-  set kota(String value){
+
+  set kota(String value) {
     _kota = value;
     notifyListeners();
   }
-  set kecamatan(String value){
+
+  set kecamatan(String value) {
     _kecamatan = value;
     notifyListeners();
   }
-  set kelurahan(String value){
+
+  set kelurahan(String value) {
     _kelurahan = value;
     notifyListeners();
   }
-  set rtrw(String value){
+
+  set rtrw(String value) {
     _rtrw = value;
     notifyListeners();
   }
-  set kodepos(String value){
+
+  set kodepos(String value) {
     _kodepos = value;
     notifyListeners();
   }
-  set nomor_npwp(String value){
+
+  set nomor_npwp(String value) {
     _nomor_npwp = value;
     notifyListeners();
   }
-  set pemilik_npwp(String value){
+
+  set pemilik_npwp(String value) {
     _pemilik_npwp = value;
     notifyListeners();
   }
@@ -242,9 +262,12 @@ class VerifikasiAkun extends ChangeNotifier{
   // PUT VERIFIKASI DATA
   late Future<int> respPost;
   Future<int> VerifyProcess(int user_id) async {
-    final url = Uri.parse('http://127.0.0.1:8000/updatePersonalData/' + user_id.toString());
+    final url = Uri.parse(
+        'http://127.0.0.1:8000/updatePersonalData/' + user_id.toString());
     final headers = {'Content-Type': 'application/json'};
-    final alamatValue = alamat.isNotEmpty ? '$alamat, $_provinsi, $_kota, $_kecamatan, $_kelurahan, $_rtrw, $_kodepos' : '';
+    final alamatValue = alamat.isNotEmpty
+        ? '$alamat, $_provinsi, $_kota, $_kecamatan, $_kelurahan, $_rtrw, $_kodepos'
+        : '';
     final body = jsonEncode({
       'id_user': user_id,
       'foto_ktp': "foto_ktp",
@@ -283,7 +306,8 @@ class VerifikasiAkun extends ChangeNotifier{
 
   // UPDATE STATUS AKUN
   Future<int> updateUser(int user_id) async {
-    final url = Uri.parse('http://127.0.0.1:8000/updateStatusAkun/' + user_id.toString());
+    final url = Uri.parse(
+        'http://127.0.0.1:8000/updateStatusAkun/' + user_id.toString());
     final headers = {'Content-Type': 'application/json'};
 
     try {
@@ -307,23 +331,24 @@ class VerifikasiAkun extends ChangeNotifier{
   String _status_akun = "";
   String get status_akun => _status_akun;
   // map dari json ke atribut
-  void setFromJson(Map<String, dynamic> json){
+  void setFromJson(Map<String, dynamic> json) {
     _status_akun = json['user']['status_akun'];
     notifyListeners();
   }
 
   // ambil data dari api secara async
-  Future<void> fetchStatusAkun(int user_id) async{
-    final response = await http.get(Uri.parse("http://127.0.0.1:8000/getUserById/"+user_id.toString()));
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        setFromJson(data);
-      } else {
-        throw Exception('Failed to fetch user data');
-      }
+  Future<void> fetchStatusAkun(int user_id) async {
+    final response = await http.get(
+        Uri.parse("http://127.0.0.1:8000/getUserById/" + user_id.toString()));
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      setFromJson(data);
+    } else {
+      throw Exception('Failed to fetch user data');
+    }
   }
 
-  void reset(){
+  void reset() {
     nama = "";
     tempat_lahir = "";
     tgl_lahir = "";
@@ -344,33 +369,33 @@ class VerifikasiAkun extends ChangeNotifier{
   }
 }
 
-class Wallet extends ChangeNotifier{
+class Wallet extends ChangeNotifier {
   double saldo;
   int wallet_id;
 
   Wallet({required this.saldo, required this.wallet_id});
 
   // map dari json ke atribut
-  void setFromJson(Map<String, dynamic> json){
+  void setFromJson(Map<String, dynamic> json) {
     saldo = json['wallet_user']['saldo'];
     wallet_id = json['wallet_user']['wallet_id'];
     notifyListeners();
   }
 
   // ambil data dari api secara async
-  Future<void> fetchData(int user_id) async{
-    final response = await http.get(Uri.parse("http://127.0.0.1:8000/users/$user_id/wallet"));
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        setFromJson(data);
-      } else {
-        throw Exception('Failed to fetch user wallet');
-      }
+  Future<void> fetchData(int user_id) async {
+    final response = await http
+        .get(Uri.parse("http://127.0.0.1:8000/users/$user_id/wallet"));
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      setFromJson(data);
+    } else {
+      throw Exception('Failed to fetch user wallet');
+    }
   }
-
 }
 
-class ProfileData extends ChangeNotifier{
+class ProfileData extends ChangeNotifier {
   String nama = "";
   String tempat_lahir = "";
   String tgl_lahir = "";
@@ -387,9 +412,8 @@ class ProfileData extends ChangeNotifier{
   String rtrw = "";
   String kodepos = "";
 
-
   // map dari json ke atribut
-  void setFromJson(Map<String, dynamic> json){
+  void setFromJson(Map<String, dynamic> json) {
     nama = json['personal_data']['nama'];
     tempat_lahir = json['personal_data']['tempat_lahir'];
     tgl_lahir = json['personal_data']['tgl_lahir'];
@@ -399,7 +423,7 @@ class ProfileData extends ChangeNotifier{
     pend_terakhir = json['personal_data']['pend_terakhir'];
     alamat = json['personal_data']['alamat'];
     // Splitting the alamat into separate variables
-    if(alamat != ""){
+    if (alamat != "") {
       final alamatParts = alamat.split(', ');
       if (alamatParts.length >= 6) {
         alamat = alamatParts[0];
@@ -416,37 +440,40 @@ class ProfileData extends ChangeNotifier{
   }
 
   // ambil data dari api secara async
-  Future<void> fetchData(int user_id) async{
-    final response = await http.get(Uri.parse("http://127.0.0.1:8000/getPersonalData/"+user_id.toString()));
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        setFromJson(data);
-      } else {
-        throw Exception('Failed to fetch user wallet');
-      }
+  Future<void> fetchData(int user_id) async {
+    final response = await http.get(Uri.parse(
+        "http://127.0.0.1:8000/getPersonalData/" + user_id.toString()));
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      setFromJson(data);
+    } else {
+      throw Exception('Failed to fetch user wallet');
+    }
   }
 }
 
-class BankData extends ChangeNotifier{
+class BankData extends ChangeNotifier {
   String _nama_bank = "";
   String _nomor_rekening = "";
   String _nama_pemilik_bank = "";
 
-  String get nama_bank => _nama_bank; 
-  String get nomor_rekening => _nomor_rekening; 
+  String get nama_bank => _nama_bank;
+  String get nomor_rekening => _nomor_rekening;
   String get nama_pemilik_bank => _nama_pemilik_bank;
 
-  set nama_bank(String value){
+  set nama_bank(String value) {
     _nama_bank = value;
     notifyListeners();
   }
-  set nomor_rekening(String value) { 
+
+  set nomor_rekening(String value) {
     _nomor_rekening = value;
-    notifyListeners(); 
+    notifyListeners();
   }
-  set nama_pemilik_bank(String value) { 
+
+  set nama_pemilik_bank(String value) {
     _nama_pemilik_bank = value;
-    notifyListeners(); 
+    notifyListeners();
   }
 
   // ADD DATA BANK
@@ -464,7 +491,7 @@ class BankData extends ChangeNotifier{
     return response.statusCode;
   }
 
-  void reset(){
+  void reset() {
     nama_bank = "";
     nomor_rekening = "";
     nama_pemilik_bank = "";
@@ -472,43 +499,51 @@ class BankData extends ChangeNotifier{
 }
 
 // GET BANK USER
-class DataBank{
+class DataBank {
   int bank_id;
   String nama_bank;
   String nomor_rekening;
   String nama_pemilik_bank;
   // constructor
-  DataBank({required this.bank_id, required this.nama_bank, required this.nomor_rekening, required this.nama_pemilik_bank});
+  DataBank(
+      {required this.bank_id,
+      required this.nama_bank,
+      required this.nomor_rekening,
+      required this.nama_pemilik_bank});
 }
 
-class Bank{
+class Bank {
   List<DataBank> listBank = <DataBank>[];
 
-  Bank(Map<String, dynamic> json){
+  Bank(Map<String, dynamic> json) {
     var data = json['bank_user'];
-    for(var val in data){
+    for (var val in data) {
       var bank_id = val['bank_id'];
       var nama_bank = val['nama_bank'];
       var nomor_rekening = val['nomor_rekening'];
       var nama_pemilik_bank = val['nama_pemilik_bank'];
-      listBank.add(DataBank(bank_id: bank_id, nama_bank: nama_bank, nomor_rekening: nomor_rekening, nama_pemilik_bank: nama_pemilik_bank));
+      listBank.add(DataBank(
+          bank_id: bank_id,
+          nama_bank: nama_bank,
+          nomor_rekening: nomor_rekening,
+          nama_pemilik_bank: nama_pemilik_bank));
     }
   }
 
-  factory Bank.fromJson(Map<String, dynamic> json){
+  factory Bank.fromJson(Map<String, dynamic> json) {
     return Bank(json);
   }
 }
 
-class BankUser with ChangeNotifier{
+class BankUser with ChangeNotifier {
   Bank? bank;
   bool isLoading = false;
 
-  Future<int> fetchDataBank(int user_id) async{
+  Future<int> fetchDataBank(int user_id) async {
     isLoading = true;
     notifyListeners();
 
-    try{
+    try {
       String url = "http://127.0.0.1:8000/getBank/$user_id";
       final response = await http.get(Uri.parse(url));
 
@@ -522,7 +557,7 @@ class BankUser with ChangeNotifier{
       isLoading = false;
       notifyListeners();
       return response.statusCode;
-    }catch(e){
+    } catch (e) {
       print('Exception: $e');
       isLoading = false;
       notifyListeners();
@@ -634,12 +669,12 @@ class UmkmProvider extends ChangeNotifier {
     };
     final body = jsonEncode(umkmData);
     final response = await http.put(url, headers: headers, body: body);
-    
+
     return response.statusCode;
   }
 
   // RESET DATA UMKM
-  void reset(){
+  void reset() {
     bentuk_umkm = '';
     nama_umkm = '';
     alamat_umkm = '';
@@ -719,11 +754,11 @@ class PinjamanProvider extends ChangeNotifier {
     final body = jsonEncode(pinjamanData);
 
     final response = await http.post(url, headers: headers, body: body);
-    
+
     return response.statusCode;
   }
 
-  void reset(){
+  void reset() {
     tenor_pinjaman = '';
     bunga_pinjaman = '';
     frekuensi_angsuran = '';
@@ -823,7 +858,7 @@ class PinjamanUser with ChangeNotifier {
       return 0;
     }
   }
-  
+
   // mencari total pinjaman
   double _total_pinjaman = 0.0;
   double get total_pinjaman => _total_pinjaman;
@@ -836,11 +871,12 @@ class PinjamanUser with ChangeNotifier {
         String bungaPercentage = pinjaman.bunga_pinjaman.replaceAll('%', '');
         pinjaman.bungaPinjaman = int.parse(bungaPercentage);
         // extract value frekuensi angsuran pinjaman
-        pinjaman.tenor = int.tryParse(pinjaman.tenor_pinjaman.split(' ')[0]) ?? 0;
+        pinjaman.tenor =
+            int.tryParse(pinjaman.tenor_pinjaman.split(' ')[0]) ?? 0;
         // extract value of frekuensi angsuran
-        if(pinjaman.frekuensi_angsuran_pokok == "per bulan"){
+        if (pinjaman.frekuensi_angsuran_pokok == "per bulan") {
           pinjaman.frekuensiAngsuran = pinjaman.tenor;
-        }else{
+        } else {
           pinjaman.frekuensiAngsuran = 1;
         }
       }
@@ -867,6 +903,7 @@ class PinjamanUser with ChangeNotifier {
           listPinjamanOpen = List<Pinjaman>.from(
             pinjamanData.map((json) => Pinjaman.fromJson(json)),
           );
+          extractValue();
         } else {
           listPinjamanOpen = [];
         }
@@ -887,11 +924,30 @@ class PinjamanUser with ChangeNotifier {
     }
   }
 
+  void extractValue() {
+    if (listPinjamanOpen != null) {
+      for (var pinjaman in listPinjamanOpen!) {
+        // extract value bunga pinjaman
+        String bungaPercentage = pinjaman.bunga_pinjaman.replaceAll('%', '');
+        pinjaman.bungaPinjaman = int.parse(bungaPercentage);
+        // extract value frekuensi angsuran pinjaman
+        pinjaman.tenor =
+            int.tryParse(pinjaman.tenor_pinjaman.split(' ')[0]) ?? 0;
+        // extract value of frekuensi angsuran
+        if (pinjaman.frekuensi_angsuran_pokok == "per bulan") {
+          pinjaman.frekuensiAngsuran = pinjaman.tenor;
+        } else {
+          pinjaman.frekuensiAngsuran = 1;
+        }
+      }
+    }
+  }
+
   // FETCH DATA UMKM DARI PINJAMAN
   UmkmProvider dataUMKM = UmkmProvider(); //menampung data umkm
 
   // map dari json ke atribut
-  void setFromJson(Map<String, dynamic> json){
+  void setFromJson(Map<String, dynamic> json) {
     dataUMKM.bentuk_umkm = json['umkm']['bentuk_umkm'];
     dataUMKM.nama_umkm = json['umkm']['nama_umkm'];
     dataUMKM.alamat_umkm = json['umkm']['alamat_umkm'];
@@ -936,5 +992,38 @@ class PinjamanUser with ChangeNotifier {
       notifyListeners();
       return 0;
     }
+  }
+}
+
+// PENDANAAN
+class PendaaanProvider with ChangeNotifier {
+  double _jumlahPendanaan = 0.0;
+  double _bunga = 0.0;
+  double _targetPengembalian = 0.0;
+
+  // SETTER GETTER
+  double get jumlahPendanaan => _jumlahPendanaan;
+  double get bunga => _bunga;
+  double get targetPengembalian => _targetPengembalian;
+  set jumlahPendanaan(double value) {
+    _jumlahPendanaan = value;
+    notifyListeners();
+  }
+
+  set bunga(double value) {
+    _bunga = value;
+    notifyListeners();
+  }
+
+  set targetPengembalian(double value) {
+    _targetPengembalian = value;
+    notifyListeners();
+  }
+
+  // reset
+  void reset() {
+    jumlahPendanaan = 0.0;
+    bunga = 0.0;
+    targetPengembalian = 0.0;
   }
 }

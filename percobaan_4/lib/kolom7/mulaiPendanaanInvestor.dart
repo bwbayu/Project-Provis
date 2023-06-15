@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
 
 class MulaiPendanaanInvestor extends StatelessWidget {
   @override
@@ -19,9 +20,9 @@ class MulaiPendanaanInvestor extends StatelessWidget {
         ),
         child: Scrollbar(
           child: SingleChildScrollView(
-            child: Consumer2<VerifikasiAkun, PinjamanUser>(
-              builder: (context, verif, pinjaman, child) =>
-              Column(
+            child: Consumer3<VerifikasiAkun, PinjamanUser, PendaaanProvider>(
+              builder: (context, verif, pinjaman, pendanaan, child){
+              return Column(
                 children: [
                   AppBar(
                     leading: IconButton(
@@ -64,7 +65,8 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                                 fontSize: 16,
                               ),
                             ),
-                            subtitle: Text(pinjaman.listPinjamanOpen![index].tenor_pinjaman),
+                            subtitle: Text(pinjaman
+                                .listPinjamanOpen![index].tenor_pinjaman),
                           ),
                           ListTile(
                             title: Text(
@@ -75,7 +77,8 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                                 fontSize: 16,
                               ),
                             ),
-                            subtitle: Text(pinjaman.listPinjamanOpen![index].bunga_pinjaman),
+                            subtitle: Text(pinjaman
+                                .listPinjamanOpen![index].bunga_pinjaman),
                           ),
                           ListTile(
                             title: Text(
@@ -86,7 +89,8 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                                 fontSize: 16,
                               ),
                             ),
-                            subtitle: Text(pinjaman.listPinjamanOpen![index].frekuensi_angsuran_pokok),
+                            subtitle: Text(pinjaman.listPinjamanOpen![index]
+                                .frekuensi_angsuran_pokok),
                           ),
                           ListTile(
                             title: Text(
@@ -116,14 +120,24 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 20.0),
                     child: TextFormField(
                       decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          suffixIcon: IconButton(
-                              icon: Icon(Icons.calculate), onPressed: () {}),
-                          hintText: 'Masukkan jumlah pinjaman'),
+                        filled: true,
+                        fillColor: Colors.white,
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.calculate),
+                          onPressed: () {
+                            // Perform calculations or any action here
+                          },
+                        ),
+                        hintText: 'Masukkan jumlah pinjaman',
+                      ),
                       style: TextStyle(color: Colors.black),
                       cursorColor: Colors.black,
                       keyboardType: TextInputType.number,
+                      onChanged: (value) {
+                        pendanaan.jumlahPendanaan = double.parse(value);
+                        pendanaan.bunga = ((pinjaman.listPinjamanOpen?[index].bungaPinjaman ?? 0) * (pendanaan.jumlahPendanaan))/100;
+                        pendanaan.targetPengembalian = pendanaan.jumlahPendanaan + pendanaan.bunga;
+                      },
                     ),
                   ),
                   Padding(
@@ -134,16 +148,17 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                       child: Column(
                         children: [
                           ListTile(
-                              title: Text(
-                                'Jumlah Pinjaman',
-                                style: TextStyle(
-                                  fontFamily: 'Outfit',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
+                            title: Text(
+                              'Jumlah Pinjaman',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
                               ),
-                              subtitle:
-                                  Text('Rp')),
+                            ),
+                            subtitle: Text(
+                                'Rp' + pendanaan.jumlahPendanaan.toString()),
+                          ),
                           ListTile(
                               title: Text(
                                 'Bunga',
@@ -153,8 +168,8 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                                   fontSize: 16,
                                 ),
                               ),
-                              subtitle: Text(
-                                  'Rp')),
+                              subtitle: Text('Rp' + pendanaan.bunga.toString(),),
+                            ),
                           Divider(),
                           ListTile(
                               title: Text(
@@ -165,8 +180,7 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                                   fontSize: 16,
                                 ),
                               ),
-                              subtitle: Text(
-                                  'Rp')),
+                              subtitle: Text('Rp' + pendanaan.targetPengembalian.toString())),
                         ],
                       ),
                     ),
@@ -177,15 +191,31 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                       onPressed: () {
                         // SALDO USER BAKAL BERKURANG DAN DANA PINJAMAN BAKAL BERTAMBAH
                         // cek status akun user
-                        if(verif.status_akun == "Verified"){
-                          Navigator.pushNamed(context, '/dashboardInvestor');
-                        }else {
+                        if (verif.status_akun == "Verified") {
+                          if(pendanaan.jumlahPendanaan % 10000 == 0){
+                            // update riwayat investor user, otomatis saldonya berkurang -> cek dlu saldonya
+                            // add data ke pendanaan
+                            // update pinjaman terkumpul dari id_pinjaman ini
+                            // fetch data pendanaan ke porfolio
+                            // update status_pendanaan
+                            // cek dan update status_pinjaman
+                            // reset variable pendanaan
+                            pendanaan.reset(); 
+                            Navigator.pushNamed(context, '/dashboardInvestor');
+                          }else{
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Error: Akun anda belum verified'),
-                              ),
-                            );
+                            SnackBar(
+                              content: Text('Error: Jumlah pendanaan harus berkelipatan Rp 10.000'),
+                            ),
+                          );
                           }
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Error: Akun anda belum verified'),
+                            ),
+                          );
+                        }
                       },
                       child: Text(
                         "Lanjutkan",
@@ -218,7 +248,8 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                                   decoration: TextDecoration.underline,
                                   color: Colors.white))))
                 ],
-              ),
+              );
+              }
             ),
           ),
         ),

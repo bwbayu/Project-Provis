@@ -19,6 +19,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => UmkmProvider()),
         ChangeNotifierProvider(create: (_) => PinjamanProvider()),
         ChangeNotifierProvider(create: (_) => PinjamanUser()),
+        ChangeNotifierProvider(create: (_) => PendaaanProvider()),
       ],
       child: MyApp(),
       )
