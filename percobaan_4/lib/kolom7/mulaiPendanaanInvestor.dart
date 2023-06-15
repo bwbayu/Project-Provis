@@ -20,8 +20,8 @@ class MulaiPendanaanInvestor extends StatelessWidget {
         ),
         child: Scrollbar(
           child: SingleChildScrollView(
-            child: Consumer3<VerifikasiAkun, PinjamanUser, PendaaanProvider>(
-              builder: (context, verif, pinjaman, pendanaan, child){
+            child: Consumer5<VerifikasiAkun, PinjamanUser, PendaaanProvider, RiwayatWalletProvider, Wallet>(
+              builder: (context, verif, pinjaman, pendanaan, riwayat, wallet, child){
               return Column(
                 children: [
                   AppBar(
@@ -188,20 +188,30 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 20, 10, 10),
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         // SALDO USER BAKAL BERKURANG DAN DANA PINJAMAN BAKAL BERTAMBAH
                         // cek status akun user
                         if (verif.status_akun == "Verified") {
                           if(pendanaan.jumlahPendanaan % 10000 == 0){
                             // update riwayat investor user, otomatis saldonya berkurang -> cek dlu saldonya
-                            // add data ke pendanaan
-                            // update pinjaman terkumpul dari id_pinjaman ini
-                            // fetch data pendanaan ke porfolio
-                            // update status_pendanaan
-                            // cek dan update status_pinjaman
-                            // reset variable pendanaan
-                            pendanaan.reset(); 
-                            Navigator.pushNamed(context, '/dashboardInvestor');
+                            if(pendanaan.jumlahPendanaan <= wallet.saldo){
+                              // assign data riwayat
+                              riwayat.keterangan = "Pendanaan UMKM";
+                              riwayat.statusTransaksi = "Keluar";
+                              riwayat.saldoTransaksi = pendanaan.jumlahPendanaan;
+                              // update riwayat wallet
+                              await riwayat.addRiwayatWallet(wallet.wallet_id);
+                              // add data ke pendanaan
+                              // update pinjaman terkumpul dari id_pinjaman ini
+                              // fetch data pendanaan ke porfolio
+                              // update status_pendanaan
+                              // cek dan update status_pinjaman
+                              // reset variable pendanaan
+                              pendanaan.reset(); 
+                              // reset variable riwayat
+                              riwayat.reset();
+                              Navigator.pushNamed(context, '/dashboardInvestor');
+                            }
                           }else{
                             ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

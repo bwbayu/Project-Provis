@@ -351,6 +351,8 @@ class IsiDanaPage extends StatelessWidget {
                               await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
                               // fetch data wallet
                               await wallet.fetchData(login.user_id);
+                              // reset data riwayat
+                              riwayat.reset();
                               if(login.jenis_user == "Investor"){
                                 Navigator.pushNamed(context, '/dashboardInvestor');
                               }else{

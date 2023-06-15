@@ -402,8 +402,6 @@ def get_pinjaman_by_status(session=Depends(get_session)):
         return {"message": "Pinjaman not found"}
     return {"pinjaman": pinjaman}
 
-# GET PINJAMAN BY PINJAMAN_ID (Page rincian_umkm, pendanaan_investor, rincian_portofolio, pembayaran)
-
 # ==================================== WALLET =================================================
 
 # add saldo to riwayat wallet and update saldo wallet
@@ -440,3 +438,9 @@ def get_riwayat_wallet(wallet_id:int, session=Depends(get_session)):
     if riwayat_wallet is None:
         return {"message": "Pinjaman not found"}
     return {"riwayat_wallet": riwayat_wallet}
+
+# ==================================== PENDANAAN =================================================
+
+# GET PENDANAAN BY USER_ID
+
+# POST PENDANAAN BY USER_ID
