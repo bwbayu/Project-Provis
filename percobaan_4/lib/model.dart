@@ -865,20 +865,11 @@ class PinjamanUser with ChangeNotifier {
   void calculateTotalPinjaman() {
     _total_pinjaman = 0.0;
     if (pinjamanList != null) {
-      for (var pinjaman in pinjamanList!) {
-        _total_pinjaman += pinjaman.jumlah_pinjaman;
-        // extract value bunga pinjaman
-        String bungaPercentage = pinjaman.bunga_pinjaman.replaceAll('%', '');
-        pinjaman.bungaPinjaman = int.parse(bungaPercentage);
-        // extract value frekuensi angsuran pinjaman
-        pinjaman.tenor =
-            int.tryParse(pinjaman.tenor_pinjaman.split(' ')[0]) ?? 0;
-        // extract value of frekuensi angsuran
-        if (pinjaman.frekuensi_angsuran_pokok == "per bulan") {
-          pinjaman.frekuensiAngsuran = pinjaman.tenor;
-        } else {
-          pinjaman.frekuensiAngsuran = 1;
-        }
+      for (var pinjamanUser in pinjamanList!) {
+        _total_pinjaman += pinjamanUser.jumlah_pinjaman;
+        // extract value bunga pinjamanUser
+        String bungaPercentage = pinjamanUser.bunga_pinjaman.replaceAll('%', '');
+        pinjamanUser.bungaPinjaman = int.parse(bungaPercentage);
       }
     }
   }

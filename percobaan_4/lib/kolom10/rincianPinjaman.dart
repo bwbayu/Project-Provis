@@ -150,7 +150,7 @@ class rincianPinjaman extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
                                 child: Text(
-                                  'Rp.xxxxxx',
+                                  'Rp ' + ((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0))/100)+ (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0)).toString(),
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
@@ -394,7 +394,7 @@ class rincianPinjaman extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/Pembayaran');
+                      Navigator.pushNamed(context, '/Pembayaran', arguments: index);
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xFF977EF2),
