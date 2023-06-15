@@ -1,3 +1,4 @@
+from decimal import Decimal
 from fastapi import FastAPI, Body, Depends,Response,Request,HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Union
@@ -403,18 +404,31 @@ def get_pinjaman_by_status(session=Depends(get_session)):
 
 # GET PINJAMAN BY PINJAMAN_ID (Page rincian_umkm, pendanaan_investor, rincian_portofolio, pembayaran)
 
-# ==================================== PENDANAAN =================================================
+# ==================================== WALLET =================================================
 
-# GET PENDANAAN BY USER_ID (Page pendanaan_investor -> semua)
-
-# GET PENDANAAN BY USER_ID (Page pendanaan_investor -> terbaru) -> ngambil data pendanaan yang bulan pinjamannya == bulan ini
-
-# GET PENDANAAN BY USER_ID (Page pendanaan_investor -> selesai) -> ngambil data pendanaan yang status_pendanaan == selesai
-
-# ADD PENDANAAN BY USER_ID (Page mulai_pendanaan_investor)
-
-# ==================================== PENDANAAN =================================================
-
-# ADD PEMBAYARAN BY PINJAMAN_ID (page pembayaran)
-
-
+# add saldo to riwayat wallet and update saldo wallet
+@app.post("/addRiwayatWallet/{wallet_id}")
+def add_riwayat_wallet(wallet_id: int, riwayat_wallet_data: schemas.RiwayatSaldoSchema, session=Depends(get_session)):
+    # get wallet by wallet id
+    wallet = session.query(models.WalletModel).filter_by(wallet_id=wallet_id).first()
+    if(wallet is None):
+        return {"message" : "Wallet not found"}
+    # add riwayat wallet to wallet
+    riwayat_wallet = models.RiwayatSaldoModel(
+        wallet_id=wallet_id,
+        saldo_transaksi= riwayat_wallet_data.saldo_transaksi,
+        keterangan = riwayat_wallet_data.keterangan,
+        status_transaksi = riwayat_wallet_data.status_transaksi
+    )
+    session.add(riwayat_wallet)
+    session.commit()
+    session.refresh(riwayat_wallet)
+    # update saldo wallet
+    if(riwayat_wallet_data.status_transaksi == "Masuk"):
+        wallet.saldo += Decimal(riwayat_wallet_data.saldo_transaksi)
+    elif(riwayat_wallet_data.status_transaksi == "Keluar"):
+        wallet.saldo -= Decimal(riwayat_wallet_data.saldo_transaksi)
+    session.commit()
+    session.refresh(wallet)
+    session.close()
+    return {"riwayat_wallet" : riwayat_wallet, "wallet" : wallet}

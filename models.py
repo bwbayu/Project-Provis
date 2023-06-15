@@ -66,6 +66,7 @@ class RiwayatSaldoModel(Base):
     wallet_id = Column(Integer, ForeignKey('wallet.wallet_id'))
     keterangan = Column(String(100), nullable=False)
     saldo_transaksi = Column(Numeric(precision=12, scale=2), nullable=False)
+    status_transaksi = Column(String(100), nullable=False)
 
     wallet = relationship('WalletModel', back_populates='riwayat_saldo')
 

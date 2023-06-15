@@ -42,8 +42,10 @@ class WalletSchema(BaseModel):
     saldo: float
 
 class RiwayatSaldoSchema(BaseModel):
+    wallet_id: int
     keterangan: str
     saldo_transaksi: float
+    status_transaksi: str
 
 class UMKMSchema(BaseModel):
     pemilik_id: int
