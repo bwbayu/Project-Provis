@@ -535,7 +535,7 @@ class Bank {
   }
 }
 
-class BankUser with ChangeNotifier {
+class BankUser extends ChangeNotifier {
   Bank? bank;
   bool isLoading = false;
 
@@ -574,7 +574,7 @@ class OurBankData {
   OurBankData({required this.namaBank, required this.iconBank});
 }
 
-class OurBank with ChangeNotifier {
+class OurBank extends ChangeNotifier {
   List<OurBankData> _bankList = [
     OurBankData(namaBank: 'BRI', iconBank: 'logo-daus-saja.png'),
     OurBankData(namaBank: 'BNI', iconBank: 'logo-daus-saja.png'),
@@ -817,7 +817,7 @@ class Pinjaman {
   }
 }
 
-class PinjamanUser with ChangeNotifier {
+class PinjamanUser extends ChangeNotifier {
   // FETCH DATA PINJAMAN UNTUK USER UMKM
   List<Pinjaman>? pinjamanList;
   bool isLoading = false;
@@ -987,7 +987,7 @@ class PinjamanUser with ChangeNotifier {
 }
 
 // PENDANAAN
-class PendaaanProvider with ChangeNotifier {
+class PendaaanProvider extends ChangeNotifier {
   double _jumlahPendanaan = 0.0;
   double _bunga = 0.0;
   double _targetPengembalian = 0.0;
@@ -1016,5 +1016,85 @@ class PendaaanProvider with ChangeNotifier {
     jumlahPendanaan = 0.0;
     bunga = 0.0;
     targetPengembalian = 0.0;
+  }
+}
+
+// RIWAYAT WALLET
+class RiwayatWalletData{
+  String keterangan;
+  double saldoTransaksi;
+  String statusTransaksi;
+
+  RiwayatWalletData({required this.keterangan, required this.saldoTransaksi, required this.statusTransaksi});
+  
+  factory RiwayatWalletData.fromJson(Map<String, dynamic> json) {
+  return RiwayatWalletData(
+    keterangan: json["keterangan"],
+    saldoTransaksi: json["saldo_transaksi"],
+    statusTransaksi: json["status_transaksi"],
+  );
+}
+}
+
+class RiwayatWalletProvider extends ChangeNotifier{
+  // variabel total transaksi riwayat
+  double _totalTransaksiMasuk = 0.0;
+  double _totalTransaksiKeluar = 0.0;
+
+  double get totalTransaksiMasuk => _totalTransaksiMasuk;
+  double get totalTransaksiKeluar => _totalTransaksiKeluar;
+  // FETCH DATA RIWAYAT WALLET 
+  List<RiwayatWalletData>? listRiwayatWallet;
+  bool isLoading = false;
+
+  Future<int> fetchDataRiwayatWallet(int wallet_id) async {
+    isLoading = true;
+    notifyListeners();
+
+    try {
+      String url = "http://127.0.0.1:8000/getRiwayatWallet/$wallet_id";
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        var dataRiwayatWallet = data['riwayat_wallet'];
+
+        if (dataRiwayatWallet != null) {
+          listRiwayatWallet = List<RiwayatWalletData>.from(
+            dataRiwayatWallet.map((json) => RiwayatWalletData.fromJson(json)),
+          );
+          calculateTotalTransaksi();
+        } else {
+          listRiwayatWallet = [];
+        }
+      } else if (response.statusCode == 422) {
+        print('Validation Error: ${response.body}');
+      } else {
+        print('Error: ${response.statusCode}');
+      }
+
+      isLoading = false;
+      notifyListeners();
+      return response.statusCode;
+    } catch (e) {
+      print('Exception: $e');
+      isLoading = false;
+      notifyListeners();
+      return 0;
+    }
+  }
+
+  void calculateTotalTransaksi(){
+    _totalTransaksiKeluar = 0.0;
+    _totalTransaksiMasuk = 0.0;
+    if(listRiwayatWallet != null){
+      for(var item in listRiwayatWallet!){
+        if(item.statusTransaksi == "Masuk"){
+          _totalTransaksiMasuk += item.saldoTransaksi;
+        }else if(item.statusTransaksi == "Keluar"){
+          _totalTransaksiKeluar += item.saldoTransaksi;
+        }
+      }
+    }
   }
 }

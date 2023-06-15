@@ -432,3 +432,11 @@ def add_riwayat_wallet(wallet_id: int, riwayat_wallet_data: schemas.RiwayatSaldo
     session.refresh(wallet)
     session.close()
     return {"riwayat_wallet" : riwayat_wallet, "wallet" : wallet}
+
+# get riwayat wallet by wallet id
+@app.get("/getRiwayatWallet/{wallet_id}")
+def get_riwayat_wallet(wallet_id:int, session=Depends(get_session)):
+    riwayat_wallet = session.query(models.RiwayatSaldoModel).filter_by(wallet_id=wallet_id).all()
+    if riwayat_wallet is None:
+        return {"message": "Pinjaman not found"}
+    return {"riwayat_wallet": riwayat_wallet}

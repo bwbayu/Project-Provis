@@ -70,20 +70,20 @@ class wallet extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Consumer2<BankUser, Login>(
-                      builder:(context, dataBank, login, child) =>
+                child: Consumer3<BankUser, Login, RiwayatWalletProvider>(
+                  builder: (context, dataBank, login, riwayat, child) => Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           ElevatedButton(
-                            onPressed: () async{
+                            onPressed: () async {
                               // fetch data bank user
-                              final statusCode = await dataBank.fetchDataBank(login.user_id);
+                              final statusCode =
+                                  await dataBank.fetchDataBank(login.user_id);
                               print(statusCode);
-                              if(statusCode == 200){
+                              if (statusCode == 200) {
                                 Navigator.pushNamed(context, '/tarikDana');
                               }
                             },
@@ -123,7 +123,7 @@ class wallet extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                             child: Text(
-                              'Rp5.000.000,00',
+                              'Rp ' + riwayat.totalTransaksiKeluar.toString(),
                               style: TextStyle(
                                 fontFamily: 'Outfit',
                                 color: Colors.white,
@@ -133,18 +133,38 @@ class wallet extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/isiDana');
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/isiDana');
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Isi Dana',
+                                style: TextStyle(
+                                  fontFamily: 'Outfit',
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.purple[200]!,
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              padding: const EdgeInsets.all(0),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
                             child: Text(
-                              'Isi Dana',
+                              'Total Dana Masuk',
                               style: TextStyle(
                                 fontFamily: 'Outfit',
                                 fontWeight: FontWeight.bold,
@@ -153,41 +173,21 @@ class wallet extends StatelessWidget {
                               ),
                             ),
                           ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.purple[200]!,
-                            elevation: 3,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            padding: const EdgeInsets.all(0),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
-                          child: Text(
-                            'Total Dana Masuk',
-                            style: TextStyle(
-                              fontFamily: 'Outfit',
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 16,
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                            child: Text(
+                              'Rp ' + riwayat.totalTransaksiMasuk.toString(),
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                          child: Text(
-                            'Rp1.000.000,00',
-                            style: TextStyle(
-                              fontFamily: 'Outfit',
-                              color: Colors.white,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Padding(
@@ -204,55 +204,89 @@ class wallet extends StatelessWidget {
               ),
               Flexible(
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: 10,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                              child: Container(
-                                width: 100,
-                                height: 60,
-                                decoration: BoxDecoration(
-                                  color: Colors.purple[800]!,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: ListTile(
-                                  title: Text(
-                                    'keterangan',
-                                    style: TextStyle(
-                                      fontFamily: 'Outfit',
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                      fontSize: 18,
+                  child: Consumer<RiwayatWalletProvider>(
+                      builder: (context, riwayat, child) {
+                    return riwayat.isLoading
+                        ? CircularProgressIndicator()
+                        : riwayat.listRiwayatWallet != null
+                            ? Column(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                    child: ListView.builder(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount:
+                                          riwayat.listRiwayatWallet!.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        IconData trailingIcon;
+                                        Color trailingColor;
+
+                                        if (riwayat.listRiwayatWallet![index].statusTransaksi =="Masuk") {
+                                          trailingIcon = Icons.arrow_upward;
+                                          trailingColor = Colors.green;
+                                        } else if (riwayat.listRiwayatWallet![index].statusTransaksi =="Keluar") {
+                                          trailingIcon = Icons.arrow_downward;
+                                          trailingColor = Colors.red;
+                                        } else {
+                                          trailingIcon =
+                                              Icons.arrow_forward_ios;
+                                          trailingColor = Colors.white;
+                                        }
+                                        return Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              20, 5, 20, 5),
+                                          child: Container(
+                                            width: 100,
+                                            height: 60,
+                                            decoration: BoxDecoration(
+                                              color: Colors.purple[800]!,
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                            ),
+                                            child: ListTile(
+                                              title: Text(
+                                                riwayat
+                                                    .listRiwayatWallet![index]
+                                                    .keterangan,
+                                                style: TextStyle(
+                                                  fontFamily: 'Outfit',
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white,
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              subtitle: Text(
+                                                'Rp ' +
+                                                    riwayat
+                                                        .listRiwayatWallet![
+                                                            index]
+                                                        .saldoTransaksi
+                                                        .toString(),
+                                                style: TextStyle(
+                                                  fontFamily: 'Outfit',
+                                                  color: Colors.white,
+                                                  fontSize: 20,
+                                                ),
+                                              ),
+                                              trailing: Icon(
+                                                trailingIcon,
+                                                color: trailingColor,
+                                                size: 30,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ),
-                                  subtitle: Text(
-                                    'Rp50.000,00',
-                                    style: TextStyle(
-                                      fontFamily: 'Outfit',
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  trailing: Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: Colors.white,
-                                    size: 20,
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                                ],
+                              )
+                            : SizedBox();
+                  }),
                 ),
               ),
             ],

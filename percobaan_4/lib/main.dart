@@ -20,6 +20,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => PinjamanProvider()),
         ChangeNotifierProvider(create: (_) => PinjamanUser()),
         ChangeNotifierProvider(create: (_) => PendaaanProvider()),
+        ChangeNotifierProvider(create: (_) => RiwayatWalletProvider()),
       ],
       child: MyApp(),
       )

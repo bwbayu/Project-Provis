@@ -129,55 +129,61 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 32),
-                          ElevatedButton(
-                              onPressed: () async{
-                                // MASUK KE DASHBOARD INVESTOR DAN BORROWER
-                                if(login.email == "" || login.password == ""){
-                                  print("kosong");
-                                }
-                                final statusCode = await login.loginProcess();
-                                print(statusCode);
-                                if(statusCode == 200){
-                                  // fetch data wallet
-                                  await wallet.fetchData(login.user_id);
-                                  // fetch data profile
-                                  await profile.fetchData(login.user_id);
-                                  // update user
-                                  await verif.updateUser(login.user_id);
-                                  // fetch data status akun
-                                  await verif.fetchStatusAkun(login.user_id);
-                                  // fetch data bank
-                                  await bank.fetchDataBank(login.user_id);
-                                  if(login.jenis_user == "Investor"){
-                                    // fetch data pinjaman status open
-                                    await pinjaman.fetchDataPinjamanOpen();
-                                    print(pinjaman.listPinjamanOpen!.length);
-                                    Navigator.pushNamed(context, '/dashboardInvestor');
-                                  }else{
-                                    // fetch data list pinjaman user
-                                    await pinjaman.fetchDataPinjaman(login.user_id);
-                                    Navigator.pushNamed(context, '/dashboardUMKM');
+                          Consumer<RiwayatWalletProvider>(
+                            builder: (context, riwayat, child) =>
+                            ElevatedButton(
+                                onPressed: () async{
+                                  // MASUK KE DASHBOARD INVESTOR DAN BORROWER
+                                  if(login.email == "" || login.password == ""){
+                                    print("kosong");
                                   }
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: Size(double.infinity, 70),
-                                backgroundColor: Colors
-                                    .white, // Set the desired button color here
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  final statusCode = await login.loginProcess();
+                                  print(statusCode);
+                                  if(statusCode == 200){
+                                    // fetch data wallet
+                                    await wallet.fetchData(login.user_id);
+                                    // fetch data profile
+                                    await profile.fetchData(login.user_id);
+                                    // update user
+                                    await verif.updateUser(login.user_id);
+                                    // fetch data status akun
+                                    await verif.fetchStatusAkun(login.user_id);
+                                    // fetch data bank
+                                    await bank.fetchDataBank(login.user_id);
+                                    // fetch data riwayat wallet
+                                    await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
+                                    // print(riwayat.listRiwayatWallet!.length);
+                                    if(login.jenis_user == "Investor"){
+                                      // fetch data pinjaman status open
+                                      await pinjaman.fetchDataPinjamanOpen();
+                                      print(pinjaman.listPinjamanOpen!.length);
+                                      Navigator.pushNamed(context, '/dashboardInvestor');
+                                    }else{
+                                      // fetch data list pinjaman user
+                                      await pinjaman.fetchDataPinjaman(login.user_id);
+                                      Navigator.pushNamed(context, '/dashboardUMKM');
+                                    }
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: Size(double.infinity, 70),
+                                  backgroundColor: Colors
+                                      .white, // Set the desired button color here
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                ),
+                                child: Text(
+                                  'Masuk',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'Outfit',
+                                    fontWeight: FontWeight.w600,
+                                    color: Color.fromARGB(1000, 168, 81, 223),
+                                  ),
                                 ),
                               ),
-                              child: Text(
-                                'Masuk',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: 'Outfit',
-                                  fontWeight: FontWeight.w600,
-                                  color: Color.fromARGB(1000, 168, 81, 223),
-                                ),
-                              ),
-                            ),
+                          ),
                           SizedBox(height: 32),
                           Center(
                             child: GestureDetector(
