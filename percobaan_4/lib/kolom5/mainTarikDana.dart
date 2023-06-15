@@ -11,8 +11,10 @@ class TarikDanaPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromRGBO(255, 255, 255, 1),
       body: SafeArea(
-        child: Consumer3<WithdrawalState, Wallet, BankUser>(
-          builder: (context, withdraw, wallet, bank, child) => Stack(
+        child: Consumer5<WithdrawalState, Wallet, BankUser,
+            RiwayatWalletProvider, Login>(
+          builder: (context, withdraw, wallet, bank, riwayat, login, child) =>
+              Stack(
             children: [
               Container(
                 height: MediaQuery.of(context).size.height,
@@ -101,7 +103,9 @@ class TarikDanaPage extends StatelessWidget {
                                   ),
                                   SizedBox(),
                                   Text(
-                                    "Nomor Rekening : " + bank.bank!.listBank[index].nomor_rekening,
+                                    "Nomor Rekening : " +
+                                        bank.bank!.listBank[index]
+                                            .nomor_rekening,
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
                                       fontWeight: FontWeight.w700,
@@ -357,8 +361,45 @@ class TarikDanaPage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       child: ElevatedButton(
-                        onPressed: () {
-                          // Handle the Konfirmasi button press
+                        onPressed: () async {
+                          // assign data
+                          riwayat.keterangan = "Tarik Saldo";
+                          riwayat.statusTransaksi = "Keluar";
+                          riwayat.saldoTransaksi = withdraw.nominal;
+                          // cek nominal
+                          if (riwayat.saldoTransaksi <= wallet.saldo) {
+                            if (riwayat.saldoTransaksi != 0) {
+                              final statusCode = await riwayat
+                                  .addRiwayatWallet(wallet.wallet_id);
+                              print(statusCode);
+                              if (statusCode == 200) {
+                                // fetch data riwayat wallet
+                                await riwayat
+                                    .fetchDataRiwayatWallet(wallet.wallet_id);
+                                // fetch data wallet
+                                await wallet.fetchData(login.user_id);
+                                if (login.jenis_user == "Investor") {
+                                  Navigator.pushNamed(
+                                      context, '/dashboardInvestor');
+                                } else {
+                                  Navigator.pushNamed(
+                                      context, '/dashboardUMKM');
+                                }
+                              }
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Error: Isi nominal isi saldo'),
+                                ),
+                              );
+                            }
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Error: Saldo tidak mencukupi'),
+                              ),
+                            );
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors

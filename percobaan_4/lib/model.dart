@@ -1097,10 +1097,55 @@ class RiwayatWalletProvider extends ChangeNotifier{
       }
     }
   }
+
+  // POST ISI DANA
+  String _keterangan = '';
+  double _saldoTransaksi = 0.0;
+  String _statusTransaksi = '';
+
+  // GETTER SETTER
+  String get keterangan => _keterangan;
+  double get saldoTransaksi => _saldoTransaksi;
+  String get statusTransaksi => _statusTransaksi;
+  set keterangan(String value) {
+    _keterangan = value;
+    notifyListeners();
+  }
+  set saldoTransaksi(double value) {
+    _saldoTransaksi = value;
+    notifyListeners();
+  }
+  set statusTransaksi(String value) {
+    _statusTransaksi = value;
+    notifyListeners();
+  }
+  // FUNCTION POST
+  Future<int> addRiwayatWallet(int wallet_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/addRiwayatWallet/$wallet_id');
+    final headers = {'Content-Type': 'application/json'};
+    final riwayatData = {
+      "wallet_id": 0,
+      "keterangan": keterangan,
+      "saldo_transaksi": saldoTransaksi,
+      "status_transaksi": statusTransaksi
+    };
+    final body = jsonEncode(riwayatData);
+
+    final response = await http.post(url, headers: headers, body: body);
+
+    return response.statusCode;
+  }
+
+  void reset(){
+    keterangan = '';
+    saldoTransaksi = 0.0;
+    statusTransaksi = '';
+    notifyListeners();
+  }
 }
 
 // TARIK DAN ISI DANA
-class WithdrawalState extends ChangeNotifier {
+class WithdrawalState extends ChangeNotifier{
   String _showAdditionalInput = ""; // Initial value
   double _nominal = 0.0;
 
@@ -1126,3 +1171,4 @@ class WithdrawalState extends ChangeNotifier {
     notifyListeners();
   }
 }
+

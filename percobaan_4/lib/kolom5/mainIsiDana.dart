@@ -11,8 +11,8 @@ class IsiDanaPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromRGBO(255, 255, 255, 1),
       body: SafeArea(
-        child: Consumer2<WithdrawalState, Wallet>(
-          builder: (context, withdraw, wallet, child) => Stack(
+        child: Consumer4<WithdrawalState, Wallet, RiwayatWalletProvider, Login>(
+          builder: (context, withdraw, wallet, riwayat, login, child) => Stack(
             children: [
               Container(
                 height: MediaQuery.of(context).size.height,
@@ -32,6 +32,7 @@ class IsiDanaPage extends StatelessWidget {
                       leading: IconButton(
                         onPressed: () {
                           withdraw.reset();
+                          riwayat.reset();
                           Navigator.of(context).pop();
                         },
                         icon: SvgPicture.asset(
@@ -133,27 +134,27 @@ class IsiDanaPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: TextField(
-                      controller: _textEditingController,
-                      style: TextStyle(color: Colors.black),
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        hintText: 'Rp 100000',
-                        hintStyle: TextStyle(color: Colors.black),
-                        border: InputBorder.none,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                      onChanged: (value) =>
-                          withdraw.nominal = double.parse(value),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TextField(
+                          controller: _textEditingController,
+                          style: TextStyle(color: Colors.black),
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            hintText: 'Rp 100000',
+                            hintStyle: TextStyle(color: Colors.black),
+                            border: InputBorder.none,
+                          ),
+                          onChanged: (value) {
+                            withdraw.nominal = double.parse(value);
+                          }),
                     ),
-                  ),
                     SizedBox(height: 16),
                     Row(
                       children: [
@@ -336,28 +337,55 @@ class IsiDanaPage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       child: ElevatedButton(
-                      onPressed: () {
-                        // Handle the Konfirmasi button press
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.orangeAccent, // Same background color as other buttons
-                      ),
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: 70,
-                        child: Center(
-                          child: Text(
-                            'Konfirmasi',
-                            style: TextStyle(
-                              fontFamily: 'Outfit',
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                              fontSize: 18,
+                        onPressed: () async{
+                          // assign data
+                          riwayat.keterangan = "Isi Saldo";
+                          riwayat.statusTransaksi = "Masuk";
+                          riwayat.saldoTransaksi = withdraw.nominal;
+                          // cek nominal
+                          if (riwayat.saldoTransaksi != 0) {
+                            final statusCode = await riwayat.addRiwayatWallet(wallet.wallet_id);
+                            print(statusCode);
+                            if(statusCode == 200) {
+                              // fetch data riwayat wallet
+                              await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
+                              // fetch data wallet
+                              await wallet.fetchData(login.user_id);
+                              if(login.jenis_user == "Investor"){
+                                Navigator.pushNamed(context, '/dashboardInvestor');
+                              }else{
+                                Navigator.pushNamed(context, '/dashboardUMKM');
+                              }
+                            }
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content:
+                                    Text('Error: Isi nominal isi saldo'),
+                              ),
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors
+                              .orangeAccent, // Same background color as other buttons
+                        ),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 70,
+                          child: Center(
+                            child: Text(
+                              'Konfirmasi',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
                     ),
                     SizedBox(height: 16),
                   ],
