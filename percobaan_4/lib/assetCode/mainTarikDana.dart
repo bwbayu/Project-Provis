@@ -133,42 +133,13 @@ class _TarikTunaiPageState extends State<TarikTunaiPage> {
                                     fontSize: 20,
                                   ),
                                 ),
-                                DropdownButtonHideUnderline(
-                                  child: DropdownButton<String>(
-                                    value: selectedBank,
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        selectedBank =
-                                            newValue!; // Update the selectedBank value
-                                      });
-                                    },
-                                    items: ['BCA', 'BNI', 'BRI']
-                                        .map((String value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Container(
-                                          width: 100, // lebar kontainer
-                                          height: 100,
-                                          child: Center(
-                                            child: Container(
-                                              padding: EdgeInsets.all(10),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                color: Colors.orangeAccent,
-                                              ),
-                                              child: Text(
-                                                value,
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }).toList(),
+                                Text(
+                                  'BANK',
+                                  style: TextStyle(
+                                    fontFamily: 'Outfit',
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.orangeAccent,
+                                    fontSize: 20,
                                   ),
                                 ),
                               ],
