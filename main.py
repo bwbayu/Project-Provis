@@ -442,5 +442,52 @@ def get_riwayat_wallet(wallet_id:int, session=Depends(get_session)):
 # ==================================== PENDANAAN =================================================
 
 # GET PENDANAAN BY USER_ID
+@app.get("/getPendanaan/{user_id}")
+def get_pendanaan_funder(user_id:int, session=Depends(get_session)):
+    # get funder by user_id
+    funder = session.query(models.PenyediaDanaModel).filter_by(user_id=user_id).first()
+    if(funder is None):
+        return {"message": "Funder not found"}
+    # get all pendanaan by funder_id (portofolio page)
+    pendanaan = session.query(models.PendanaanModel).filter_by(funder_id=funder.funder_id).all()
+    # get pending pendanaan by funder_id (investor page)
+    pendanaanPending = session.query(models.PendanaanModel).filter_by(funder_id=funder.funder_id).filter_by(status_pendanaan="Pending").all()
+    # get lunas pendanaan by funder_id (portofolio page)
+    pendanaanLunas = session.query(models.PendanaanModel).filter_by(funder_id=funder.funder_id).filter_by(status_pendanaan="Lunas").all()
+    return {"pendanaan": pendanaan, "pendanaanPending": pendanaanPending, "pendanaanLunas": pendanaanLunas}
 
 # POST PENDANAAN BY USER_ID
+@app.post("/addPendanaan/{user_id}")
+def add_pendanaan(user_id: int, data_pendanaan: schemas.PendanaanSchema, session=Depends(get_session)):
+    # get funder by user_id
+    funder = session.query(models.PenyediaDanaModel).filter_by(user_id=user_id).first()
+    if(funder is None):
+        return {"message": "Funder not found"}
+    
+    # add pendanaan
+    pendanaan = models.PendanaanModel(
+        funder_id = funder.funder_id, 
+        pinjaman_id = data_pendanaan.pinjaman_id,
+        jumlah_pendanaan = data_pendanaan.jumlah_pendanaan,
+        status_pendanaan = data_pendanaan.status_pendanaan,
+        total_pembayaran = data_pendanaan.total_pembayaran,
+        curr_pembayaran = data_pendanaan.curr_pembayaran
+    )
+    session.add(pendanaan)
+    session.commit()
+    session.refresh(pendanaan)
+    # update pinjaman_terkumpul dari pinjaman tersebut
+    pinjaman_id = data_pendanaan.pinjaman_id
+    # get pinjaman by pinjaman_id
+    pinjaman = session.query(models.PinjamanModel).filter_by(pinjaman_id=pinjaman_id).first()
+    if(pinjaman is None):
+        return {"message": "Pinjaman not found"}
+    # update dana pinjaman
+    pinjaman.pinjaman_terkumpul += Decimal(data_pendanaan.jumlah_pendanaan)
+    # update status pinjaman
+    if(pinjaman.pinjaman_terkumpul == pinjaman.jumlah_pinjaman):
+        pinjaman.status_pinjaman = "Close"
+    session.commit()
+    session.refresh(pinjaman)
+    session.close()
+    return {"pendanaan" : pendanaan, "pinjaman": pinjaman}

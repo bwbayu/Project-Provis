@@ -91,74 +91,164 @@ class listPinjaman extends StatelessWidget {
                                               child: Image.asset(
                                                 umkmImages[randomIndex],
                                                 width: double.infinity,
-                                                height: 120,
+                                                height: 100,
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
                                             Container(
-                                              width: double.infinity,
-                                              height: 80,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    20, 0, 20, 0),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          'Total Pinjaman',
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: Colors.black,
-                                                            fontSize: 14,
+                                                          width:
+                                                              double.infinity,
+                                                          height: 100,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    151,
+                                                                    126,
+                                                                    242,
+                                                                    1),
+                                                          ),
+                                                          child: Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(20, 0,
+                                                                    20, 0),
+                                                            child: Column(
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      Column(
+                                                                              mainAxisAlignment:
+                                                                                  MainAxisAlignment
+                                                                                      .center,
+                                                                              crossAxisAlignment:
+                                                                                  CrossAxisAlignment
+                                                                                      .start,
+                                                                              children: [
+                                                                                Text(
+                                                                                  'Total Pendanaan',
+                                                                                  style:
+                                                                                      TextStyle(
+                                                                                    fontFamily:
+                                                                                        'Outfit',
+                                                                                    fontWeight:
+                                                                                        FontWeight.w600,
+                                                                                    color: Colors
+                                                                                        .white,
+                                                                                    fontSize:
+                                                                                        14,
+                                                                                  ),
+                                                                                ),
+                                                                                Text(
+                                                                                  'Rp'+pinjaman.pinjamanList![index].jumlah_pinjaman.toString(),
+                                                                                  style:
+                                                                                      TextStyle(
+                                                                                    fontFamily:
+                                                                                        'Outfit',
+                                                                                    fontWeight:
+                                                                                        FontWeight.w500,
+                                                                                    color: Colors
+                                                                                        .white,
+                                                                                    fontSize:
+                                                                                        14,
+                                                                                  ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                            Column(
+                                                                              mainAxisAlignment:
+                                                                                  MainAxisAlignment
+                                                                                      .center,
+                                                                              crossAxisAlignment:
+                                                                                  CrossAxisAlignment
+                                                                                      .start,
+                                                                              children: [
+                                                                                Text(
+                                                                                  'Pendanaan Terkumpul',
+                                                                                  style:
+                                                                                      TextStyle(
+                                                                                    fontFamily:
+                                                                                        'Outfit',
+                                                                                    fontWeight:
+                                                                                        FontWeight.w600,
+                                                                                    color: Colors
+                                                                                        .white,
+                                                                                    fontSize:
+                                                                                        14,
+                                                                                  ),
+                                                                                ),
+                                                                                Text(
+                                                                                  'Rp'+pinjaman.pinjamanList![index].pinjaman_terkumpul.toString(),
+                                                                                  style:
+                                                                                      TextStyle(
+                                                                                    fontFamily:
+                                                                                        'Outfit',
+                                                                                    fontWeight:
+                                                                                        FontWeight.w500,
+                                                                                    color: Colors
+                                                                                        .white,
+                                                                                    fontSize:
+                                                                                        14,
+                                                                                  ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Column(
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment
+                                                                                    .center,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment
+                                                                                    .start,
+                                                                            children: [
+                                                                              Text(
+                                                                                'Status Pendanaan',
+                                                                                style:
+                                                                                    TextStyle(
+                                                                                  fontFamily:
+                                                                                      'Outfit',
+                                                                                  fontWeight:
+                                                                                      FontWeight.w600,
+                                                                                  color: Colors
+                                                                                      .white,
+                                                                                  fontSize:
+                                                                                      14,
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                pinjaman.pinjamanList![index].status_pinjaman,
+                                                                                style:
+                                                                                    TextStyle(
+                                                                                  fontFamily:
+                                                                                      'Outfit',
+                                                                                  fontWeight:
+                                                                                      FontWeight.w500,
+                                                                                  color: Colors
+                                                                                      .white,
+                                                                                  fontSize:
+                                                                                      14,
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
-                                                        Text(
-                                                          'Rp' +
-                                                              pinjaman
-                                                                  .pinjamanList![
-                                                                      index]
-                                                                  .jumlah_pinjaman
-                                                                  .toString(),
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: Colors.black,
-                                                            fontSize: 14,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Text(
-                                                      'Pinjaman ' +
-                                                          pinjaman
-                                                              .pinjamanList![
-                                                                  index]
-                                                              .status_pinjaman,
-                                                      style: TextStyle(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        color: Colors.black,
-                                                        fontSize: 14,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
                                           ],
                                         ),
                                       ),

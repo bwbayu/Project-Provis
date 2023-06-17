@@ -129,8 +129,8 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 32),
-                          Consumer<RiwayatWalletProvider>(
-                            builder: (context, riwayat, child) =>
+                          Consumer2<RiwayatWalletProvider, PendanaanData>(
+                            builder: (context, riwayat, pendanaan, child) =>
                             ElevatedButton(
                                 onPressed: () async{
                                   // MASUK KE DASHBOARD INVESTOR DAN BORROWER
@@ -156,7 +156,8 @@ class LoginScreen extends StatelessWidget {
                                     if(login.jenis_user == "Investor"){
                                       // fetch data pinjaman status open
                                       await pinjaman.fetchDataPinjamanOpen();
-                                      print(pinjaman.listPinjamanOpen!.length);
+                                      // fetch data pendanaan
+                                      await pendanaan.fetchDataPendanaan(login.user_id);
                                       Navigator.pushNamed(context, '/dashboardInvestor');
                                     }else{
                                       // fetch data list pinjaman user

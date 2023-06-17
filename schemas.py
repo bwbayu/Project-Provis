@@ -70,6 +70,7 @@ class PinjamanSchema(BaseModel):
     pinjaman_terkumpul: float
 
 class PendanaanSchema(BaseModel):
+    pinjaman_id: int
     jumlah_pendanaan: float
     status_pendanaan: str
     total_pembayaran: float
