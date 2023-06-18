@@ -14,6 +14,7 @@ import models
 import bcrypt
 from datetime import datetime, timedelta
 import jwt
+from fastapi.responses import FileResponse
 # database
 from database import Base, engine, SessionLocal
 from sqlalchemy.orm import Session
@@ -39,14 +40,16 @@ def get_session():
 app = FastAPI()
 
 # statis file setup config
-static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
-app.mount("/static", StaticFiles(directory="static"), name="static")
+static_dir = os.path.join(os.path.dirname(
+    os.path.abspath(__file__)), "percobaan_4/asset")
+app.mount("/asset", StaticFiles(directory=static_dir), name="asset")
 
+# Set CORS policies
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "PUT", "POST", "DELETE"],
     allow_headers=["*"],
 )
 
@@ -458,19 +461,23 @@ def get_pinjaman_by_user_id(user_id: int, session=Depends(get_session)):
     if pinjaman is None:
         return {"message": "Pinjaman not found"}
     # dashboard umkm
-    pinjamanPending = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Pending").all()
+    pinjamanPending = session.query(models.PinjamanModel).filter_by(
+        umkm_id=umkm_id).filter_by(status_pinjaman="Pending").all()
     if pinjamanPending is None:
         return {"message": "Pinjaman not found"}
     # list pinjaman selesai / lunas
-    pinjamanLunas = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Lunas").all()
+    pinjamanLunas = session.query(models.PinjamanModel).filter_by(
+        umkm_id=umkm_id).filter_by(status_pinjaman="Lunas").all()
     if pinjamanLunas is None:
         return {"message": "Pinjaman not found"}
     # list pinjaman open
-    pinjamanOpen = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Open").all()
+    pinjamanOpen = session.query(models.PinjamanModel).filter_by(
+        umkm_id=umkm_id).filter_by(status_pinjaman="Open").all()
     if pinjamanOpen is None:
         return {"message": "Pinjaman not found"}
     # pinjaman close
-    pinjamanClose = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Close").all()
+    pinjamanClose = session.query(models.PinjamanModel).filter_by(
+        umkm_id=umkm_id).filter_by(status_pinjaman="Close").all()
     if pinjamanClose is None:
         return {"message": "Pinjaman not found"}
     return {"pinjaman": pinjaman, "pinjamanPending": pinjamanPending, "pinjamanLunas": pinjamanLunas, "pinjamanOpen": pinjamanOpen, "pinjamanClose": pinjamanClose}
@@ -487,13 +494,16 @@ def get_pinjaman_by_status(session=Depends(get_session)):
     return {"pinjaman": pinjaman}
 
 # UPDATE STATUS PINJAMAN
+
+
 @app.put("/updateStatusPinjaman/{pinjaman_id}")
-def update_status_pinjaman(pinjaman_id:int, session=Depends(get_session)):
+def update_status_pinjaman(pinjaman_id: int, session=Depends(get_session)):
     # get pinjaman by pinjaman_id
-    pinjaman = session.query(models.PinjamanModel).filter_by(pinjaman_id=pinjaman_id).first()
+    pinjaman = session.query(models.PinjamanModel).filter_by(
+        pinjaman_id=pinjaman_id).first()
     if pinjaman is None:
         return {"message": "Pinjaman not found"}
-    if(pinjaman.status_pinjaman == "Close"):
+    if (pinjaman.status_pinjaman == "Close"):
         pinjaman.status_pinjaman = "Pending"
         session.commit()
         session.refresh(pinjaman)
@@ -546,20 +556,24 @@ def get_riwayat_wallet(wallet_id: int, session=Depends(get_session)):
 # ==================================== PENDANAAN =================================================
 
 # GET PENDANAAN BY USER_ID
+
+
 @app.get("/getPendanaan/{user_id}")
-def get_pendanaan_funder(user_id:int, session=Depends(get_session)):
+def get_pendanaan_funder(user_id: int, session=Depends(get_session)):
     # get funder by user_id
-    funder = session.query(models.PenyediaDanaModel).filter_by(user_id=user_id).first()
-    if(funder is None):
+    funder = session.query(models.PenyediaDanaModel).filter_by(
+        user_id=user_id).first()
+    if (funder is None):
         return {"message": "Funder not found"}
     # get all pendanaan by funder_id (portofolio page)
-    pendanaan = session.query(models.PendanaanModel).filter_by(funder_id=funder.funder_id).all()
+    pendanaan = session.query(models.PendanaanModel).filter_by(
+        funder_id=funder.funder_id).all()
     # get lunas pendanaan by funder_id (portofolio page)
-    pendanaanLunas = session.query(models.PendanaanModel).filter_by(funder_id=funder.funder_id).filter_by(status_pendanaan="Lunas").all()
+    pendanaanLunas = session.query(models.PendanaanModel).filter_by(
+        funder_id=funder.funder_id).filter_by(status_pendanaan="Lunas").all()
     return {"pendanaan": pendanaan, "pendanaanLunas": pendanaanLunas}
 
 # POST PENDANAAN BY USER_ID
-<<<<<<< HEAD
 
 # ===================================== UPLOAD FILE ======================
 
@@ -569,7 +583,7 @@ def get_pendanaan_funder(user_id:int, session=Depends(get_session)):
 @app.put("/uploadfile/{user_id}/KTP")
 async def create_upload_file(user_id: int, file: UploadFile = File(...), session=Depends(get_session)):
 
-    FILEPATH = "./static/images/ktp/"
+    FILEPATH = "./percobaan_4/asset/images/"
     filename = file.filename
     # test.png => ["test", "png"]
     # Get the last element after splitting by "."
@@ -579,8 +593,8 @@ async def create_upload_file(user_id: int, file: UploadFile = File(...), session
     if extension not in valid_extensions:
         return {"status": "error", "detail": "File extension not allowed"}
 
-    token_name = secrets.token_hex(10) + "."+extension
-    generated_name = FILEPATH + token_name
+    # token_name = secrets.token_hex(10) + "."+extension
+    generated_name = FILEPATH + filename
     file_content = await file.read()
 
     with open(generated_name, "wb") as file:
@@ -602,7 +616,7 @@ async def create_upload_file(user_id: int, file: UploadFile = File(...), session
         return {"error": "Personal Data is not found"}
 
     if personal:
-        personal.foto_ktp = token_name
+        personal.foto_ktp = filename
         session.commit()
         session.refresh(personal)
         return {"ktp": personal}
@@ -611,10 +625,52 @@ async def create_upload_file(user_id: int, file: UploadFile = File(...), session
 # PUT FILE IMAGE
 
 
+# @app.put("/uploadfile/{user_id}/TTD")
+# async def create_upload_file(user_id: int, file: UploadFile = File(...), session=Depends(get_session)):
+
+#     FILEPATH = "./percobaan_4/static/images/ttd/"
+#     filename = file.filename
+#     # test.png => ["test", "png"]
+#     # Get the last element after splitting by "."
+#     extension = filename.split(".")[-1]
+#     valid_extensions = ["png", "jpg", "jpeg"]  # List of valid extensions
+
+#     if extension not in valid_extensions:
+#         return {"status": "error", "detail": "File extension not allowed"}
+
+#     token_name = secrets.token_hex(10) + "."+extension
+#     generated_name = FILEPATH + token_name
+#     file_content = await file.read()
+
+#     with open(generated_name, "wb") as file:
+#         file.write(file_content)
+
+#     # PILLOW
+#     img = Image.open(generated_name)
+#     img = img.resize(size=(500, 500))
+#     img.save(generated_name)
+
+#     # get user
+#     user = session.query(models.UserModel).get(user_id)
+#     if user is None:
+#         return {"error": "User not found"}
+
+#     personal = session.query(models.PersonalDataModel).filter_by(
+#         user_id=user_id).first()
+#     if personal is None:
+#         return {"error": "Personal Data is not found"}
+
+#     if personal:
+#         personal.ttd = token_name
+#         session.commit()
+#         session.refresh(personal)
+#         return {"ktp": personal}
+#     file.close()
+
 @app.put("/uploadfile/{user_id}/TTD")
 async def create_upload_file(user_id: int, file: UploadFile = File(...), session=Depends(get_session)):
 
-    FILEPATH = "./static/images/ttd/"
+    FILEPATH = "./percobaan_4/asset/images/"
     filename = file.filename
     # test.png => ["test", "png"]
     # Get the last element after splitting by "."
@@ -624,8 +680,7 @@ async def create_upload_file(user_id: int, file: UploadFile = File(...), session
     if extension not in valid_extensions:
         return {"status": "error", "detail": "File extension not allowed"}
 
-    token_name = secrets.token_hex(10) + "."+extension
-    generated_name = FILEPATH + token_name
+    generated_name = FILEPATH + filename
     file_content = await file.read()
 
     with open(generated_name, "wb") as file:
@@ -647,7 +702,7 @@ async def create_upload_file(user_id: int, file: UploadFile = File(...), session
         return {"error": "Personal Data is not found"}
 
     if personal:
-        personal.ttd = token_name
+        personal.ttd = filename
         session.commit()
         session.refresh(personal)
         return {"ktp": personal}
@@ -659,7 +714,7 @@ async def create_upload_file(user_id: int, file: UploadFile = File(...), session
 @app.put("/uploadfile/{user_id}/NPWP")
 async def create_upload_file(user_id: int, file: UploadFile = File(...), session=Depends(get_session)):
 
-    FILEPATH = "./static/images/npwp/"
+    FILEPATH = "./percobaan_4/asset/images/"
     filename = file.filename
     # test.png => ["test", "png"]
     # Get the last element after splitting by "."
@@ -669,8 +724,8 @@ async def create_upload_file(user_id: int, file: UploadFile = File(...), session
     if extension not in valid_extensions:
         return {"status": "error", "detail": "File extension not allowed"}
 
-    token_name = secrets.token_hex(10) + "."+extension
-    generated_name = FILEPATH + token_name
+    # token_name = secrets.token_hex(10) + "."+extension
+    generated_name = FILEPATH + filename
     file_content = await file.read()
 
     with open(generated_name, "wb") as file:
@@ -692,27 +747,29 @@ async def create_upload_file(user_id: int, file: UploadFile = File(...), session
         return {"error": "Personal Data is not found"}
 
     if personal:
-        personal.foto_npwp = token_name
+        personal.foto_npwp = filename
         session.commit()
         session.refresh(personal)
         return {"ktp": personal}
     file.close()
-=======
+
+
 @app.post("/addPendanaan/{user_id}")
 def add_pendanaan(user_id: int, data_pendanaan: schemas.PendanaanSchema, session=Depends(get_session)):
     # get funder by user_id
-    funder = session.query(models.PenyediaDanaModel).filter_by(user_id=user_id).first()
-    if(funder is None):
+    funder = session.query(models.PenyediaDanaModel).filter_by(
+        user_id=user_id).first()
+    if (funder is None):
         return {"message": "Funder not found"}
-    
+
     # add pendanaan
     pendanaan = models.PendanaanModel(
-        funder_id = funder.funder_id, 
-        pinjaman_id = data_pendanaan.pinjaman_id,
-        jumlah_pendanaan = data_pendanaan.jumlah_pendanaan,
-        status_pendanaan = data_pendanaan.status_pendanaan,
-        total_pembayaran = data_pendanaan.total_pembayaran,
-        curr_pembayaran = data_pendanaan.curr_pembayaran
+        funder_id=funder.funder_id,
+        pinjaman_id=data_pendanaan.pinjaman_id,
+        jumlah_pendanaan=data_pendanaan.jumlah_pendanaan,
+        status_pendanaan=data_pendanaan.status_pendanaan,
+        total_pembayaran=data_pendanaan.total_pembayaran,
+        curr_pembayaran=data_pendanaan.curr_pembayaran
     )
     session.add(pendanaan)
     session.commit()
@@ -720,16 +777,24 @@ def add_pendanaan(user_id: int, data_pendanaan: schemas.PendanaanSchema, session
     # update pinjaman_terkumpul dari pinjaman tersebut
     pinjaman_id = data_pendanaan.pinjaman_id
     # get pinjaman by pinjaman_id
-    pinjaman = session.query(models.PinjamanModel).filter_by(pinjaman_id=pinjaman_id).first()
-    if(pinjaman is None):
+    pinjaman = session.query(models.PinjamanModel).filter_by(
+        pinjaman_id=pinjaman_id).first()
+    if (pinjaman is None):
         return {"message": "Pinjaman not found"}
     # update dana pinjaman
     pinjaman.pinjaman_terkumpul += Decimal(data_pendanaan.jumlah_pendanaan)
     # update status pinjaman
-    if(pinjaman.pinjaman_terkumpul == pinjaman.jumlah_pinjaman):
+    if (pinjaman.pinjaman_terkumpul == pinjaman.jumlah_pinjaman):
         pinjaman.status_pinjaman = "Close"
     session.commit()
     session.refresh(pinjaman)
     session.close()
-    return {"pendanaan" : pendanaan, "pinjaman": pinjaman}
->>>>>>> b5f11ca7c96e8e90049167dbd66563747b1d9c24
+    return {"pendanaan": pendanaan, "pinjaman": pinjaman}
+
+# ambil image berdasarkan nama file
+
+
+# ambil image berdasarkan nama file
+@app.get("/getimage/{nama_file}")
+async def getImage(nama_file: str):
+    return FileResponse("./percobaan_4/asset/images/"+nama_file)

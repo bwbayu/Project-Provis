@@ -1,7 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:percobaan_4/model.dart';
+import 'package:provider/provider.dart';
 
 class formKTP extends StatelessWidget {
+  String namaImage = "";
+
+  final dio = Dio();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,35 +84,41 @@ class formKTP extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
-                          width: double.infinity,
-                          height: 320,
-                          fit: BoxFit.cover,
-                        ),
+                      Consumer<MyImageProvider>(
+                        builder: (context, prov, child) {
+                          String? img = prov.namaImage;
+                          return img != null
+                              ? Image.network(
+                                  'http://127.0.0.1:8000/getimage/$img',
+                                  height: 200,
+                                )
+                              : const Text("Image Tidak Tersedia");
+                        },
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Upload',
-                              style: TextStyle(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
+                          Consumer<Login>(builder: (context, Login, child) {
+                            return ElevatedButton(
+                              onPressed: () async => context
+                                  .read<MyImageProvider>()
+                                  .getImageFromGallery(Login.user_id),
+                              child: Text(
+                                'Upload',
+                                style: TextStyle(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                ),
                               ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: Color(0xffcb5f18),
-                              elevation: 3,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
+                              style: ElevatedButton.styleFrom(
+                                primary: Color(0xffcb5f18),
+                                elevation: 3,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                               ),
-                            ),
-                          ),
+                            );
+                          }),
                         ],
                       ),
                     ],

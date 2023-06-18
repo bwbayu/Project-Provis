@@ -1,24 +1,61 @@
-// dependencies:
-//  dio: ^5.2.1+1
-//  image_picker: ^0.8.4+2
-//  http_parser: ^4.0.2
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ImageProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Image Picker Example'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Consumer<ImageProvider>(
+                builder: (context, imageProvider, child) {
+                  return imageProvider.namaImage != ""
+                      ? Image.network(
+                          //chrome
+                          'http://127.0.0.1:8000/getimage/${imageProvider.namaImage}',
+
+                          //android
+                          //'http://10.0.2.2:8000/getimage/${imageProvider.namaImage}',
+                          height: 200,
+                        )
+                      : const Text(" Image Tidak Tersedia");
+                },
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () =>
+                    context.read<ImageProvider>().getImageFromGallery(),
+                child: const Text('Select Image'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class ImageProvider with ChangeNotifier {
   String namaImage = "";
 
   final dio = Dio();
@@ -32,20 +69,19 @@ class _MyAppState extends State<MyApp> {
     var response =
         //untuk chorme
         await dio.post("http://127.0.0.1:8000/uploadimage", data: formData);
-        
-        //untuk android
-        //await dio.post("http://10.0.2.2:8000/uploadimage", data: formData);  
+
+    //untuk android
+    //await dio.post("http://10.0.2.2:8000/uploadimage", data: formData);
 
     print(response.statusCode);
     if (response.statusCode == 200) {
-      setState(() {
-        namaImage = fileName;
-      });
+      namaImage = fileName;
+      notifyListeners();
     }
     return fileName;
   }
 
-  Future<void> _getImageFromGallery() async {
+  Future<void> getImageFromGallery() async {
     print("get image");
     final picker = ImagePicker();
     final pickedImage = await picker.pickImage(source: ImageSource.gallery);
@@ -54,37 +90,5 @@ class _MyAppState extends State<MyApp> {
       print("mulai upload");
       await uploadFile(bytes as List<int>, pickedImage.name);
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-      appBar: AppBar(
-        title: const Text('Image Pijcker Example'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            namaImage != ""
-                ? Image.network(
-                    //chrome
-                    'http://127.0.0.1:8000/getimage/$namaImage',
-                    
-                    //android
-                    //'http://10.0.2.2:8000/getimage/$namaImage',
-                    height: 200,
-                  )
-                : const Text(" Image Tidak Tersedia"),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _getImageFromGallery,
-              child: const Text('Select Image'),
-            ),
-          ],
-        ),
-      ),
-    ));
   }
 }

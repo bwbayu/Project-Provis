@@ -74,3 +74,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - asset/images/
+    - static/images/ktp/
+    - static/images/ttd/
+    - static/images/npwp/

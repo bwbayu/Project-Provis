@@ -1,6 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:http_parser/http_parser.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Register extends ChangeNotifier {
   String _password = "";
@@ -270,9 +274,9 @@ class VerifikasiAkun extends ChangeNotifier {
         : '';
     final body = jsonEncode({
       'id_user': user_id,
-      'foto_ktp': "foto_ktp",
-      'foto_npwp': "foto_npwp",
-      "ttd": "ttd",
+      'foto_ktp': "",
+      'foto_npwp': "",
+      "ttd": "",
       "nama": nama,
       "tempat_lahir": tempat_lahir,
       "tgl_lahir": tgl_lahir,
@@ -908,7 +912,8 @@ class PinjamanUser extends ChangeNotifier {
       for (var pinjamanUser in pinjamanList!) {
         _total_pinjaman += pinjamanUser.jumlah_pinjaman;
         // extract value bunga pinjamanUser
-        String bungaPercentage = pinjamanUser.bunga_pinjaman.replaceAll('%', '');
+        String bungaPercentage =
+            pinjamanUser.bunga_pinjaman.replaceAll('%', '');
         pinjamanUser.bungaPinjaman = int.parse(bungaPercentage);
       }
     }
@@ -976,8 +981,7 @@ class PinjamanUser extends ChangeNotifier {
 
   // FETCH DATA UMKM DARI PINJAMAN
   UmkmProvider dataUMKM = UmkmProvider(); //menampung data umkm
-  
-  
+
   // map dari json ke atribut
   void setFromJson(Map<String, dynamic> json) {
     dataUMKM.bentuk_umkm = json['bentuk_umkm'];
@@ -1035,7 +1039,8 @@ class PinjamanUser extends ChangeNotifier {
 
   // UPDATE STATUS PINJAMAN USER JIKA PINJAMAN TERPENUHI
   Future<int> updateStatusPinjaman(int pinjaman_id) async {
-    final url = Uri.parse('http://127.0.0.1:8000/updateStatusPinjaman/$pinjaman_id');
+    final url =
+        Uri.parse('http://127.0.0.1:8000/updateStatusPinjaman/$pinjaman_id');
     final headers = {'Content-Type': 'application/json'};
 
     try {
@@ -1099,7 +1104,7 @@ class PendaaanProvider extends ChangeNotifier {
 
   // POST DATA PENDANAAN INVESTOR
   bool isLoading = false;
-  Future<int> addPendanaan(int user_id) async{
+  Future<int> addPendanaan(int user_id) async {
     isLoading = true;
     notifyListeners();
     final url = Uri.parse('http://127.0.0.1:8000/addPendanaan/$user_id');
@@ -1142,15 +1147,20 @@ class PendaaanProvider extends ChangeNotifier {
   }
 }
 
-class Pendanaan{
+class Pendanaan {
   String status_pendanaan;
   double jumlah_pendanaan;
   double total_pembayaran;
   double curr_pembayaran;
   int pinjaman_id;
 
-  Pendanaan({required this.pinjaman_id, required this.status_pendanaan, required this.jumlah_pendanaan, required this.total_pembayaran, required this.curr_pembayaran});
-  
+  Pendanaan(
+      {required this.pinjaman_id,
+      required this.status_pendanaan,
+      required this.jumlah_pendanaan,
+      required this.total_pembayaran,
+      required this.curr_pembayaran});
+
   factory Pendanaan.fromJson(Map<String, dynamic> json) {
     return Pendanaan(
       pinjaman_id: json["pinjaman_id"],
@@ -1162,10 +1172,10 @@ class Pendanaan{
   }
 }
 
-class PendanaanData extends ChangeNotifier{
+class PendanaanData extends ChangeNotifier {
   // GET DATA PENDANAAN
-  List<Pendanaan> listPendanaan = <Pendanaan> [];
-  List<Pendanaan> listPendanaanLunas = <Pendanaan> [];
+  List<Pendanaan> listPendanaan = <Pendanaan>[];
+  List<Pendanaan> listPendanaanLunas = <Pendanaan>[];
   bool isLoading = false;
   Future<int> fetchDataPendanaan(int user_id) async {
     isLoading = true;
@@ -1227,13 +1237,16 @@ class PendanaanData extends ChangeNotifier{
 }
 
 // RIWAYAT WALLET
-class RiwayatWalletData{
+class RiwayatWalletData {
   String keterangan;
   double saldoTransaksi;
   String statusTransaksi;
 
-  RiwayatWalletData({required this.keterangan, required this.saldoTransaksi, required this.statusTransaksi});
-  
+  RiwayatWalletData(
+      {required this.keterangan,
+      required this.saldoTransaksi,
+      required this.statusTransaksi});
+
   factory RiwayatWalletData.fromJson(Map<String, dynamic> json) {
     return RiwayatWalletData(
       keterangan: json["keterangan"],
@@ -1243,14 +1256,14 @@ class RiwayatWalletData{
   }
 }
 
-class RiwayatWalletProvider extends ChangeNotifier{
+class RiwayatWalletProvider extends ChangeNotifier {
   // variabel total transaksi riwayat
   double _totalTransaksiMasuk = 0.0;
   double _totalTransaksiKeluar = 0.0;
 
   double get totalTransaksiMasuk => _totalTransaksiMasuk;
   double get totalTransaksiKeluar => _totalTransaksiKeluar;
-  // FETCH DATA RIWAYAT WALLET 
+  // FETCH DATA RIWAYAT WALLET
   List<RiwayatWalletData>? listRiwayatWallet;
   bool isLoading = false;
 
@@ -1291,14 +1304,14 @@ class RiwayatWalletProvider extends ChangeNotifier{
     }
   }
 
-  void calculateTotalTransaksi(){
+  void calculateTotalTransaksi() {
     _totalTransaksiKeluar = 0.0;
     _totalTransaksiMasuk = 0.0;
-    if(listRiwayatWallet != null){
-      for(var item in listRiwayatWallet!){
-        if(item.statusTransaksi == "Masuk"){
+    if (listRiwayatWallet != null) {
+      for (var item in listRiwayatWallet!) {
+        if (item.statusTransaksi == "Masuk") {
           _totalTransaksiMasuk += item.saldoTransaksi;
-        }else if(item.statusTransaksi == "Keluar"){
+        } else if (item.statusTransaksi == "Keluar") {
           _totalTransaksiKeluar += item.saldoTransaksi;
         }
       }
@@ -1318,14 +1331,17 @@ class RiwayatWalletProvider extends ChangeNotifier{
     _keterangan = value;
     notifyListeners();
   }
+
   set saldoTransaksi(double value) {
     _saldoTransaksi = value;
     notifyListeners();
   }
+
   set statusTransaksi(String value) {
     _statusTransaksi = value;
     notifyListeners();
   }
+
   // FUNCTION POST
   Future<int> addRiwayatWallet(int wallet_id) async {
     final url = Uri.parse('http://127.0.0.1:8000/addRiwayatWallet/$wallet_id');
@@ -1343,7 +1359,7 @@ class RiwayatWalletProvider extends ChangeNotifier{
     return response.statusCode;
   }
 
-  void reset(){
+  void reset() {
     keterangan = '';
     saldoTransaksi = 0.0;
     statusTransaksi = '';
@@ -1352,18 +1368,18 @@ class RiwayatWalletProvider extends ChangeNotifier{
 }
 
 // TARIK DAN ISI DANA
-class WithdrawalState extends ChangeNotifier{
+class WithdrawalState extends ChangeNotifier {
   String _showAdditionalInput = ""; // Initial value
   double _nominal = 0.0;
 
-  String get showAdditionalInput => _showAdditionalInput; 
+  String get showAdditionalInput => _showAdditionalInput;
   double get nominal => _nominal;
 
   set showAdditionalInput(String value) {
     _showAdditionalInput = value;
-    if(value != "custom"){
-    String numericValue = value.replaceAll(RegExp(r'[^0-9]'), '');
-    _nominal = double.parse(numericValue);
+    if (value != "custom") {
+      String numericValue = value.replaceAll(RegExp(r'[^0-9]'), '');
+      _nominal = double.parse(numericValue);
     }
     notifyListeners();
   }
@@ -1373,9 +1389,131 @@ class WithdrawalState extends ChangeNotifier{
     notifyListeners();
   }
 
-  void reset(){
+  void reset() {
     _nominal = 0.0;
     notifyListeners();
   }
 }
 
+class MyImageProvider extends ChangeNotifier {
+  String namaImage = "";
+
+  final dio = Dio();
+
+  Future<String> uploadFile(
+      List<int> file, String fileName, int user_id) async {
+    print("mulai");
+    String fileExtension = fileName.split('.').last;
+    MediaType? contentType;
+    if (fileExtension == 'jpg' || fileExtension == 'jpeg') {
+      contentType = MediaType('image', 'jpeg');
+    } else if (fileExtension == 'png') {
+      contentType = MediaType('image', 'png');
+    }
+    FormData formData = FormData.fromMap({
+      "file": MultipartFile.fromBytes(file,
+          filename: fileName, contentType: contentType),
+    });
+    var response = await dio
+        .put("http://127.0.0.1:8000/uploadfile/$user_id/KTP", data: formData);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      namaImage = fileName;
+      notifyListeners();
+    }
+    return fileName;
+  }
+
+  Future<void> getImageFromGallery(int user_id) async {
+    print("get image");
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    final bytes = await pickedImage?.readAsBytes();
+    if (pickedImage != null) {
+      print("mulai upload");
+      await uploadFile(bytes as List<int>, pickedImage.name, user_id);
+    }
+  }
+}
+
+class NPWPProvider extends ChangeNotifier {
+  String namaImage = "";
+
+  final dio = Dio();
+
+  Future<String> uploadFile(
+      List<int> file, String fileName, int user_id) async {
+    print("mulai");
+    String fileExtension = fileName.split('.').last;
+    MediaType? contentType;
+    if (fileExtension == 'jpg' || fileExtension == 'jpeg') {
+      contentType = MediaType('image', 'jpeg');
+    } else if (fileExtension == 'png') {
+      contentType = MediaType('image', 'png');
+    }
+    FormData formData = FormData.fromMap({
+      "file": MultipartFile.fromBytes(file,
+          filename: fileName, contentType: contentType),
+    });
+    var response = await dio
+        .put("http://127.0.0.1:8000/uploadfile/$user_id/NPWP", data: formData);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      namaImage = fileName;
+      notifyListeners();
+    }
+    return fileName;
+  }
+
+  Future<void> getImageFromGallery(int user_id) async {
+    print("get image");
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    final bytes = await pickedImage?.readAsBytes();
+    if (pickedImage != null) {
+      print("mulai upload");
+      await uploadFile(bytes as List<int>, pickedImage.name, user_id);
+    }
+  }
+}
+
+class TTDProvider extends ChangeNotifier {
+  String namaImage = "";
+
+  final dio = Dio();
+
+  Future<String> uploadFile(
+      List<int> file, String fileName, int user_id) async {
+    print("mulai");
+    String fileExtension = fileName.split('.').last;
+    MediaType? contentType;
+    if (fileExtension == 'jpg' || fileExtension == 'jpeg') {
+      contentType = MediaType('image', 'jpeg');
+    } else if (fileExtension == 'png') {
+      contentType = MediaType('image', 'png');
+    }
+    FormData formData = FormData.fromMap({
+      "file": MultipartFile.fromBytes(file,
+          filename: fileName, contentType: contentType),
+    });
+    var response = await dio
+        .put("http://127.0.0.1:8000/uploadfile/$user_id/TTD", data: formData);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      namaImage = fileName;
+      notifyListeners();
+    }
+    return fileName;
+  }
+
+  Future<void> getImageFromGallery(int user_id) async {
+    print("get image");
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    final bytes = await pickedImage?.readAsBytes();
+    if (pickedImage != null) {
+      print("mulai upload");
+      await uploadFile(bytes as List<int>, pickedImage.name, user_id);
+    }
+  }
+}
