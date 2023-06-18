@@ -822,6 +822,7 @@ class PinjamanUser extends ChangeNotifier {
   List<Pinjaman>? pinjamanList;
   List<Pinjaman>? pinjamanPendingList;
   List<Pinjaman>? pinjamanLunasList;
+  List<Pinjaman>? pinjamanOpenList;
   bool isLoading = false;
 
   Future<int> fetchDataPinjaman(int user_id) async {
@@ -865,6 +866,17 @@ class PinjamanUser extends ChangeNotifier {
           calculateTotalPinjaman();
         } else {
           pinjamanLunasList = [];
+        }
+
+        var pinjamanOpenData = data['pinjamanOpen'];
+
+        if (pinjamanOpenData != null) {
+          pinjamanOpenList = List<Pinjaman>.from(
+            pinjamanOpenData.map((json) => Pinjaman.fromJson(json)),
+          );
+          calculateTotalPinjaman();
+        } else {
+          pinjamanOpenList = [];
         }
       } else if (response.statusCode == 422) {
         print('Validation Error: ${response.body}');

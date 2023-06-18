@@ -400,7 +400,10 @@ def get_pinjaman_by_user_id(user_id: int, session=Depends(get_session)):
     pinjamanLunas = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Lunas").all()
     if pinjamanLunas is None:
         return {"message": "Pinjaman not found"}
-    return {"pinjaman": pinjaman, "pinjamanPending": pinjamanPending, "pinjamanLunas": pinjamanLunas}
+    pinjamanOpen = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Open").all()
+    if pinjamanOpen is None:
+        return {"message": "Pinjaman not found"}
+    return {"pinjaman": pinjaman, "pinjamanPending": pinjamanPending, "pinjamanLunas": pinjamanLunas, "pinjamanOpen": pinjamanOpen}
 
 # GET PINJAMAN ALL WHERE STATUS_PINJAMAN == OPEN (investor)
 @app.get("/getOpenPinjaman")
