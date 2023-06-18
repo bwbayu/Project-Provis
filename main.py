@@ -491,7 +491,9 @@ def get_pendanaan_funder(user_id:int, session=Depends(get_session)):
     pendanaan = session.query(models.PendanaanModel).filter_by(funder_id=funder.funder_id).all()
     # get lunas pendanaan by funder_id (portofolio page)
     pendanaanLunas = session.query(models.PendanaanModel).filter_by(funder_id=funder.funder_id).filter_by(status_pendanaan="Lunas").all()
-    return {"pendanaan": pendanaan, "pendanaanLunas": pendanaanLunas}
+    # GET PENDANAAN YANG STATUSNYA PENDING NAMUN STATUS PINJAMANNYA LUNAS
+    pendanaanPending = session.query(models.PendanaanModel).join(models.PinjamanModel).filter(models.PendanaanModel.funder_id == funder.funder_id, models.PendanaanModel.status_pendanaan == "Pending", models.PinjamanModel.status_pinjaman == "Lunas").all()
+    return {"pendanaan": pendanaan, "pendanaanLunas": pendanaanLunas, "pendanaanPending": pendanaanPending}
 
 # POST PENDANAAN BY USER_ID
 @app.post("/addPendanaan/{user_id}")
@@ -533,7 +535,7 @@ def add_pendanaan(user_id: int, data_pendanaan: schemas.PendanaanSchema, session
     session.close()
     return {"pendanaan" : pendanaan, "pinjaman": pinjaman}
 
-# ==================================== PENDANAAN =================================================
+# ==================================== PEMBAYARAN =================================================
 
 # POST PEMBAYARAN BY PINJAMAN_ID
 @app.put("/addPembayaran/{pinjaman_id}")
@@ -549,6 +551,7 @@ def add_pembayaran(pinjaman_id: int, data_pembayaran: schemas.PembayaranSchema, 
     session.close()
     return {"pembayaran" : pembayaran}
 
+# UPDATE STATUS PINJAMAN DAN STATUS PEMBAYARAN DARI PENDING KE LUNAS
 @app.put("/updateStatusPembayaran/{pinjaman_id}")
 def update_status_pembayaran(pinjaman_id: int, session=Depends(get_session)):
     # GET PINJAMAN BY PINJAMAN_ID
@@ -568,3 +571,17 @@ def update_status_pembayaran(pinjaman_id: int, session=Depends(get_session)):
     session.refresh(pembayaran)
     session.close()
     return {"pembayaran" : pembayaran, "pinjaman" : pinjaman}
+
+# UPDATE STATUS PENDANAAN DAN CURR_PEMBAYARAN
+@app.put("/updateStatusPendanaan/{pendanaan_id}")
+def update_status_pendanaan(pendanaan_id: int, session=Depends(get_session)):
+    # GET PENDANAAN BY PENDANAAN_ID
+    pendanaan = session.query(models.PendanaanModel).filter_by(pendanaan_id=pendanaan_id).first()
+    if pendanaan is None:
+        return {"message": "Pendanaan not found"}
+    pendanaan.status_pendanaan = "Lunas"
+    pendanaan.curr_pembayaran = pendanaan.total_pembayaran
+    session.commit()
+    session.refresh(pendanaan)
+    session.close()
+    return {"pendanaan" : pendanaan}
