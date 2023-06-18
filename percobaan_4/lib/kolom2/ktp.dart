@@ -7,8 +7,6 @@ import 'package:provider/provider.dart';
 class formKTP extends StatelessWidget {
   String namaImage = "";
 
-  final dio = Dio();
-
   @override
   Widget build(BuildContext context) {
     return Container(

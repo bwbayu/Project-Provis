@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:percobaan_4/model.dart';
 
+
 class RolePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -52,17 +53,14 @@ class RolePage extends StatelessWidget {
                             'DAUS',
                             style: TextStyle(
                               fontSize: 24,
-                              fontFamily: 'Outfit',
-                              fontWeight: FontWeight.w900,
+                              fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
                           ),
                           Text(
-                            'Step to a better future',
+                            'Step to a better future?',
                             style: TextStyle(
                               fontSize: 16,
-                              fontFamily: 'Outfit',
-                              fontWeight: FontWeight.w400,
                               color: Colors.white,
                             ),
                           ),
@@ -72,19 +70,17 @@ class RolePage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.white,
-                              fontFamily: 'Outfit',
-                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          SizedBox(height: 20),
+                          SizedBox(height: 10),
                           Column(
                             children: <Widget>[
                               SizedBox(
                                 width: 300,
                                 height: 80,
                                 child: Consumer<Register>(
-                                  builder: (context, register, child) =>
-                                      ElevatedButton(
+                                  builder:(context, register, child) => 
+                                  ElevatedButton(
                                     onPressed: () {
                                       // REGISTER WITH JENIS_USER = INVESTOR
                                       register.jenis_user = "Investor";
@@ -92,18 +88,13 @@ class RolePage extends StatelessWidget {
                                           context, '/registerPage');
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
+                                      backgroundColor:
+                                          Color.fromARGB(255, 148, 227, 191),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(40),
                                       ),
                                     ),
-                                    child: Text('Investor',
-                                        style: TextStyle(
-                                            fontFamily: 'Outfit',
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 18,
-                                            color: Color.fromARGB(
-                                                1000, 168, 81, 223))),
+                                    child: Text('Investor'),
                                   ),
                                 ),
                               ),
@@ -113,7 +104,7 @@ class RolePage extends StatelessWidget {
                                 height: 80,
                                 child: Consumer<Register>(
                                   builder: (context, register, child) =>
-                                      ElevatedButton(
+                                  ElevatedButton(
                                     onPressed: () {
                                       // REGISTER WITH JENIS_USER = BORROWER
                                       register.jenis_user = "Borrower";
@@ -121,18 +112,13 @@ class RolePage extends StatelessWidget {
                                           context, '/registerPage');
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
+                                      backgroundColor:
+                                          Color.fromARGB(255, 252, 181, 143),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(40),
                                       ),
                                     ),
-                                    child: Text('UMKM',
-                                        style: TextStyle(
-                                            fontFamily: 'Outfit',
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 18,
-                                            color: Color.fromARGB(
-                                                1000, 168, 81, 223))),
+                                    child: Text('UMKM'),
                                   ),
                                 ),
                               ),
@@ -143,8 +129,6 @@ class RolePage extends StatelessWidget {
                             // GO TO INVESTOR DASHBOARD AS VISITOR (IF IMPLEMENTED)
                             'Not now',
                             style: TextStyle(
-                              fontFamily: 'Outfit',
-                              fontWeight: FontWeight.w500,
                               fontSize: 16,
                               color: Colors.white,
                             ),

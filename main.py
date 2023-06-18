@@ -35,7 +35,6 @@ def get_session():
     finally:
         session.close()
 
-
 # API METHOD
 app = FastAPI()
 
@@ -44,7 +43,6 @@ static_dir = os.path.join(os.path.dirname(
     os.path.abspath(__file__)), "percobaan_4/asset")
 app.mount("/asset", StaticFiles(directory=static_dir), name="asset")
 
-# Set CORS policies
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -55,20 +53,16 @@ app.add_middleware(
 
 # ==================================== USER =================================================
 # GET ALL USER
-
-
 @app.get("/getUser")
 def get_user(session: Session = Depends(get_session)):
     users = session.query(models.UserModel).all()
     return {"user": users}
 
 # ADD USER (page register)
-
-
 @app.post("/addUser")
 async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session)):
     try:
-        print("Adding user:", user.username)  # Debugging statement
+        print("Adding user:", user.username) # Debugging statement
 
         # Check if email or phone number already exists
         existing_user = db.query(models.UserModel).filter(or_(
@@ -76,12 +70,10 @@ async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session))
             models.UserModel.nomor_hp == user.nomor_hp
         )).first()
         if existing_user:
-            raise HTTPException(
-                status_code=400, detail="Email or phone number already exists")
+            raise HTTPException(status_code=400, detail="Email or phone number already exists")
 
         # Hash the password
-        hashed_password = bcrypt.hashpw(
-            user.password.encode('utf-8'), bcrypt.gensalt())
+        hashed_password = bcrypt.hashpw(user.password.encode('utf-8'), bcrypt.gensalt())
 
         # create new user
         user_data = models.UserModel(
@@ -100,20 +92,20 @@ async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session))
         # Create new personal data for the user
         personal_data = models.PersonalDataModel(
             user_id=user_data.user_id,
-            nama="",
-            foto_ktp="",
-            foto_npwp="",
-            ttd="",
-            tempat_lahir="",
-            tgl_lahir="",
-            jenis_kelamin="",
-            alamat="",
-            agama="",
-            status_perkawinan="",
-            pend_terakhir="",
-            status_kewarganegaraan="",
-            nomor_npwp="",
-            pemilik_npwp=""
+            nama = "",
+            foto_ktp = "",
+            foto_npwp = "",
+            ttd = "",
+            tempat_lahir = "",
+            tgl_lahir = "",
+            jenis_kelamin = "",
+            alamat = "",
+            agama = "",
+            status_perkawinan = "",
+            pend_terakhir = "",
+            status_kewarganegaraan = "",
+            nomor_npwp = "",
+            pemilik_npwp = ""
         )
         db.add(personal_data)
         db.commit()
@@ -144,7 +136,7 @@ async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session))
             db.refresh(umkm)
 
     except Exception as e:
-        print("Error:", e)  # Debugging statement
+        print("Error:", e) # Debugging statement
         db.rollback()
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -154,12 +146,9 @@ async def add_user(user: schemas.UserSchema, db: Session = Depends(get_session))
     return {"message": "User data added successfully"}
 
 # LOGIN
-
-
 @app.post("/login")
 async def login(user: schemas.LoginSchema, db: Session = Depends(get_session)):
-    user_data = db.query(models.UserModel).filter(
-        models.UserModel.email == user.email).first()
+    user_data = db.query(models.UserModel).filter(models.UserModel.email == user.email).first()
     if user_data is None:
         raise HTTPException(status_code=404, detail="User not found")
     if not bcrypt.checkpw(user.password.encode('utf-8'), user_data.password):
@@ -184,24 +173,19 @@ async def login(user: schemas.LoginSchema, db: Session = Depends(get_session)):
     }
 
 # GET USER BY ID
-
-
 @app.get("/getUserById/{user_id}")
 def get_user_by_id(user_id: int, session: Session = Depends(get_session)):
     db_user = session.query(models.UserModel).get(user_id)
     return {"user": db_user}
 
 # UPDATE STATUS AKUN
-
-
 @app.put("/updateStatusAkun/{user_id}")
 def update_status_akun(user_id: int, session: Session = Depends(get_session)):
     db_user = session.query(models.UserModel).get(user_id)
     if db_user is None:
         return {"message": "User not found"}
 
-    db_personal_data = session.query(
-        models.PersonalDataModel).filter_by(user_id=user_id).first()
+    db_personal_data = session.query(models.PersonalDataModel).filter_by(user_id=user_id).first()
     all_variables_not_empty = True
     for variable in db_personal_data.__dict__:
         if isinstance(db_personal_data.__dict__[variable], str) and db_personal_data.__dict__[variable] == "":
@@ -209,13 +193,11 @@ def update_status_akun(user_id: int, session: Session = Depends(get_session)):
             break
 
     if db_user.jenis_user == "Borrower":
-        pemilik_umkm = session.query(
-            models.PemilikUmkmModel).filter_by(user_id=user_id).first()
+        pemilik_umkm = session.query(models.PemilikUmkmModel).filter_by(user_id=user_id).first()
         if pemilik_umkm is None:
             return {"message": "Pemilik UMKM not found"}
 
-        db_umkm_user = session.query(models.UMKMModel).filter_by(
-            pemilik_id=pemilik_umkm.pemilik_id).first()
+        db_umkm_user = session.query(models.UMKMModel).filter_by(pemilik_id=pemilik_umkm.pemilik_id).first()
         if db_umkm_user is None:
             return {"message": "UMKM not found"}
 
@@ -236,18 +218,15 @@ def update_status_akun(user_id: int, session: Session = Depends(get_session)):
 
 # ==================================== Personal Data =================================================
 # UPDATE PERSONAL DATA (page ktp, npwp, ttd, data_diri)
-
-
 @app.put("/updatePersonalData/{user_id}")
 def update_personal_data(user_id: int, personal_data: schemas.PersonalDataSchema, session: Session = Depends(get_session)):
-    db_personal_data = session.query(
-        models.PersonalDataModel).filter_by(user_id=user_id).first()
+    db_personal_data = session.query(models.PersonalDataModel).filter_by(user_id=user_id).first()
     if db_personal_data:
         # update data
         db_personal_data.nama = personal_data.nama
-        # db_personal_data.foto_ktp = personal_data.foto_ktp
-        # db_personal_data.foto_npwp = personal_data.foto_npwp
-        # db_personal_data.ttd = personal_data.ttd
+        db_personal_data.foto_ktp = personal_data.foto_ktp
+        db_personal_data.foto_npwp = personal_data.foto_npwp
+        db_personal_data.ttd = personal_data.ttd
         db_personal_data.tempat_lahir = personal_data.tempat_lahir
         db_personal_data.tgl_lahir = personal_data.tgl_lahir
         db_personal_data.jenis_kelamin = personal_data.jenis_kelamin
@@ -265,12 +244,9 @@ def update_personal_data(user_id: int, personal_data: schemas.PersonalDataSchema
     return {"message": "User not found"}
 
 # GET PERSONAL DATA BY ID (page profile_page, informasi_akun)
-
-
 @app.get("/getPersonalData/{user_id}")
 def get_personal_data_by_user_id(user_id: int, session: Session = Depends(get_session)):
-    personal_data = session.query(
-        models.PersonalDataModel).filter_by(user_id=user_id).first()
+    personal_data = session.query(models.PersonalDataModel).filter_by(user_id=user_id).first()
     if personal_data is None:
         return {"error": "Personal data not found"}
     return {"personal_data": personal_data}
@@ -278,8 +254,6 @@ def get_personal_data_by_user_id(user_id: int, session: Session = Depends(get_se
 # ==================================== BANK =================================================
 
 # ADD DATA BANK (page tambah_rekening, akun_bank)
-
-
 @app.post("/addBank/{user_id}")
 def add_bank(bank_data: schemas.BankSchema, user_id: int, session=Depends(get_session)):
     bank = models.BankModel(
@@ -294,10 +268,8 @@ def add_bank(bank_data: schemas.BankSchema, user_id: int, session=Depends(get_se
     return {"bank": bank}
 
 # GET BANK BY USER_ID (page tarik_dana, bankAndCards)
-
-
 @app.get("/getBank/{user_id}")
-def get_user_banks(user_id: int, session=Depends(get_session)):
+def get_user_banks(user_id: int,session=Depends(get_session)):
     user = session.query(models.UserModel).get(user_id)
     if user is None:
         return {"error": "User not found"}
@@ -305,10 +277,8 @@ def get_user_banks(user_id: int, session=Depends(get_session)):
 
 # ==================================== WALLET =================================================
 # GET WALLET BY USER ID (page wallet)
-
-
 @app.get("/users/{user_id}/wallet")
-def get_user_wallet(user_id: int, session=Depends(get_session)):
+def get_user_wallet(user_id: int,session=Depends(get_session)):
     user = session.query(models.UserModel).get(user_id)
     if user is None:
         return {"error": "User not found"}
@@ -316,29 +286,21 @@ def get_user_wallet(user_id: int, session=Depends(get_session)):
 
 # ==================================== RIWAYAT SALDO =================================================
 # GET RIWAYAT WALLET BY USER ID (page wallet)
-
-
 @app.get("/users/{user_id}/riwayat-saldo")
 def get_riwayat_saldo_by_user_id(user_id: int, session=Depends(get_session)):
-    wallet = session.query(models.WalletModel).filter_by(
-        user_id=user_id).first()
+    wallet = session.query(models.WalletModel).filter_by(user_id=user_id).first()
     if wallet is None:
         return {"error": "Wallet not found"}
 
-    riwayat_saldo = session.query(models.RiwayatSaldoModel).filter_by(
-        wallet_id=wallet.wallet_id).all()
+    riwayat_saldo = session.query(models.RiwayatSaldoModel).filter_by(wallet_id=wallet.wallet_id).all()
     return {"riwayat_saldo": wallet.riwayat_saldo}
 
 # ==================================== UMKM =================================================
 # UPDATE DATA UMKM (page data_identitas_usaha)
-
-
 @app.put("/updateUMKM/{user_id}")
 def update_umkm(user_id: int, umkm_data: schemas.UMKMSchema, session=Depends(get_session)):
-    pemilik_umkm = session.query(
-        models.PemilikUmkmModel).filter_by(user_id=user_id).first()
-    umkm = session.query(models.UMKMModel).filter_by(
-        pemilik_id=pemilik_umkm.pemilik_id).first()
+    pemilik_umkm = session.query(models.PemilikUmkmModel).filter_by(user_id=user_id).first()
+    umkm = session.query(models.UMKMModel).filter_by(pemilik_id=pemilik_umkm.pemilik_id).first()
     if umkm:
         umkm.pemilik_id = pemilik_umkm.pemilik_id
         umkm.bentuk_umkm = umkm_data.bentuk_umkm
@@ -356,8 +318,6 @@ def update_umkm(user_id: int, umkm_data: schemas.UMKMSchema, session=Depends(get
     return {"message": "Pemilik UMKM is not found", 'umkm': umkm}
 
 # GET UMKM BY user_id (Page identitas_usaha, rincian_umkm, rincian_portofolio)
-
-
 @app.get("/getUmkm/{user_id}")
 def get_umkm_by_user_id(user_id: int, session=Depends(get_session)):
     # get user
@@ -365,49 +325,40 @@ def get_umkm_by_user_id(user_id: int, session=Depends(get_session)):
     if user is None:
         return {"error": "User not found"}
     # get pemilik umkm
-    pemilik_umkm = session.query(
-        models.PemilikUmkmModel).filter_by(user_id=user_id).first()
+    pemilik_umkm = session.query(models.PemilikUmkmModel).filter_by(user_id=user_id).first()
     if pemilik_umkm is None:
         return {"error": "Pemilik UMKM is not found"}
     # get umkm
-    umkm = session.query(models.UMKMModel).filter_by(
-        pemilik_id=pemilik_umkm.pemilik_id).first()
+    umkm = session.query(models.UMKMModel).filter_by(pemilik_id=pemilik_umkm.pemilik_id).first()
     if umkm is None:
         return {"error": "UMKM is not found"}
     return {"umkm": umkm}
 
 # GET UMKM BY PINJAMAN ID
-
-
 @app.get("/getUmkmByPinjaman/{pinjaman_id}")
 def get_umkm_by_pinjaman_id(pinjaman_id: int, session=Depends(get_session)):
     # pinjaman
     pinjaman = session.query(models.PinjamanModel).get(pinjaman_id)
     if pinjaman is None:
         return {"error": "Pinjaman is not found"}
-    umkm = session.query(models.UMKMModel).filter_by(
-        umkm_id=pinjaman.umkm_id).first()
+    umkm = session.query(models.UMKMModel).filter_by(umkm_id=pinjaman.umkm_id).first()
     if umkm is None:
         return {"error": "UMKM is not found"}
     return {"umkm": umkm, "pinjaman": pinjaman}
 
 # ADD PINJAMAN UMKM (page pengajuanPinjaman)
-
-
 @app.post("/addPinjamanUmkm/{user_id}")
-def add_pinjaman_umkm(user_id: int, pinjaman_umkm_data: schemas.PinjamanSchema, db=Depends(get_session)):
+def add_pinjaman_umkm(user_id:int, pinjaman_umkm_data: schemas.PinjamanSchema, db=Depends(get_session)):
     # cari user
     user = db.query(models.UserModel).filter_by(user_id=user_id).first()
     if user is None:
         return {"error": "User not found"}
     # cari pemilik umkm
-    pemilik_umkm = db.query(models.PemilikUmkmModel).filter_by(
-        user_id=user_id).first()
+    pemilik_umkm = db.query(models.PemilikUmkmModel).filter_by(user_id=user_id).first()
     if pemilik_umkm is None:
         return {"error": "Pemilik UMKM is not found"}
     # cari umkm
-    umkm = db.query(models.UMKMModel).filter_by(
-        pemilik_id=pemilik_umkm.pemilik_id).first()
+    umkm = db.query(models.UMKMModel).filter_by(pemilik_id=pemilik_umkm.pemilik_id).first()
     if umkm is None:
         return {"message": "UMKM not found"}
     # assign data pinjaman
@@ -415,16 +366,16 @@ def add_pinjaman_umkm(user_id: int, pinjaman_umkm_data: schemas.PinjamanSchema, 
     tgl_tenggang = current_date + timedelta(days=30)
 
     pinjaman = models.PinjamanModel(
-        umkm_id=umkm.umkm_id,
-        jumlah_pinjaman=pinjaman_umkm_data.jumlah_pinjaman,
-        tenor_pinjaman=pinjaman_umkm_data.tenor_pinjaman,
-        bunga_pinjaman=pinjaman_umkm_data.bunga_pinjaman,
-        frekuensi_angsuran_pokok=pinjaman_umkm_data.frekuensi_angsuran_pokok,
-        tgl_pengajuan=current_date,
-        tgl_tenggang=tgl_tenggang,
-        status_pinjaman=pinjaman_umkm_data.status_pinjaman,
-        tujuan_pinjaman=pinjaman_umkm_data.tujuan_pinjaman,
-        pinjaman_terkumpul=0
+        umkm_id = umkm.umkm_id,
+        jumlah_pinjaman= pinjaman_umkm_data.jumlah_pinjaman,
+        tenor_pinjaman= pinjaman_umkm_data.tenor_pinjaman,
+        bunga_pinjaman= pinjaman_umkm_data.bunga_pinjaman,
+        frekuensi_angsuran_pokok= pinjaman_umkm_data.frekuensi_angsuran_pokok,
+        tgl_pengajuan= current_date,
+        tgl_tenggang= tgl_tenggang,
+        status_pinjaman= pinjaman_umkm_data.status_pinjaman,
+        tujuan_pinjaman= pinjaman_umkm_data.tujuan_pinjaman,
+        pinjaman_terkumpul= 0
     )
     db.add(pinjaman)
     db.commit()
@@ -432,8 +383,8 @@ def add_pinjaman_umkm(user_id: int, pinjaman_umkm_data: schemas.PinjamanSchema, 
 
     # buat pembayaran dummy
     pembayaran = models.PembayaranModel(
-        pinjaman_id=pinjaman.pinjaman_id,
-        jumlah_pembayaran=0.0,
+        pinjaman_id = pinjaman.pinjaman_id,
+        jumlah_pembayaran = 0.0,
     )
     db.add(pembayaran)
     db.commit()
@@ -444,8 +395,6 @@ def add_pinjaman_umkm(user_id: int, pinjaman_umkm_data: schemas.PinjamanSchema, 
 # ==================================== PINJAMAN =================================================
 
 # GET PINJAMAN BY USER_ID (Page list_pinjaman) -> borrower
-
-
 @app.get("/getPinjaman/{user_id}")
 def get_pinjaman_by_user_id(user_id: int, session=Depends(get_session)):
     # get user
@@ -453,66 +402,53 @@ def get_pinjaman_by_user_id(user_id: int, session=Depends(get_session)):
     if user is None:
         return {"error": "User not found"}
     # get pemilik umkm
-    pemilik_umkm = session.query(
-        models.PemilikUmkmModel).filter_by(user_id=user_id).first()
+    pemilik_umkm = session.query(models.PemilikUmkmModel).filter_by(user_id=user_id).first()
     if pemilik_umkm is None:
         return {"error": "Pemilik UMKM is not found"}
     # cari umkm
-    umkm = session.query(models.UMKMModel).filter_by(
-        pemilik_id=pemilik_umkm.pemilik_id).first()
+    umkm = session.query(models.UMKMModel).filter_by(pemilik_id=pemilik_umkm.pemilik_id).first()
     if umkm is None:
         return {"message": "UMKM not found"}
-
+    
     # cari pinjaman berdasarkan umkm_id
     umkm_id = umkm.umkm_id
-    pinjaman = session.query(models.PinjamanModel).filter_by(
-        umkm_id=umkm_id).all()
+    pinjaman = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).all()
     if pinjaman is None:
         return {"message": "Pinjaman not found"}
     # dashboard umkm
-    pinjamanPending = session.query(models.PinjamanModel).filter_by(
-        umkm_id=umkm_id).filter_by(status_pinjaman="Pending").all()
+    pinjamanPending = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Pending").all()
     if pinjamanPending is None:
         return {"message": "Pinjaman not found"}
     # list pinjaman selesai / lunas
-    pinjamanLunas = session.query(models.PinjamanModel).filter_by(
-        umkm_id=umkm_id).filter_by(status_pinjaman="Lunas").all()
+    pinjamanLunas = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Lunas").all()
     if pinjamanLunas is None:
         return {"message": "Pinjaman not found"}
     # list pinjaman open
-    pinjamanOpen = session.query(models.PinjamanModel).filter_by(
-        umkm_id=umkm_id).filter_by(status_pinjaman="Open").all()
+    pinjamanOpen = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Open").all()
     if pinjamanOpen is None:
         return {"message": "Pinjaman not found"}
     # pinjaman close
-    pinjamanClose = session.query(models.PinjamanModel).filter_by(
-        umkm_id=umkm_id).filter_by(status_pinjaman="Close").all()
+    pinjamanClose = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Close").all()
     if pinjamanClose is None:
         return {"message": "Pinjaman not found"}
     return {"pinjaman": pinjaman, "pinjamanPending": pinjamanPending, "pinjamanLunas": pinjamanLunas, "pinjamanOpen": pinjamanOpen, "pinjamanClose": pinjamanClose}
 
 # GET PINJAMAN ALL WHERE STATUS_PINJAMAN == OPEN (investor)
-
-
 @app.get("/getOpenPinjaman")
 def get_pinjaman_by_status(session=Depends(get_session)):
-    pinjaman = session.query(models.PinjamanModel).filter_by(
-        status_pinjaman="Open").all()
+    pinjaman = session.query(models.PinjamanModel).filter_by(status_pinjaman="Open").all()
     if pinjaman is None:
         return {"message": "Pinjaman not found"}
     return {"pinjaman": pinjaman}
 
 # UPDATE STATUS PINJAMAN
-
-
 @app.put("/updateStatusPinjaman/{pinjaman_id}")
-def update_status_pinjaman(pinjaman_id: int, session=Depends(get_session)):
+def update_status_pinjaman(pinjaman_id:int, session=Depends(get_session)):
     # get pinjaman by pinjaman_id
-    pinjaman = session.query(models.PinjamanModel).filter_by(
-        pinjaman_id=pinjaman_id).first()
+    pinjaman = session.query(models.PinjamanModel).filter_by(pinjaman_id=pinjaman_id).first()
     if pinjaman is None:
         return {"message": "Pinjaman not found"}
-    if (pinjaman.status_pinjaman == "Close"):
+    if(pinjaman.status_pinjaman == "Close"):
         pinjaman.status_pinjaman = "Pending"
         session.commit()
         session.refresh(pinjaman)
@@ -522,42 +458,36 @@ def update_status_pinjaman(pinjaman_id: int, session=Depends(get_session)):
 # ==================================== WALLET =================================================
 
 # add saldo to riwayat wallet and update saldo wallet
-
-
 @app.post("/addRiwayatWallet/{wallet_id}")
 def add_riwayat_wallet(wallet_id: int, riwayat_wallet_data: schemas.RiwayatSaldoSchema, session=Depends(get_session)):
     # get wallet by wallet id
-    wallet = session.query(models.WalletModel).filter_by(
-        wallet_id=wallet_id).first()
-    if (wallet is None):
-        return {"message": "Wallet not found"}
+    wallet = session.query(models.WalletModel).filter_by(wallet_id=wallet_id).first()
+    if(wallet is None):
+        return {"message" : "Wallet not found"}
     # add riwayat wallet to wallet
     riwayat_wallet = models.RiwayatSaldoModel(
         wallet_id=wallet_id,
-        saldo_transaksi=riwayat_wallet_data.saldo_transaksi,
-        keterangan=riwayat_wallet_data.keterangan,
-        status_transaksi=riwayat_wallet_data.status_transaksi
+        saldo_transaksi= riwayat_wallet_data.saldo_transaksi,
+        keterangan = riwayat_wallet_data.keterangan,
+        status_transaksi = riwayat_wallet_data.status_transaksi
     )
     session.add(riwayat_wallet)
     session.commit()
     session.refresh(riwayat_wallet)
     # update saldo wallet
-    if (riwayat_wallet_data.status_transaksi == "Masuk"):
+    if(riwayat_wallet_data.status_transaksi == "Masuk"):
         wallet.saldo += Decimal(riwayat_wallet_data.saldo_transaksi)
-    elif (riwayat_wallet_data.status_transaksi == "Keluar"):
+    elif(riwayat_wallet_data.status_transaksi == "Keluar"):
         wallet.saldo -= Decimal(riwayat_wallet_data.saldo_transaksi)
     session.commit()
     session.refresh(wallet)
     session.close()
-    return {"riwayat_wallet": riwayat_wallet, "wallet": wallet}
+    return {"riwayat_wallet" : riwayat_wallet, "wallet" : wallet}
 
 # get riwayat wallet by wallet id
-
-
 @app.get("/getRiwayatWallet/{wallet_id}")
-def get_riwayat_wallet(wallet_id: int, session=Depends(get_session)):
-    riwayat_wallet = session.query(models.RiwayatSaldoModel).filter_by(
-        wallet_id=wallet_id).order_by(models.RiwayatSaldoModel.id_riwayat.desc()).all()
+def get_riwayat_wallet(wallet_id:int, session=Depends(get_session)):
+    riwayat_wallet = session.query(models.RiwayatSaldoModel).filter_by(wallet_id=wallet_id).order_by(models.RiwayatSaldoModel.id_riwayat.desc()).all()
     if riwayat_wallet is None:
         return {"message": "Pinjaman not found"}
     return {"riwayat_wallet": riwayat_wallet}
@@ -565,33 +495,117 @@ def get_riwayat_wallet(wallet_id: int, session=Depends(get_session)):
 # ==================================== PENDANAAN =================================================
 
 # GET PENDANAAN BY USER_ID
-
-
 @app.get("/getPendanaan/{user_id}")
-def get_pendanaan_funder(user_id: int, session=Depends(get_session)):
+def get_pendanaan_funder(user_id:int, session=Depends(get_session)):
     # get funder by user_id
-    funder = session.query(models.PenyediaDanaModel).filter_by(
-        user_id=user_id).first()
-    if (funder is None):
+    funder = session.query(models.PenyediaDanaModel).filter_by(user_id=user_id).first()
+    if(funder is None):
         return {"message": "Funder not found"}
     # get all pendanaan by funder_id (portofolio page)
-    pendanaan = session.query(models.PendanaanModel).filter_by(
-        funder_id=funder.funder_id).all()
+    pendanaan = session.query(models.PendanaanModel).filter_by(funder_id=funder.funder_id).all()
     # get lunas pendanaan by funder_id (portofolio page)
-    pendanaanLunas = session.query(models.PendanaanModel).filter_by(
-        funder_id=funder.funder_id).filter_by(status_pendanaan="Lunas").all()
+    pendanaanLunas = session.query(models.PendanaanModel).filter_by(funder_id=funder.funder_id).filter_by(status_pendanaan="Lunas").all()
     # GET PENDANAAN YANG STATUSNYA PENDING NAMUN STATUS PINJAMANNYA LUNAS
-    pendanaanPending = session.query(models.PendanaanModel).join(models.PinjamanModel).filter(models.PendanaanModel.funder_id ==
-                                                                                              funder.funder_id, models.PendanaanModel.status_pendanaan == "Pending", models.PinjamanModel.status_pinjaman == "Lunas").all()
+    pendanaanPending = session.query(models.PendanaanModel).join(models.PinjamanModel).filter(models.PendanaanModel.funder_id == funder.funder_id, models.PendanaanModel.status_pendanaan == "Pending", models.PinjamanModel.status_pinjaman == "Lunas").all()
     return {"pendanaan": pendanaan, "pendanaanLunas": pendanaanLunas, "pendanaanPending": pendanaanPending}
 
 # POST PENDANAAN BY USER_ID
+@app.post("/addPendanaan/{user_id}")
+def add_pendanaan(user_id: int, data_pendanaan: schemas.PendanaanSchema, session=Depends(get_session)):
+    # get funder by user_id
+    funder = session.query(models.PenyediaDanaModel).filter_by(user_id=user_id).first()
+    if(funder is None):
+        return {"message": "Funder not found"}
+    # get pembayaran by pinjaman_id
+    pembayaran = session.query(models.PembayaranModel).filter_by(pinjaman_id=data_pendanaan.pinjaman_id).first()
+    if pembayaran is None:
+        return {"message": "Pembayaran not found"}
+    # add pendanaan
+    pendanaan = models.PendanaanModel(
+        funder_id = funder.funder_id, 
+        pembayaran_id = pembayaran.pembayaran_id,
+        pinjaman_id = data_pendanaan.pinjaman_id,
+        jumlah_pendanaan = data_pendanaan.jumlah_pendanaan,
+        status_pendanaan = data_pendanaan.status_pendanaan,
+        total_pembayaran = data_pendanaan.total_pembayaran,
+        curr_pembayaran = data_pendanaan.curr_pembayaran
+    )
+    session.add(pendanaan)
+    session.commit()
+    session.refresh(pendanaan)
+    # update pinjaman_terkumpul dari pinjaman tersebut
+    pinjaman_id = data_pendanaan.pinjaman_id
+    # get pinjaman by pinjaman_id
+    pinjaman = session.query(models.PinjamanModel).filter_by(pinjaman_id=pinjaman_id).first()
+    if(pinjaman is None):
+        return {"message": "Pinjaman not found"}
+    # update dana pinjaman
+    pinjaman.pinjaman_terkumpul += Decimal(data_pendanaan.jumlah_pendanaan)
+    # update status pinjaman
+    if(pinjaman.pinjaman_terkumpul == pinjaman.jumlah_pinjaman):
+        pinjaman.status_pinjaman = "Close"
+    session.commit()
+    session.refresh(pinjaman)
+    session.close()
+    return {"pendanaan" : pendanaan, "pinjaman": pinjaman}
 
-# ===================================== UPLOAD FILE ======================
+# ==================================== PEMBAYARAN =================================================
 
-# PUT FILE IMAGE
+# POST PEMBAYARAN BY PINJAMAN_ID
+@app.put("/addPembayaran/{pinjaman_id}")
+def add_pembayaran(pinjaman_id: int, data_pembayaran: schemas.PembayaranSchema, session=Depends(get_session)):
+    # GET PEMBAYARAN BY PINJAMAN_ID
+    pembayaran = session.query(models.PembayaranModel).filter_by(pinjaman_id=pinjaman_id).first()
+    if pembayaran is None:
+        return {"message": "Pembayaran not found"}
+    pembayaran.jumlah_pembayaran = data_pembayaran.jumlah_pembayaran
+    pembayaran.status_pembayaran = data_pembayaran.status_pembayaran
+    session.commit()
+    session.refresh(pembayaran)
+    session.close()
+    return {"pembayaran" : pembayaran}
 
+# UPDATE STATUS PINJAMAN DAN STATUS PEMBAYARAN DARI PENDING KE LUNAS
+@app.put("/updateStatusPembayaran/{pinjaman_id}")
+def update_status_pembayaran(pinjaman_id: int, session=Depends(get_session)):
+    # GET PINJAMAN BY PINJAMAN_ID
+    pinjaman = session.query(models.PinjamanModel).filter_by(pinjaman_id=pinjaman_id).first()
+    if pinjaman is None:
+        return {"message": "Pinjaman not found"}
+    pinjaman.status_pinjaman = "Lunas"
+    session.commit()
+    session.refresh(pinjaman)
+    session.close()
+    # GET PEMBAYARAN BY PINJAMAN_ID
+    pembayaran = session.query(models.PembayaranModel).filter_by(pinjaman_id=pinjaman.pinjaman_id).first()
+    if pembayaran is None:
+        return {"message": "Pembayaran not found"}
+    pembayaran.status_pembayaran = "Lunas"
+    session.commit()
+    session.refresh(pembayaran)
+    session.close()
+    return {"pembayaran" : pembayaran, "pinjaman" : pinjaman}
 
+# UPDATE STATUS PENDANAAN DAN CURR_PEMBAYARAN
+@app.put("/updateStatusPendanaan/{pendanaan_id}")
+def update_status_pendanaan(pendanaan_id: int, session=Depends(get_session)):
+    # GET PENDANAAN BY PENDANAAN_ID
+    pendanaan = session.query(models.PendanaanModel).filter_by(pendanaan_id=pendanaan_id).first()
+    if pendanaan is None:
+        return {"message": "Pendanaan not found"}
+    pendanaan.status_pendanaan = "Lunas"
+    pendanaan.curr_pembayaran = pendanaan.total_pembayaran
+    session.commit()
+    session.refresh(pendanaan)
+    session.close()
+    return {"pendanaan" : pendanaan}
+
+# ambil image berdasarkan nama file
+@app.get("/getimage/{nama_file}")
+async def getImage(nama_file: str):
+    return FileResponse("./percobaan_4/asset/images/"+nama_file)
+
+# Update Data foto_ktp
 @app.put("/uploadfile/{user_id}/KTP")
 async def create_upload_file(user_id: int, file: UploadFile = File(...), session=Depends(get_session)):
 
@@ -633,52 +647,9 @@ async def create_upload_file(user_id: int, file: UploadFile = File(...), session
         session.refresh(personal)
         return {"ktp": personal}
     file.close()
+    session.close()
 
-# PUT FILE IMAGE
-
-
-# @app.put("/uploadfile/{user_id}/TTD")
-# async def create_upload_file(user_id: int, file: UploadFile = File(...), session=Depends(get_session)):
-
-#     FILEPATH = "./percobaan_4/static/images/ttd/"
-#     filename = file.filename
-#     # test.png => ["test", "png"]
-#     # Get the last element after splitting by "."
-#     extension = filename.split(".")[-1]
-#     valid_extensions = ["png", "jpg", "jpeg"]  # List of valid extensions
-
-#     if extension not in valid_extensions:
-#         return {"status": "error", "detail": "File extension not allowed"}
-
-#     token_name = secrets.token_hex(10) + "."+extension
-#     generated_name = FILEPATH + token_name
-#     file_content = await file.read()
-
-#     with open(generated_name, "wb") as file:
-#         file.write(file_content)
-
-#     # PILLOW
-#     img = Image.open(generated_name)
-#     img = img.resize(size=(500, 500))
-#     img.save(generated_name)
-
-#     # get user
-#     user = session.query(models.UserModel).get(user_id)
-#     if user is None:
-#         return {"error": "User not found"}
-
-#     personal = session.query(models.PersonalDataModel).filter_by(
-#         user_id=user_id).first()
-#     if personal is None:
-#         return {"error": "Personal Data is not found"}
-
-#     if personal:
-#         personal.ttd = token_name
-#         session.commit()
-#         session.refresh(personal)
-#         return {"ktp": personal}
-#     file.close()
-
+# Update Foto TTD
 @app.put("/uploadfile/{user_id}/TTD")
 async def create_upload_file(user_id: int, file: UploadFile = File(...), session=Depends(get_session)):
 
@@ -719,10 +690,9 @@ async def create_upload_file(user_id: int, file: UploadFile = File(...), session
         session.refresh(personal)
         return {"ktp": personal}
     file.close()
+    session.close()
 
-# PUT FILE IMAGE
-
-
+# Update Foto NPWP    
 @app.put("/uploadfile/{user_id}/NPWP")
 async def create_upload_file(user_id: int, file: UploadFile = File(...), session=Depends(get_session)):
 
@@ -764,114 +734,4 @@ async def create_upload_file(user_id: int, file: UploadFile = File(...), session
         session.refresh(personal)
         return {"ktp": personal}
     file.close()
-
-
-@app.post("/addPendanaan/{user_id}")
-def add_pendanaan(user_id: int, data_pendanaan: schemas.PendanaanSchema, session=Depends(get_session)):
-    # get funder by user_id
-    funder = session.query(models.PenyediaDanaModel).filter_by(
-        user_id=user_id).first()
-    if (funder is None):
-        return {"message": "Funder not found"}
-    # get pembayaran by pinjaman_id
-    pembayaran = session.query(models.PembayaranModel).filter_by(
-        pinjaman_id=data_pendanaan.pinjaman_id).first()
-    if pembayaran is None:
-        return {"message": "Pembayaran not found"}
-    # add pendanaan
-    pendanaan = models.PendanaanModel(
-        funder_id=funder.funder_id,
-        pembayaran_id=pembayaran.pembayaran_id,
-        pinjaman_id=data_pendanaan.pinjaman_id,
-        jumlah_pendanaan=data_pendanaan.jumlah_pendanaan,
-        status_pendanaan=data_pendanaan.status_pendanaan,
-        total_pembayaran=data_pendanaan.total_pembayaran,
-        curr_pembayaran=data_pendanaan.curr_pembayaran
-    )
-    session.add(pendanaan)
-    session.commit()
-    session.refresh(pendanaan)
-    # update pinjaman_terkumpul dari pinjaman tersebut
-    pinjaman_id = data_pendanaan.pinjaman_id
-    # get pinjaman by pinjaman_id
-    pinjaman = session.query(models.PinjamanModel).filter_by(
-        pinjaman_id=pinjaman_id).first()
-    if (pinjaman is None):
-        return {"message": "Pinjaman not found"}
-    # update dana pinjaman
-    pinjaman.pinjaman_terkumpul += Decimal(data_pendanaan.jumlah_pendanaan)
-    # update status pinjaman
-    if (pinjaman.pinjaman_terkumpul == pinjaman.jumlah_pinjaman):
-        pinjaman.status_pinjaman = "Close"
-    session.commit()
-    session.refresh(pinjaman)
     session.close()
-    return {"pendanaan": pendanaan, "pinjaman": pinjaman}
-
-# ==================================== PEMBAYARAN =================================================
-
-# POST PEMBAYARAN BY PINJAMAN_ID
-
-
-@app.put("/addPembayaran/{pinjaman_id}")
-def add_pembayaran(pinjaman_id: int, data_pembayaran: schemas.PembayaranSchema, session=Depends(get_session)):
-    # GET PEMBAYARAN BY PINJAMAN_ID
-    pembayaran = session.query(models.PembayaranModel).filter_by(
-        pinjaman_id=pinjaman_id).first()
-    if pembayaran is None:
-        return {"message": "Pembayaran not found"}
-    pembayaran.jumlah_pembayaran = data_pembayaran.jumlah_pembayaran
-    pembayaran.status_pembayaran = data_pembayaran.status_pembayaran
-    session.commit()
-    session.refresh(pembayaran)
-    session.close()
-    return {"pembayaran": pembayaran}
-
-# UPDATE STATUS PINJAMAN DAN STATUS PEMBAYARAN DARI PENDING KE LUNAS
-
-
-@app.put("/updateStatusPembayaran/{pinjaman_id}")
-def update_status_pembayaran(pinjaman_id: int, session=Depends(get_session)):
-    # GET PINJAMAN BY PINJAMAN_ID
-    pinjaman = session.query(models.PinjamanModel).filter_by(
-        pinjaman_id=pinjaman_id).first()
-    if pinjaman is None:
-        return {"message": "Pinjaman not found"}
-    pinjaman.status_pinjaman = "Lunas"
-    session.commit()
-    session.refresh(pinjaman)
-    session.close()
-    # GET PEMBAYARAN BY PINJAMAN_ID
-    pembayaran = session.query(models.PembayaranModel).filter_by(
-        pinjaman_id=pinjaman.pinjaman_id).first()
-    if pembayaran is None:
-        return {"message": "Pembayaran not found"}
-    pembayaran.status_pembayaran = "Lunas"
-    session.commit()
-    session.refresh(pembayaran)
-    session.close()
-    return {"pembayaran": pembayaran, "pinjaman": pinjaman}
-
-# UPDATE STATUS PENDANAAN DAN CURR_PEMBAYARAN
-
-
-@app.put("/updateStatusPendanaan/{pendanaan_id}")
-def update_status_pendanaan(pendanaan_id: int, session=Depends(get_session)):
-    # GET PENDANAAN BY PENDANAAN_ID
-    pendanaan = session.query(models.PendanaanModel).filter_by(
-        pendanaan_id=pendanaan_id).first()
-    if pendanaan is None:
-        return {"message": "Pendanaan not found"}
-    pendanaan.status_pendanaan = "Lunas"
-    pendanaan.curr_pembayaran = pendanaan.total_pembayaran
-    session.commit()
-    session.refresh(pendanaan)
-    session.close()
-    return {"pendanaan": pendanaan}
-
-# ambil image berdasarkan nama file
-
-
-@app.get("/getimage/{nama_file}")
-async def getImage(nama_file: str):
-    return FileResponse("./percobaan_4/asset/images/"+nama_file)

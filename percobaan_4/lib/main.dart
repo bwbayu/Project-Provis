@@ -3,7 +3,6 @@ import 'package:percobaan_4/Kolom1/WelcomePage.dart';
 import 'package:percobaan_4/route/routes.dart';
 import 'package:provider/provider.dart';
 import 'model.dart';
-//rest
 
 void main() {
   runApp(MultiProvider(
