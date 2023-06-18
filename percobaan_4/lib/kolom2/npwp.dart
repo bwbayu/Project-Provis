@@ -4,6 +4,8 @@ import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
 
 class formNPWP extends StatelessWidget {
+  String? foto;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -78,19 +80,22 @@ class formNPWP extends StatelessWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.network(
-                                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
-                                width: double.infinity,
-                                height: 320,
-                                fit: BoxFit.cover,
-                              ),
+                            Consumer<NPWPProvider>(
+                              builder: (context, prov, child) {
+                                String? img = prov.namaImage;
+                                return img != null
+                                    ? Image.network(
+                                        'http://127.0.0.1:8000/getimage/$img',
+                                        height: 200,
+                                      )
+                                    : const Text("Image Tidak Tersedia");
+                              },
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
+<<<<<<< HEAD
                                 ElevatedButton(
                                   onPressed: () {},
                                   child: Text(
@@ -99,16 +104,30 @@ class formNPWP extends StatelessWidget {
                                       fontFamily: 'Outfit',
                                       fontWeight: FontWeight.w700,
                                       color: Colors.white,
+=======
+                                Consumer<Login>(
+                                    builder: (context, Login, child) {
+                                  return ElevatedButton(
+                                    onPressed: () => context
+                                        .read<NPWPProvider>()
+                                        .getImageFromGallery(Login.user_id),
+                                    child: Text(
+                                      'Upload',
+                                      style: TextStyle(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                      ),
+>>>>>>> 619dd9d2ebc6bd4eab3ff396ff9db35a23de152f
                                     ),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Color(0xffcb5f18),
-                                    elevation: 3,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Color(0xffcb5f18),
+                                      elevation: 3,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
                                     ),
-                                  ),
-                                ),
+                                  );
+                                }),
                               ],
                             ),
                           ],
