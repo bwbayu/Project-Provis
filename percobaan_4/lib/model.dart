@@ -820,6 +820,8 @@ class Pinjaman {
 class PinjamanUser extends ChangeNotifier {
   // FETCH DATA PINJAMAN UNTUK USER UMKM
   List<Pinjaman>? pinjamanList;
+  List<Pinjaman>? pinjamanPendingList;
+  List<Pinjaman>? pinjamanLunasList;
   bool isLoading = false;
 
   Future<int> fetchDataPinjaman(int user_id) async {
@@ -841,6 +843,28 @@ class PinjamanUser extends ChangeNotifier {
           calculateTotalPinjaman();
         } else {
           pinjamanList = [];
+        }
+
+        var pinjamanPendingData = data['pinjamanPending'];
+
+        if (pinjamanPendingData != null) {
+          pinjamanPendingList = List<Pinjaman>.from(
+            pinjamanPendingData.map((json) => Pinjaman.fromJson(json)),
+          );
+          calculateTotalPinjaman();
+        } else {
+          pinjamanPendingList = [];
+        }
+
+        var pinjamanLunasData = data['pinjamanLunas'];
+
+        if (pinjamanLunasData != null) {
+          pinjamanLunasList = List<Pinjaman>.from(
+            pinjamanLunasData.map((json) => Pinjaman.fromJson(json)),
+          );
+          calculateTotalPinjaman();
+        } else {
+          pinjamanLunasList = [];
         }
       } else if (response.statusCode == 422) {
         print('Validation Error: ${response.body}');
@@ -936,22 +960,24 @@ class PinjamanUser extends ChangeNotifier {
 
   // FETCH DATA UMKM DARI PINJAMAN
   UmkmProvider dataUMKM = UmkmProvider(); //menampung data umkm
-
+  
+  
   // map dari json ke atribut
   void setFromJson(Map<String, dynamic> json) {
-    dataUMKM.bentuk_umkm = json['umkm']['bentuk_umkm'];
-    dataUMKM.nama_umkm = json['umkm']['nama_umkm'];
-    dataUMKM.alamat_umkm = json['umkm']['alamat_umkm'];
-    dataUMKM.kategori_umkm = json['umkm']['kategori_umkm'];
-    dataUMKM.deskripsi_umkm = json['umkm']['deskripsi_umkm'];
-    dataUMKM.kontak_umkm = json['umkm']['kontak_umkm'];
-    dataUMKM.jumlah_karyawan = json['umkm']['jumlah_karyawan'];
-    dataUMKM.omset_bulanan = json['umkm']['omset_bulanan'];
-    dataUMKM.foto_umkm = json['umkm']['foto_umkm'];
+    dataUMKM.bentuk_umkm = json['bentuk_umkm'];
+    dataUMKM.nama_umkm = json['nama_umkm'];
+    dataUMKM.alamat_umkm = json['alamat_umkm'];
+    dataUMKM.kategori_umkm = json['kategori_umkm'];
+    dataUMKM.deskripsi_umkm = json['deskripsi_umkm'];
+    dataUMKM.kontak_umkm = json['kontak_umkm'];
+    dataUMKM.jumlah_karyawan = json['jumlah_karyawan'];
+    dataUMKM.omset_bulanan = json['omset_bulanan'];
+    dataUMKM.foto_umkm = json['foto_umkm'];
     notifyListeners();
   }
 
   bool isLoading2 = true;
+  List<Pinjaman>? dataPinjaman;
   Future<int> fetchDataUmkm(int pinjaman_id) async {
     isLoading2 = true;
     notifyListeners();
@@ -961,12 +987,18 @@ class PinjamanUser extends ChangeNotifier {
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
-        final data = json.decode(response.body);
+        final data = jsonDecode(response.body);
+        var dataUMKM = data['umkm'];
         if (data.containsKey('umkm')) {
-          setFromJson(data);
+          setFromJson(dataUMKM);
         } else {
           // Handle case when 'umkm' is not found in the response body
           print('UMKM data not found in response');
+        }
+        var tempPinjaman = data['pinjaman'];
+        print(tempPinjaman);
+        if (tempPinjaman != null) {
+          dataPinjaman = [Pinjaman.fromJson(tempPinjaman)];
         }
       } else if (response.statusCode == 422) {
         print('Validation Error: ${response.body}');
@@ -1076,11 +1108,13 @@ class Pendanaan{
   double jumlah_pendanaan;
   double total_pembayaran;
   double curr_pembayaran;
+  int pinjaman_id;
 
-  Pendanaan({required this.status_pendanaan, required this.jumlah_pendanaan, required this.total_pembayaran, required this.curr_pembayaran});
+  Pendanaan({required this.pinjaman_id, required this.status_pendanaan, required this.jumlah_pendanaan, required this.total_pembayaran, required this.curr_pembayaran});
   
   factory Pendanaan.fromJson(Map<String, dynamic> json) {
     return Pendanaan(
+      pinjaman_id: json["pinjaman_id"],
       status_pendanaan: json["status_pendanaan"],
       jumlah_pendanaan: json["jumlah_pendanaan"],
       total_pembayaran: json["total_pembayaran"],
@@ -1092,6 +1126,7 @@ class Pendanaan{
 class PendanaanData extends ChangeNotifier{
   // GET DATA PENDANAAN
   List<Pendanaan> listPendanaan = <Pendanaan> [];
+  List<Pendanaan> listPendanaanLunas = <Pendanaan> [];
   bool isLoading = false;
   Future<int> fetchDataPendanaan(int user_id) async {
     isLoading = true;
@@ -1112,6 +1147,17 @@ class PendanaanData extends ChangeNotifier{
           calculateTotalPendanaan();
         } else {
           listPendanaan = [];
+        }
+
+        var dataPendanaanLunas = data['pendanaanLunas'];
+
+        if (dataPendanaanLunas != null) {
+          listPendanaanLunas = List<Pendanaan>.from(
+            dataPendanaanLunas.map((json) => Pendanaan.fromJson(json)),
+          );
+          calculateTotalPendanaan();
+        } else {
+          listPendanaanLunas = [];
         }
       } else if (response.statusCode == 422) {
         print('Validation Error: ${response.body}');

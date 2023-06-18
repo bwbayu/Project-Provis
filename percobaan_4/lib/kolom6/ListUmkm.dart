@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
-import 'dart:math';
 
 class listUMKM extends StatelessWidget {
   final List<String> umkmImages = [
@@ -63,9 +62,6 @@ class listUMKM extends StatelessWidget {
                                           pinjaman.listPinjamanOpen!.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        final Random random = Random();
-                                        final int randomIndex = random.nextInt(
-                                            5); // Generates a random index between 0 and 4
                                         return InkWell(
                                           onTap: () async {
                                             final statusCode = await pinjaman
@@ -91,7 +87,7 @@ class listUMKM extends StatelessWidget {
                                                         BorderRadius.circular(
                                                             8),
                                                     child: Image.asset(
-                                                      umkmImages[randomIndex],
+                                                      umkmImages[index % umkmImages.length],
                                                       width: double.infinity,
                                                       height: 120,
                                                       fit: BoxFit.cover,

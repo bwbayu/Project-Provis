@@ -32,123 +32,52 @@ class Portofolio extends StatelessWidget {
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: pendanaan.listPendanaan.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  return InkWell(
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                          context, '/detailPortofolio',
-                                          arguments: index);
-                                    },
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(20, 0, 20, 20),
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: 200,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              child: Image.asset(
-                                                umkmImages[index],
+                                  return Consumer<PinjamanUser>(
+                                    builder: (context, pinjaman, child) =>
+                                    InkWell(
+                                      onTap: () async{
+                                        // fetch data umkm
+                                        await pinjaman.fetchDataUmkm(pendanaan.listPendanaan[index].pinjaman_id);
+                                        Navigator.pushNamed(
+                                            context, '/detailPortofolio',
+                                            arguments: index);
+                                      },
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(20, 0, 20, 20),
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                                child: Image.asset(
+                                                  umkmImages[index % umkmImages.length],
+                                                  width: double.infinity,
+                                                  height: 80,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Container(
                                                 width: double.infinity,
-                                                height: 80,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            Container(
-                                              width: double.infinity,
-                                              height: 120,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    20, 0, 20, 0),
-                                                child: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              'Total Pendanaan',
-                                                              style: TextStyle(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Colors.black,
-                                                                fontSize: 14,
-                                                                fontWeight: FontWeight.w600
-                                                              ),
-                                                            ),
-                                                            Text(
-                                                              'Rp' +
-                                                                  pendanaan
-                                                                      .listPendanaan[
-                                                                          index]
-                                                                      .jumlah_pendanaan
-                                                                      .toString(),
-                                                              style: TextStyle(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Colors.black,
-                                                                fontSize: 14,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              'Status Pendanaan',
-                                                              style: TextStyle(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Colors.black,
-                                                                fontSize: 14,
-                                                                fontWeight: FontWeight.w600
-                                                              ),
-                                                            ),
-                                                            Text(
-                                                              pendanaan
-                                                                  .listPendanaan[
-                                                                      index]
-                                                                  .status_pendanaan,
-                                                              style: TextStyle(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Colors.black,
-                                                                fontSize: 14,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                                                      child: Row(
+                                                height: 120,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      20, 0, 20, 0),
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .spaceBetween,
@@ -162,7 +91,7 @@ class Portofolio extends StatelessWidget {
                                                                     .start,
                                                             children: [
                                                               Text(
-                                                                'Jumlah Pembayaran',
+                                                                'Total Pendanaan',
                                                                 style: TextStyle(
                                                                   fontFamily:
                                                                       'Readex Pro',
@@ -176,7 +105,7 @@ class Portofolio extends StatelessWidget {
                                                                     pendanaan
                                                                         .listPendanaan[
                                                                             index]
-                                                                        .curr_pembayaran
+                                                                        .jumlah_pendanaan
                                                                         .toString(),
                                                                 style: TextStyle(
                                                                   fontFamily:
@@ -196,7 +125,7 @@ class Portofolio extends StatelessWidget {
                                                                     .start,
                                                             children: [
                                                               Text(
-                                                                'Total Pembayaran',
+                                                                'Status Pendanaan',
                                                                 style: TextStyle(
                                                                   fontFamily:
                                                                       'Readex Pro',
@@ -207,8 +136,9 @@ class Portofolio extends StatelessWidget {
                                                               ),
                                                               Text(
                                                                 pendanaan
-                                                                    .listPendanaan[index]
-                                                                    .total_pembayaran.toString(),
+                                                                    .listPendanaan[
+                                                                        index]
+                                                                    .status_pendanaan,
                                                                 style: TextStyle(
                                                                   fontFamily:
                                                                       'Readex Pro',
@@ -220,12 +150,321 @@ class Portofolio extends StatelessWidget {
                                                           ),
                                                         ],
                                                       ),
-                                                    ),
-                                                  ],
+                                                      Padding(
+                                                        padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  'Jumlah Pembayaran',
+                                                                  style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: Colors.black,
+                                                                    fontSize: 14,
+                                                                    fontWeight: FontWeight.w600
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  'Rp' +
+                                                                      pendanaan
+                                                                          .listPendanaan[
+                                                                              index]
+                                                                          .curr_pembayaran
+                                                                          .toString(),
+                                                                  style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: Colors.black,
+                                                                    fontSize: 14,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  'Total Pembayaran',
+                                                                  style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: Colors.black,
+                                                                    fontSize: 14,
+                                                                    fontWeight: FontWeight.w600
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  pendanaan
+                                                                      .listPendanaan[index]
+                                                                      .total_pembayaran.toString(),
+                                                                  style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: Colors.black,
+                                                                    fontSize: 14,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        )
+                      : SizedBox();
+            }),
+          ),
+        ),
+      ],
+    );
+    Column myColumnLunas = Column(
+      children: [
+        Flexible(
+          child: SingleChildScrollView(
+            child:
+                Consumer<PendanaanData>(builder: (context, pendanaan, child) {
+              return pendanaan.isLoading
+                  ? CircularProgressIndicator()
+                  // ignore: unnecessary_null_comparison
+                  : pendanaan.listPendanaanLunas != null
+                      ? Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                              child: ListView.builder(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: pendanaan.listPendanaanLunas.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Consumer<PinjamanUser>(
+                                    builder: (context, pinjaman, child) =>
+                                    InkWell(
+                                      onTap: () async{
+                                        // fetch data umkm
+                                        await pinjaman.fetchDataUmkm(pendanaan.listPendanaanLunas[index].pinjaman_id);
+                                        Navigator.pushNamed(
+                                            context, '/detailPortofolio',
+                                            arguments: index);
+                                      },
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(20, 0, 20, 20),
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                                child: Image.asset(
+                                                  umkmImages[index % umkmImages.length],
+                                                  width: double.infinity,
+                                                  height: 80,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Container(
+                                                width: double.infinity,
+                                                height: 120,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      20, 0, 20, 0),
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                'Total Pendanaan',
+                                                                style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: Colors.black,
+                                                                  fontSize: 14,
+                                                                  fontWeight: FontWeight.w600
+                                                                ),
+                                                              ),
+                                                              Text(
+                                                                'Rp' +
+                                                                    pendanaan
+                                                                        .listPendanaanLunas[
+                                                                            index]
+                                                                        .jumlah_pendanaan
+                                                                        .toString(),
+                                                                style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: Colors.black,
+                                                                  fontSize: 14,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                'Status Pendanaan',
+                                                                style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: Colors.black,
+                                                                  fontSize: 14,
+                                                                  fontWeight: FontWeight.w600
+                                                                ),
+                                                              ),
+                                                              Text(
+                                                                pendanaan
+                                                                    .listPendanaanLunas[
+                                                                        index]
+                                                                    .status_pendanaan,
+                                                                style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: Colors.black,
+                                                                  fontSize: 14,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  'Jumlah Pembayaran',
+                                                                  style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: Colors.black,
+                                                                    fontSize: 14,
+                                                                    fontWeight: FontWeight.w600
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  'Rp' +
+                                                                      pendanaan
+                                                                          .listPendanaanLunas[
+                                                                              index]
+                                                                          .curr_pembayaran
+                                                                          .toString(),
+                                                                  style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: Colors.black,
+                                                                    fontSize: 14,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  'Total Pembayaran',
+                                                                  style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: Colors.black,
+                                                                    fontSize: 14,
+                                                                    fontWeight: FontWeight.w600
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  pendanaan
+                                                                      .listPendanaanLunas[index]
+                                                                      .total_pembayaran.toString(),
+                                                                  style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: Colors.black,
+                                                                    fontSize: 14,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -356,7 +595,7 @@ class Portofolio extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       myColumn,
-                      myColumn,
+                      myColumnLunas,
                     ],
                   ),
                 ),

@@ -354,7 +354,7 @@ class UmkmDash extends StatelessWidget {
                             builder: (context, pinjaman, child) {
                           return pinjaman.isLoading
                               ? CircularProgressIndicator()
-                              : pinjaman.pinjamanList != null
+                              : pinjaman.pinjamanPendingList != null
                                   ? Column(
                                       children: [
                                         Padding(
@@ -365,10 +365,10 @@ class UmkmDash extends StatelessWidget {
                                             shrinkWrap: true,
                                             physics:
                                                 const NeverScrollableScrollPhysics(),
-                                            itemCount: pinjaman.pinjamanList!.length > 5 ? 5 : pinjaman.pinjamanList!.length,
+                                            itemCount: pinjaman.pinjamanPendingList!.length > 5 ? 5 : pinjaman.pinjamanPendingList!.length,
                                             itemBuilder: (BuildContext context,
                                                 int index) {
-                                                  print(pinjaman.pinjamanList![index].bungaPinjaman);
+                                                  print(pinjaman.pinjamanPendingList![index].bungaPinjaman);
                                               return InkWell(
                                                 onTap: () {
                                                   Navigator.pushNamed(
@@ -450,7 +450,7 @@ class UmkmDash extends StatelessWidget {
                                                                                   ),
                                                                                 ),
                                                                                 Text(
-                                                                                  'Rp'+pinjaman.pinjamanList![index].jumlah_pinjaman.toString(),
+                                                                                  'Rp'+pinjaman.pinjamanPendingList![index].jumlah_pinjaman.toString(),
                                                                                   style:
                                                                                       TextStyle(
                                                                                     fontFamily:
@@ -488,7 +488,7 @@ class UmkmDash extends StatelessWidget {
                                                                                   ),
                                                                                 ),
                                                                                 Text(
-                                                                                  'Rp'+pinjaman.pinjamanList![index].pinjaman_terkumpul.toString(),
+                                                                                  'Rp'+pinjaman.pinjamanPendingList![index].pinjaman_terkumpul.toString(),
                                                                                   style:
                                                                                       TextStyle(
                                                                                     fontFamily:
@@ -533,7 +533,7 @@ class UmkmDash extends StatelessWidget {
                                                                                 ),
                                                                               ),
                                                                               Text(
-                                                                                pinjaman.pinjamanList![index].status_pinjaman,
+                                                                                pinjaman.pinjamanPendingList![index].status_pinjaman,
                                                                                 style:
                                                                                     TextStyle(
                                                                                   fontFamily:

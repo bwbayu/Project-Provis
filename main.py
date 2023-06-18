@@ -330,7 +330,7 @@ def get_umkm_by_pinjaman_id(pinjaman_id: int, session=Depends(get_session)):
     umkm = session.query(models.UMKMModel).filter_by(umkm_id=pinjaman.umkm_id).first()
     if umkm is None:
         return {"error": "UMKM is not found"}
-    return {"umkm": umkm}
+    return {"umkm": umkm, "pinjaman": pinjaman}
 
 # ADD PINJAMAN UMKM (page pengajuanPinjaman)
 @app.post("/addPinjamanUmkm/{user_id}")
@@ -392,7 +392,15 @@ def get_pinjaman_by_user_id(user_id: int, session=Depends(get_session)):
     pinjaman = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).all()
     if pinjaman is None:
         return {"message": "Pinjaman not found"}
-    return {"pinjaman": pinjaman}
+    # dashboard umkm
+    pinjamanPending = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Pending").all()
+    if pinjamanPending is None:
+        return {"message": "Pinjaman not found"}
+    # list pinjaman selesai / lunas
+    pinjamanLunas = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Lunas").all()
+    if pinjamanLunas is None:
+        return {"message": "Pinjaman not found"}
+    return {"pinjaman": pinjaman, "pinjamanPending": pinjamanPending, "pinjamanLunas": pinjamanLunas}
 
 # GET PINJAMAN ALL WHERE STATUS_PINJAMAN == OPEN (investor)
 @app.get("/getOpenPinjaman")
@@ -450,11 +458,9 @@ def get_pendanaan_funder(user_id:int, session=Depends(get_session)):
         return {"message": "Funder not found"}
     # get all pendanaan by funder_id (portofolio page)
     pendanaan = session.query(models.PendanaanModel).filter_by(funder_id=funder.funder_id).all()
-    # get pending pendanaan by funder_id (investor page)
-    pendanaanPending = session.query(models.PendanaanModel).filter_by(funder_id=funder.funder_id).filter_by(status_pendanaan="Pending").all()
     # get lunas pendanaan by funder_id (portofolio page)
     pendanaanLunas = session.query(models.PendanaanModel).filter_by(funder_id=funder.funder_id).filter_by(status_pendanaan="Lunas").all()
-    return {"pendanaan": pendanaan, "pendanaanPending": pendanaanPending, "pendanaanLunas": pendanaanLunas}
+    return {"pendanaan": pendanaan, "pendanaanLunas": pendanaanLunas}
 
 # POST PENDANAAN BY USER_ID
 @app.post("/addPendanaan/{user_id}")
