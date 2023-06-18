@@ -100,14 +100,17 @@ class formKTP extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Upload',
-                              style: TextStyle(
-                                fontFamily: 'Outfit',
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
+                          Consumer<Login>(builder: (context, Login, child) {
+                            return ElevatedButton(
+                              onPressed: () async => context
+                                  .read<MyImageProvider>()
+                                  .getImageFromGallery(Login.user_id),
+                              child: Text(
+                                'Upload',
+                                style: TextStyle(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                ),
                               ),
                               style: ElevatedButton.styleFrom(
                                 primary: Color(0xffcb5f18),
