@@ -823,6 +823,7 @@ class PinjamanUser extends ChangeNotifier {
   List<Pinjaman>? pinjamanPendingList;
   List<Pinjaman>? pinjamanLunasList;
   List<Pinjaman>? pinjamanOpenList;
+  List<Pinjaman>? pinjamanCloseList;
   bool isLoading = false;
 
   Future<int> fetchDataPinjaman(int user_id) async {
@@ -835,8 +836,8 @@ class PinjamanUser extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
+        // all pinjaman
         var pinjamanData = data['pinjaman'];
-
         if (pinjamanData != null) {
           pinjamanList = List<Pinjaman>.from(
             pinjamanData.map((json) => Pinjaman.fromJson(json)),
@@ -845,38 +846,41 @@ class PinjamanUser extends ChangeNotifier {
         } else {
           pinjamanList = [];
         }
-
+        // pinjaman pending
         var pinjamanPendingData = data['pinjamanPending'];
-
         if (pinjamanPendingData != null) {
           pinjamanPendingList = List<Pinjaman>.from(
             pinjamanPendingData.map((json) => Pinjaman.fromJson(json)),
           );
-          calculateTotalPinjaman();
         } else {
           pinjamanPendingList = [];
         }
-
+        // pinjaman lunas
         var pinjamanLunasData = data['pinjamanLunas'];
-
         if (pinjamanLunasData != null) {
           pinjamanLunasList = List<Pinjaman>.from(
             pinjamanLunasData.map((json) => Pinjaman.fromJson(json)),
           );
-          calculateTotalPinjaman();
         } else {
           pinjamanLunasList = [];
         }
-
+        // pinjaman open
         var pinjamanOpenData = data['pinjamanOpen'];
-
         if (pinjamanOpenData != null) {
           pinjamanOpenList = List<Pinjaman>.from(
             pinjamanOpenData.map((json) => Pinjaman.fromJson(json)),
           );
-          calculateTotalPinjaman();
         } else {
           pinjamanOpenList = [];
+        }
+        // pinjaman close
+        var pinjamanCloseData = data['pinjamanClose'];
+        if (pinjamanCloseData != null) {
+          pinjamanCloseList = List<Pinjaman>.from(
+            pinjamanCloseData.map((json) => Pinjaman.fromJson(json)),
+          );
+        } else {
+          pinjamanCloseList = [];
         }
       } else if (response.statusCode == 422) {
         print('Validation Error: ${response.body}');
@@ -1025,6 +1029,29 @@ class PinjamanUser extends ChangeNotifier {
       print('Exception: $e');
       isLoading2 = false;
       notifyListeners();
+      return 0;
+    }
+  }
+
+  // UPDATE STATUS PINJAMAN USER JIKA PINJAMAN TERPENUHI
+  Future<int> updateStatusPinjaman(int pinjaman_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/updateStatusPinjaman/$pinjaman_id');
+    final headers = {'Content-Type': 'application/json'};
+
+    try {
+      final response = await http.put(url, headers: headers);
+
+      if (response.statusCode == 200) {
+        return response.statusCode;
+      } else if (response.statusCode == 422) {
+        print('Validation Error: ${response.body}');
+        return response.statusCode;
+      } else {
+        print('Error: ${response.statusCode}');
+        return response.statusCode;
+      }
+    } catch (e) {
+      print('Exception: $e');
       return 0;
     }
   }

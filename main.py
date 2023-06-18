@@ -400,10 +400,15 @@ def get_pinjaman_by_user_id(user_id: int, session=Depends(get_session)):
     pinjamanLunas = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Lunas").all()
     if pinjamanLunas is None:
         return {"message": "Pinjaman not found"}
+    # list pinjaman open
     pinjamanOpen = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Open").all()
     if pinjamanOpen is None:
         return {"message": "Pinjaman not found"}
-    return {"pinjaman": pinjaman, "pinjamanPending": pinjamanPending, "pinjamanLunas": pinjamanLunas, "pinjamanOpen": pinjamanOpen}
+    # pinjaman close
+    pinjamanClose = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Close").all()
+    if pinjamanClose is None:
+        return {"message": "Pinjaman not found"}
+    return {"pinjaman": pinjaman, "pinjamanPending": pinjamanPending, "pinjamanLunas": pinjamanLunas, "pinjamanOpen": pinjamanOpen, "pinjamanClose": pinjamanClose}
 
 # GET PINJAMAN ALL WHERE STATUS_PINJAMAN == OPEN (investor)
 @app.get("/getOpenPinjaman")
@@ -411,6 +416,20 @@ def get_pinjaman_by_status(session=Depends(get_session)):
     pinjaman = session.query(models.PinjamanModel).filter_by(status_pinjaman="Open").all()
     if pinjaman is None:
         return {"message": "Pinjaman not found"}
+    return {"pinjaman": pinjaman}
+
+# UPDATE STATUS PINJAMAN
+@app.put("/updateStatusPinjaman/{pinjaman_id}")
+def update_status_pinjaman(pinjaman_id:int, session=Depends(get_session)):
+    # get pinjaman by pinjaman_id
+    pinjaman = session.query(models.PinjamanModel).filter_by(pinjaman_id=pinjaman_id).first()
+    if pinjaman is None:
+        return {"message": "Pinjaman not found"}
+    if(pinjaman.status_pinjaman == "Close"):
+        pinjaman.status_pinjaman = "Pending"
+        session.commit()
+        session.refresh(pinjaman)
+        session.close()
     return {"pinjaman": pinjaman}
 
 # ==================================== WALLET =================================================
