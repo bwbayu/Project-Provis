@@ -78,3 +78,4 @@ class PendanaanSchema(BaseModel):
 
 class PembayaranSchema(BaseModel):
     jumlah_pembayaran: float
+    status_pembayaran: str

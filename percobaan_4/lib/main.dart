@@ -23,6 +23,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => PendanaanData()),
         ChangeNotifierProvider(create: (_) => RiwayatWalletProvider()),
         ChangeNotifierProvider(create: (_) => WithdrawalState()),
+        ChangeNotifierProvider(create: (_) => PembayaranProvider()),
       ],
       child: MyApp(),
       )

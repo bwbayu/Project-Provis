@@ -131,6 +131,7 @@ class PendanaanModel(Base):
     pendanaan_id = Column(Integer, primary_key=True, autoincrement=True)
     funder_id = Column(Integer, ForeignKey('penyediaDana.funder_id'))
     pinjaman_id = Column(Integer, ForeignKey('pinjaman.pinjaman_id'))
+    pembayaran_id = Column(Integer, ForeignKey('pembayaran.pembayaran_id'))
     jumlah_pendanaan = Column(Numeric(precision=12, scale=2), nullable=False)
     status_pendanaan = Column(String(20), nullable=False)
     total_pembayaran = Column(Numeric(precision=12, scale=2), nullable=False)
@@ -138,6 +139,7 @@ class PendanaanModel(Base):
 
     funder_model = relationship('PenyediaDanaModel', back_populates='pendanaan_model')
     pinjaman_model = relationship('PinjamanModel', back_populates='pendanaan_model')
+    pembayaran_model = relationship('PembayaranModel', back_populates='pendanaan_model')
 
 class PembayaranModel(Base):
     __tablename__ = 'pembayaran'
@@ -145,5 +147,7 @@ class PembayaranModel(Base):
     pembayaran_id = Column(Integer, primary_key=True, autoincrement=True)
     pinjaman_id = Column(Integer, ForeignKey('pinjaman.pinjaman_id'))
     jumlah_pembayaran = Column(Numeric(precision=12, scale=2), nullable=False)
+    status_pembayaran = Column(String(20), nullable=False)
 
     pinjaman_model = relationship('PinjamanModel', back_populates='pembayaran_model')
+    pendanaan_model = relationship('PendanaanModel', back_populates='pembayaran_model')

@@ -1012,7 +1012,6 @@ class PinjamanUser extends ChangeNotifier {
           print('UMKM data not found in response');
         }
         var tempPinjaman = data['pinjaman'];
-        print(tempPinjaman);
         if (tempPinjaman != null) {
           dataPinjaman = [Pinjaman.fromJson(tempPinjaman)];
         }
@@ -1379,3 +1378,42 @@ class WithdrawalState extends ChangeNotifier{
   }
 }
 
+class PembayaranProvider extends ChangeNotifier{
+  double _jumlah_pembayaran = 0.0;
+
+  // SETTER GETTER
+  double get jumlah_pembayaran => _jumlah_pembayaran;
+  set jumlah_pembayaran(double value) {
+    _jumlah_pembayaran = value;
+  }
+
+  // POST DATA PEMBAYARAN
+  Future<int> addPembayaran(int pinjaman_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/addPembayaran/$pinjaman_id');
+    final headers = {'Content-Type': 'application/json'};
+    final pembayaranData = {
+      "jumlah_pembayaran": jumlah_pembayaran,
+      "status_pembayaran": "Pending"
+    };
+    final body = jsonEncode(pembayaranData);
+
+    final response = await http.put(url, headers: headers, body: body);
+
+    return response.statusCode;
+  }
+
+  void reset(){
+    jumlah_pembayaran = 0.0;
+    notifyListeners();
+  }
+
+  // UPDATE STATUS PEMBAYARAN KE LUNAS BY PINJAMAN_ID
+  Future<int> updateStatusPembayaran(int pinjaman_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/updateStatusPembayaran/$pinjaman_id');
+    final headers = {'Content-Type': 'application/json'};
+
+    final response = await http.put(url, headers: headers);
+
+    return response.statusCode;
+  }
+}

@@ -217,11 +217,13 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                                   await pendanaan.addPendanaan(login.user_id);
                                   // fetch data pendanaan ke porfolio
                                   await dataPendanaan.fetchDataPendanaan(login.user_id);
-                                  // update status_pendanaan
+                                  // fetch data pinjaman status open
+                                  await pinjaman.fetchDataPinjamanOpen();
                                   // reset variable pendanaan
                                   pendanaan.reset(); 
                                   // reset variable riwayat
                                   riwayat.reset();
+                                  // 
                                   Navigator.pushNamed(context, '/dashboardInvestor');
                                 }else{
                                 ScaffoldMessenger.of(context).showSnackBar(

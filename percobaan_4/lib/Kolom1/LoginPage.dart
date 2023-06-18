@@ -181,6 +181,8 @@ class LoginScreen extends StatelessWidget {
                                       await wallet.fetchData(login.user_id);
                                       // fetch data riwayat
                                       await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
+                                      // fetch data list pinjaman user
+                                      await pinjaman.fetchDataPinjaman(login.user_id);
                                       Navigator.pushNamed(context, '/dashboardUMKM');
                                     }
                                   }
