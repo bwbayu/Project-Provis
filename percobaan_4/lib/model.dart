@@ -1154,18 +1154,14 @@ class Pendanaan {
   int pinjaman_id;
   int pendanaan_id;
 
-<<<<<<< HEAD
   Pendanaan(
-      {required this.pinjaman_id,
+      {required this.pendanaan_id,
+      required this.pinjaman_id,
       required this.status_pendanaan,
       required this.jumlah_pendanaan,
       required this.total_pembayaran,
       required this.curr_pembayaran});
 
-=======
-  Pendanaan({required this.pendanaan_id, required this.pinjaman_id, required this.status_pendanaan, required this.jumlah_pendanaan, required this.total_pembayaran, required this.curr_pembayaran});
-  
->>>>>>> a5b5b81952c33230b1a1665a0779780c4532fa45
   factory Pendanaan.fromJson(Map<String, dynamic> json) {
     return Pendanaan(
       pendanaan_id: json["pendanaan_id"],
@@ -1180,14 +1176,9 @@ class Pendanaan {
 
 class PendanaanData extends ChangeNotifier {
   // GET DATA PENDANAAN
-<<<<<<< HEAD
   List<Pendanaan> listPendanaan = <Pendanaan>[];
   List<Pendanaan> listPendanaanLunas = <Pendanaan>[];
-=======
-  List<Pendanaan> listPendanaan = <Pendanaan> [];
-  List<Pendanaan> listPendanaanLunas = <Pendanaan> [];
-  List<Pendanaan> listPendanaanPending = <Pendanaan> [];
->>>>>>> a5b5b81952c33230b1a1665a0779780c4532fa45
+  List<Pendanaan> listPendanaanPending = <Pendanaan>[];
   bool isLoading = false;
   Future<int> fetchDataPendanaan(int user_id) async {
     isLoading = true;
@@ -1258,7 +1249,8 @@ class PendanaanData extends ChangeNotifier {
 
   // UPDATE STATUS PENDANAAN DAN CURR_PEMBAYARAN
   Future<int> updateStatusPendanaan(int pendanaan_id) async {
-    final url = Uri.parse('http://127.0.0.1:8000/updateStatusPendanaan/$pendanaan_id');
+    final url =
+        Uri.parse('http://127.0.0.1:8000/updateStatusPendanaan/$pendanaan_id');
     final headers = {'Content-Type': 'application/json'};
 
     final response = await http.put(url, headers: headers);
@@ -1426,7 +1418,47 @@ class WithdrawalState extends ChangeNotifier {
   }
 }
 
-<<<<<<< HEAD
+class PembayaranProvider extends ChangeNotifier {
+  double _jumlah_pembayaran = 0.0;
+
+  // SETTER GETTER
+  double get jumlah_pembayaran => _jumlah_pembayaran;
+  set jumlah_pembayaran(double value) {
+    _jumlah_pembayaran = value;
+  }
+
+  // POST DATA PEMBAYARAN
+  Future<int> addPembayaran(int pinjaman_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/addPembayaran/$pinjaman_id');
+    final headers = {'Content-Type': 'application/json'};
+    final pembayaranData = {
+      "jumlah_pembayaran": jumlah_pembayaran,
+      "status_pembayaran": "Pending"
+    };
+    final body = jsonEncode(pembayaranData);
+
+    final response = await http.put(url, headers: headers, body: body);
+
+    return response.statusCode;
+  }
+
+  void reset() {
+    jumlah_pembayaran = 0.0;
+    notifyListeners();
+  }
+
+  // UPDATE STATUS PEMBAYARAN KE LUNAS BY PINJAMAN_ID
+  Future<int> updateStatusPembayaran(int pinjaman_id) async {
+    final url =
+        Uri.parse('http://127.0.0.1:8000/updateStatusPembayaran/$pinjaman_id');
+    final headers = {'Content-Type': 'application/json'};
+
+    final response = await http.put(url, headers: headers);
+
+    return response.statusCode;
+  }
+}
+
 class MyImageProvider extends ChangeNotifier {
   String namaImage = "";
 
@@ -1547,44 +1579,5 @@ class TTDProvider extends ChangeNotifier {
       print("mulai upload");
       await uploadFile(bytes as List<int>, pickedImage.name, user_id);
     }
-=======
-class PembayaranProvider extends ChangeNotifier{
-  double _jumlah_pembayaran = 0.0;
-
-  // SETTER GETTER
-  double get jumlah_pembayaran => _jumlah_pembayaran;
-  set jumlah_pembayaran(double value) {
-    _jumlah_pembayaran = value;
-  }
-
-  // POST DATA PEMBAYARAN
-  Future<int> addPembayaran(int pinjaman_id) async {
-    final url = Uri.parse('http://127.0.0.1:8000/addPembayaran/$pinjaman_id');
-    final headers = {'Content-Type': 'application/json'};
-    final pembayaranData = {
-      "jumlah_pembayaran": jumlah_pembayaran,
-      "status_pembayaran": "Pending"
-    };
-    final body = jsonEncode(pembayaranData);
-
-    final response = await http.put(url, headers: headers, body: body);
-
-    return response.statusCode;
-  }
-
-  void reset(){
-    jumlah_pembayaran = 0.0;
-    notifyListeners();
-  }
-
-  // UPDATE STATUS PEMBAYARAN KE LUNAS BY PINJAMAN_ID
-  Future<int> updateStatusPembayaran(int pinjaman_id) async {
-    final url = Uri.parse('http://127.0.0.1:8000/updateStatusPembayaran/$pinjaman_id');
-    final headers = {'Content-Type': 'application/json'};
-
-    final response = await http.put(url, headers: headers);
-
-    return response.statusCode;
->>>>>>> a5b5b81952c33230b1a1665a0779780c4532fa45
   }
 }
