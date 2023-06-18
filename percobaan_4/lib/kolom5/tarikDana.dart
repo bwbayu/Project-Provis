@@ -37,24 +37,6 @@ class tarikDana extends StatelessWidget {
                 elevation: 0,
               ),
               Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      labelText: 'Search',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                 child: ElevatedButton(
                   onPressed: () {
@@ -96,7 +78,7 @@ class tarikDana extends StatelessWidget {
                   child: Text(
                     'Rekening Bank',
                     style: TextStyle(
-                      fontFamily: 'Readex Pro',
+                      fontFamily: 'Outfit',
                       color: Colors.white,
                       fontWeight: FontWeight.normal,
                       fontSize: 24,
@@ -139,7 +121,9 @@ class tarikDana extends StatelessWidget {
                                                       10, 0, 10, 0),
                                             ),
                                             onPressed: () {
-                                              Navigator.pushNamed(context, '/tarikDanaPage', arguments:index);
+                                              Navigator.pushNamed(
+                                                  context, '/tarikDanaPage',
+                                                  arguments: index);
                                             },
                                             child: Container(
                                               width: double.infinity,
