@@ -198,42 +198,52 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                           // cek status akun user
                           if (verif.status_akun == "Verified") {
                             if(pendanaan.jumlahPendanaan % 10000 == 0){
-                              // (CEK PINJAMAN_TERKUMPUL + JUMLAH_PENDAAAN <= JUMLAH_PINJAMAN)
-                              if(pinjaman.listPinjamanOpen![index].pinjaman_terkumpul + pendanaan.jumlahPendanaan <= pinjaman.listPinjamanOpen![index].jumlah_pinjaman){
-                                // update riwayat investor user, otomatis saldonya berkurang -> cek dlu saldonya
-                                if(pendanaan.jumlahPendanaan <= wallet.saldo){
-                                  // assign data riwayat
-                                  riwayat.keterangan = "Pendanaan UMKM";
-                                  riwayat.statusTransaksi = "Keluar";
-                                  riwayat.saldoTransaksi = pendanaan.jumlahPendanaan;
-                                  // update riwayat wallet
-                                  await riwayat.addRiwayatWallet(wallet.wallet_id);
-                                  // fetch data riwayat
-                                  await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
-                                  // fetch data wallet
-                                  await wallet.fetchData(login.user_id);
-                                  // add data ke pendanaan, update pinjaman terkumpul dari id_pinjaman ini, cek dan update status_pinjaman
-                                  pendanaan.pinjaman_id = pinjaman.listPinjamanOpen![index].pinjaman_id;
-                                  await pendanaan.addPendanaan(login.user_id);
-                                  // fetch data pendanaan ke porfolio
-                                  await dataPendanaan.fetchDataPendanaan(login.user_id);
-                                  // update status_pendanaan
-                                  // reset variable pendanaan
-                                  pendanaan.reset(); 
-                                  // reset variable riwayat
-                                  riwayat.reset();
-                                  Navigator.pushNamed(context, '/dashboardInvestor');
+                              if(pendanaan.jumlahPendanaan != 0){
+                                // (CEK PINJAMAN_TERKUMPUL + JUMLAH_PENDAAAN <= JUMLAH_PINJAMAN)
+                                if(pinjaman.listPinjamanOpen![index].pinjaman_terkumpul + pendanaan.jumlahPendanaan <= pinjaman.listPinjamanOpen![index].jumlah_pinjaman){
+                                  // update riwayat investor user, otomatis saldonya berkurang -> cek dlu saldonya
+                                  if(pendanaan.jumlahPendanaan <= wallet.saldo){
+                                    // assign data riwayat
+                                    riwayat.keterangan = "Pendanaan UMKM";
+                                    riwayat.statusTransaksi = "Keluar";
+                                    riwayat.saldoTransaksi = pendanaan.jumlahPendanaan;
+                                    // update riwayat wallet
+                                    await riwayat.addRiwayatWallet(wallet.wallet_id);
+                                    // fetch data riwayat
+                                    await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
+                                    // fetch data wallet
+                                    await wallet.fetchData(login.user_id);
+                                    // add data ke pendanaan, update pinjaman terkumpul dari id_pinjaman ini, cek dan update status_pinjaman
+                                    pendanaan.pinjaman_id = pinjaman.listPinjamanOpen![index].pinjaman_id;
+                                    await pendanaan.addPendanaan(login.user_id);
+                                    // fetch data pendanaan ke porfolio
+                                    await dataPendanaan.fetchDataPendanaan(login.user_id);
+                                    // fetch data pinjaman status open
+                                    await pinjaman.fetchDataPinjamanOpen();
+                                    // reset variable pendanaan
+                                    pendanaan.reset(); 
+                                    // reset variable riwayat
+                                    riwayat.reset();
+                                    // 
+                                    Navigator.pushNamed(context, '/dashboardInvestor');
+                                  }else{
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Error: Saldo anda tidak cukup'),
+                                    ),
+                                  );
+                                }
                                 }else{
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('Error: Saldo anda tidak cukup'),
-                                  ),
-                                );
-                              }
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Error: Jumlah pendanaan sudah melebihi jumlah pinjaman yang diajukan'),
+                                    ),
+                                  );
+                                }
                               }else{
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Error: Jumlah pendanaan sudah melebihi jumlah pinjaman yang diajukan'),
+                                    content: Text('Error: Jumlah pendanaan tidak boleh 0'),
                                   ),
                                 );
                               }

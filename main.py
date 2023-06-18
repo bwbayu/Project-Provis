@@ -410,7 +410,7 @@ def add_pinjaman_umkm(user_id: int, pinjaman_umkm_data: schemas.PinjamanSchema, 
         pemilik_id=pemilik_umkm.pemilik_id).first()
     if umkm is None:
         return {"message": "UMKM not found"}
-
+    # assign data pinjaman
     current_date = datetime.now().date()
     tgl_tenggang = current_date + timedelta(days=30)
 
@@ -426,10 +426,19 @@ def add_pinjaman_umkm(user_id: int, pinjaman_umkm_data: schemas.PinjamanSchema, 
         tujuan_pinjaman=pinjaman_umkm_data.tujuan_pinjaman,
         pinjaman_terkumpul=0
     )
-
     db.add(pinjaman)
     db.commit()
     db.refresh(pinjaman)
+
+    # buat pembayaran dummy
+    pembayaran = models.PembayaranModel(
+        pinjaman_id = pinjaman.pinjaman_id,
+        jumlah_pembayaran = 0.0,
+    )
+    db.add(pembayaran)
+    db.commit()
+    db.refresh(pembayaran)
+
     return pinjaman
 
 # ==================================== PINJAMAN =================================================
@@ -569,9 +578,16 @@ def get_pendanaan_funder(user_id: int, session=Depends(get_session)):
     pendanaan = session.query(models.PendanaanModel).filter_by(
         funder_id=funder.funder_id).all()
     # get lunas pendanaan by funder_id (portofolio page)
+<<<<<<< HEAD
     pendanaanLunas = session.query(models.PendanaanModel).filter_by(
         funder_id=funder.funder_id).filter_by(status_pendanaan="Lunas").all()
     return {"pendanaan": pendanaan, "pendanaanLunas": pendanaanLunas}
+=======
+    pendanaanLunas = session.query(models.PendanaanModel).filter_by(funder_id=funder.funder_id).filter_by(status_pendanaan="Lunas").all()
+    # GET PENDANAAN YANG STATUSNYA PENDING NAMUN STATUS PINJAMANNYA LUNAS
+    pendanaanPending = session.query(models.PendanaanModel).join(models.PinjamanModel).filter(models.PendanaanModel.funder_id == funder.funder_id, models.PendanaanModel.status_pendanaan == "Pending", models.PinjamanModel.status_pinjaman == "Lunas").all()
+    return {"pendanaan": pendanaan, "pendanaanLunas": pendanaanLunas, "pendanaanPending": pendanaanPending}
+>>>>>>> a5b5b81952c33230b1a1665a0779780c4532fa45
 
 # POST PENDANAAN BY USER_ID
 
@@ -761,6 +777,7 @@ def add_pendanaan(user_id: int, data_pendanaan: schemas.PendanaanSchema, session
         user_id=user_id).first()
     if (funder is None):
         return {"message": "Funder not found"}
+<<<<<<< HEAD
 
     # add pendanaan
     pendanaan = models.PendanaanModel(
@@ -770,6 +787,21 @@ def add_pendanaan(user_id: int, data_pendanaan: schemas.PendanaanSchema, session
         status_pendanaan=data_pendanaan.status_pendanaan,
         total_pembayaran=data_pendanaan.total_pembayaran,
         curr_pembayaran=data_pendanaan.curr_pembayaran
+=======
+    # get pembayaran by pinjaman_id
+    pembayaran = session.query(models.PembayaranModel).filter_by(pinjaman_id=data_pendanaan.pinjaman_id).first()
+    if pembayaran is None:
+        return {"message": "Pembayaran not found"}
+    # add pendanaan
+    pendanaan = models.PendanaanModel(
+        funder_id = funder.funder_id, 
+        pembayaran_id = pembayaran.pembayaran_id,
+        pinjaman_id = data_pendanaan.pinjaman_id,
+        jumlah_pendanaan = data_pendanaan.jumlah_pendanaan,
+        status_pendanaan = data_pendanaan.status_pendanaan,
+        total_pembayaran = data_pendanaan.total_pembayaran,
+        curr_pembayaran = data_pendanaan.curr_pembayaran
+>>>>>>> a5b5b81952c33230b1a1665a0779780c4532fa45
     )
     session.add(pendanaan)
     session.commit()
@@ -789,6 +821,7 @@ def add_pendanaan(user_id: int, data_pendanaan: schemas.PendanaanSchema, session
     session.commit()
     session.refresh(pinjaman)
     session.close()
+<<<<<<< HEAD
     return {"pendanaan": pendanaan, "pinjaman": pinjaman}
 
 # ambil image berdasarkan nama file
@@ -798,3 +831,57 @@ def add_pendanaan(user_id: int, data_pendanaan: schemas.PendanaanSchema, session
 @app.get("/getimage/{nama_file}")
 async def getImage(nama_file: str):
     return FileResponse("./percobaan_4/asset/images/"+nama_file)
+=======
+    return {"pendanaan" : pendanaan, "pinjaman": pinjaman}
+
+# ==================================== PEMBAYARAN =================================================
+
+# POST PEMBAYARAN BY PINJAMAN_ID
+@app.put("/addPembayaran/{pinjaman_id}")
+def add_pembayaran(pinjaman_id: int, data_pembayaran: schemas.PembayaranSchema, session=Depends(get_session)):
+    # GET PEMBAYARAN BY PINJAMAN_ID
+    pembayaran = session.query(models.PembayaranModel).filter_by(pinjaman_id=pinjaman_id).first()
+    if pembayaran is None:
+        return {"message": "Pembayaran not found"}
+    pembayaran.jumlah_pembayaran = data_pembayaran.jumlah_pembayaran
+    pembayaran.status_pembayaran = data_pembayaran.status_pembayaran
+    session.commit()
+    session.refresh(pembayaran)
+    session.close()
+    return {"pembayaran" : pembayaran}
+
+# UPDATE STATUS PINJAMAN DAN STATUS PEMBAYARAN DARI PENDING KE LUNAS
+@app.put("/updateStatusPembayaran/{pinjaman_id}")
+def update_status_pembayaran(pinjaman_id: int, session=Depends(get_session)):
+    # GET PINJAMAN BY PINJAMAN_ID
+    pinjaman = session.query(models.PinjamanModel).filter_by(pinjaman_id=pinjaman_id).first()
+    if pinjaman is None:
+        return {"message": "Pinjaman not found"}
+    pinjaman.status_pinjaman = "Lunas"
+    session.commit()
+    session.refresh(pinjaman)
+    session.close()
+    # GET PEMBAYARAN BY PINJAMAN_ID
+    pembayaran = session.query(models.PembayaranModel).filter_by(pinjaman_id=pinjaman.pinjaman_id).first()
+    if pembayaran is None:
+        return {"message": "Pembayaran not found"}
+    pembayaran.status_pembayaran = "Lunas"
+    session.commit()
+    session.refresh(pembayaran)
+    session.close()
+    return {"pembayaran" : pembayaran, "pinjaman" : pinjaman}
+
+# UPDATE STATUS PENDANAAN DAN CURR_PEMBAYARAN
+@app.put("/updateStatusPendanaan/{pendanaan_id}")
+def update_status_pendanaan(pendanaan_id: int, session=Depends(get_session)):
+    # GET PENDANAAN BY PENDANAAN_ID
+    pendanaan = session.query(models.PendanaanModel).filter_by(pendanaan_id=pendanaan_id).first()
+    if pendanaan is None:
+        return {"message": "Pendanaan not found"}
+    pendanaan.status_pendanaan = "Lunas"
+    pendanaan.curr_pembayaran = pendanaan.total_pembayaran
+    session.commit()
+    session.refresh(pendanaan)
+    session.close()
+    return {"pendanaan" : pendanaan}
+>>>>>>> a5b5b81952c33230b1a1665a0779780c4532fa45

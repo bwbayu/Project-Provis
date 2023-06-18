@@ -1016,7 +1016,6 @@ class PinjamanUser extends ChangeNotifier {
           print('UMKM data not found in response');
         }
         var tempPinjaman = data['pinjaman'];
-        print(tempPinjaman);
         if (tempPinjaman != null) {
           dataPinjaman = [Pinjaman.fromJson(tempPinjaman)];
         }
@@ -1153,7 +1152,9 @@ class Pendanaan {
   double total_pembayaran;
   double curr_pembayaran;
   int pinjaman_id;
+  int pendanaan_id;
 
+<<<<<<< HEAD
   Pendanaan(
       {required this.pinjaman_id,
       required this.status_pendanaan,
@@ -1161,8 +1162,13 @@ class Pendanaan {
       required this.total_pembayaran,
       required this.curr_pembayaran});
 
+=======
+  Pendanaan({required this.pendanaan_id, required this.pinjaman_id, required this.status_pendanaan, required this.jumlah_pendanaan, required this.total_pembayaran, required this.curr_pembayaran});
+  
+>>>>>>> a5b5b81952c33230b1a1665a0779780c4532fa45
   factory Pendanaan.fromJson(Map<String, dynamic> json) {
     return Pendanaan(
+      pendanaan_id: json["pendanaan_id"],
       pinjaman_id: json["pinjaman_id"],
       status_pendanaan: json["status_pendanaan"],
       jumlah_pendanaan: json["jumlah_pendanaan"],
@@ -1174,8 +1180,14 @@ class Pendanaan {
 
 class PendanaanData extends ChangeNotifier {
   // GET DATA PENDANAAN
+<<<<<<< HEAD
   List<Pendanaan> listPendanaan = <Pendanaan>[];
   List<Pendanaan> listPendanaanLunas = <Pendanaan>[];
+=======
+  List<Pendanaan> listPendanaan = <Pendanaan> [];
+  List<Pendanaan> listPendanaanLunas = <Pendanaan> [];
+  List<Pendanaan> listPendanaanPending = <Pendanaan> [];
+>>>>>>> a5b5b81952c33230b1a1665a0779780c4532fa45
   bool isLoading = false;
   Future<int> fetchDataPendanaan(int user_id) async {
     isLoading = true;
@@ -1187,8 +1199,8 @@ class PendanaanData extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
+        // ALL PENDANAAN
         var dataPendanaan = data['pendanaan'];
-
         if (dataPendanaan != null) {
           listPendanaan = List<Pendanaan>.from(
             dataPendanaan.map((json) => Pendanaan.fromJson(json)),
@@ -1197,9 +1209,8 @@ class PendanaanData extends ChangeNotifier {
         } else {
           listPendanaan = [];
         }
-
+        // PENDANAAN LUNAS
         var dataPendanaanLunas = data['pendanaanLunas'];
-
         if (dataPendanaanLunas != null) {
           listPendanaanLunas = List<Pendanaan>.from(
             dataPendanaanLunas.map((json) => Pendanaan.fromJson(json)),
@@ -1207,6 +1218,16 @@ class PendanaanData extends ChangeNotifier {
           calculateTotalPendanaan();
         } else {
           listPendanaanLunas = [];
+        }
+        // PENDANAAN PENDING
+        var dataPendanaanPending = data['pendanaanPending'];
+        if (dataPendanaanPending != null) {
+          listPendanaanPending = List<Pendanaan>.from(
+            dataPendanaanPending.map((json) => Pendanaan.fromJson(json)),
+          );
+          calculateTotalPendanaan();
+        } else {
+          listPendanaanPending = [];
         }
       } else if (response.statusCode == 422) {
         print('Validation Error: ${response.body}');
@@ -1233,6 +1254,16 @@ class PendanaanData extends ChangeNotifier {
     for (var pendanaanUser in listPendanaan) {
       _total_pendanaan += pendanaanUser.jumlah_pendanaan;
     }
+  }
+
+  // UPDATE STATUS PENDANAAN DAN CURR_PEMBAYARAN
+  Future<int> updateStatusPendanaan(int pendanaan_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/updateStatusPendanaan/$pendanaan_id');
+    final headers = {'Content-Type': 'application/json'};
+
+    final response = await http.put(url, headers: headers);
+
+    return response.statusCode;
   }
 }
 
@@ -1395,6 +1426,7 @@ class WithdrawalState extends ChangeNotifier {
   }
 }
 
+<<<<<<< HEAD
 class MyImageProvider extends ChangeNotifier {
   String namaImage = "";
 
@@ -1515,5 +1547,44 @@ class TTDProvider extends ChangeNotifier {
       print("mulai upload");
       await uploadFile(bytes as List<int>, pickedImage.name, user_id);
     }
+=======
+class PembayaranProvider extends ChangeNotifier{
+  double _jumlah_pembayaran = 0.0;
+
+  // SETTER GETTER
+  double get jumlah_pembayaran => _jumlah_pembayaran;
+  set jumlah_pembayaran(double value) {
+    _jumlah_pembayaran = value;
+  }
+
+  // POST DATA PEMBAYARAN
+  Future<int> addPembayaran(int pinjaman_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/addPembayaran/$pinjaman_id');
+    final headers = {'Content-Type': 'application/json'};
+    final pembayaranData = {
+      "jumlah_pembayaran": jumlah_pembayaran,
+      "status_pembayaran": "Pending"
+    };
+    final body = jsonEncode(pembayaranData);
+
+    final response = await http.put(url, headers: headers, body: body);
+
+    return response.statusCode;
+  }
+
+  void reset(){
+    jumlah_pembayaran = 0.0;
+    notifyListeners();
+  }
+
+  // UPDATE STATUS PEMBAYARAN KE LUNAS BY PINJAMAN_ID
+  Future<int> updateStatusPembayaran(int pinjaman_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/updateStatusPembayaran/$pinjaman_id');
+    final headers = {'Content-Type': 'application/json'};
+
+    final response = await http.put(url, headers: headers);
+
+    return response.statusCode;
+>>>>>>> a5b5b81952c33230b1a1665a0779780c4532fa45
   }
 }

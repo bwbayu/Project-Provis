@@ -152,12 +152,30 @@ class LoginScreen extends StatelessWidget {
                                     if(login.jenis_user == "Investor"){
                                       // fetch data wallet
                                       await wallet.fetchData(login.user_id);
+                                      // fetch data pendanaan
+                                      await pendanaan.fetchDataPendanaan(login.user_id);
+                                      if(pendanaan.listPendanaanPending.length > 0){
+                                        for (var item in pendanaan.listPendanaanPending) {
+                                          // assign data riwayat wallet
+                                          riwayat.keterangan = "Pembayaran Pinjaman";
+                                          riwayat.statusTransaksi = "Masuk";
+                                          riwayat.saldoTransaksi = item.total_pembayaran;
+                                          // update riwayat wallet
+                                          await riwayat.addRiwayatWallet(wallet.wallet_id);
+                                          // reset data wallet
+                                          riwayat.reset();
+                                          // update status pendanaan dan curr pembayaran by pendanaan_id
+                                          await pendanaan.updateStatusPendanaan(item.pendanaan_id);
+                                        }
+                                      }
+                                      // fetch data wallet
+                                      await wallet.fetchData(login.user_id);
+                                      // fetch data pendanaan
+                                      await pendanaan.fetchDataPendanaan(login.user_id);
                                       // fetch data riwayat wallet
                                       await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
                                       // fetch data pinjaman status open
                                       await pinjaman.fetchDataPinjamanOpen();
-                                      // fetch data pendanaan
-                                      await pendanaan.fetchDataPendanaan(login.user_id);
                                       Navigator.pushNamed(context, '/dashboardInvestor');
                                     }else{
                                       // fetch data list pinjaman user
@@ -181,6 +199,8 @@ class LoginScreen extends StatelessWidget {
                                       await wallet.fetchData(login.user_id);
                                       // fetch data riwayat
                                       await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
+                                      // fetch data list pinjaman user
+                                      await pinjaman.fetchDataPinjaman(login.user_id);
                                       Navigator.pushNamed(context, '/dashboardUMKM');
                                     }
                                   }

@@ -252,42 +252,6 @@ class InvestorPage extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 5),
-                                      child: Column(
-                                        children: [
-                                          CircleAvatar(
-                                            radius: 30.0,
-                                            backgroundColor: Color.fromARGB(
-                                                255, 240, 240, 240),
-                                            child: IconButton(
-                                              icon: SvgPicture.asset(
-                                                'asset/images/history.svg',
-                                                width: 24.0,
-                                                height: 24.0,
-                                                color: Color.fromARGB(
-                                                    1000, 168, 81, 223),
-                                              ),
-                                              onPressed: () {
-                                                // Handle History button tap
-                                                // Navigator.pushNamed(context, '/history');
-                                              },
-                                            ),
-                                          ),
-                                          SizedBox(height: 4.0),
-                                          Text(
-                                            'History',
-                                            style: TextStyle(
-                                              fontSize: 12.0,
-                                              fontFamily: 'Outfit',
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
                                   ],
                                 )
                               ],
@@ -373,14 +337,28 @@ class InvestorPage extends StatelessWidget {
                                             shrinkWrap: true,
                                             physics:
                                                 const NeverScrollableScrollPhysics(),
-                                            itemCount: pinjaman.listPinjamanOpen!.length > 5 ? 5 : pinjaman.listPinjamanOpen!.length,
-                                            itemBuilder: (BuildContext context, int index) {
+                                            itemCount: pinjaman
+                                                        .listPinjamanOpen!
+                                                        .length >
+                                                    5
+                                                ? 5
+                                                : pinjaman
+                                                    .listPinjamanOpen!.length,
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
                                               return InkWell(
                                                 onTap: () async {
                                                   // fetch data umkm by pinjaman_id
-                                                  final statusCode = await pinjaman.fetchDataUmkm(pinjaman.listPinjamanOpen![index].pinjaman_id);
-                                                  if(statusCode == 200) {
-                                                    Navigator.pushNamed(context, '/UMKMPage', arguments: index);  
+                                                  final statusCode =
+                                                      await pinjaman
+                                                          .fetchDataUmkm(pinjaman
+                                                              .listPinjamanOpen![
+                                                                  index]
+                                                              .pinjaman_id);
+                                                  if (statusCode == 200) {
+                                                    Navigator.pushNamed(
+                                                        context, '/UMKMPage',
+                                                        arguments: index);
                                                   }
                                                 },
                                                 child: Padding(
@@ -455,7 +433,11 @@ class InvestorPage extends StatelessWidget {
                                                                       ),
                                                                     ),
                                                                     Text(
-                                                                      'Rp'+pinjaman.listPinjamanOpen![index].jumlah_pinjaman.toString(),
+                                                                      'Rp' +
+                                                                          pinjaman
+                                                                              .listPinjamanOpen![index]
+                                                                              .jumlah_pinjaman
+                                                                              .toString(),
                                                                       style:
                                                                           TextStyle(
                                                                         fontFamily:
@@ -493,7 +475,11 @@ class InvestorPage extends StatelessWidget {
                                                                       ),
                                                                     ),
                                                                     Text(
-                                                                      'Rp'+pinjaman.listPinjamanOpen![index].pinjaman_terkumpul.toString(),
+                                                                      'Rp' +
+                                                                          pinjaman
+                                                                              .listPinjamanOpen![index]
+                                                                              .pinjaman_terkumpul
+                                                                              .toString(),
                                                                       style:
                                                                           TextStyle(
                                                                         fontFamily:
