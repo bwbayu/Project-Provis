@@ -95,16 +95,6 @@ class formNPWP extends StatelessWidget {
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-<<<<<<< HEAD
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Upload',
-                                    style: TextStyle(
-                                      fontFamily: 'Outfit',
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-=======
                                 Consumer<Login>(
                                     builder: (context, Login, child) {
                                   return ElevatedButton(
@@ -117,7 +107,6 @@ class formNPWP extends StatelessWidget {
                                         fontFamily: 'Readex Pro',
                                         color: Colors.white,
                                       ),
->>>>>>> 619dd9d2ebc6bd4eab3ff396ff9db35a23de152f
                                     ),
                                     style: ElevatedButton.styleFrom(
                                       primary: Color(0xffcb5f18),
