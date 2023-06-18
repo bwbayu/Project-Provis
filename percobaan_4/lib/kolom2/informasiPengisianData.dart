@@ -73,6 +73,7 @@ class formData extends StatelessWidget {
                         'Mulai Pengisian Data',
                         style: TextStyle(
                           fontFamily: 'Outfit',
+                          fontWeight: FontWeight.w700,
                           color: Color(0xFFF7F8F9),
                           fontSize: 25,
                         ),
@@ -82,7 +83,7 @@ class formData extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: 'Outfit',
                           color: Color(0xFFF2F5F8),
-                          fontWeight: FontWeight.w300,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                       tileColor: Colors.transparent,
@@ -113,6 +114,7 @@ class formData extends StatelessWidget {
                         'KTP',
                         style: TextStyle(
                           fontFamily: 'Outfit',
+                          fontWeight: FontWeight.w700,
                           color: Color(0xFFF7F8F9),
                           fontSize: 25,
                         ),
@@ -122,7 +124,7 @@ class formData extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: 'Outfit',
                           color: Color(0xFFF2F5F8),
-                          fontWeight: FontWeight.w300,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),
@@ -152,16 +154,17 @@ class formData extends StatelessWidget {
                         'NPWP (opsional)',
                         style: TextStyle(
                           fontFamily: 'Outfit',
+                          fontWeight: FontWeight.w700,
                           color: Color(0xFFF7F8F9),
                           fontSize: 25,
                         ),
                       ),
                       subtitle: Text(
-                        'Gunakan e-ktp ataupun Surat Keterangan Pengganti (SKP) KTP untuk mendaftar',
+                        'Gunakan NPWP ataupun Surat Keterangan Pengganti (SKP) KTP untuk mendaftar',
                         style: TextStyle(
                           fontFamily: 'Outfit',
                           color: Color(0xFFF2F5F8),
-                          fontWeight: FontWeight.w300,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                       contentPadding: EdgeInsets.all(16),
@@ -184,7 +187,7 @@ class formData extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: 'Outfit',
                             fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w700,
                             color: Colors.white,
                           ),
                         ),

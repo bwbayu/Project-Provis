@@ -50,22 +50,24 @@ class formKTP extends StatelessWidget {
                       'Foto KTP',
                       style: TextStyle(
                         fontFamily: 'Outfit',
+                        fontWeight: FontWeight.w600,
                         color: Color(0xFFF7F8F9),
                         fontSize: 25,
                       ),
                     ),
                     subtitle: Text(
-                      'Mohon siapkan dokumen berikut untuk memudahkan pengisian data Anda.',
+                      'Mohon siapkan dokumen untuk memudahkan pengisian data.',
                       style: TextStyle(
-                        fontFamily: 'Readex Pro',
+                        fontFamily: 'Outfit',
+                        fontWeight: FontWeight.w400,
                         color: Color(0xFFF2F5F8),
-                        fontWeight: FontWeight.w300,
                       ),
                     ),
                     tileColor: Colors.transparent,
                   ),
                 ),
               ),
+              SizedBox(height: 20),
               Padding(
                 padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
                 child: Container(
@@ -94,7 +96,8 @@ class formKTP extends StatelessWidget {
                             child: Text(
                               'Upload',
                               style: TextStyle(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.w700,
                                 color: Colors.white,
                               ),
                             ),
@@ -126,9 +129,9 @@ class formKTP extends StatelessWidget {
                       child: Text(
                         'Lanjutkan',
                         style: TextStyle(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Outfit',
+                          fontWeight: FontWeight.w700,
                           fontSize: 16,
-                          fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
