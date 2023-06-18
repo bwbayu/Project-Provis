@@ -16,8 +16,8 @@ class Pembayaran extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Consumer2<PinjamanUser, Wallet>(
-          builder: (context, pinjaman, wallet, child) =>
+        child: Consumer4<PinjamanUser, Wallet, PembayaranProvider, RiwayatWalletProvider>(
+          builder: (context, pinjaman, wallet, pembayaran, riwayat, child) =>
           Column(
             children: [
               AppBar(
@@ -286,21 +286,48 @@ class Pembayaran extends StatelessWidget {
                       SizedBox(
                         height: 40,
                         width: 100,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // cek saldo umkm
-                            // 
-                            Navigator.pushNamed(context, '/dashboardUMKM');
-                          },
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero, // Remove default padding
-                          ),
-                          child: Text(
-                            'Bayar',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Outfit',
-                              fontSize: 18,
+                        child: Consumer<Login>(
+                          builder:(context, login, child) =>
+                          ElevatedButton(
+                            onPressed: () async{
+                              // cek saldo umkm
+                              if(wallet.saldo >= pembayaran.jumlah_pembayaran){
+                                // assign data riwayat
+                                riwayat.keterangan = "Pembayaran Pinjaman";
+                                riwayat.statusTransaksi = "Keluar";
+                                riwayat.saldoTransaksi = pembayaran.jumlah_pembayaran;
+                                // update riwayat wallet
+                                await riwayat.addRiwayatWallet(wallet.wallet_id);
+                                // fetch data riwayat
+                                await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
+                                // fetch data wallet
+                                await wallet.fetchData(login.user_id);
+                                // update status pinjaman & status pembayaran ke lunas
+                                await pembayaran.updateStatusPembayaran(pinjaman.pinjamanList![index].pinjaman_id);
+                                // reset data riwayat
+                                riwayat.reset();
+                                // fetch data list pinjaman user
+                                await pinjaman.fetchDataPinjaman(login.user_id);
+                                Navigator.pushNamed(context, '/dashboardUMKM');
+                              }else{
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                        'Error: Saldo tidak cukup'),
+                                  ),
+                                );
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.zero, // Remove default padding
+                            ),
+                            child: Text(
+                              'Bayar',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Outfit',
+                                fontSize: 18,
+                              ),
                             ),
                           ),
                         ),

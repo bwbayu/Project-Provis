@@ -109,6 +109,7 @@ class isiDana extends StatelessWidget {
                                   color: Colors.purple[800]!,
                                   child: ListTile(
                                     onTap: () {
+                                      Navigator.pushNamed(context, '/isiDanaPage', arguments: bank.bankList[index].namaBank);
                                       // Add your onTap logic here
                                     },
                                     leading: Icon(

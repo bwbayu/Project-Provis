@@ -150,7 +150,20 @@ class rincianPinjaman extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
                                 child: Text(
-                                  'Rp ' + ((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0))/100)+ (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0)).toString(),
+                                  'Rp ' +
+                                      ((((pinjaman.pinjamanList?[index]
+                                                              .bungaPinjaman ??
+                                                          0) *
+                                                      (pinjaman
+                                                              .pinjamanList?[
+                                                                  index]
+                                                              .jumlah_pinjaman ??
+                                                          0)) /
+                                                  100) +
+                                              (pinjaman.pinjamanList?[index]
+                                                      .jumlah_pinjaman ??
+                                                  0))
+                                          .toString(),
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
@@ -392,26 +405,44 @@ class rincianPinjaman extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/Pembayaran', arguments: index);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF977EF2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                  child: pinjaman.pinjamanList![index].status_pinjaman == "Lunas"
+                      ? SizedBox()
+                      : Consumer<PembayaranProvider>(
+                        builder: (context, pembayaran, child) =>
+                        ElevatedButton(
+                            onPressed: () async {
+                              if (pinjaman.pinjamanList![index].status_pinjaman =="Pending") {
+                                // assign data pembayaran
+                                pembayaran.jumlah_pembayaran = (((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0)) / 100) + (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0);
+                                // add data pembayaran
+                                await pembayaran.addPembayaran(pinjaman.pinjamanList![index].pinjaman_id);
+                                Navigator.pushNamed(context, '/Pembayaran',arguments: index);
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                        'Error: Pinjaman ini belum bisa melakukan pembayaran'),
+                                  ),
+                                );
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0xFF977EF2),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              padding: EdgeInsets.symmetric(vertical: 20),
+                            ),
+                            child: Text(
+                              'Bayar',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                    ),
-                    child: Text(
-                      'Bayar',
-                      style: TextStyle(
-                        fontFamily: 'Outfit',
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),
