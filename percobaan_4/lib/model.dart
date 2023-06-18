@@ -820,6 +820,10 @@ class Pinjaman {
 class PinjamanUser extends ChangeNotifier {
   // FETCH DATA PINJAMAN UNTUK USER UMKM
   List<Pinjaman>? pinjamanList;
+  List<Pinjaman>? pinjamanPendingList;
+  List<Pinjaman>? pinjamanLunasList;
+  List<Pinjaman>? pinjamanOpenList;
+  List<Pinjaman>? pinjamanCloseList;
   bool isLoading = false;
 
   Future<int> fetchDataPinjaman(int user_id) async {
@@ -832,8 +836,8 @@ class PinjamanUser extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
+        // all pinjaman
         var pinjamanData = data['pinjaman'];
-
         if (pinjamanData != null) {
           pinjamanList = List<Pinjaman>.from(
             pinjamanData.map((json) => Pinjaman.fromJson(json)),
@@ -841,6 +845,42 @@ class PinjamanUser extends ChangeNotifier {
           calculateTotalPinjaman();
         } else {
           pinjamanList = [];
+        }
+        // pinjaman pending
+        var pinjamanPendingData = data['pinjamanPending'];
+        if (pinjamanPendingData != null) {
+          pinjamanPendingList = List<Pinjaman>.from(
+            pinjamanPendingData.map((json) => Pinjaman.fromJson(json)),
+          );
+        } else {
+          pinjamanPendingList = [];
+        }
+        // pinjaman lunas
+        var pinjamanLunasData = data['pinjamanLunas'];
+        if (pinjamanLunasData != null) {
+          pinjamanLunasList = List<Pinjaman>.from(
+            pinjamanLunasData.map((json) => Pinjaman.fromJson(json)),
+          );
+        } else {
+          pinjamanLunasList = [];
+        }
+        // pinjaman open
+        var pinjamanOpenData = data['pinjamanOpen'];
+        if (pinjamanOpenData != null) {
+          pinjamanOpenList = List<Pinjaman>.from(
+            pinjamanOpenData.map((json) => Pinjaman.fromJson(json)),
+          );
+        } else {
+          pinjamanOpenList = [];
+        }
+        // pinjaman close
+        var pinjamanCloseData = data['pinjamanClose'];
+        if (pinjamanCloseData != null) {
+          pinjamanCloseList = List<Pinjaman>.from(
+            pinjamanCloseData.map((json) => Pinjaman.fromJson(json)),
+          );
+        } else {
+          pinjamanCloseList = [];
         }
       } else if (response.statusCode == 422) {
         print('Validation Error: ${response.body}');
@@ -936,22 +976,24 @@ class PinjamanUser extends ChangeNotifier {
 
   // FETCH DATA UMKM DARI PINJAMAN
   UmkmProvider dataUMKM = UmkmProvider(); //menampung data umkm
-
+  
+  
   // map dari json ke atribut
   void setFromJson(Map<String, dynamic> json) {
-    dataUMKM.bentuk_umkm = json['umkm']['bentuk_umkm'];
-    dataUMKM.nama_umkm = json['umkm']['nama_umkm'];
-    dataUMKM.alamat_umkm = json['umkm']['alamat_umkm'];
-    dataUMKM.kategori_umkm = json['umkm']['kategori_umkm'];
-    dataUMKM.deskripsi_umkm = json['umkm']['deskripsi_umkm'];
-    dataUMKM.kontak_umkm = json['umkm']['kontak_umkm'];
-    dataUMKM.jumlah_karyawan = json['umkm']['jumlah_karyawan'];
-    dataUMKM.omset_bulanan = json['umkm']['omset_bulanan'];
-    dataUMKM.foto_umkm = json['umkm']['foto_umkm'];
+    dataUMKM.bentuk_umkm = json['bentuk_umkm'];
+    dataUMKM.nama_umkm = json['nama_umkm'];
+    dataUMKM.alamat_umkm = json['alamat_umkm'];
+    dataUMKM.kategori_umkm = json['kategori_umkm'];
+    dataUMKM.deskripsi_umkm = json['deskripsi_umkm'];
+    dataUMKM.kontak_umkm = json['kontak_umkm'];
+    dataUMKM.jumlah_karyawan = json['jumlah_karyawan'];
+    dataUMKM.omset_bulanan = json['omset_bulanan'];
+    dataUMKM.foto_umkm = json['foto_umkm'];
     notifyListeners();
   }
 
   bool isLoading2 = true;
+  List<Pinjaman>? dataPinjaman;
   Future<int> fetchDataUmkm(int pinjaman_id) async {
     isLoading2 = true;
     notifyListeners();
@@ -961,12 +1003,18 @@ class PinjamanUser extends ChangeNotifier {
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
-        final data = json.decode(response.body);
+        final data = jsonDecode(response.body);
+        var dataUMKM = data['umkm'];
         if (data.containsKey('umkm')) {
-          setFromJson(data);
+          setFromJson(dataUMKM);
         } else {
           // Handle case when 'umkm' is not found in the response body
           print('UMKM data not found in response');
+        }
+        var tempPinjaman = data['pinjaman'];
+        print(tempPinjaman);
+        if (tempPinjaman != null) {
+          dataPinjaman = [Pinjaman.fromJson(tempPinjaman)];
         }
       } else if (response.statusCode == 422) {
         print('Validation Error: ${response.body}');
@@ -984,6 +1032,29 @@ class PinjamanUser extends ChangeNotifier {
       return 0;
     }
   }
+
+  // UPDATE STATUS PINJAMAN USER JIKA PINJAMAN TERPENUHI
+  Future<int> updateStatusPinjaman(int pinjaman_id) async {
+    final url = Uri.parse('http://127.0.0.1:8000/updateStatusPinjaman/$pinjaman_id');
+    final headers = {'Content-Type': 'application/json'};
+
+    try {
+      final response = await http.put(url, headers: headers);
+
+      if (response.statusCode == 200) {
+        return response.statusCode;
+      } else if (response.statusCode == 422) {
+        print('Validation Error: ${response.body}');
+        return response.statusCode;
+      } else {
+        print('Error: ${response.statusCode}');
+        return response.statusCode;
+      }
+    } catch (e) {
+      print('Exception: $e');
+      return 0;
+    }
+  }
 }
 
 // PENDANAAN
@@ -991,11 +1062,16 @@ class PendaaanProvider extends ChangeNotifier {
   double _jumlahPendanaan = 0.0;
   double _bunga = 0.0;
   double _targetPengembalian = 0.0;
+  int _pinjaman_id = 0;
+  String _status_pendanaan = "";
 
   // SETTER GETTER
   double get jumlahPendanaan => _jumlahPendanaan;
   double get bunga => _bunga;
   double get targetPengembalian => _targetPengembalian;
+  int get pinjaman_id => _pinjaman_id;
+  String get status_pendanaan => _status_pendanaan;
+
   set jumlahPendanaan(double value) {
     _jumlahPendanaan = value;
     notifyListeners();
@@ -1011,11 +1087,142 @@ class PendaaanProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  set pinjaman_id(int value) {
+    _pinjaman_id = value;
+    notifyListeners();
+  }
+
+  set status_pendanaan(String value) {
+    _status_pendanaan = value;
+    notifyListeners();
+  }
+
+  // POST DATA PENDANAAN INVESTOR
+  bool isLoading = false;
+  Future<int> addPendanaan(int user_id) async{
+    isLoading = true;
+    notifyListeners();
+    final url = Uri.parse('http://127.0.0.1:8000/addPendanaan/$user_id');
+    final headers = {'Content-Type': 'application/json'};
+    final body = jsonEncode({
+      "pinjaman_id": pinjaman_id,
+      "jumlah_pendanaan": jumlahPendanaan,
+      "status_pendanaan": "Pending",
+      "total_pembayaran": targetPengembalian,
+      "curr_pembayaran": 0
+    });
+
+    try {
+      final response = await http.post(url, headers: headers, body: body);
+
+      isLoading = false;
+      notifyListeners();
+
+      if (response.statusCode == 200) {
+        return response.statusCode;
+      } else {
+        // Handle non-200 status code
+        print('Failed to add pendanaan. Status code: ${response.statusCode}');
+        return response.statusCode;
+      }
+    } catch (e) {
+      // Handle exception
+      print('Exception occurred while adding pendanaan: $e');
+      return -1; // Return a custom error code or value
+    }
+  }
+
   // reset
   void reset() {
     jumlahPendanaan = 0.0;
     bunga = 0.0;
     targetPengembalian = 0.0;
+    status_pendanaan = "";
+    pinjaman_id = 0;
+  }
+}
+
+class Pendanaan{
+  String status_pendanaan;
+  double jumlah_pendanaan;
+  double total_pembayaran;
+  double curr_pembayaran;
+  int pinjaman_id;
+
+  Pendanaan({required this.pinjaman_id, required this.status_pendanaan, required this.jumlah_pendanaan, required this.total_pembayaran, required this.curr_pembayaran});
+  
+  factory Pendanaan.fromJson(Map<String, dynamic> json) {
+    return Pendanaan(
+      pinjaman_id: json["pinjaman_id"],
+      status_pendanaan: json["status_pendanaan"],
+      jumlah_pendanaan: json["jumlah_pendanaan"],
+      total_pembayaran: json["total_pembayaran"],
+      curr_pembayaran: json["curr_pembayaran"],
+    );
+  }
+}
+
+class PendanaanData extends ChangeNotifier{
+  // GET DATA PENDANAAN
+  List<Pendanaan> listPendanaan = <Pendanaan> [];
+  List<Pendanaan> listPendanaanLunas = <Pendanaan> [];
+  bool isLoading = false;
+  Future<int> fetchDataPendanaan(int user_id) async {
+    isLoading = true;
+    notifyListeners();
+
+    try {
+      String url = "http://127.0.0.1:8000/getPendanaan/$user_id";
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        var dataPendanaan = data['pendanaan'];
+
+        if (dataPendanaan != null) {
+          listPendanaan = List<Pendanaan>.from(
+            dataPendanaan.map((json) => Pendanaan.fromJson(json)),
+          );
+          calculateTotalPendanaan();
+        } else {
+          listPendanaan = [];
+        }
+
+        var dataPendanaanLunas = data['pendanaanLunas'];
+
+        if (dataPendanaanLunas != null) {
+          listPendanaanLunas = List<Pendanaan>.from(
+            dataPendanaanLunas.map((json) => Pendanaan.fromJson(json)),
+          );
+          calculateTotalPendanaan();
+        } else {
+          listPendanaanLunas = [];
+        }
+      } else if (response.statusCode == 422) {
+        print('Validation Error: ${response.body}');
+      } else {
+        print('Error: ${response.statusCode}');
+      }
+
+      isLoading = false;
+      notifyListeners();
+      return response.statusCode;
+    } catch (e) {
+      print('Exception: $e');
+      isLoading = false;
+      notifyListeners();
+      return 0;
+    }
+  }
+
+  // mencari total pendanaan
+  double _total_pendanaan = 0.0;
+  double get total_pendanaan => _total_pendanaan;
+  void calculateTotalPendanaan() {
+    _total_pendanaan = 0.0;
+    for (var pendanaanUser in listPendanaan) {
+      _total_pendanaan += pendanaanUser.jumlah_pendanaan;
+    }
   }
 }
 
@@ -1028,12 +1235,12 @@ class RiwayatWalletData{
   RiwayatWalletData({required this.keterangan, required this.saldoTransaksi, required this.statusTransaksi});
   
   factory RiwayatWalletData.fromJson(Map<String, dynamic> json) {
-  return RiwayatWalletData(
-    keterangan: json["keterangan"],
-    saldoTransaksi: json["saldo_transaksi"],
-    statusTransaksi: json["status_transaksi"],
-  );
-}
+    return RiwayatWalletData(
+      keterangan: json["keterangan"],
+      saldoTransaksi: json["saldo_transaksi"],
+      statusTransaksi: json["status_transaksi"],
+    );
+  }
 }
 
 class RiwayatWalletProvider extends ChangeNotifier{

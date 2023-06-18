@@ -20,8 +20,8 @@ class MulaiPendanaanInvestor extends StatelessWidget {
         ),
         child: Scrollbar(
           child: SingleChildScrollView(
-            child: Consumer5<VerifikasiAkun, PinjamanUser, PendaaanProvider, RiwayatWalletProvider, Wallet>(
-              builder: (context, verif, pinjaman, pendanaan, riwayat, wallet, child){
+            child: Consumer2<PinjamanUser, PendaaanProvider>(
+              builder: (context, pinjaman, pendanaan, child){
               return Column(
                 children: [
                   AppBar(
@@ -56,17 +56,43 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.all(20.0),
                         child: Column(children: [
+                          Consumer<Wallet>(
+                            builder: (context, wallet, child) =>
+                            ListTile(
+                              title: Text(
+                                'Saldo Anda',
+                                style: TextStyle(
+                                  fontFamily: 'Outfit',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              subtitle: Text("Rp " + wallet.saldo.toString()),
+                            ),
+                          ),
                           ListTile(
                             title: Text(
-                              'Lama Tenor',
+                              'Jumlah Pinjaman',
                               style: TextStyle(
                                 fontFamily: 'Outfit',
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
                               ),
                             ),
-                            subtitle: Text(pinjaman
-                                .listPinjamanOpen![index].tenor_pinjaman),
+                            subtitle: Text("Rp " + pinjaman.listPinjamanOpen![index]
+                                .jumlah_pinjaman.toString()),
+                          ),
+                          ListTile(
+                            title: Text(
+                              'Pinjaman Terkumpul',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            subtitle: Text("Rp " + pinjaman.listPinjamanOpen![index]
+                                .pinjaman_terkumpul.toString()),
                           ),
                           ListTile(
                             title: Text(
@@ -79,29 +105,6 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                             ),
                             subtitle: Text(pinjaman
                                 .listPinjamanOpen![index].bunga_pinjaman),
-                          ),
-                          ListTile(
-                            title: Text(
-                              'Frekuensi Angsuran Bunga',
-                              style: TextStyle(
-                                fontFamily: 'Outfit',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                            subtitle: Text(pinjaman.listPinjamanOpen![index]
-                                .frekuensi_angsuran_pokok),
-                          ),
-                          ListTile(
-                            title: Text(
-                              'Frekuensi Angsuran Pokok',
-                              style: TextStyle(
-                                fontFamily: 'Outfit',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                            subtitle: Text('Bulanan'),
                           ),
                         ]),
                       ),
@@ -187,62 +190,85 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 20, 10, 10),
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        // SALDO USER BAKAL BERKURANG DAN DANA PINJAMAN BAKAL BERTAMBAH
-                        // cek status akun user
-                        if (verif.status_akun == "Verified") {
-                          if(pendanaan.jumlahPendanaan % 10000 == 0){
-                            // update riwayat investor user, otomatis saldonya berkurang -> cek dlu saldonya
-                            if(pendanaan.jumlahPendanaan <= wallet.saldo){
-                              // assign data riwayat
-                              riwayat.keterangan = "Pendanaan UMKM";
-                              riwayat.statusTransaksi = "Keluar";
-                              riwayat.saldoTransaksi = pendanaan.jumlahPendanaan;
-                              // update riwayat wallet
-                              await riwayat.addRiwayatWallet(wallet.wallet_id);
-                              // add data ke pendanaan
-                              // update pinjaman terkumpul dari id_pinjaman ini
-                              // fetch data pendanaan ke porfolio
-                              // update status_pendanaan
-                              // cek dan update status_pinjaman
-                              // reset variable pendanaan
-                              pendanaan.reset(); 
-                              // reset variable riwayat
-                              riwayat.reset();
-                              Navigator.pushNamed(context, '/dashboardInvestor');
+                    child: Consumer5<VerifikasiAkun, RiwayatWalletProvider, Wallet, Login, PendanaanData>(
+                      builder: (context, verif, riwayat, wallet, login, dataPendanaan, child) =>
+                      ElevatedButton(
+                        onPressed: () async {
+                          // SALDO USER BAKAL BERKURANG DAN DANA PINJAMAN BAKAL BERTAMBAH
+                          // cek status akun user
+                          if (verif.status_akun == "Verified") {
+                            if(pendanaan.jumlahPendanaan % 10000 == 0){
+                              // (CEK PINJAMAN_TERKUMPUL + JUMLAH_PENDAAAN <= JUMLAH_PINJAMAN)
+                              if(pinjaman.listPinjamanOpen![index].pinjaman_terkumpul + pendanaan.jumlahPendanaan <= pinjaman.listPinjamanOpen![index].jumlah_pinjaman){
+                                // update riwayat investor user, otomatis saldonya berkurang -> cek dlu saldonya
+                                if(pendanaan.jumlahPendanaan <= wallet.saldo){
+                                  // assign data riwayat
+                                  riwayat.keterangan = "Pendanaan UMKM";
+                                  riwayat.statusTransaksi = "Keluar";
+                                  riwayat.saldoTransaksi = pendanaan.jumlahPendanaan;
+                                  // update riwayat wallet
+                                  await riwayat.addRiwayatWallet(wallet.wallet_id);
+                                  // fetch data riwayat
+                                  await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
+                                  // fetch data wallet
+                                  await wallet.fetchData(login.user_id);
+                                  // add data ke pendanaan, update pinjaman terkumpul dari id_pinjaman ini, cek dan update status_pinjaman
+                                  pendanaan.pinjaman_id = pinjaman.listPinjamanOpen![index].pinjaman_id;
+                                  await pendanaan.addPendanaan(login.user_id);
+                                  // fetch data pendanaan ke porfolio
+                                  await dataPendanaan.fetchDataPendanaan(login.user_id);
+                                  // update status_pendanaan
+                                  // reset variable pendanaan
+                                  pendanaan.reset(); 
+                                  // reset variable riwayat
+                                  riwayat.reset();
+                                  Navigator.pushNamed(context, '/dashboardInvestor');
+                                }else{
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Error: Saldo anda tidak cukup'),
+                                  ),
+                                );
+                              }
+                              }else{
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Error: Jumlah pendanaan sudah melebihi jumlah pinjaman yang diajukan'),
+                                  ),
+                                );
+                              }
+                            }else{
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Error: Jumlah pendanaan harus berkelipatan Rp 10.000'),
+                                ),
+                              );
                             }
-                          }else{
+                          } else {
                             ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Error: Jumlah pendanaan harus berkelipatan Rp 10.000'),
-                            ),
-                          );
+                              SnackBar(
+                                content: Text('Error: Akun anda belum verified'),
+                              ),
+                            );
                           }
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Error: Akun anda belum verified'),
-                            ),
-                          );
-                        }
-                      },
-                      child: Text(
-                        "Lanjutkan",
-                        style: TextStyle(
-                            fontFamily: 'Outfit',
-                            color: Colors.white,
-                            fontSize: 16),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color(0xFF977EF2),
-                        elevation: 3,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
+                        },
+                        child: Text(
+                          "Lanjutkan",
+                          style: TextStyle(
+                              fontFamily: 'Outfit',
+                              color: Colors.white,
+                              fontSize: 16),
                         ),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 50,
-                          vertical: 20,
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xFF977EF2),
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 50,
+                            vertical: 20,
+                          ),
                         ),
                       ),
                     ),

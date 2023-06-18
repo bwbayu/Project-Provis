@@ -236,23 +236,31 @@ class PengajuanPinjamanPage extends StatelessWidget {
                               pinjaman.bunga_pinjaman != "" &&
                               pinjaman.frekuensi_angsuran != "" &&
                               pinjaman.tujuan_pinjaman != 0.0) {
-                            // post data pinjaman
-                            final statusCode =
-                                await pinjaman.addPinjamanUmkm(login.user_id);
-                            print(statusCode);
-                            if (statusCode == 200) {
-                              // reset variable pinjaman
-                              pinjaman.reset();
-                              // fetch data pinjaman
-                              await pinjamanUser.fetchDataPinjaman(login.user_id);
-                              Navigator.pushNamed(context, '/dashboardUMKM');
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Error: Add pinjaman failed'),
-                                ),
-                              );
-                            }
+                                if(pinjamanUser.pinjamanOpenList!.isEmpty && pinjamanUser.pinjamanPendingList!.isEmpty){
+                                  // post data pinjaman
+                                  final statusCode =
+                                      await pinjaman.addPinjamanUmkm(login.user_id);
+                                  print(statusCode);
+                                  if (statusCode == 200) {
+                                    // reset variable pinjaman
+                                    pinjaman.reset();
+                                    // fetch data pinjaman
+                                    await pinjamanUser.fetchDataPinjaman(login.user_id);
+                                    Navigator.pushNamed(context, '/dashboardUMKM');
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Error: Add pinjaman failed'),
+                                      ),
+                                    );
+                                  }
+                                }else{
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Error: Masih ada pinjaman yang belum selesai'),
+                                    ),
+                                  );
+                                }
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

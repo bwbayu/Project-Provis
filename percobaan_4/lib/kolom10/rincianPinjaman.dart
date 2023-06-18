@@ -150,7 +150,20 @@ class rincianPinjaman extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
                                 child: Text(
-                                  'Rp ' + ((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0))/100)+ (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0)).toString(),
+                                  'Rp ' +
+                                      ((((pinjaman.pinjamanList?[index]
+                                                              .bungaPinjaman ??
+                                                          0) *
+                                                      (pinjaman
+                                                              .pinjamanList?[
+                                                                  index]
+                                                              .jumlah_pinjaman ??
+                                                          0)) /
+                                                  100) +
+                                              (pinjaman.pinjamanList?[index]
+                                                      .jumlah_pinjaman ??
+                                                  0))
+                                          .toString(),
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
@@ -393,8 +406,17 @@ class rincianPinjaman extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/Pembayaran', arguments: index);
+                    onPressed: () async {
+                      if (pinjaman.pinjamanList![index].status_pinjaman == "Pending") {
+                        Navigator.pushNamed(context, '/Pembayaran',
+                            arguments: index);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Error: Pinjaman ini belum bisa melakukan pembayaran'),
+                          ),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xFF977EF2),

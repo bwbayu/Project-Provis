@@ -129,8 +129,8 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 32),
-                          Consumer<RiwayatWalletProvider>(
-                            builder: (context, riwayat, child) =>
+                          Consumer2<RiwayatWalletProvider, PendanaanData>(
+                            builder: (context, riwayat, pendanaan, child) =>
                             ElevatedButton(
                                 onPressed: () async{
                                   // MASUK KE DASHBOARD INVESTOR DAN BORROWER
@@ -140,8 +140,6 @@ class LoginScreen extends StatelessWidget {
                                   final statusCode = await login.loginProcess();
                                   print(statusCode);
                                   if(statusCode == 200){
-                                    // fetch data wallet
-                                    await wallet.fetchData(login.user_id);
                                     // fetch data profile
                                     await profile.fetchData(login.user_id);
                                     // update user
@@ -150,17 +148,39 @@ class LoginScreen extends StatelessWidget {
                                     await verif.fetchStatusAkun(login.user_id);
                                     // fetch data bank
                                     await bank.fetchDataBank(login.user_id);
-                                    // fetch data riwayat wallet
-                                    await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
                                     // print(riwayat.listRiwayatWallet!.length);
                                     if(login.jenis_user == "Investor"){
+                                      // fetch data wallet
+                                      await wallet.fetchData(login.user_id);
+                                      // fetch data riwayat wallet
+                                      await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
                                       // fetch data pinjaman status open
                                       await pinjaman.fetchDataPinjamanOpen();
-                                      print(pinjaman.listPinjamanOpen!.length);
+                                      // fetch data pendanaan
+                                      await pendanaan.fetchDataPendanaan(login.user_id);
                                       Navigator.pushNamed(context, '/dashboardInvestor');
                                     }else{
                                       // fetch data list pinjaman user
                                       await pinjaman.fetchDataPinjaman(login.user_id);
+                                      // fetch data wallet
+                                      await wallet.fetchData(login.user_id);
+                                      // ada pinjaman yang close -> update wallet + riwayat wallet dan status_pinjaman ke pending
+                                      if(pinjaman.pinjamanCloseList!.length > 0){
+                                        // assign data riwayat wallet
+                                        riwayat.keterangan = "Dana Pinjaman";
+                                        riwayat.statusTransaksi = "Masuk";
+                                        riwayat.saldoTransaksi = pinjaman.pinjamanCloseList![0].pinjaman_terkumpul;
+                                        // update riwayat wallet
+                                        await riwayat.addRiwayatWallet(wallet.wallet_id);
+                                        // reset data wallet
+                                        riwayat.reset();
+                                        // update status_pinjaman
+                                        await pinjaman.updateStatusPinjaman(pinjaman.pinjamanCloseList![0].pinjaman_id);
+                                      }
+                                      // fetch data wallet
+                                      await wallet.fetchData(login.user_id);
+                                      // fetch data riwayat
+                                      await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
                                       Navigator.pushNamed(context, '/dashboardUMKM');
                                     }
                                   }
