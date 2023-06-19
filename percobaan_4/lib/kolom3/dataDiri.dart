@@ -357,7 +357,7 @@ class dataDiri extends StatelessWidget {
                                 child: Text(
                                   'Submit Data',
                                   style: TextStyle(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Outfit',
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,

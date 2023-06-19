@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class MulaiPendanaanInvestor extends StatelessWidget {
   @override
@@ -21,7 +22,7 @@ class MulaiPendanaanInvestor extends StatelessWidget {
         child: Scrollbar(
           child: SingleChildScrollView(
             child: Consumer2<PinjamanUser, PendaaanProvider>(
-              builder: (context, pinjaman, pendanaan, child){
+                builder: (context, pinjaman, pendanaan, child) {
               return Column(
                 children: [
                   AppBar(
@@ -57,8 +58,7 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                         padding: EdgeInsets.all(20.0),
                         child: Column(children: [
                           Consumer<Wallet>(
-                            builder: (context, wallet, child) =>
-                            ListTile(
+                            builder: (context, wallet, child) => ListTile(
                               title: Text(
                                 'Saldo Anda',
                                 style: TextStyle(
@@ -67,7 +67,9 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                                   fontSize: 16,
                                 ),
                               ),
-                              subtitle: Text("Rp " + wallet.saldo.toString()),
+                              subtitle: Text(
+                                  // "Rp " + wallet.saldo.toString()),
+                                  "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(wallet!.saldo)}"),
                             ),
                           ),
                           ListTile(
@@ -79,8 +81,10 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                                 fontSize: 16,
                               ),
                             ),
-                            subtitle: Text("Rp " + pinjaman.listPinjamanOpen![index]
-                                .jumlah_pinjaman.toString()),
+                            subtitle: Text(
+                                // "Rp " + pinjaman.listPinjamanOpen![index]
+                                //   .jumlah_pinjaman.toString()),
+                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.listPinjamanOpen![index].jumlah_pinjaman)}"),
                           ),
                           ListTile(
                             title: Text(
@@ -91,8 +95,10 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                                 fontSize: 16,
                               ),
                             ),
-                            subtitle: Text("Rp " + pinjaman.listPinjamanOpen![index]
-                                .pinjaman_terkumpul.toString()),
+                            subtitle: Text(
+                                // "Rp " + pinjaman.listPinjamanOpen![index]
+                                //   .pinjaman_terkumpul.toString()),
+                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.listPinjamanOpen![index].pinjaman_terkumpul)}"),
                           ),
                           ListTile(
                             title: Text(
@@ -138,8 +144,13 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       onChanged: (value) {
                         pendanaan.jumlahPendanaan = double.parse(value);
-                        pendanaan.bunga = ((pinjaman.listPinjamanOpen?[index].bungaPinjaman ?? 0) * (pendanaan.jumlahPendanaan))/100;
-                        pendanaan.targetPengembalian = pendanaan.jumlahPendanaan + pendanaan.bunga;
+                        pendanaan.bunga =
+                            ((pinjaman.listPinjamanOpen?[index].bungaPinjaman ??
+                                        0) *
+                                    (pendanaan.jumlahPendanaan)) /
+                                100;
+                        pendanaan.targetPengembalian =
+                            pendanaan.jumlahPendanaan + pendanaan.bunga;
                       },
                     ),
                   ),
@@ -160,19 +171,22 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                               ),
                             ),
                             subtitle: Text(
-                                'Rp' + pendanaan.jumlahPendanaan.toString()),
+                                // 'Rp' + pendanaan.jumlahPendanaan.toString()),
+                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pendanaan.jumlahPendanaan)}"),
                           ),
                           ListTile(
-                              title: Text(
-                                'Bunga',
-                                style: TextStyle(
-                                  fontFamily: 'Outfit',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
+                            title: Text(
+                              'Bunga',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
                               ),
-                              subtitle: Text('Rp' + pendanaan.bunga.toString(),),
                             ),
+                            subtitle: Text(
+                                // 'Rp' + pendanaan.bunga.toString(),),
+                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pendanaan.bunga)}"),
+                          ),
                           Divider(),
                           ListTile(
                               title: Text(
@@ -183,16 +197,20 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                                   fontSize: 16,
                                 ),
                               ),
-                              subtitle: Text('Rp' + pendanaan.targetPengembalian.toString())),
+                              subtitle: Text(
+                                  // 'Rp' + pendanaan.targetPengembalian.toString())),
+                                  "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pendanaan.targetPengembalian)}")),
                         ],
                       ),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 20, 10, 10),
-                    child: Consumer5<VerifikasiAkun, RiwayatWalletProvider, Wallet, Login, PendanaanData>(
-                      builder: (context, verif, riwayat, wallet, login, dataPendanaan, child) =>
-                      ElevatedButton(
+                    child: Consumer5<VerifikasiAkun, RiwayatWalletProvider,
+                        Wallet, Login, PendanaanData>(
+                      builder: (context, verif, riwayat, wallet, login,
+                              dataPendanaan, child) =>
+                          ElevatedButton(
                         onPressed: () async {
                           if(riwayat.isLoading || riwayat.isLoading1 || wallet.isLoading || pendanaan.isLoading || dataPendanaan.isLoading || pinjaman.isLoading1){
                             return;
@@ -200,67 +218,83 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                           // SALDO USER BAKAL BERKURANG DAN DANA PINJAMAN BAKAL BERTAMBAH
                           // cek status akun user
                           if (verif.status_akun == "Verified") {
-                            if(pendanaan.jumlahPendanaan % 10000 == 0){
-                              if(pendanaan.jumlahPendanaan != 0){
+                            if (pendanaan.jumlahPendanaan % 10000 == 0) {
+                              if (pendanaan.jumlahPendanaan != 0) {
                                 // (CEK PINJAMAN_TERKUMPUL + JUMLAH_PENDAAAN <= JUMLAH_PINJAMAN)
-                                if(pinjaman.listPinjamanOpen![index].pinjaman_terkumpul + pendanaan.jumlahPendanaan <= pinjaman.listPinjamanOpen![index].jumlah_pinjaman){
+                                if (pinjaman.listPinjamanOpen![index]
+                                            .pinjaman_terkumpul +
+                                        pendanaan.jumlahPendanaan <=
+                                    pinjaman.listPinjamanOpen![index]
+                                        .jumlah_pinjaman) {
                                   // update riwayat investor user, otomatis saldonya berkurang -> cek dlu saldonya
-                                  if(pendanaan.jumlahPendanaan <= wallet.saldo){
+                                  if (pendanaan.jumlahPendanaan <=
+                                      wallet.saldo) {
                                     // assign data riwayat
                                     riwayat.keterangan = "Pendanaan UMKM";
                                     riwayat.statusTransaksi = "Keluar";
-                                    riwayat.saldoTransaksi = pendanaan.jumlahPendanaan;
+                                    riwayat.saldoTransaksi =
+                                        pendanaan.jumlahPendanaan;
                                     // update riwayat wallet
-                                    await riwayat.addRiwayatWallet(wallet.wallet_id);
+                                    await riwayat
+                                        .addRiwayatWallet(wallet.wallet_id);
                                     // fetch data riwayat
-                                    await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
+                                    await riwayat.fetchDataRiwayatWallet(
+                                        wallet.wallet_id);
                                     // fetch data wallet
                                     await wallet.fetchData(login.user_id);
                                     // add data ke pendanaan, update pinjaman terkumpul dari id_pinjaman ini, cek dan update status_pinjaman
-                                    pendanaan.pinjaman_id = pinjaman.listPinjamanOpen![index].pinjaman_id;
+                                    pendanaan.pinjaman_id = pinjaman
+                                        .listPinjamanOpen![index].pinjaman_id;
                                     await pendanaan.addPendanaan(login.user_id);
                                     // fetch data pendanaan ke porfolio
-                                    await dataPendanaan.fetchDataPendanaan(login.user_id);
+                                    await dataPendanaan
+                                        .fetchDataPendanaan(login.user_id);
                                     // fetch data pinjaman status open
                                     await pinjaman.fetchDataPinjamanOpen();
                                     // reset variable pendanaan
-                                    pendanaan.reset(); 
+                                    pendanaan.reset();
                                     // reset variable riwayat
                                     riwayat.reset();
-                                    // 
-                                    Navigator.pushNamed(context, '/dashboardInvestor');
-                                  }else{
+                                    //
+                                    Navigator.pushNamed(
+                                        context, '/dashboardInvestor');
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                            'Error: Saldo anda tidak cukup'),
+                                      ),
+                                    );
+                                  }
+                                } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text('Error: Saldo anda tidak cukup'),
+                                      content: Text(
+                                          'Error: Jumlah pendanaan sudah melebihi jumlah pinjaman yang diajukan'),
                                     ),
                                   );
                                 }
-                                }else{
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text('Error: Jumlah pendanaan sudah melebihi jumlah pinjaman yang diajukan'),
-                                    ),
-                                  );
-                                }
-                              }else{
+                              } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Error: Jumlah pendanaan tidak boleh 0'),
+                                    content: Text(
+                                        'Error: Jumlah pendanaan tidak boleh 0'),
                                   ),
                                 );
                               }
-                            }else{
+                            } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text('Error: Jumlah pendanaan harus berkelipatan Rp 10.000'),
+                                  content: Text(
+                                      'Error: Jumlah pendanaan harus berkelipatan Rp 10.000,00'),
                                 ),
                               );
                             }
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text('Error: Akun anda belum verified'),
+                                content:
+                                    Text('Error: Akun anda belum verified'),
                               ),
                             );
                           }
@@ -301,8 +335,7 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                                   color: Colors.white))))
                 ],
               );
-              }
-            ),
+            }),
           ),
         ),
       ),

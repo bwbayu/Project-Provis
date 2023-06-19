@@ -160,7 +160,7 @@ class tarikDana extends StatelessWidget {
                                                               .nama_pemilik_bank,
                                                           style: TextStyle(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Outfit',
                                                             color: Colors.white,
                                                             fontWeight:
                                                                 FontWeight
@@ -175,7 +175,7 @@ class tarikDana extends StatelessWidget {
                                                               .nomor_rekening,
                                                           style: TextStyle(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Outfit',
                                                             color: Colors.white,
                                                             fontWeight:
                                                                 FontWeight

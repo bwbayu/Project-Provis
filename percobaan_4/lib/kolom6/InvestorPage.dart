@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:percobaan_4/model.dart';
+import 'package:intl/intl.dart';
 
 // test
 class InvestorPage extends StatelessWidget {
@@ -123,7 +124,7 @@ class InvestorPage extends StatelessWidget {
                                       Consumer<Wallet>(
                                         builder: (context, wallet, child) =>
                                             Text(
-                                          "Rp. " + wallet.saldo.toString(),
+                                          "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(wallet!.saldo)}",
                                           style: TextStyle(
                                             fontSize: 18.0,
                                             fontFamily: 'Outfit',
@@ -439,11 +440,7 @@ class InvestorPage extends StatelessWidget {
                                                                       ),
                                                                     ),
                                                                     Text(
-                                                                      'Rp' +
-                                                                          pinjaman
-                                                                              .listPinjamanOpen![index]
-                                                                              .jumlah_pinjaman
-                                                                              .toString(),
+                                                                      "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.listPinjamanOpen![index].jumlah_pinjaman)}",
                                                                       style:
                                                                           TextStyle(
                                                                         fontFamily:
@@ -481,11 +478,7 @@ class InvestorPage extends StatelessWidget {
                                                                       ),
                                                                     ),
                                                                     Text(
-                                                                      'Rp' +
-                                                                          pinjaman
-                                                                              .listPinjamanOpen![index]
-                                                                              .pinjaman_terkumpul
-                                                                              .toString(),
+                                                                      "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.listPinjamanOpen![index].pinjaman_terkumpul)}",
                                                                       style:
                                                                           TextStyle(
                                                                         fontFamily:

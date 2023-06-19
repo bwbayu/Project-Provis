@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 // class IsiDanaPage extends StatefulWidget {
 //   @override
 //   _IsiDanaPageState createState() => _IsiDanaPageState();
 // }
 
-class IsiDanaPage extends StatelessWidget{
+class IsiDanaPage extends StatelessWidget {
   final TextEditingController _textEditingController = TextEditingController();
   // bool isButtonDisabled = false;
 
@@ -115,7 +116,8 @@ class IsiDanaPage extends StatelessWidget{
                               ),
                               SizedBox(width: 8),
                               Text(
-                                'Rp' + wallet.saldo.toString(),
+                                // 'Rp' + wallet.saldo.toString(),
+                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(wallet.saldo)}",
                                 style: TextStyle(
                                   fontFamily: 'Outfit',
                                   fontWeight: FontWeight.w700,
@@ -154,7 +156,7 @@ class IsiDanaPage extends StatelessWidget{
                           style: TextStyle(color: Colors.black),
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                            hintText: 'Rp 100000',
+                            hintText: 'Rp 100.000,00',
                             hintStyle: TextStyle(color: Colors.black),
                             border: InputBorder.none,
                           ),
@@ -173,7 +175,8 @@ class IsiDanaPage extends StatelessWidget{
                                 ElevatedButton(
                                   onPressed: () {
                                     withdraw.showAdditionalInput = "Rp10.000";
-                                    _textEditingController.text = "10000";
+                                    _textEditingController.text =
+                                        "Rp 10.000,00";
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors
@@ -184,7 +187,7 @@ class IsiDanaPage extends StatelessWidget{
                                     height: 100,
                                     child: Center(
                                       child: Text(
-                                        'Rp10.000',
+                                        'Rp10.000,00',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           fontWeight: FontWeight.w700,
@@ -199,7 +202,8 @@ class IsiDanaPage extends StatelessWidget{
                                 ElevatedButton(
                                   onPressed: () {
                                     withdraw.showAdditionalInput = "Rp20.000";
-                                    _textEditingController.text = "20000";
+                                    _textEditingController.text =
+                                        "Rp 20.000,00";
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors
@@ -210,7 +214,7 @@ class IsiDanaPage extends StatelessWidget{
                                     height: 100,
                                     child: Center(
                                       child: Text(
-                                        'Rp20.000',
+                                        'Rp20.000,00',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           fontWeight: FontWeight.w700,
@@ -225,7 +229,8 @@ class IsiDanaPage extends StatelessWidget{
                                 ElevatedButton(
                                   onPressed: () {
                                     withdraw.showAdditionalInput = "Rp50.000";
-                                    _textEditingController.text = "50000";
+                                    _textEditingController.text =
+                                        "Rp 50.000,00";
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors
@@ -236,7 +241,7 @@ class IsiDanaPage extends StatelessWidget{
                                     height: 100,
                                     child: Center(
                                       child: Text(
-                                        'Rp50.000',
+                                        'Rp50.000,00',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           fontWeight: FontWeight.w700,
@@ -260,7 +265,8 @@ class IsiDanaPage extends StatelessWidget{
                                 ElevatedButton(
                                   onPressed: () {
                                     withdraw.showAdditionalInput = "Rp100.000";
-                                    _textEditingController.text = "100000";
+                                    _textEditingController.text =
+                                        "Rp 100.000,00";
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors
@@ -271,7 +277,7 @@ class IsiDanaPage extends StatelessWidget{
                                     height: 100,
                                     child: Center(
                                       child: Text(
-                                        'Rp100.000',
+                                        'Rp100.000,00',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           fontWeight: FontWeight.w700,
@@ -286,7 +292,8 @@ class IsiDanaPage extends StatelessWidget{
                                 ElevatedButton(
                                   onPressed: () {
                                     withdraw.showAdditionalInput = "Rp200.000";
-                                    _textEditingController.text = "200000";
+                                    _textEditingController.text =
+                                        "Rp 200.000,00";
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors
@@ -297,7 +304,7 @@ class IsiDanaPage extends StatelessWidget{
                                     height: 100,
                                     child: Center(
                                       child: Text(
-                                        'Rp200.000',
+                                        'Rp200.000,00',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           fontWeight: FontWeight.w700,
@@ -312,7 +319,8 @@ class IsiDanaPage extends StatelessWidget{
                                 ElevatedButton(
                                   onPressed: () {
                                     withdraw.showAdditionalInput = "Rp500.000";
-                                    _textEditingController.text = "500000";
+                                    _textEditingController.text =
+                                        "Rp 500.000,00";
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors
@@ -323,7 +331,7 @@ class IsiDanaPage extends StatelessWidget{
                                     height: 100,
                                     child: Center(
                                       child: Text(
-                                        'Rp500.000',
+                                        'Rp500.000,00',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           fontWeight: FontWeight.w700,
@@ -344,9 +352,11 @@ class IsiDanaPage extends StatelessWidget{
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       child: ElevatedButton(
-                        onPressed: () async{
+                        onPressed: () async {
                           // Disable the button while the transaction is being processed
-                          if (riwayat.isLoading || riwayat.isLoading1 || wallet.isLoading) {
+                          if (riwayat.isLoading ||
+                              riwayat.isLoading1 ||
+                              wallet.isLoading) {
                             return;
                           }
                           // assign data
@@ -355,25 +365,27 @@ class IsiDanaPage extends StatelessWidget{
                           riwayat.saldoTransaksi = withdraw.nominal;
                           // cek nominal
                           if (riwayat.saldoTransaksi != 0) {
-                            final statusCode = await riwayat.addRiwayatWallet(wallet.wallet_id);
-                            if(statusCode == 200) {
+                            final statusCode = await riwayat
+                                .addRiwayatWallet(wallet.wallet_id);
+                            if (statusCode == 200) {
                               // fetch data riwayat wallet
-                              await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
+                              await riwayat
+                                  .fetchDataRiwayatWallet(wallet.wallet_id);
                               // fetch data wallet
                               await wallet.fetchData(login.user_id);
                               // reset data riwayat
                               riwayat.reset();
-                              if(login.jenis_user == "Investor"){
-                                Navigator.pushNamed(context, '/dashboardInvestor');
-                              }else{
+                              if (login.jenis_user == "Investor") {
+                                Navigator.pushNamed(
+                                    context, '/dashboardInvestor');
+                              } else {
                                 Navigator.pushNamed(context, '/dashboardUMKM');
                               }
                             }
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content:
-                                    Text('Error: Isi nominal isi saldo'),
+                                content: Text('Error: Isi nominal isi saldo'),
                               ),
                             );
                           }
@@ -381,9 +393,13 @@ class IsiDanaPage extends StatelessWidget{
                         style: ElevatedButton.styleFrom(
                           primary: Colors
                               .orangeAccent, // Same background color as other buttons
-                          backgroundColor: riwayat.isLoading || riwayat.isLoading1 || wallet.isLoading
-                              ? Colors.grey // Disabled button color when loading
-                              : Colors.orangeAccent, // Set the desired button color here
+                          backgroundColor: riwayat.isLoading ||
+                                  riwayat.isLoading1 ||
+                                  wallet.isLoading
+                              ? Colors
+                                  .grey // Disabled button color when loading
+                              : Colors
+                                  .orangeAccent, // Set the desired button color here
                         ),
                         child: SizedBox(
                           width: double.infinity,
@@ -413,4 +429,3 @@ class IsiDanaPage extends StatelessWidget{
     );
   }
 }
-

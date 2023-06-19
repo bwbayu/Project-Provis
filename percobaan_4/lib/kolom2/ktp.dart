@@ -109,7 +109,7 @@ class formKTP extends StatelessWidget {
                               child: Text(
                                 'Upload',
                                 style: TextStyle(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Outfit',
                                   color: Colors.white,
                                 ),
                               ),

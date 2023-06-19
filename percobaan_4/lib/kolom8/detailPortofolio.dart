@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class detailPortofolio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-  final Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final Map<String, dynamic> arguments =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final List<Pendanaan> pendanaanList = arguments['pendanaanList'];
     final int index = arguments['index'];
     return Scaffold(
@@ -23,8 +25,7 @@ class detailPortofolio extends StatelessWidget {
           ),
           child: SingleChildScrollView(
             child: Consumer2<PinjamanUser, PendanaanData>(
-              builder: (context, pinjaman, pendanaan, child) =>
-              Column(
+              builder: (context, pinjaman, pendanaan, child) => Column(
                 children: [
                   AppBar(
                     leading: IconButton(
@@ -157,6 +158,7 @@ class detailPortofolio extends StatelessWidget {
                                     fontSize: 16,
                                   ),
                                 ),
+                                SizedBox(height: 10),
                                 Container(
                                   width: double.infinity,
                                   height: 40,
@@ -167,7 +169,7 @@ class detailPortofolio extends StatelessWidget {
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
                                     child: Text(
-                                      'Rp ' + pinjaman.dataPinjaman![0].jumlah_pinjaman.toString(),
+                                      "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.dataPinjaman![0].jumlah_pinjaman)}",
                                       style: TextStyle(
                                         fontSize: 18,
                                         color: Colors.white,
@@ -205,7 +207,7 @@ class detailPortofolio extends StatelessWidget {
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
                                     child: Text(
-                                      'Rp ' + pinjaman.dataPinjaman![0].pinjaman_terkumpul.toString(),
+                                      "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.dataPinjaman![0].pinjaman_terkumpul)}",
                                       style: TextStyle(
                                         fontSize: 18,
                                         color: Colors.white,
@@ -257,7 +259,8 @@ class detailPortofolio extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        pinjaman.dataPinjaman![0].tenor_pinjaman,
+                                        pinjaman
+                                            .dataPinjaman![0].tenor_pinjaman,
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -284,7 +287,8 @@ class detailPortofolio extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        pinjaman.dataPinjaman![0].bunga_pinjaman,
+                                        pinjaman
+                                            .dataPinjaman![0].bunga_pinjaman,
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -317,7 +321,8 @@ class detailPortofolio extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        pinjaman.dataPinjaman![0].frekuensi_angsuran_pokok,
+                                        pinjaman.dataPinjaman![0]
+                                            .frekuensi_angsuran_pokok,
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -344,7 +349,10 @@ class detailPortofolio extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        pendanaanList[index].jumlah_pendanaan.toString(),
+                                        // pendanaan.listPendanaan[index]
+                                        //     .jumlah_pendanaan
+                                        //     .toString(),
+                                        "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pendanaan.listPendanaan![index].jumlah_pendanaan)}",
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -377,7 +385,10 @@ class detailPortofolio extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        pendanaanList[index].total_pembayaran.toString(),
+                                        // pendanaan.listPendanaan[index]
+                                        //     .total_pembayaran
+                                        //     .toString(),
+                                        "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pendanaan.listPendanaan![index].total_pembayaran)}",
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -404,7 +415,10 @@ class detailPortofolio extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        pendanaanList[index].curr_pembayaran.toString(),
+                                        // pendanaan.listPendanaan[index]
+                                        //     .curr_pembayaran
+                                        //     .toString(),
+                                        "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pendanaan.listPendanaan![index].curr_pembayaran)}",
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,

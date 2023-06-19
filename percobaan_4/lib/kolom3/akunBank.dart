@@ -116,7 +116,7 @@ class akunBank extends StatelessWidget {
                       child: Text(
                         'Lanjutkan',
                         style: TextStyle(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Outfit',
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

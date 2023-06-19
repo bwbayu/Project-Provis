@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class listPinjaman extends StatelessWidget {
   final List<String> umkmImages = [
@@ -70,7 +71,8 @@ class listPinjaman extends StatelessWidget {
                                         context,
                                         '/rincianPinjaman',
                                         arguments: {
-                                          'pinjamanList': pinjaman.pinjamanList!,
+                                          'pinjamanList':
+                                              pinjaman.pinjamanList!,
                                           'index': index,
                                         },
                                       );
@@ -142,12 +144,13 @@ class listPinjaman extends StatelessWidget {
                                                                 ),
                                                               ),
                                                               Text(
-                                                                'Rp' +
-                                                                    pinjaman
-                                                                        .pinjamanList![
-                                                                            index]
-                                                                        .jumlah_pinjaman
-                                                                        .toString(),
+                                                                // 'Rp' +
+                                                                //     pinjaman
+                                                                //         .pinjamanList![
+                                                                //             index]
+                                                                //         .jumlah_pinjaman
+                                                                //         .toString(),
+                                                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.pinjamanList![index].jumlah_pinjaman)}",
                                                                 style:
                                                                     TextStyle(
                                                                   fontFamily:
@@ -185,12 +188,13 @@ class listPinjaman extends StatelessWidget {
                                                                 ),
                                                               ),
                                                               Text(
-                                                                'Rp' +
-                                                                    pinjaman
-                                                                        .pinjamanList![
-                                                                            index]
-                                                                        .pinjaman_terkumpul
-                                                                        .toString(),
+                                                                // 'Rp' +
+                                                                //     pinjaman
+                                                                //         .pinjamanList![
+                                                                //             index]
+                                                                //         .pinjaman_terkumpul
+                                                                //         .toString(),
+                                                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.pinjamanList![index].pinjaman_terkumpul)}",
                                                                 style:
                                                                     TextStyle(
                                                                   fontFamily:
@@ -333,10 +337,7 @@ class listPinjaman extends StatelessWidget {
                                       Navigator.pushNamed(
                                         context,
                                         '/rincianPinjaman',
-                                        arguments: {
-                                          'pinjamanList': pinjaman.pinjamanLunasList!,
-                                          'index': index,
-                                        },
+                                        arguments: index,
                                       );
                                     },
                                     child: Padding(
@@ -406,12 +407,13 @@ class listPinjaman extends StatelessWidget {
                                                                 ),
                                                               ),
                                                               Text(
-                                                                'Rp' +
-                                                                    pinjaman
-                                                                        .pinjamanLunasList![
-                                                                            index]
-                                                                        .jumlah_pinjaman
-                                                                        .toString(),
+                                                                // 'Rp' +
+                                                                //     pinjaman
+                                                                //         .pinjamanLunasList![
+                                                                //             index]
+                                                                //         .jumlah_pinjaman
+                                                                //         .toString(),
+                                                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.pinjamanLunasList![index].jumlah_pinjaman)}",
                                                                 style:
                                                                     TextStyle(
                                                                   fontFamily:
@@ -449,12 +451,13 @@ class listPinjaman extends StatelessWidget {
                                                                 ),
                                                               ),
                                                               Text(
-                                                                'Rp' +
-                                                                    pinjaman
-                                                                        .pinjamanLunasList![
-                                                                            index]
-                                                                        .pinjaman_terkumpul
-                                                                        .toString(),
+                                                                // 'Rp' +
+                                                                //     pinjaman
+                                                                //         .pinjamanLunasList![
+                                                                //             index]
+                                                                //         .pinjaman_terkumpul
+                                                                //         .toString(),
+                                                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.pinjamanLunasList![index].pinjaman_terkumpul)}",
                                                                 style:
                                                                     TextStyle(
                                                                   fontFamily:
@@ -614,7 +617,8 @@ class listPinjaman extends StatelessWidget {
                                 ),
                                 Consumer<PinjamanUser>(
                                   builder: (context, pinjaman, child) => Text(
-                                    'Rp' + pinjaman.total_pinjaman.toString(),
+                                    // 'Rp' + pinjaman.total_pinjaman.toString(),
+                                    "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.total_pinjaman)}",
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
                                       color: Colors.black,

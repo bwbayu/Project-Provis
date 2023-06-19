@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:percobaan_4/model.dart';
+import 'package:intl/intl.dart';
 
 class wallet extends StatelessWidget {
   @override
@@ -51,7 +52,7 @@ class wallet extends StatelessWidget {
                           children: [
                             Consumer<Wallet>(
                               builder: (context, wallet, child) => Text(
-                                'Rp. ' + wallet.saldo.toString(),
+                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(wallet!.saldo)}",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: 'Outfit',
@@ -123,7 +124,7 @@ class wallet extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                             child: Text(
-                              'Rp ' + riwayat.totalTransaksiKeluar.toString(),
+                              "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(riwayat.totalTransaksiKeluar)}",
                               style: TextStyle(
                                 fontFamily: 'Outfit',
                                 color: Colors.white,
@@ -176,7 +177,7 @@ class wallet extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                             child: Text(
-                              'Rp ' + riwayat.totalTransaksiMasuk.toString(),
+                              "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(riwayat.totalTransaksiMasuk)}",
                               style: TextStyle(
                                 fontFamily: 'Outfit',
                                 color: Colors.white,
@@ -225,10 +226,15 @@ class wallet extends StatelessWidget {
                                         IconData trailingIcon;
                                         Color trailingColor;
 
-                                        if (riwayat.listRiwayatWallet![index].statusTransaksi =="Masuk") {
+                                        if (riwayat.listRiwayatWallet![index]
+                                                .statusTransaksi ==
+                                            "Masuk") {
                                           trailingIcon = Icons.arrow_upward;
                                           trailingColor = Colors.green;
-                                        } else if (riwayat.listRiwayatWallet![index].statusTransaksi =="Keluar") {
+                                        } else if (riwayat
+                                                .listRiwayatWallet![index]
+                                                .statusTransaksi ==
+                                            "Keluar") {
                                           trailingIcon = Icons.arrow_downward;
                                           trailingColor = Colors.red;
                                         } else {
@@ -260,12 +266,7 @@ class wallet extends StatelessWidget {
                                                 ),
                                               ),
                                               subtitle: Text(
-                                                'Rp ' +
-                                                    riwayat
-                                                        .listRiwayatWallet![
-                                                            index]
-                                                        .saldoTransaksi
-                                                        .toString(),
+                                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(riwayat.listRiwayatWallet![index].saldoTransaksi)}",
                                                 style: TextStyle(
                                                   fontFamily: 'Outfit',
                                                   color: Colors.white,

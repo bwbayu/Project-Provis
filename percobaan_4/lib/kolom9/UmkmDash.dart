@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class UmkmDash extends StatelessWidget {
   final List<String> umkmImages = [
@@ -122,7 +123,8 @@ class UmkmDash extends StatelessWidget {
                                       Consumer<Wallet>(
                                         builder: (context, wallet, child) =>
                                             Text(
-                                          "Rp. " + wallet.saldo.toString(),
+                                          // "Rp. " + wallet.saldo.toString(),
+                                          "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(wallet.saldo)}",
                                           style: TextStyle(
                                             fontSize: 18.0,
                                             fontFamily: 'Outfit',
@@ -435,8 +437,9 @@ class UmkmDash extends StatelessWidget {
                                                                             ),
                                                                           ),
                                                                           Text(
-                                                                            'Rp' +
-                                                                                pinjaman.pinjamanPendingList![index].jumlah_pinjaman.toString(),
+                                                                            // 'Rp' +
+                                                                            //     pinjaman.pinjamanPendingList![index].jumlah_pinjaman.toString(),
+                                                                            "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.pinjamanPendingList![index].jumlah_pinjaman)}",
                                                                             style:
                                                                                 TextStyle(
                                                                               fontFamily: 'Outfit',
@@ -464,8 +467,9 @@ class UmkmDash extends StatelessWidget {
                                                                             ),
                                                                           ),
                                                                           Text(
-                                                                            'Rp' +
-                                                                                pinjaman.pinjamanPendingList![index].pinjaman_terkumpul.toString(),
+                                                                            // 'Rp' +
+                                                                            //     pinjaman.pinjamanPendingList![index].pinjaman_terkumpul.toString(),
+                                                                            "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.pinjamanPendingList![index].pinjaman_terkumpul)}",
                                                                             style:
                                                                                 TextStyle(
                                                                               fontFamily: 'Outfit',
