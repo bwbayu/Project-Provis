@@ -20,8 +20,8 @@ class SettingPage extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Consumer<Login>(
-              builder:(context, login, child) =>
+            child: Consumer2<Login, ProfileData>(
+              builder:(context, login, profile, child) =>
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -52,9 +52,10 @@ class SettingPage extends StatelessWidget {
                   HelpButton(
                     icon: Icons.account_circle,
                     text: 'Update Profile',
-                    onTap: () {
+                    onTap: () async{
                       // Handle FAQ button tap
-                      // Navigator.pushNamed(context, '/FAQPage');
+                      await profile.fetchData(login.user_id);
+                      Navigator.pushNamed(context, '/dataDiri');
                     },
                   ),
                   SizedBox(height: 16.0),

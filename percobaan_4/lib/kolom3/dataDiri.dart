@@ -17,8 +17,8 @@ class dataDiri extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Consumer2<VerifikasiAkun, Login>(
-          builder: (context, verif, login, child) => Scaffold(
+        child: Consumer3<VerifikasiAkun, Login, ProfileData>(
+          builder: (context, verif, login, profile, child) => Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
               leading: IconButton(
@@ -72,6 +72,7 @@ class dataDiri extends StatelessWidget {
                                   onChanged: (value) {
                                     verif.nama = value;
                                   },
+                                  initialValue: profile.nama  ?? "",
                                 ),
                                 TextFormField(
                                   decoration: InputDecoration(
