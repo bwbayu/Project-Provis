@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class listUMKM extends StatelessWidget {
   final List<String> umkmImages = [
@@ -87,7 +88,8 @@ class listUMKM extends StatelessWidget {
                                                         BorderRadius.circular(
                                                             8),
                                                     child: Image.asset(
-                                                      umkmImages[index % umkmImages.length],
+                                                      umkmImages[index %
+                                                          umkmImages.length],
                                                       width: double.infinity,
                                                       height: 120,
                                                       fit: BoxFit.cover,
@@ -122,18 +124,16 @@ class listUMKM extends StatelessWidget {
                                                                     TextStyle(
                                                                   fontFamily:
                                                                       'Outfit',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
                                                                   color: Colors
                                                                       .black,
                                                                   fontSize: 14,
                                                                 ),
                                                               ),
                                                               Text(
-                                                                'Rp' +
-                                                                    pinjaman
-                                                                        .listPinjamanOpen![
-                                                                            index]
-                                                                        .jumlah_pinjaman
-                                                                        .toString(),
+                                                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.listPinjamanOpen![index].jumlah_pinjaman)}",
                                                                 style:
                                                                     TextStyle(
                                                                   fontFamily:
@@ -168,12 +168,7 @@ class listUMKM extends StatelessWidget {
                                                                 ),
                                                               ),
                                                               Text(
-                                                                'Rp' +
-                                                                    pinjaman
-                                                                        .listPinjamanOpen![
-                                                                            index]
-                                                                        .pinjaman_terkumpul
-                                                                        .toString(),
+                                                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.listPinjamanOpen![index].pinjaman_terkumpul)}",
                                                                 style:
                                                                     TextStyle(
                                                                   fontFamily:

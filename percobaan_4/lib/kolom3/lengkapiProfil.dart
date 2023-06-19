@@ -19,9 +19,8 @@ class formVerifikasi extends StatelessWidget {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             leading: Consumer2<VerifikasiAkun, UmkmProvider>(
-              builder: (context, verif, umkm, child) =>
-              IconButton(
-                onPressed: () async{
+              builder: (context, verif, umkm, child) => IconButton(
+                onPressed: () async {
                   // reset form
                   verif.reset();
                   umkm.reset();
@@ -99,7 +98,7 @@ class formVerifikasi extends StatelessWidget {
                             subtitle: Text(
                               'Informasi identitas lengkap yang akan digunakan dalam aplikasi',
                               style: TextStyle(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Outfit',
                                 color: Color(0xFFF2F5F8),
                                 fontWeight: FontWeight.w300,
                               ),
@@ -139,7 +138,7 @@ class formVerifikasi extends StatelessWidget {
                             subtitle: Text(
                               'Dokumen yang diperlukan adalah KTP dan NPWP (opsional)',
                               style: TextStyle(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Outfit',
                                 color: Color(0xFFF2F5F8),
                                 fontWeight: FontWeight.w300,
                               ),
@@ -179,7 +178,7 @@ class formVerifikasi extends StatelessWidget {
                             subtitle: Text(
                               'Tanda tangan digital diperlukan untuk konfirmasi persetujuan',
                               style: TextStyle(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Outfit',
                                 color: Color(0xFFF2F5F8),
                                 fontWeight: FontWeight.w300,
                               ),
@@ -222,7 +221,7 @@ class formVerifikasi extends StatelessWidget {
                               subtitle: Text(
                                 'Data UMKM dibutuhkan untuk pinjaman',
                                 style: TextStyle(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Outfit',
                                   color: Color(0xFFF2F5F8),
                                   fontWeight: FontWeight.w300,
                                 ),
@@ -235,36 +234,36 @@ class formVerifikasi extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
-                  child: Consumer4<Login, VerifikasiAkun, ProfileData, UmkmProvider>(
+                  child: Consumer4<Login, VerifikasiAkun, ProfileData,
+                      UmkmProvider>(
                     builder: (context, login, verif, profile, umkm, child) =>
                         ElevatedButton(
                       onPressed: () async {
-                          // ngecek data akun, kalau lengkap maka status_akun berubah verified
-                          final statusCode1 = await verif.updateUser(login.user_id);
-                          print(statusCode1);
-                          // fetch data status akun buat ngilangin button verifikasi kalau status_akun udh verified
-                          await verif.fetchStatusAkun(login.user_id);
-                          if (verif.status_akun == "Verified") {
-                            // fetch data profile
-                            await profile.fetchData(login.user_id);
-                            // reset variable in verifikasi akun provider
-                            verif.reset();
-                            if (login.jenis_user == "Investor") {
-                              Navigator.pushNamed(
-                                  context, '/dashboardInvestor');
-                            } else {
-                              // reset variable in umkm
-                              umkm.reset();
-                              Navigator.pushNamed(context, '/dashboardUMKM');
-                            }
+                        // ngecek data akun, kalau lengkap maka status_akun berubah verified
+                        final statusCode1 =
+                            await verif.updateUser(login.user_id);
+                        print(statusCode1);
+                        // fetch data status akun buat ngilangin button verifikasi kalau status_akun udh verified
+                        await verif.fetchStatusAkun(login.user_id);
+                        if (verif.status_akun == "Verified") {
+                          // fetch data profile
+                          await profile.fetchData(login.user_id);
+                          // reset variable in verifikasi akun provider
+                          verif.reset();
+                          if (login.jenis_user == "Investor") {
+                            Navigator.pushNamed(context, '/dashboardInvestor');
                           } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content:
-                                    Text('Error: Data akun belum lengkap!'),
-                              ),
-                            );
+                            // reset variable in umkm
+                            umkm.reset();
+                            Navigator.pushNamed(context, '/dashboardUMKM');
                           }
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Error: Data akun belum lengkap!'),
+                            ),
+                          );
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF977EF2),
@@ -281,7 +280,7 @@ class formVerifikasi extends StatelessWidget {
                       child: Text(
                         'Submit',
                         style: TextStyle(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Outfit',
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

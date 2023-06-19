@@ -335,8 +335,9 @@ class dataDiri extends StatelessWidget {
                                     verif.pend_terakhir != "" &&
                                     verif.alamat != "" &&
                                     verif.status_kewarganegaraan != "") {
-                                  final statusCode = await verif.VerifyProcess(login.user_id);
-                                      print(statusCode);
+                                  final statusCode =
+                                      await verif.VerifyProcess(login.user_id);
+                                  print(statusCode);
                                   if (statusCode == 200) {
                                     Navigator.pop(context);
                                   }
@@ -354,7 +355,7 @@ class dataDiri extends StatelessWidget {
                                 child: Text(
                                   'Submit Data',
                                   style: TextStyle(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Outfit',
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,

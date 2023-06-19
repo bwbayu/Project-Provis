@@ -57,7 +57,7 @@ class formKTP extends StatelessWidget {
                     subtitle: Text(
                       'Mohon siapkan dokumen berikut untuk memudahkan pengisian data Anda.',
                       style: TextStyle(
-                        fontFamily: 'Readex Pro',
+                        fontFamily: 'Outfit',
                         color: Color(0xFFF2F5F8),
                         fontWeight: FontWeight.w300,
                       ),
@@ -94,7 +94,7 @@ class formKTP extends StatelessWidget {
                             child: Text(
                               'Upload',
                               style: TextStyle(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Outfit',
                                 color: Colors.white,
                               ),
                             ),
@@ -126,7 +126,7 @@ class formKTP extends StatelessWidget {
                       child: Text(
                         'Lanjutkan',
                         style: TextStyle(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Outfit',
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

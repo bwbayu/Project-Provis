@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class Pembayaran extends StatelessWidget {
   @override
@@ -16,9 +17,10 @@ class Pembayaran extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Consumer4<PinjamanUser, Wallet, PembayaranProvider, RiwayatWalletProvider>(
+        child: Consumer4<PinjamanUser, Wallet, PembayaranProvider,
+            RiwayatWalletProvider>(
           builder: (context, pinjaman, wallet, pembayaran, riwayat, child) =>
-          Column(
+              Column(
             children: [
               AppBar(
                 leading: IconButton(
@@ -63,7 +65,8 @@ class Pembayaran extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Row(
@@ -79,7 +82,11 @@ class Pembayaran extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        'Rp ' + pinjaman.pinjamanList![index].jumlah_pinjaman.toString(),
+                                        // 'Rp ' +
+                                        //     pinjaman.pinjamanList![index]
+                                        //         .jumlah_pinjaman
+                                        //         .toString(),
+                                        "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.pinjamanList![index].jumlah_pinjaman)}",
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -101,7 +108,11 @@ class Pembayaran extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        'Rp ' + pinjaman.pinjamanList![index].pinjaman_terkumpul.toString(),
+                                        // 'Rp ' +
+                                        //     pinjaman.pinjamanList![index]
+                                        //         .pinjaman_terkumpul
+                                        //         .toString(),
+                                        "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.pinjamanList![index].pinjaman_terkumpul)}",
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -123,7 +134,18 @@ class Pembayaran extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                       'Rp ' + ((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0))/100)).toString(),
+                                        // 'Rp ' +
+                                        //     ((((pinjaman.pinjamanList?[index]
+                                        //                         .bungaPinjaman ??
+                                        //                     0) *
+                                        //                 (pinjaman
+                                        //                         .pinjamanList?[
+                                        //                             index]
+                                        //                         .pinjaman_terkumpul ??
+                                        //                     0)) /
+                                        //             100))
+                                        //         .toString(),
+                                        "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0)) / 100)))}",
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -145,7 +167,23 @@ class Pembayaran extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        'Rp ' + ((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0))/100)+ (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0)).toString(),
+                                        // 'Rp ' +
+                                        //     ((((pinjaman.pinjamanList?[index]
+                                        //                             .bungaPinjaman ??
+                                        //                         0) *
+                                        //                     (pinjaman
+                                        //                             .pinjamanList?[
+                                        //                                 index]
+                                        //                             .pinjaman_terkumpul ??
+                                        //                         0)) /
+                                        //                 100) +
+                                        //             (pinjaman
+                                        //                     .pinjamanList?[
+                                        //                         index]
+                                        //                     .pinjaman_terkumpul ??
+                                        //                 0))
+                                        //         .toString(),
+                                        "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0)) / 100) + (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0)))}",
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -171,7 +209,8 @@ class Pembayaran extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Row(
@@ -187,7 +226,8 @@ class Pembayaran extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        'Rp ' + wallet.saldo.toString(),
+                                        // 'Rp ' + wallet.saldo.toString(),
+                                        "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(wallet.saldo)}",
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -209,7 +249,23 @@ class Pembayaran extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        'Rp ' + ((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0))/100)+ (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0)).toString(),
+                                        // 'Rp ' +
+                                        //     ((((pinjaman.pinjamanList?[index]
+                                        //                             .bungaPinjaman ??
+                                        //                         0) *
+                                        //                     (pinjaman
+                                        //                             .pinjamanList?[
+                                        //                                 index]
+                                        //                             .pinjaman_terkumpul ??
+                                        //                         0)) /
+                                        //                 100) +
+                                        //             (pinjaman
+                                        //                     .pinjamanList?[
+                                        //                         index]
+                                        //                     .pinjaman_terkumpul ??
+                                        //                 0))
+                                        //         .toString(),
+                                        "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0)) / 100) + (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0)))}",
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -231,7 +287,26 @@ class Pembayaran extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        'Rp ' + (wallet.saldo-((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0))/100)+ (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0))).toString(),
+                                        // 'Rp ' +
+                                        //     (wallet.saldo -
+                                        //             ((((pinjaman
+                                        //                                 .pinjamanList?[
+                                        //                                     index]
+                                        //                                 .bungaPinjaman ??
+                                        //                             0) *
+                                        //                         (pinjaman
+                                        //                                 .pinjamanList?[
+                                        //                                     index]
+                                        //                                 .pinjaman_terkumpul ??
+                                        //                             0)) /
+                                        //                     100) +
+                                        //                 (pinjaman
+                                        //                         .pinjamanList?[
+                                        //                             index]
+                                        //                         .pinjaman_terkumpul ??
+                                        //                     0)))
+                                        //         .toString(),
+                                        "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format((wallet.saldo - ((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0)) / 100) + (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0))))}",
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
@@ -274,7 +349,19 @@ class Pembayaran extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Rp ' + ((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0))/100)+ (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0)).toString(),
+                            // 'Rp ' +
+                            //     ((((pinjaman.pinjamanList?[index]
+                            //                             .bungaPinjaman ??
+                            //                         0) *
+                            //                     (pinjaman.pinjamanList?[index]
+                            //                             .pinjaman_terkumpul ??
+                            //                         0)) /
+                            //                 100) +
+                            //             (pinjaman.pinjamanList?[index]
+                            //                     .pinjaman_terkumpul ??
+                            //                 0))
+                            //         .toString(),
+                            "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0)) / 100) + (pinjaman.pinjamanList?[index].pinjaman_terkumpul ?? 0)))}",
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: 'Outfit',
@@ -287,39 +374,43 @@ class Pembayaran extends StatelessWidget {
                         height: 40,
                         width: 100,
                         child: Consumer<Login>(
-                          builder:(context, login, child) =>
-                          ElevatedButton(
-                            onPressed: () async{
+                          builder: (context, login, child) => ElevatedButton(
+                            onPressed: () async {
                               // cek saldo umkm
-                              if(wallet.saldo >= pembayaran.jumlah_pembayaran){
+                              if (wallet.saldo >=
+                                  pembayaran.jumlah_pembayaran) {
                                 // assign data riwayat
                                 riwayat.keterangan = "Pembayaran Pinjaman";
                                 riwayat.statusTransaksi = "Keluar";
-                                riwayat.saldoTransaksi = pembayaran.jumlah_pembayaran;
+                                riwayat.saldoTransaksi =
+                                    pembayaran.jumlah_pembayaran;
                                 // update riwayat wallet
-                                await riwayat.addRiwayatWallet(wallet.wallet_id);
+                                await riwayat
+                                    .addRiwayatWallet(wallet.wallet_id);
                                 // fetch data riwayat
-                                await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
+                                await riwayat
+                                    .fetchDataRiwayatWallet(wallet.wallet_id);
                                 // fetch data wallet
                                 await wallet.fetchData(login.user_id);
                                 // update status pinjaman & status pembayaran ke lunas
-                                await pembayaran.updateStatusPembayaran(pinjaman.pinjamanList![index].pinjaman_id);
+                                await pembayaran.updateStatusPembayaran(
+                                    pinjaman.pinjamanList![index].pinjaman_id);
                                 // reset data riwayat
                                 riwayat.reset();
                                 // fetch data list pinjaman user
                                 await pinjaman.fetchDataPinjaman(login.user_id);
                                 Navigator.pushNamed(context, '/dashboardUMKM');
-                              }else{
+                              } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text(
-                                        'Error: Saldo tidak cukup'),
+                                    content: Text('Error: Saldo tidak cukup'),
                                   ),
                                 );
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.zero, // Remove default padding
+                              padding:
+                                  EdgeInsets.zero, // Remove default padding
                             ),
                             child: Text(
                               'Bayar',

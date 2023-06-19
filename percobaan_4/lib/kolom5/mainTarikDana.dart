@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class TarikDanaPage extends StatelessWidget {
   final TextEditingController _textEditingController = TextEditingController();
@@ -132,7 +133,8 @@ class TarikDanaPage extends StatelessWidget {
                               ),
                               SizedBox(width: 8),
                               Text(
-                                'Rp' + wallet.saldo.toString(),
+                                // 'Rp' + wallet.saldo.toString(),
+                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(wallet.saldo)}",
                                 style: TextStyle(
                                   fontFamily: 'Outfit',
                                   fontWeight: FontWeight.w700,
@@ -171,7 +173,7 @@ class TarikDanaPage extends StatelessWidget {
                         style: TextStyle(color: Colors.black),
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          hintText: 'Rp 100000',
+                          hintText: 'Rp 100.000,00',
                           hintStyle: TextStyle(color: Colors.black),
                           border: InputBorder.none,
                         ),
@@ -190,7 +192,8 @@ class TarikDanaPage extends StatelessWidget {
                                 ElevatedButton(
                                   onPressed: () {
                                     withdraw.showAdditionalInput = "Rp10.000";
-                                    _textEditingController.text = "10000";
+                                    _textEditingController.text =
+                                        "Rp 10.000,00";
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors
@@ -201,7 +204,7 @@ class TarikDanaPage extends StatelessWidget {
                                     height: 100,
                                     child: Center(
                                       child: Text(
-                                        'Rp10.000',
+                                        'Rp10.000,00',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           fontWeight: FontWeight.w700,
@@ -216,7 +219,8 @@ class TarikDanaPage extends StatelessWidget {
                                 ElevatedButton(
                                   onPressed: () {
                                     withdraw.showAdditionalInput = "Rp20.000";
-                                    _textEditingController.text = "20000";
+                                    _textEditingController.text =
+                                        "Rp 20.000,00";
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors
@@ -227,7 +231,7 @@ class TarikDanaPage extends StatelessWidget {
                                     height: 100,
                                     child: Center(
                                       child: Text(
-                                        'Rp20.000',
+                                        'Rp20.000,00',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           fontWeight: FontWeight.w700,
@@ -242,7 +246,8 @@ class TarikDanaPage extends StatelessWidget {
                                 ElevatedButton(
                                   onPressed: () {
                                     withdraw.showAdditionalInput = "Rp50.000";
-                                    _textEditingController.text = "50000";
+                                    _textEditingController.text =
+                                        "Rp 50.000,00";
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors
@@ -253,7 +258,7 @@ class TarikDanaPage extends StatelessWidget {
                                     height: 100,
                                     child: Center(
                                       child: Text(
-                                        'Rp50.000',
+                                        'Rp50.000,00',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           fontWeight: FontWeight.w700,
@@ -277,7 +282,8 @@ class TarikDanaPage extends StatelessWidget {
                                 ElevatedButton(
                                   onPressed: () {
                                     withdraw.showAdditionalInput = "Rp100.000";
-                                    _textEditingController.text = "100000";
+                                    _textEditingController.text =
+                                        "Rp 100.000,00";
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors
@@ -288,7 +294,7 @@ class TarikDanaPage extends StatelessWidget {
                                     height: 100,
                                     child: Center(
                                       child: Text(
-                                        'Rp100.000',
+                                        'Rp100.000,00',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           fontWeight: FontWeight.w700,
@@ -303,7 +309,8 @@ class TarikDanaPage extends StatelessWidget {
                                 ElevatedButton(
                                   onPressed: () {
                                     withdraw.showAdditionalInput = "Rp200.000";
-                                    _textEditingController.text = "200000";
+                                    _textEditingController.text =
+                                        "Rp 200.000,00";
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors
@@ -314,7 +321,7 @@ class TarikDanaPage extends StatelessWidget {
                                     height: 100,
                                     child: Center(
                                       child: Text(
-                                        'Rp200.000',
+                                        'Rp200.000,00',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           fontWeight: FontWeight.w700,
@@ -329,7 +336,8 @@ class TarikDanaPage extends StatelessWidget {
                                 ElevatedButton(
                                   onPressed: () {
                                     withdraw.showAdditionalInput = "Rp500.000";
-                                    _textEditingController.text = "500000";
+                                    _textEditingController.text =
+                                        "Rp 500.000,00";
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors
@@ -340,7 +348,7 @@ class TarikDanaPage extends StatelessWidget {
                                     height: 100,
                                     child: Center(
                                       child: Text(
-                                        'Rp500.000',
+                                        'Rp500.000,00',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           fontWeight: FontWeight.w700,

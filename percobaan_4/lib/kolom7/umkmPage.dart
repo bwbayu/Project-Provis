@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class UMKMPage extends StatelessWidget {
   final List<String> umkmImages = [
@@ -27,8 +28,7 @@ class UMKMPage extends StatelessWidget {
       child: Scrollbar(
         child: SingleChildScrollView(
           child: Consumer<PinjamanUser>(
-            builder:(context, pinjaman, child) =>
-            Column(
+            builder: (context, pinjaman, child) => Column(
               children: [
                 AppBar(
                   leading: IconButton(
@@ -65,7 +65,8 @@ class UMKMPage extends StatelessWidget {
                                 BorderRadius.circular(10.0), // Rounded edges
                           ),
                           child: Image.asset(
-                            umkmImages[i - 1], // Select the image based on index
+                            umkmImages[
+                                i - 1], // Select the image based on index
                             fit: BoxFit.cover,
                           ),
                         );
@@ -89,7 +90,8 @@ class UMKMPage extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.all(16.0),
                               child: Text(
-                                pinjaman.listPinjamanOpen![index].status_pinjaman,
+                                pinjaman
+                                    .listPinjamanOpen![index].status_pinjaman,
                                 style: TextStyle(
                                     fontFamily: 'Outfit', color: Colors.black),
                               ),
@@ -126,7 +128,8 @@ class UMKMPage extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         // Tambahkan kode aksi yang ingin Anda jalankan saat tombol ditekan
-                        Navigator.pushNamed(context, '/MulaiPendanaanInvestor', arguments: index);
+                        Navigator.pushNamed(context, '/MulaiPendanaanInvestor',
+                            arguments: index);
                       },
                       child: Text(
                         'Mulai Pendanaan',
@@ -160,7 +163,11 @@ class UMKMPage extends StatelessWidget {
                               fontSize: 16,
                             ),
                           ),
-                          subtitle: Text('Rp '+ pinjaman.listPinjamanOpen![index].jumlah_pinjaman.toString()),
+                          subtitle: Text(
+                              // 'Rp ' +
+                              //   pinjaman.listPinjamanOpen![index].jumlah_pinjaman
+                              //       .toString()),
+                              "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.listPinjamanOpen![index].jumlah_pinjaman)}"),
                           trailing: IconButton(
                               icon: Icon(Icons.help_outline), onPressed: null),
                         ),
@@ -173,7 +180,8 @@ class UMKMPage extends StatelessWidget {
                               fontSize: 16,
                             ),
                           ),
-                          subtitle: Text(pinjaman.listPinjamanOpen![index].tenor_pinjaman),
+                          subtitle: Text(
+                              pinjaman.listPinjamanOpen![index].tenor_pinjaman),
                           trailing: IconButton(
                               icon: Icon(Icons.help_outline), onPressed: null),
                         ),
@@ -186,7 +194,8 @@ class UMKMPage extends StatelessWidget {
                               fontSize: 16,
                             ),
                           ),
-                          subtitle: Text(pinjaman.listPinjamanOpen![index].bunga_pinjaman),
+                          subtitle: Text(
+                              pinjaman.listPinjamanOpen![index].bunga_pinjaman),
                           trailing: IconButton(
                               icon: Icon(Icons.help_outline), onPressed: null),
                         ),
@@ -199,7 +208,8 @@ class UMKMPage extends StatelessWidget {
                               fontSize: 16,
                             ),
                           ),
-                          subtitle: Text(pinjaman.listPinjamanOpen![index].frekuensi_angsuran_pokok),
+                          subtitle: Text(pinjaman.listPinjamanOpen![index]
+                              .frekuensi_angsuran_pokok),
                           trailing: IconButton(
                               icon: Icon(Icons.help_outline), onPressed: null),
                         ),
@@ -225,7 +235,8 @@ class UMKMPage extends StatelessWidget {
                                 fontSize: 16,
                               ),
                             ),
-                            subtitle: Text(pinjaman.listPinjamanOpen![index].tgl_pengajuan)),
+                            subtitle: Text(pinjaman
+                                .listPinjamanOpen![index].tgl_pengajuan)),
                         ListTile(
                             title: Text(
                               'Akhir Penggalangan Dana',
@@ -235,19 +246,20 @@ class UMKMPage extends StatelessWidget {
                                 fontSize: 16,
                               ),
                             ),
-                            subtitle: Text(pinjaman.listPinjamanOpen![index].tgl_tenggang)),
-                          ListTile(
-                            title: Text(
-                              'Tujuan Penggalangan Dana',
-                              style: TextStyle(
-                                fontFamily: 'Outfit',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
+                            subtitle: Text(pinjaman
+                                .listPinjamanOpen![index].tgl_tenggang)),
+                        ListTile(
+                          title: Text(
+                            'Tujuan Penggalangan Dana',
+                            style: TextStyle(
+                              fontFamily: 'Outfit',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
                             ),
-                            subtitle: Text(
-                                pinjaman.listPinjamanOpen![index].tujuan_pinjaman),
                           ),
+                          subtitle: Text(pinjaman
+                              .listPinjamanOpen![index].tujuan_pinjaman),
+                        ),
                       ]),
                     ),
                   ),

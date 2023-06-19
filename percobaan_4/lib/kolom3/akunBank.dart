@@ -34,8 +34,7 @@ class akunBank extends StatelessWidget {
           body: Padding(
             padding: EdgeInsets.all(16.0),
             child: Consumer2<Login, BankData>(
-              builder: (context, login, bank, child) =>
-              Stack(
+              builder: (context, login, bank, child) => Stack(
                 children: [
                   SingleChildScrollView(
                       child: Column(
@@ -75,13 +74,15 @@ class akunBank extends StatelessWidget {
                                 decoration: InputDecoration(
                                     labelText: 'Nama Pemilik Akun'),
                                 style: TextStyle(color: Colors.black),
-                                onChanged: (value) => bank.nama_pemilik_bank = value,
+                                onChanged: (value) =>
+                                    bank.nama_pemilik_bank = value,
                               ),
                               TextFormField(
-                                decoration:
-                                    InputDecoration(labelText: 'Nomor Rekening'),
+                                decoration: InputDecoration(
+                                    labelText: 'Nomor Rekening'),
                                 style: TextStyle(color: Colors.black),
-                                onChanged: (value) => bank.nomor_rekening = value,
+                                onChanged: (value) =>
+                                    bank.nomor_rekening = value,
                               )
                             ],
                           ),
@@ -112,7 +113,7 @@ class akunBank extends StatelessWidget {
                       child: Text(
                         'Lanjutkan',
                         style: TextStyle(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Outfit',
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

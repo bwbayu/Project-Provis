@@ -50,7 +50,7 @@ class formTTD extends StatelessWidget {
                     subtitle: Text(
                       'Tanda tangan sesuai dengan KTP di atas kertas.',
                       style: TextStyle(
-                        fontFamily: 'Readex Pro',
+                        fontFamily: 'Outfit',
                         color: Color(0xFFF2F5F8),
                         fontWeight: FontWeight.w300,
                       ),
@@ -87,7 +87,7 @@ class formTTD extends StatelessWidget {
                             child: Text(
                               'Upload',
                               style: TextStyle(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Outfit',
                                 color: Colors.white,
                               ),
                             ),
@@ -120,7 +120,7 @@ class formTTD extends StatelessWidget {
                       child: Text(
                         'Lanjutkan',
                         style: TextStyle(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Outfit',
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

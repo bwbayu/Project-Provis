@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class Portofolio extends StatelessWidget {
   final List<String> umkmImages = [
@@ -34,10 +35,11 @@ class Portofolio extends StatelessWidget {
                                 itemBuilder: (BuildContext context, int index) {
                                   return Consumer<PinjamanUser>(
                                     builder: (context, pinjaman, child) =>
-                                    InkWell(
-                                      onTap: () async{
+                                        InkWell(
+                                      onTap: () async {
                                         // fetch data umkm
-                                        await pinjaman.fetchDataUmkm(pendanaan.listPendanaan[index].pinjaman_id);
+                                        await pinjaman.fetchDataUmkm(pendanaan
+                                            .listPendanaan[index].pinjaman_id);
                                         Navigator.pushNamed(
                                             context, '/detailPortofolio',
                                             arguments: index);
@@ -59,7 +61,8 @@ class Portofolio extends StatelessWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                                 child: Image.asset(
-                                                  umkmImages[index % umkmImages.length],
+                                                  umkmImages[index %
+                                                      umkmImages.length],
                                                   width: double.infinity,
                                                   height: 80,
                                                   fit: BoxFit.cover,
@@ -75,7 +78,9 @@ class Portofolio extends StatelessWidget {
                                                   padding: EdgeInsets.fromLTRB(
                                                       20, 0, 20, 0),
                                                   child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       Row(
                                                         mainAxisAlignment:
@@ -93,24 +98,24 @@ class Portofolio extends StatelessWidget {
                                                               Text(
                                                                 'Total Pendanaan',
                                                                 style: TextStyle(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors.black,
-                                                                  fontSize: 14,
-                                                                  fontWeight: FontWeight.w600
-                                                                ),
+                                                                    fontFamily:
+                                                                        'Outfit',
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        14,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600),
                                                               ),
                                                               Text(
-                                                                'Rp' +
-                                                                    pendanaan
-                                                                        .listPendanaan[
-                                                                            index]
-                                                                        .jumlah_pendanaan
-                                                                        .toString(),
-                                                                style: TextStyle(
+                                                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pendanaan.listPendanaan[index].jumlah_pendanaan)}",
+                                                                style:
+                                                                    TextStyle(
                                                                   fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors.black,
+                                                                      'Outfit',
+                                                                  color: Colors
+                                                                      .black,
                                                                   fontSize: 14,
                                                                 ),
                                                               ),
@@ -127,22 +132,27 @@ class Portofolio extends StatelessWidget {
                                                               Text(
                                                                 'Status Pendanaan',
                                                                 style: TextStyle(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors.black,
-                                                                  fontSize: 14,
-                                                                  fontWeight: FontWeight.w600
-                                                                ),
+                                                                    fontFamily:
+                                                                        'Outfit',
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        14,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600),
                                                               ),
                                                               Text(
                                                                 pendanaan
                                                                     .listPendanaan[
                                                                         index]
                                                                     .status_pendanaan,
-                                                                style: TextStyle(
+                                                                style:
+                                                                    TextStyle(
                                                                   fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors.black,
+                                                                      'Outfit',
+                                                                  color: Colors
+                                                                      .black,
                                                                   fontSize: 14,
                                                                 ),
                                                               ),
@@ -151,7 +161,10 @@ class Portofolio extends StatelessWidget {
                                                         ],
                                                       ),
                                                       Padding(
-                                                        padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                0, 7, 0, 0),
                                                         child: Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
@@ -168,25 +181,26 @@ class Portofolio extends StatelessWidget {
                                                                 Text(
                                                                   'Jumlah Pembayaran',
                                                                   style: TextStyle(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: Colors.black,
-                                                                    fontSize: 14,
-                                                                    fontWeight: FontWeight.w600
-                                                                  ),
+                                                                      fontFamily:
+                                                                          'Outfit',
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          14,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
                                                                 ),
                                                                 Text(
-                                                                  'Rp' +
-                                                                      pendanaan
-                                                                          .listPendanaan[
-                                                                              index]
-                                                                          .curr_pembayaran
-                                                                          .toString(),
-                                                                  style: TextStyle(
+                                                                  "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pendanaan.listPendanaan[index].curr_pembayaran)}",
+                                                                  style:
+                                                                      TextStyle(
                                                                     fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: Colors.black,
-                                                                    fontSize: 14,
+                                                                        'Outfit',
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        14,
                                                                   ),
                                                                 ),
                                                               ],
@@ -202,22 +216,26 @@ class Portofolio extends StatelessWidget {
                                                                 Text(
                                                                   'Total Pembayaran',
                                                                   style: TextStyle(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: Colors.black,
-                                                                    fontSize: 14,
-                                                                    fontWeight: FontWeight.w600
-                                                                  ),
+                                                                      fontFamily:
+                                                                          'Outfit',
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          14,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
                                                                 ),
                                                                 Text(
-                                                                  pendanaan
-                                                                      .listPendanaan[index]
-                                                                      .total_pembayaran.toString(),
-                                                                  style: TextStyle(
+                                                                  "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pendanaan.listPendanaan[index].total_pembayaran)}",
+                                                                  style:
+                                                                      TextStyle(
                                                                     fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: Colors.black,
-                                                                    fontSize: 14,
+                                                                        'Outfit',
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        14,
                                                                   ),
                                                                 ),
                                                               ],
@@ -268,10 +286,12 @@ class Portofolio extends StatelessWidget {
                                 itemBuilder: (BuildContext context, int index) {
                                   return Consumer<PinjamanUser>(
                                     builder: (context, pinjaman, child) =>
-                                    InkWell(
-                                      onTap: () async{
+                                        InkWell(
+                                      onTap: () async {
                                         // fetch data umkm
-                                        await pinjaman.fetchDataUmkm(pendanaan.listPendanaanLunas[index].pinjaman_id);
+                                        await pinjaman.fetchDataUmkm(pendanaan
+                                            .listPendanaanLunas[index]
+                                            .pinjaman_id);
                                         Navigator.pushNamed(
                                             context, '/detailPortofolio',
                                             arguments: index);
@@ -293,7 +313,8 @@ class Portofolio extends StatelessWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                                 child: Image.asset(
-                                                  umkmImages[index % umkmImages.length],
+                                                  umkmImages[index %
+                                                      umkmImages.length],
                                                   width: double.infinity,
                                                   height: 80,
                                                   fit: BoxFit.cover,
@@ -309,7 +330,9 @@ class Portofolio extends StatelessWidget {
                                                   padding: EdgeInsets.fromLTRB(
                                                       20, 0, 20, 0),
                                                   child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       Row(
                                                         mainAxisAlignment:
@@ -327,24 +350,24 @@ class Portofolio extends StatelessWidget {
                                                               Text(
                                                                 'Total Pendanaan',
                                                                 style: TextStyle(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors.black,
-                                                                  fontSize: 14,
-                                                                  fontWeight: FontWeight.w600
-                                                                ),
+                                                                    fontFamily:
+                                                                        'Outfit',
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        14,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600),
                                                               ),
                                                               Text(
-                                                                'Rp' +
-                                                                    pendanaan
-                                                                        .listPendanaanLunas[
-                                                                            index]
-                                                                        .jumlah_pendanaan
-                                                                        .toString(),
-                                                                style: TextStyle(
+                                                                "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pendanaan.listPendanaanLunas[index].jumlah_pendanaan)}",
+                                                                style:
+                                                                    TextStyle(
                                                                   fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors.black,
+                                                                      'Outfit',
+                                                                  color: Colors
+                                                                      .black,
                                                                   fontSize: 14,
                                                                 ),
                                                               ),
@@ -361,22 +384,27 @@ class Portofolio extends StatelessWidget {
                                                               Text(
                                                                 'Status Pendanaan',
                                                                 style: TextStyle(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors.black,
-                                                                  fontSize: 14,
-                                                                  fontWeight: FontWeight.w600
-                                                                ),
+                                                                    fontFamily:
+                                                                        'Outfit',
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        14,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600),
                                                               ),
                                                               Text(
                                                                 pendanaan
                                                                     .listPendanaanLunas[
                                                                         index]
                                                                     .status_pendanaan,
-                                                                style: TextStyle(
+                                                                style:
+                                                                    TextStyle(
                                                                   fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors.black,
+                                                                      'Outfit',
+                                                                  color: Colors
+                                                                      .black,
                                                                   fontSize: 14,
                                                                 ),
                                                               ),
@@ -385,7 +413,10 @@ class Portofolio extends StatelessWidget {
                                                         ],
                                                       ),
                                                       Padding(
-                                                        padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                0, 7, 0, 0),
                                                         child: Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
@@ -402,25 +433,26 @@ class Portofolio extends StatelessWidget {
                                                                 Text(
                                                                   'Jumlah Pembayaran',
                                                                   style: TextStyle(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: Colors.black,
-                                                                    fontSize: 14,
-                                                                    fontWeight: FontWeight.w600
-                                                                  ),
+                                                                      fontFamily:
+                                                                          'Outfit',
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          14,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
                                                                 ),
                                                                 Text(
-                                                                  'Rp' +
-                                                                      pendanaan
-                                                                          .listPendanaanLunas[
-                                                                              index]
-                                                                          .curr_pembayaran
-                                                                          .toString(),
-                                                                  style: TextStyle(
+                                                                  "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pendanaan.listPendanaanLunas[index].curr_pembayaran)}",
+                                                                  style:
+                                                                      TextStyle(
                                                                     fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: Colors.black,
-                                                                    fontSize: 14,
+                                                                        'Outfit',
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        14,
                                                                   ),
                                                                 ),
                                                               ],
@@ -436,22 +468,30 @@ class Portofolio extends StatelessWidget {
                                                                 Text(
                                                                   'Total Pembayaran',
                                                                   style: TextStyle(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: Colors.black,
-                                                                    fontSize: 14,
-                                                                    fontWeight: FontWeight.w600
-                                                                  ),
+                                                                      fontFamily:
+                                                                          'Outfit',
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          14,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
                                                                 ),
                                                                 Text(
                                                                   pendanaan
-                                                                      .listPendanaanLunas[index]
-                                                                      .total_pembayaran.toString(),
-                                                                  style: TextStyle(
+                                                                      .listPendanaanLunas[
+                                                                          index]
+                                                                      .total_pembayaran
+                                                                      .toString(),
+                                                                  style:
+                                                                      TextStyle(
                                                                     fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: Colors.black,
-                                                                    fontSize: 14,
+                                                                        'Outfit',
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        14,
                                                                   ),
                                                                 ),
                                                               ],
@@ -555,7 +595,7 @@ class Portofolio extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    'Rp' + pendanaan.total_pendanaan.toString(),
+                                    "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pendanaan.total_pendanaan)}",
                                     style: TextStyle(
                                       fontFamily: 'Outfit',
                                       color: Colors.black,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class rincianPinjaman extends StatelessWidget {
   @override
@@ -109,10 +110,11 @@ class rincianPinjaman extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
                                 child: Text(
-                                  'Rp.' +
-                                      pinjaman
-                                          .pinjamanList![index].jumlah_pinjaman
-                                          .toString(),
+                                  // 'Rp.' +
+                                  //     pinjaman
+                                  //         .pinjamanList![index].jumlah_pinjaman
+                                  //         .toString(),
+                                  "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(pinjaman.pinjamanList![index].jumlah_pinjaman)}",
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
@@ -150,20 +152,21 @@ class rincianPinjaman extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
                                 child: Text(
-                                  'Rp ' +
-                                      ((((pinjaman.pinjamanList?[index]
-                                                              .bungaPinjaman ??
-                                                          0) *
-                                                      (pinjaman
-                                                              .pinjamanList?[
-                                                                  index]
-                                                              .jumlah_pinjaman ??
-                                                          0)) /
-                                                  100) +
-                                              (pinjaman.pinjamanList?[index]
-                                                      .jumlah_pinjaman ??
-                                                  0))
-                                          .toString(),
+                                  // 'Rp ' +
+                                  //     ((((pinjaman.pinjamanList?[index]
+                                  //                             .bungaPinjaman ??
+                                  //                         0) *
+                                  //                     (pinjaman
+                                  //                             .pinjamanList?[
+                                  //                                 index]
+                                  //                             .jumlah_pinjaman ??
+                                  //                         0)) /
+                                  //                 100) +
+                                  //             (pinjaman.pinjamanList?[index]
+                                  //                     .jumlah_pinjaman ??
+                                  //                 0))
+                                  //         .toString(),
+                                  "Rp ${NumberFormat.currency(locale: 'id_ID', symbol: '').format(((((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0)) / 100) + (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0)))}",
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
@@ -405,18 +408,33 @@ class rincianPinjaman extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                  child: pinjaman.pinjamanList![index].status_pinjaman == "Lunas"
+                  child: pinjaman.pinjamanList![index].status_pinjaman ==
+                          "Lunas"
                       ? SizedBox()
                       : Consumer<PembayaranProvider>(
-                        builder: (context, pembayaran, child) =>
-                        ElevatedButton(
+                          builder: (context, pembayaran, child) =>
+                              ElevatedButton(
                             onPressed: () async {
-                              if (pinjaman.pinjamanList![index].status_pinjaman =="Pending") {
+                              if (pinjaman
+                                      .pinjamanList![index].status_pinjaman ==
+                                  "Pending") {
                                 // assign data pembayaran
-                                pembayaran.jumlah_pembayaran = (((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0)) / 100) + (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0);
+                                pembayaran.jumlah_pembayaran = (((pinjaman
+                                                    .pinjamanList?[index]
+                                                    .bungaPinjaman ??
+                                                0) *
+                                            (pinjaman.pinjamanList?[index]
+                                                    .jumlah_pinjaman ??
+                                                0)) /
+                                        100) +
+                                    (pinjaman.pinjamanList?[index]
+                                            .jumlah_pinjaman ??
+                                        0);
                                 // add data pembayaran
-                                await pembayaran.addPembayaran(pinjaman.pinjamanList![index].pinjaman_id);
-                                Navigator.pushNamed(context, '/Pembayaran',arguments: index);
+                                await pembayaran.addPembayaran(
+                                    pinjaman.pinjamanList![index].pinjaman_id);
+                                Navigator.pushNamed(context, '/Pembayaran',
+                                    arguments: index);
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
@@ -442,7 +460,7 @@ class rincianPinjaman extends StatelessWidget {
                               ),
                             ),
                           ),
-                      ),
+                        ),
                 ),
               ],
             ),

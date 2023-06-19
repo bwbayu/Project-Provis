@@ -20,8 +20,10 @@ class PengajuanPinjamanPage extends StatelessWidget {
           ),
           child: SingleChildScrollView(
             padding: EdgeInsets.all(16.0),
-            child: Consumer4<PinjamanProvider, Login, PinjamanUser, VerifikasiAkun>(
-              builder: (context, pinjaman, login, pinjamanUser, verif, child) => Column(
+            child: Consumer4<PinjamanProvider, Login, PinjamanUser,
+                VerifikasiAkun>(
+              builder: (context, pinjaman, login, pinjamanUser, verif, child) =>
+                  Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppBar(
@@ -73,7 +75,7 @@ class PengajuanPinjamanPage extends StatelessWidget {
                     child: TextField(
                       style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        hintText: 'Rp 100000',
+                        hintText: 'Rp 100.000,00',
                         hintStyle: TextStyle(color: Colors.black),
                         border: InputBorder.none,
                       ),
@@ -230,45 +232,49 @@ class PengajuanPinjamanPage extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () async {
                         // cek data
-                        if(verif.status_akun == "Verified") {
+                        if (verif.status_akun == "Verified") {
                           if (pinjaman.jumlah_pinjaman != 0.0 &&
                               pinjaman.tenor_pinjaman != "" &&
                               pinjaman.bunga_pinjaman != "" &&
                               pinjaman.frekuensi_angsuran != "" &&
                               pinjaman.tujuan_pinjaman != 0.0) {
-                                if(pinjamanUser.pinjamanOpenList!.isEmpty && pinjamanUser.pinjamanPendingList!.isEmpty){
-                                  // post data pinjaman
-                                  final statusCode =
-                                      await pinjaman.addPinjamanUmkm(login.user_id);
-                                  print(statusCode);
-                                  if (statusCode == 200) {
-                                    // reset variable pinjaman
-                                    pinjaman.reset();
-                                    // fetch data pinjaman
-                                    await pinjamanUser.fetchDataPinjaman(login.user_id);
-                                    Navigator.pushNamed(context, '/dashboardUMKM');
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text('Error: Add pinjaman failed'),
-                                      ),
-                                    );
-                                  }
-                                }else{
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text('Error: Masih ada pinjaman yang belum selesai'),
-                                    ),
-                                  );
-                                }
+                            if (pinjamanUser.pinjamanOpenList!.isEmpty &&
+                                pinjamanUser.pinjamanPendingList!.isEmpty) {
+                              // post data pinjaman
+                              final statusCode =
+                                  await pinjaman.addPinjamanUmkm(login.user_id);
+                              print(statusCode);
+                              if (statusCode == 200) {
+                                // reset variable pinjaman
+                                pinjaman.reset();
+                                // fetch data pinjaman
+                                await pinjamanUser
+                                    .fetchDataPinjaman(login.user_id);
+                                Navigator.pushNamed(context, '/dashboardUMKM');
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Error: Add pinjaman failed'),
+                                  ),
+                                );
+                              }
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'Error: Masih ada pinjaman yang belum selesai'),
+                                ),
+                              );
+                            }
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text('Error: Data pinjaman belum lengkap!'),
+                                content:
+                                    Text('Error: Data pinjaman belum lengkap!'),
                               ),
                             );
                           }
-                        }else {
+                        } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text('Error: Akun anda belum verified'),
