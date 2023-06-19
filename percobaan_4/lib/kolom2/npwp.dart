@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percobaan_4/model.dart';
@@ -51,6 +53,7 @@ class formNPWP extends StatelessWidget {
                             'Foto NPWP',
                             style: TextStyle(
                               fontFamily: 'Outfit',
+                              fontWeight: FontWeight.w600,
                               color: Color(0xFFF7F8F9),
                               fontSize: 25,
                             ),
@@ -59,8 +62,8 @@ class formNPWP extends StatelessWidget {
                             'Mohon siapkan dokumen berikut untuk memudahkan pengisian data Anda.',
                             style: TextStyle(
                               fontFamily: 'Outfit',
+                              fontWeight: FontWeight.w400,
                               color: Color(0xFFF2F5F8),
-                              fontWeight: FontWeight.w300,
                             ),
                           ),
                         ),
@@ -77,36 +80,43 @@ class formNPWP extends StatelessWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.network(
-                                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
-                                width: double.infinity,
-                                height: 320,
-                                fit: BoxFit.cover,
-                              ),
+                            Consumer<NPWPProvider>(
+                              builder: (context, prov, child) {
+                                String? img = prov.namaImage;
+                                return img != ""
+                                    ? Image.network(
+                                        'http://127.0.0.1:8000/getimage/$img',
+                                        height: 200,
+                                      )
+                                    : const Text("Image Tidak Tersedia");
+                              },
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Upload',
-                                    style: TextStyle(
-                                      fontFamily: 'Outfit',
-                                      color: Colors.white,
+                                Consumer<Login>(
+                                    builder: (context, Login, child) {
+                                  return ElevatedButton(
+                                    onPressed: () => context
+                                        .read<NPWPProvider>()
+                                        .getImageFromGallery(Login.user_id),
+                                    child: Text(
+                                      'Upload',
+                                      style: TextStyle(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Color(0xffcb5f18),
-                                    elevation: 3,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Color(0xffcb5f18),
+                                      elevation: 3,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
                                     ),
-                                  ),
-                                ),
+                                  );
+                                }),
                               ],
                             ),
                           ],
@@ -122,6 +132,7 @@ class formNPWP extends StatelessWidget {
                             'Nomor NPWP',
                             style: TextStyle(
                               fontFamily: 'Outfit',
+                              fontWeight: FontWeight.w600,
                               color: Colors.white,
                               fontSize: 16,
                             ),
@@ -144,6 +155,7 @@ class formNPWP extends StatelessWidget {
                             'Pemilik NPWP',
                             style: TextStyle(
                               fontFamily: 'Outfit',
+                              fontWeight: FontWeight.w600,
                               color: Colors.white,
                               fontSize: 16,
                             ),
@@ -195,8 +207,8 @@ class formNPWP extends StatelessWidget {
                               'Submit Data',
                               style: TextStyle(
                                 fontFamily: 'Outfit',
+                                fontWeight: FontWeight.w700,
                                 fontSize: 16,
-                                fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                             ),

@@ -19,11 +19,12 @@ class formVerifikasi extends StatelessWidget {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             leading: Consumer2<VerifikasiAkun, UmkmProvider>(
-              builder: (context, verif, umkm, child) => IconButton(
-                onPressed: () async {
-                  // reset form
-                  verif.reset();
-                  umkm.reset();
+              builder: (context, verif, umkm, child) =>
+              IconButton(
+                onPressed: () async{
+                  // // reset form
+                  // verif.reset();
+                  // umkm.reset();
                   Navigator.of(context).pop();
                 },
                 icon: SvgPicture.asset(
@@ -239,19 +240,26 @@ class formVerifikasi extends StatelessWidget {
                     builder: (context, login, verif, profile, umkm, child) =>
                         ElevatedButton(
                       onPressed: () async {
-                        // ngecek data akun, kalau lengkap maka status_akun berubah verified
-                        final statusCode1 =
-                            await verif.updateUser(login.user_id);
-                        print(statusCode1);
-                        // fetch data status akun buat ngilangin button verifikasi kalau status_akun udh verified
-                        await verif.fetchStatusAkun(login.user_id);
-                        if (verif.status_akun == "Verified") {
-                          // fetch data profile
-                          await profile.fetchData(login.user_id);
-                          // reset variable in verifikasi akun provider
-                          verif.reset();
-                          if (login.jenis_user == "Investor") {
-                            Navigator.pushNamed(context, '/dashboardInvestor');
+                          // ngecek data akun, kalau lengkap maka status_akun berubah verified
+                          final statusCode1 = await verif.updateUser(login.user_id);
+                          print(statusCode1);
+                          // fetch data status akun buat ngilangin button verifikasi kalau status_akun udh verified
+                          await verif.fetchStatusAkun(login.user_id);
+                          if (verif.status_akun == "Verified") {
+                            // fetch data profile
+                            await profile.fetchData(login.user_id);
+                            // reset variable in verifikasi akun provider
+                            verif.reset();
+                            if (login.jenis_user == "Investor") {
+                              Navigator.pushNamed(
+                                  context, '/dashboardInvestor');
+                            } else {
+                              // reset variable in umkm
+                              umkm.reset();
+                              // fetch data umkm
+                              await umkm.fetchDataUmkm(login.user_id);
+                              Navigator.pushNamed(context, '/dashboardUMKM');
+                            }
                           } else {
                             // reset variable in umkm
                             umkm.reset();

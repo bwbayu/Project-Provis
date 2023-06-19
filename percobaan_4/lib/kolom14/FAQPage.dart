@@ -50,20 +50,20 @@ class _FAQPageState extends State<FAQPage> {
                   elevation: 0,
                 ),
                 SizedBox(height: 16.0),
-                TextField(
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'Search',
-                    contentPadding: EdgeInsets.all(8.0),
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 16.0),
+                // TextField(
+                //   decoration: InputDecoration(
+                //     filled: true,
+                //     fillColor: Colors.white,
+                //     hintText: 'Search',
+                //     contentPadding: EdgeInsets.all(8.0),
+                //     prefixIcon: Icon(Icons.search),
+                //     border: OutlineInputBorder(
+                //       borderRadius: BorderRadius.circular(20.0),
+                //       borderSide: BorderSide.none,
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(height: 16.0),
                 SizedBox(height: 32.0),
                 Expanded(
                   child: SingleChildScrollView(

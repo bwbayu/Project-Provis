@@ -7,7 +7,10 @@ import 'package:intl/intl.dart';
 class detailPortofolio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final int index = ModalRoute.of(context)!.settings.arguments as int;
+    final Map<String, dynamic> arguments =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final List<Pendanaan> pendanaanList = arguments['pendanaanList'];
+    final int index = arguments['index'];
     return Scaffold(
       body: SafeArea(
         top: true,
@@ -65,7 +68,7 @@ class detailPortofolio extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
                               child: Text(
-                                pendanaan.listPendanaan[index].status_pendanaan,
+                                pendanaanList[index].status_pendanaan,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: 'Outfit',
@@ -431,95 +434,6 @@ class detailPortofolio extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Padding(
-                  //   padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                  //   child: Container(
-                  //     width: double.infinity,
-                  //     height: 80,
-                  //     child: Row(
-                  //       mainAxisSize: MainAxisSize.max,
-                  //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //       children: [
-                  //         Container(
-                  //           width: 140,
-                  //           height: double.infinity,
-                  //           child: Column(
-                  //             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //             crossAxisAlignment: CrossAxisAlignment.start,
-                  //             children: [
-                  //               Text(
-                  //                 'Waktu Pendanaan',
-                  //                 style: TextStyle(
-                  //                   fontFamily: 'Outfit',
-                  //                   color: Colors.white,
-                  //                   fontWeight: FontWeight.bold,
-                  //                   fontSize: 16,
-                  //                 ),
-                  //               ),
-                  //               Container(
-                  //                 width: double.infinity,
-                  //                 height: 40,
-                  //                 decoration: BoxDecoration(
-                  //                   color: Colors.purple[200]!,
-                  //                   borderRadius: BorderRadius.circular(10),
-                  //                 ),
-                  //                 child: Padding(
-                  //                   padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
-                  //                   child: Text(
-                  //                     pinjaman.,
-                  //                     style: TextStyle(
-                  //                       fontSize: 18,
-                  //                       color: Colors.white,
-                  //                     ),
-                  //                     textAlign: TextAlign.left,
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //         Container(
-                  //           width: 140,
-                  //           height: double.infinity,
-                  //           child: Column(
-                  //             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //             crossAxisAlignment: CrossAxisAlignment.start,
-                  //             children: [
-                  //               Text(
-                  //                 'Waktu Tenggang',
-                  //                 style: TextStyle(
-                  //                   fontFamily: 'Outfit',
-                  //                   fontWeight: FontWeight.bold,
-                  //                   color: Colors.white,
-                  //                   fontSize: 16,
-                  //                 ),
-                  //               ),
-                  //               Container(
-                  //                 width: double.infinity,
-                  //                 height: 40,
-                  //                 decoration: BoxDecoration(
-                  //                   color: Colors.purple[200]!,
-                  //                   borderRadius: BorderRadius.circular(10),
-                  //                 ),
-                  //                 child: Padding(
-                  //                   padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
-                  //                   child: Text(
-                  //                     'dd/mm/yyyy',
-                  //                     style: TextStyle(
-                  //                       fontSize: 18,
-                  //                       color: Colors.white,
-                  //                     ),
-                  //                     textAlign: TextAlign.left,
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ),

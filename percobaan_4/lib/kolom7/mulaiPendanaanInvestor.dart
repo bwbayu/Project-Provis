@@ -212,6 +212,9 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                               dataPendanaan, child) =>
                           ElevatedButton(
                         onPressed: () async {
+                          if(riwayat.isLoading || riwayat.isLoading1 || wallet.isLoading || pendanaan.isLoading || dataPendanaan.isLoading || pinjaman.isLoading1){
+                            return;
+                          }
                           // SALDO USER BAKAL BERKURANG DAN DANA PINJAMAN BAKAL BERTAMBAH
                           // cek status akun user
                           if (verif.status_akun == "Verified") {
@@ -313,6 +316,9 @@ class MulaiPendanaanInvestor extends StatelessWidget {
                             horizontal: 50,
                             vertical: 20,
                           ),
+                          backgroundColor: riwayat.isLoading || riwayat.isLoading1 || wallet.isLoading || pendanaan.isLoading || dataPendanaan.isLoading || pinjaman.isLoading1
+                              ? Colors.grey // Disabled button color when loading
+                              : Color(0xFF977EF2), // Set the desired button color here
                         ),
                       ),
                     ),

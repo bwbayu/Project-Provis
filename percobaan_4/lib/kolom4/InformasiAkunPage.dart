@@ -20,8 +20,8 @@ class InformasiAkunPage extends StatelessWidget {
           ),
           child: SingleChildScrollView(
             padding: EdgeInsets.all(16),
-            child: Consumer<ProfileData>(
-              builder: (context, profile, child) =>
+            child: Consumer3<ProfileData, Login, UmkmProvider>(
+              builder: (context, profile, login, umkm, child) =>
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -44,9 +44,16 @@ class InformasiAkunPage extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        CircleAvatar(
-                          radius: 40,
-                          backgroundImage: AssetImage('asset/images/avatar.jpeg'),
+                        Consumer<ProfileData>(
+                          builder: (context, profile, child) {
+                            String? img = profile.foto_ktp;
+                            return CircleAvatar(
+                              radius: 40,
+                              backgroundImage: img != ""
+                                  ? AssetImage('asset/images/$img')
+                                  : AssetImage('asset/images/avatar.jpeg'),
+                            );
+                          },
                         ),
                         SizedBox(height: 10),
                         Text(
@@ -149,6 +156,74 @@ class InformasiAkunPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  SizedBox(height: 16),
+                  Container(
+                    height: 2,
+                    width: MediaQuery.of(context).size.width * 1,
+                    color: Colors.white,
+                  ),
+                  SizedBox(height: 16),
+                  if(login.jenis_user == "Borrower") 
+                    Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Card(
+                        child: Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Column(children: [
+                            Center(
+                              child: Text(
+                                'Data UMKM',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.0,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            ListTile(
+                              title: Text('Bentuk UMKM',
+                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                              subtitle: Text(umkm.bentuk_umkm),
+                            ),
+                            ListTile(
+                              title: Text('Nama UMKM',
+                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                              subtitle: Text(umkm.nama_umkm),
+                            ),
+                            ListTile(
+                              title: Text('Alamat UMKM',
+                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                              subtitle: Text(umkm.alamat_umkm),
+                            ),
+                            ListTile(
+                              title: Text('Kategori UMKM',
+                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                              subtitle: Text(umkm.kategori_umkm),
+                            ),
+                            ListTile(
+                              title: Text('Kontak UMKM',
+                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                              subtitle: Text(umkm.kontak_umkm),
+                            ),
+                            ListTile(
+                              title: Text('Jumlah Karyawan',
+                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                              subtitle: Text(umkm.jumlah_karyawan.toString()),
+                            ),
+                            ListTile(
+                              title: Text('Omset Bulanan',
+                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                              subtitle: Text(umkm.omset_bulanan.toString()),
+                            ),
+                            ListTile(
+                              title: Text('Deskripsi UMKM',
+                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                              subtitle: Text(umkm.deskripsi_umkm),
+                            ),
+                          ]),
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),

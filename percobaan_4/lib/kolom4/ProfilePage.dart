@@ -16,7 +16,6 @@ class profilePage extends StatelessWidget {
         ),
         child: Consumer2<Login, ProfileData>(
           builder: (context, login, profile, child){
-            // profile.fetchData(login.user_id);
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -109,7 +108,7 @@ class profilePage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     // Handle Help Center button tap
-                    // Navigator.pushNamed(context, '/SettingPage');
+                    Navigator.pushNamed(context, '/SettingPage');
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(300, 60),

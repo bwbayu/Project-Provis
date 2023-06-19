@@ -129,8 +129,8 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 32),
-                          Consumer2<RiwayatWalletProvider, PendanaanData>(
-                            builder: (context, riwayat, pendanaan, child) =>
+                          Consumer3<RiwayatWalletProvider, PendanaanData, UmkmProvider>(
+                            builder: (context, riwayat, pendanaan, umkm, child) =>
                             ElevatedButton(
                                 onPressed: () async{
                                   // MASUK KE DASHBOARD INVESTOR DAN BORROWER
@@ -201,6 +201,8 @@ class LoginScreen extends StatelessWidget {
                                       await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
                                       // fetch data list pinjaman user
                                       await pinjaman.fetchDataPinjaman(login.user_id);
+                                      // fetch data umkm
+                                      await umkm.fetchDataUmkm(login.user_id);
                                       Navigator.pushNamed(context, '/dashboardUMKM');
                                     }
                                   }

@@ -17,30 +17,31 @@ class dataDiri extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: SvgPicture.asset(
-                'asset/images/vector.svg',
-                width: 30,
-                height: 30,
-              ),
-            ),
-            title: Text(''),
+        child: Consumer2<VerifikasiAkun, Login>(
+          builder: (context, verif, login, child) => Scaffold(
             backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
-          body: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Consumer2<VerifikasiAkun, Login>(
-                    builder: (context, verif, login, child) => Column(
+            appBar: AppBar(
+              leading: IconButton(
+                onPressed: () {
+                  // verif.reset();
+                  Navigator.of(context).pop();
+                },
+                icon: SvgPicture.asset(
+                  'asset/images/vector.svg',
+                  width: 30,
+                  height: 30,
+                ),
+              ),
+              title: Text(''),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+            body: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Stack(
+                children: [
+                  SingleChildScrollView(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -338,6 +339,7 @@ class dataDiri extends StatelessWidget {
                                   final statusCode =
                                       await verif.VerifyProcess(login.user_id);
                                   print(statusCode);
+                                  // verif.reset();
                                   if (statusCode == 200) {
                                     Navigator.pop(context);
                                   }
@@ -380,8 +382,8 @@ class dataDiri extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

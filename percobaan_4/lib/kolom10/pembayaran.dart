@@ -376,6 +376,13 @@ class Pembayaran extends StatelessWidget {
                         child: Consumer<Login>(
                           builder: (context, login, child) => ElevatedButton(
                             onPressed: () async {
+                              if (riwayat.isLoading ||
+                                  riwayat.isLoading1 ||
+                                  wallet.isLoading ||
+                                  pembayaran.isLoading ||
+                                  pinjaman.isLoading) {
+                                return;
+                              }
                               // cek saldo umkm
                               if (wallet.saldo >=
                                   pembayaran.jumlah_pembayaran) {
@@ -411,6 +418,15 @@ class Pembayaran extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                               padding:
                                   EdgeInsets.zero, // Remove default padding
+                              backgroundColor: riwayat.isLoading ||
+                                      riwayat.isLoading1 ||
+                                      wallet.isLoading ||
+                                      pembayaran.isLoading ||
+                                      pinjaman.isLoading
+                                  ? Colors
+                                      .grey // Disabled button color when loading
+                                  : Colors
+                                      .orangeAccent, // Set the desired button color here
                             ),
                             child: Text(
                               'Bayar',

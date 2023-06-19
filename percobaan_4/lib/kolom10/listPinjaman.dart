@@ -70,7 +70,11 @@ class listPinjaman extends StatelessWidget {
                                       Navigator.pushNamed(
                                         context,
                                         '/rincianPinjaman',
-                                        arguments: index,
+                                        arguments: {
+                                          'pinjamanList':
+                                              pinjaman.pinjamanList!,
+                                          'index': index,
+                                        },
                                       );
                                     },
                                     child: Padding(
