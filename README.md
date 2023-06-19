@@ -74,14 +74,71 @@ _Coming soon with proper subtitles_
 
 ## Dokumentasi Penggunaan
 1. Register
+
+  - UMKM
+
+
+https://github.com/dauspairet/Provis/assets/100768773/668ab69e-88e1-4a02-a876-4ae4a095cd79
+
+
+  - Investor
+
+
+
+https://github.com/dauspairet/Provis/assets/100768773/ef08d2b9-99be-4070-b07e-a16ba07f398d
+
+
+
 2. Login
+
+
+https://github.com/dauspairet/Provis/assets/100768773/dad846f6-7fa0-4264-95e2-fbf88b4a15cb
+
+
 3. Verifikasi Akun
    - Data Diri
    - Dokumen
    - Tanda Tangan
    - Data Bisnis (khusus UMKM)
-5. Pengajuan Peminjaman Dana
-6. Pendanaan UMKM
-7. Pembayaran Pinjaman
-8. Isi Dana
-9. Tarik Dana
+
+  
+
+https://github.com/dauspairet/Provis/assets/100768773/32857eea-6d21-422a-bb00-1b6f361aedf6
+
+
+4. Pengajuan Peminjaman Dana
+
+
+
+https://github.com/dauspairet/Provis/assets/100768773/282d0755-060e-4be8-9082-a982de2d553e
+
+
+
+5. Pendanaan UMKM
+
+
+https://github.com/dauspairet/Provis/assets/100768773/86b25bf7-0d5e-4afb-a548-ac257bcff443
+
+
+
+
+6. Pembayaran Pinjaman
+
+
+
+https://github.com/dauspairet/Provis/assets/100768773/13363d83-cc27-4e12-9dcd-7710da609157
+
+
+
+7. Isi Dana
+
+
+https://github.com/dauspairet/Provis/assets/100768773/7bdf3c5f-3073-4a9f-baaa-298c1a78d4ac
+
+
+
+
+8. Tarik Dana
+
+https://github.com/dauspairet/Provis/assets/100768773/44e7815e-f0cc-468f-bb69-6b9c5181586b
+
