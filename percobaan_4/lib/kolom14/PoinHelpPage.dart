@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PoinHelpPage extends StatelessWidget {
-  const PoinHelpPage({Key? key, required this.title}) : super(key: key);
+  const PoinHelpPage({Key? key, required this.title, required this.text}) : super(key: key);
   final String title;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +48,7 @@ class PoinHelpPage extends StatelessWidget {
                 ),
                 SizedBox(height: 16.0),
                 Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, sapien ut imperdiet gravida, dui ex tristique odio, vel semper sapien turpis a lectus. Vestibulum vel quam elit. Sed in tellus libero. Etiam et elit varius, efficitur turpis vel, lobortis mi. Duis suscipit, eros vel bibendum malesuada, massa nulla consectetur ante, a sollicitudin purus dolor a felis. Vestibulum finibus nibh ac eros maximus, nec viverra dolor consequat. Nulla facilisi. Nunc interdum, risus non lobortis bibendum, mi nunc accumsan sapien, a tincidunt tellus augue sed orci. Fusce eget felis eu eros eleifend luctus quis in odio. Nam faucibus, ipsum quis gravida feugiat, arcu lacus dignissim sapien, vel bibendum massa tortor in mauris. Suspendisse euismod ante nulla, vel semper metus interdum non.',
+                  '$text',
                   style: TextStyle(
                     color: Colors.white,
                     fontFamily: 'Outfit',

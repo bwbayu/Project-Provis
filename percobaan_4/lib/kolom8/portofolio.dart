@@ -39,8 +39,13 @@ class Portofolio extends StatelessWidget {
                                         // fetch data umkm
                                         await pinjaman.fetchDataUmkm(pendanaan.listPendanaan[index].pinjaman_id);
                                         Navigator.pushNamed(
-                                            context, '/detailPortofolio',
-                                            arguments: index);
+                                          context,
+                                          '/detailPortofolio',
+                                          arguments: {
+                                            'pendanaanList': pendanaan.listPendanaan,
+                                            'index': index,
+                                          },
+                                        );
                                       },
                                       child: Padding(
                                         padding:
@@ -273,8 +278,13 @@ class Portofolio extends StatelessWidget {
                                         // fetch data umkm
                                         await pinjaman.fetchDataUmkm(pendanaan.listPendanaanLunas[index].pinjaman_id);
                                         Navigator.pushNamed(
-                                            context, '/detailPortofolio',
-                                            arguments: index);
+                                          context,
+                                          '/detailPortofolio',
+                                          arguments: {
+                                            'pendanaanList': pendanaan.listPendanaanLunas,
+                                            'index': index,
+                                          },
+                                        );
                                       },
                                       child: Padding(
                                         padding:

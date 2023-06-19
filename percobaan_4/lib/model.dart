@@ -274,9 +274,9 @@ class VerifikasiAkun extends ChangeNotifier {
         : '';
     final body = jsonEncode({
       'id_user': user_id,
-      'foto_ktp': "",
-      'foto_npwp': "",
-      "ttd": "",
+      'foto_ktp': "test",
+      'foto_npwp': "test",
+      "ttd": "test",
       "nama": nama,
       "tempat_lahir": tempat_lahir,
       "tgl_lahir": tgl_lahir,
@@ -386,8 +386,11 @@ class Wallet extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool isLoading = false;
   // ambil data dari api secara async
   Future<void> fetchData(int user_id) async {
+    isLoading = true;
+    notifyListeners();
     final response = await http
         .get(Uri.parse("http://127.0.0.1:8000/users/$user_id/wallet"));
     if (response.statusCode == 200) {
@@ -396,6 +399,8 @@ class Wallet extends ChangeNotifier {
     } else {
       throw Exception('Failed to fetch user wallet');
     }
+    isLoading = false;
+    notifyListeners();
   }
 }
 
@@ -675,6 +680,60 @@ class UmkmProvider extends ChangeNotifier {
     final response = await http.put(url, headers: headers, body: body);
 
     return response.statusCode;
+  }
+
+  // FETCH DATA UMKM BY USER_ID
+  void setFromJson(Map<String, dynamic> json) {
+    bentuk_umkm = json['bentuk_umkm'];
+    nama_umkm = json['nama_umkm'];
+    alamat_umkm = json['alamat_umkm'];
+    kategori_umkm = json['kategori_umkm'];
+    deskripsi_umkm = json['deskripsi_umkm'];
+    kontak_umkm = json['kontak_umkm'];
+    jumlah_karyawan = json['jumlah_karyawan'];
+    omset_bulanan = json['omset_bulanan'];
+    foto_umkm = json['foto_umkm'];
+    notifyListeners();
+  }
+
+  bool isLoading2 = true;
+  List<Pinjaman>? dataPinjaman;
+  Future<int> fetchDataUmkm(int user_id) async {
+    isLoading2 = true;
+    notifyListeners();
+
+    try {
+      String url = "http://127.0.0.1:8000/getUmkm/$user_id";
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        var dataUMKM = data['umkm'];
+        if (data.containsKey('umkm')) {
+          setFromJson(dataUMKM);
+        } else {
+          // Handle case when 'umkm' is not found in the response body
+          print('UMKM data not found in response');
+        }
+        var tempPinjaman = data['pinjaman'];
+        if (tempPinjaman != null) {
+          dataPinjaman = [Pinjaman.fromJson(tempPinjaman)];
+        }
+      } else if (response.statusCode == 422) {
+        print('Validation Error: ${response.body}');
+      } else {
+        print('Error: ${response.statusCode}');
+      }
+
+      isLoading2 = false;
+      notifyListeners();
+      return response.statusCode;
+    } catch (e) {
+      print('Exception: $e');
+      isLoading2 = false;
+      notifyListeners();
+      return 0;
+    }
   }
 
   // RESET DATA UMKM
@@ -1366,7 +1425,10 @@ class RiwayatWalletProvider extends ChangeNotifier {
   }
 
   // FUNCTION POST
+  bool isLoading1 = false;
   Future<int> addRiwayatWallet(int wallet_id) async {
+    isLoading1 = true;
+    notifyListeners();
     final url = Uri.parse('http://127.0.0.1:8000/addRiwayatWallet/$wallet_id');
     final headers = {'Content-Type': 'application/json'};
     final riwayatData = {
@@ -1378,7 +1440,8 @@ class RiwayatWalletProvider extends ChangeNotifier {
     final body = jsonEncode(riwayatData);
 
     final response = await http.post(url, headers: headers, body: body);
-
+    isLoading1 = false;
+    notifyListeners();
     return response.statusCode;
   }
 
@@ -1448,13 +1511,17 @@ class PembayaranProvider extends ChangeNotifier {
   }
 
   // UPDATE STATUS PEMBAYARAN KE LUNAS BY PINJAMAN_ID
+  bool isLoading = false;
   Future<int> updateStatusPembayaran(int pinjaman_id) async {
+    isLoading = true;
+    notifyListeners();
     final url =
         Uri.parse('http://127.0.0.1:8000/updateStatusPembayaran/$pinjaman_id');
     final headers = {'Content-Type': 'application/json'};
 
     final response = await http.put(url, headers: headers);
-
+    isLoading = false;
+    notifyListeners();
     return response.statusCode;
   }
 }

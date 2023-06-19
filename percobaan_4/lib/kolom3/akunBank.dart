@@ -14,28 +14,28 @@ class akunBank extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: SvgPicture.asset(
-                'asset/images/vector.svg',
-                width: 30,
-                height: 30,
-              ),
-            ),
-            title: Text(''),
+        child: Consumer2<Login, BankData>(
+          builder: (context, login, bank, child) => Scaffold(
             backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
-          body: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Consumer2<Login, BankData>(
-              builder: (context, login, bank, child) =>
-              Stack(
+            appBar: AppBar(
+              leading: IconButton(
+                onPressed: () {
+                  // bank.reset();
+                  Navigator.of(context).pop();
+                },
+                icon: SvgPicture.asset(
+                  'asset/images/vector.svg',
+                  width: 30,
+                  height: 30,
+                ),
+              ),
+              title: Text(''),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+            body: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Stack(
                 children: [
                   SingleChildScrollView(
                       child: Column(
@@ -75,13 +75,15 @@ class akunBank extends StatelessWidget {
                                 decoration: InputDecoration(
                                     labelText: 'Nama Pemilik Akun'),
                                 style: TextStyle(color: Colors.black),
-                                onChanged: (value) => bank.nama_pemilik_bank = value,
+                                onChanged: (value) =>
+                                    bank.nama_pemilik_bank = value,
                               ),
                               TextFormField(
-                                decoration:
-                                    InputDecoration(labelText: 'Nomor Rekening'),
+                                decoration: InputDecoration(
+                                    labelText: 'Nomor Rekening'),
                                 style: TextStyle(color: Colors.black),
-                                onChanged: (value) => bank.nomor_rekening = value,
+                                onChanged: (value) =>
+                                    bank.nomor_rekening = value,
                               )
                             ],
                           ),
@@ -92,9 +94,11 @@ class akunBank extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomRight,
                     child: ElevatedButton(
-                      onPressed: () {
-                        final statusCode = bank.addBankData(login.user_id);
+                      onPressed: () async {
+                        final statusCode =
+                            await bank.addBankData(login.user_id);
                         print(statusCode);
+                        // bank.reset();
                         Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(

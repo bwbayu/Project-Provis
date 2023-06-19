@@ -71,8 +71,11 @@ class HelpCenterPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            PoinHelpPage(title: 'Resiko Pemberian Pinjaman'),
+                        builder: (context) => PoinHelpPage(
+                          title: 'Resiko Pemberian Pinjaman',
+                          text:
+                              'Pemberian pinjaman melalui aplikasi P2P lending untuk UMKM memiliki beberapa risiko yang perlu dipertimbangkan sebelum Anda memutuskan untuk mengajukan pinjaman. Meskipun aplikasi P2P lending dapat memberikan akses ke dana dengan cepat dan mudah, ada beberapa hal yang perlu diperhatikan:\n\n1. Risiko Kredit: Setiap pinjaman memiliki risiko kredit, di mana peminjam mungkin tidak dapat membayar kembali pinjaman sesuai dengan kesepakatan...\n\nPenting untuk menyadari dan memahami risiko-risiko tersebut sebelum memutuskan untuk menggunakan aplikasi P2P lending. Pertimbangkan baik-baik kebutuhan dan kemampuan Anda sebagai peminjam sebelum membuat keputusan pinjaman yang bijaksana. Selalu konsultasikan dengan ahli keuangan atau penasihat hukum jika diperlukan untuk mendapatkan nasihat yang tepat.',
+                        ),
                       ),
                     );
                   },
@@ -86,8 +89,11 @@ class HelpCenterPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            PoinHelpPage(title: 'Draft Perjanjian'),
+                        builder: (context) => PoinHelpPage(
+                          title: 'Draft Perjanjian',
+                          text:
+                              'Draft Perjanjian adalah dokumen penting dalam pemberian pinjaman melalui aplikasi P2P lending untuk UMKM. Perjanjian ini akan memuat ketentuan-ketentuan antara pemberi pinjaman dan penerima pinjaman yang mengatur hak dan kewajiban kedua belah pihak.\n\nDalam draft perjanjian, biasanya akan dijelaskan mengenai jumlah pinjaman, suku bunga, jangka waktu pinjaman, jaminan yang diberikan (jika ada), serta ketentuan-ketentuan lain yang relevan.\n\nPenting untuk membaca dan memahami draft perjanjian secara seksama sebelum menandatanganinya. Pastikan Anda mengerti semua ketentuan yang tercantum dan jika diperlukan, konsultasikan dengan ahli hukum atau penasihat keuangan sebelum menyetujui perjanjian tersebut.',
+                        ),
                       ),
                     );
                   },
@@ -101,8 +107,11 @@ class HelpCenterPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            PoinHelpPage(title: 'Informasi Penilaian Risiko'),
+                        builder: (context) => PoinHelpPage(
+                          title: 'Informasi Penilaian Risiko',
+                          text:
+                              'Informasi Penilaian Risiko merupakan bagian penting dalam aplikasi P2P lending untuk UMKM. Proses ini dilakukan untuk mengevaluasi risiko kredit dan keberlanjutan bisnis penerima pinjaman sebelum pinjaman disetujui.\n\nDalam penilaian risiko, beberapa faktor yang diperhatikan meliputi kondisi keuangan UMKM, sektor usaha, riwayat kredit, dan informasi lainnya yang relevan. Penilaian risiko ini bertujuan untuk memastikan bahwa penerima pinjaman memiliki kemampuan yang memadai untuk melunasi pinjaman sesuai dengan kesepakatan.\n\nPenting untuk memahami bahwa penilaian risiko tidak dapat menjamin sepenuhnya keberhasilan pinjaman. Namun, proses ini membantu dalam mengurangi risiko default dan meningkatkan kepercayaan dalam aplikasi P2P lending.',
+                        ),
                       ),
                     );
                   },
@@ -116,8 +125,11 @@ class HelpCenterPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            PoinHelpPage(title: 'Kebijakan Privasi'),
+                        builder: (context) => PoinHelpPage(
+                          title: 'Kebijakan Privasi',
+                          text:
+                              'Kebijakan Privasi adalah dokumen yang menjelaskan bagaimana informasi pribadi pengguna dihimpun, digunakan, dan dilindungi oleh aplikasi P2P lending untuk UMKM. Kebijakan Privasi ini bertujuan untuk memberikan pemahaman kepada pengguna mengenai penggunaan dan perlindungan data pribadi mereka.\n\nDalam kebijakan privasi, biasanya dijelaskan jenis informasi yang dikumpulkan, cara penggunaan informasi tersebut, pihak ketiga yang mungkin memiliki akses ke informasi, tindakan keamanan yang diimplementasikan, dan hak-hak pengguna terkait privasi mereka.\n\nPenting untuk membaca dan memahami kebijakan privasi dengan seksama sebelum menggunakan aplikasi P2P lending. Pastikan Anda mengerti bagaimana data pribadi Anda akan dikelola dan dilindungi oleh aplikasi.',
+                        ),
                       ),
                     );
                   },

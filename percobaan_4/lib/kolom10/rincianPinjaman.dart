@@ -6,7 +6,9 @@ import 'package:provider/provider.dart';
 class rincianPinjaman extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final int index = ModalRoute.of(context)!.settings.arguments as int;
+    final Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final List<Pinjaman> pinjamanList = arguments['pinjamanList'];
+    final int index = arguments['index'];
     return Scaffold(
       body: SafeArea(
         top: true,
@@ -65,7 +67,7 @@ class rincianPinjaman extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
                             child: Text(
-                              pinjaman.pinjamanList![index].status_pinjaman,
+                              pinjamanList[index].status_pinjaman,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Outfit',
@@ -209,7 +211,7 @@ class rincianPinjaman extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
                                 child: Text(
-                                  pinjaman.pinjamanList![index].tgl_pengajuan,
+                                  pinjamanList[index].tgl_pengajuan,
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
@@ -247,7 +249,7 @@ class rincianPinjaman extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
                                 child: Text(
-                                  pinjaman.pinjamanList![index].tgl_tenggang,
+                                  pinjamanList[index].tgl_tenggang,
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
@@ -297,7 +299,7 @@ class rincianPinjaman extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        pinjaman.pinjamanList![index]
+                                        pinjamanList[index]
                                             .tenor_pinjaman,
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
@@ -325,7 +327,7 @@ class rincianPinjaman extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        pinjaman.pinjamanList![index]
+                                        pinjamanList[index]
                                             .bunga_pinjaman,
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
@@ -358,7 +360,7 @@ class rincianPinjaman extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        pinjaman.pinjamanList![index]
+                                        pinjamanList[index]
                                             .frekuensi_angsuran_pokok,
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
@@ -405,17 +407,17 @@ class rincianPinjaman extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                  child: pinjaman.pinjamanList![index].status_pinjaman == "Lunas"
+                  child: pinjamanList[index].status_pinjaman == "Lunas"
                       ? SizedBox()
                       : Consumer<PembayaranProvider>(
                         builder: (context, pembayaran, child) =>
                         ElevatedButton(
                             onPressed: () async {
-                              if (pinjaman.pinjamanList![index].status_pinjaman =="Pending") {
+                              if (pinjamanList[index].status_pinjaman =="Pending") {
                                 // assign data pembayaran
                                 pembayaran.jumlah_pembayaran = (((pinjaman.pinjamanList?[index].bungaPinjaman ?? 0) * (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0)) / 100) + (pinjaman.pinjamanList?[index].jumlah_pinjaman ?? 0);
                                 // add data pembayaran
-                                await pembayaran.addPembayaran(pinjaman.pinjamanList![index].pinjaman_id);
+                                await pembayaran.addPembayaran(pinjamanList[index].pinjaman_id);
                                 Navigator.pushNamed(context, '/Pembayaran',arguments: index);
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
