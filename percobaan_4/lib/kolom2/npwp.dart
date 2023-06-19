@@ -1,11 +1,11 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
 
 class formNPWP extends StatelessWidget {
-  String? foto;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -83,7 +83,7 @@ class formNPWP extends StatelessWidget {
                             Consumer<NPWPProvider>(
                               builder: (context, prov, child) {
                                 String? img = prov.namaImage;
-                                return img != null
+                                return img != ""
                                     ? Image.network(
                                         'http://127.0.0.1:8000/getimage/$img',
                                         height: 200,

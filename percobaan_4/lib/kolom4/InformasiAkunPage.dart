@@ -21,8 +21,7 @@ class InformasiAkunPage extends StatelessWidget {
           child: SingleChildScrollView(
             padding: EdgeInsets.all(16),
             child: Consumer<ProfileData>(
-              builder: (context, profile, child) =>
-              Column(
+              builder: (context, profile, child) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   AppBar(
@@ -44,9 +43,16 @@ class InformasiAkunPage extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        CircleAvatar(
-                          radius: 40,
-                          backgroundImage: AssetImage('asset/images/avatar.jpeg'),
+                        Consumer<ProfileData>(
+                          builder: (context, profile, child) {
+                            String? img = profile.foto_ktp;
+                            return CircleAvatar(
+                              radius: 40,
+                              backgroundImage: img != ""
+                                  ? AssetImage('asset/images/$img')
+                                  : AssetImage('asset/images/avatar.jpeg'),
+                            );
+                          },
                         ),
                         SizedBox(height: 10),
                         Text(

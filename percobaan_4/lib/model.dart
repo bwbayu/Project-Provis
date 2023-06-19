@@ -400,6 +400,9 @@ class Wallet extends ChangeNotifier {
 }
 
 class ProfileData extends ChangeNotifier {
+  String foto_ktp = "";
+  String foto_npwp = "";
+  String ttd = "";
   String nama = "";
   String tempat_lahir = "";
   String tgl_lahir = "";
@@ -418,6 +421,9 @@ class ProfileData extends ChangeNotifier {
 
   // map dari json ke atribut
   void setFromJson(Map<String, dynamic> json) {
+    foto_ktp = json['personal_data']['foto_ktp'];
+    foto_npwp = json['personal_data']['foto_npwp'];
+    ttd = json['personal_data']['ttd'];
     nama = json['personal_data']['nama'];
     tempat_lahir = json['personal_data']['tempat_lahir'];
     tgl_lahir = json['personal_data']['tgl_lahir'];
@@ -1543,7 +1549,7 @@ class NPWPProvider extends ChangeNotifier {
 }
 
 class TTDProvider extends ChangeNotifier {
-  String namaImage = "";
+  String? namaImage;
 
   final dio = Dio();
 
@@ -1580,5 +1586,10 @@ class TTDProvider extends ChangeNotifier {
       print("mulai upload");
       await uploadFile(bytes as List<int>, pickedImage.name, user_id);
     }
+  }
+
+  void reset() {
+    namaImage = null;
+    notifyListeners();
   }
 }

@@ -84,10 +84,10 @@ class formKTP extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Consumer<MyImageProvider>(
-                        builder: (context, prov, child) {
-                          String? img = prov.namaImage;
-                          return img != null
+                      Consumer2<VerifikasiAkun, Login>(
+                        builder: (context,ver,login, child) {
+                          String? img = ver.foto_ktp;
+                          return img != ""
                               ? Image.network(
                                   'http://127.0.0.1:8000/getimage/$img',
                                   height: 200,
