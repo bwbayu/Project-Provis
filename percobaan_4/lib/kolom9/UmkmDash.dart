@@ -48,10 +48,16 @@ class UmkmDash extends StatelessWidget {
                     SizedBox(height: 16.0),
                     Row(
                       children: [
-                        CircleAvatar(
-                          radius: 20,
-                          backgroundImage:
-                              AssetImage('asset/images/avatar.jpeg'),
+                        Consumer<ProfileData>(
+                          builder: (context, profile, child) {
+                            String? img = profile.foto_ktp;
+                            return CircleAvatar(
+                              radius: 40,
+                              backgroundImage: img != ""
+                                  ? AssetImage('asset/images/$img')
+                                  : AssetImage('asset/images/avatar.jpeg'),
+                            );
+                          },
                         ),
                         SizedBox(width: 10.0),
                         Column(
@@ -347,7 +353,8 @@ class UmkmDash extends StatelessWidget {
                                                     context,
                                                     '/rincianPinjaman',
                                                     arguments: {
-                                                      'pinjamanList': pinjaman.pinjamanPendingList!,
+                                                      'pinjamanList': pinjaman
+                                                          .pinjamanPendingList!,
                                                       'index': index,
                                                     },
                                                   );

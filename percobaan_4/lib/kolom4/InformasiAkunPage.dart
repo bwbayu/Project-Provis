@@ -20,14 +20,9 @@ class InformasiAkunPage extends StatelessWidget {
           ),
           child: SingleChildScrollView(
             padding: EdgeInsets.all(16),
-<<<<<<< HEAD
-            child: Consumer<ProfileData>(
-              builder: (context, profile, child) => Column(
-=======
             child: Consumer3<ProfileData, Login, UmkmProvider>(
               builder: (context, profile, login, umkm, child) =>
               Column(
->>>>>>> 36a359573026918663ff4c85bd57c3d9a162a246
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   AppBar(
