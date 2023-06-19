@@ -26,6 +26,7 @@ void main() {
       ChangeNotifierProvider(create: (_) => MyImageProvider()),
       ChangeNotifierProvider(create: (_) => NPWPProvider()),
       ChangeNotifierProvider(create: (_) => TTDProvider()),
+      ChangeNotifierProvider(create: (_) => UMKMFoto()),
     ],
     child: MyApp(),
   ));

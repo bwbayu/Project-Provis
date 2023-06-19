@@ -301,28 +301,31 @@ class DataIdentitasUMKM extends StatelessWidget {
                   SizedBox(height: 16.0),
                   Container(
                     alignment: Alignment.centerLeft,
-                    child: ElevatedButton(
-                      onPressed: () {
+                    child: Consumer<Login>(builder: (context, login, child) {
+                      return ElevatedButton(
+                        onPressed: () async => context
+                            .read<UMKMFoto>()
+                            .getImageFromGallery(login.user_id),
                         // Handle button tap
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                        backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12),
+                          backgroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        'Unggah Foto',
-                        style: TextStyle(
-                          fontFamily: 'Outfit',
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                        child: Text(
+                          'Unggah Foto',
+                          style: TextStyle(
+                            fontFamily: 'Outfit',
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    }),
                   ),
                   SizedBox(height: 32.0),
                   Align(

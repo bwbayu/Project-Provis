@@ -680,7 +680,7 @@ class UmkmProvider extends ChangeNotifier {
       'nama_umkm': nama_umkm,
       'alamat_umkm': alamat_umkm,
       'deskripsi_umkm': deskripsi_umkm,
-      'foto_umkm': "foto_umkm"
+      'foto_umkm': "",
     };
     final body = jsonEncode(umkmData);
     final response = await http.put(url, headers: headers, body: body);
@@ -1636,6 +1636,52 @@ class TTDProvider extends ChangeNotifier {
     });
     var response = await dio
         .put("http://127.0.0.1:8000/uploadfile/$user_id/TTD", data: formData);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      namaImage = fileName;
+      notifyListeners();
+    }
+    return fileName;
+  }
+
+  Future<void> getImageFromGallery(int user_id) async {
+    print("get image");
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    final bytes = await pickedImage?.readAsBytes();
+    if (pickedImage != null) {
+      print("mulai upload");
+      await uploadFile(bytes as List<int>, pickedImage.name, user_id);
+    }
+  }
+
+  void reset() {
+    namaImage = null;
+    notifyListeners();
+  }
+}
+
+class UMKMFoto extends ChangeNotifier {
+  String? namaImage;
+
+  final dio = Dio();
+
+  Future<String> uploadFile(
+      List<int> file, String fileName, int user_id) async {
+    print("mulai");
+    String fileExtension = fileName.split('.').last;
+    MediaType? contentType;
+    if (fileExtension == 'jpg' || fileExtension == 'jpeg') {
+      contentType = MediaType('image', 'jpeg');
+    } else if (fileExtension == 'png') {
+      contentType = MediaType('image', 'png');
+    }
+    FormData formData = FormData.fromMap({
+      "file": MultipartFile.fromBytes(file,
+          filename: fileName, contentType: contentType),
+    });
+    var response = await dio
+        .put("http://127.0.0.1:8000/uploadfile/$user_id/UMKM", data: formData);
     print(response.statusCode);
     if (response.statusCode == 200) {
       namaImage = fileName;
