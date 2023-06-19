@@ -24,9 +24,10 @@ Beberapa fitur utama yang terdapat dalam aplikasi ini antara lain:
 
 ## Prasyarat
 Sebelum Anda mulai menginstal dan menggunakan aplikasi ini, pastikan Anda memiliki prasyarat berikut:
-
-- Flutter verison : 3.7.5
+```
+- Flutter version : 3.7.5
 - Dart SDK version: 2.19.2
+```
 
 ## Instalasi
 Berikut adalah langkah-langkah untuk menginstal aplikasi ini:
