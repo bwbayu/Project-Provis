@@ -73,7 +73,7 @@ Berikut adalah beberapa langkah untuk menggunakan aplikasi ini:
 _Coming soon with proper subtitles_
 
 ## Dokumentasi Penggunaan
-1. Register
+### 1. Register
 
    - UMKM
 
@@ -89,13 +89,13 @@ https://github.com/dauspairet/Provis/assets/100768773/ef08d2b9-99be-4070-b07e-a1
 
 
 
-2. Login
+### 2. Login
 
 
 https://github.com/dauspairet/Provis/assets/100768773/dad846f6-7fa0-4264-95e2-fbf88b4a15cb
 
 
-3. Verifikasi Akun
+### 3. Verifikasi Akun
    - Data Diri
    - Dokumen
    - Tanda Tangan
@@ -106,7 +106,7 @@ https://github.com/dauspairet/Provis/assets/100768773/dad846f6-7fa0-4264-95e2-fb
 https://github.com/dauspairet/Provis/assets/100768773/32857eea-6d21-422a-bb00-1b6f361aedf6
 
 
-4. Pengajuan Peminjaman Dana
+### 4. Pengajuan Peminjaman Dana
 
 
 
@@ -114,7 +114,7 @@ https://github.com/dauspairet/Provis/assets/100768773/282d0755-060e-4be8-9082-a9
 
 
 
-5. Pendanaan UMKM
+### 5. Pendanaan UMKM
 
 
 https://github.com/dauspairet/Provis/assets/100768773/86b25bf7-0d5e-4afb-a548-ac257bcff443
@@ -122,7 +122,7 @@ https://github.com/dauspairet/Provis/assets/100768773/86b25bf7-0d5e-4afb-a548-ac
 
 
 
-6. Pembayaran Pinjaman
+### 6. Pembayaran Pinjaman
 
 
 
@@ -130,7 +130,7 @@ https://github.com/dauspairet/Provis/assets/100768773/13363d83-cc27-4e12-9dcd-77
 
 
 
-7. Isi Dana
+### 7. Isi Dana
 
 
 https://github.com/dauspairet/Provis/assets/100768773/7bdf3c5f-3073-4a9f-baaa-298c1a78d4ac
@@ -138,7 +138,7 @@ https://github.com/dauspairet/Provis/assets/100768773/7bdf3c5f-3073-4a9f-baaa-29
 
 
 
-8. Tarik Dana
+### 8. Tarik Dana
 
 https://github.com/dauspairet/Provis/assets/100768773/44e7815e-f0cc-468f-bb69-6b9c5181586b
 
