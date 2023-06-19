@@ -76,12 +76,12 @@ _Coming soon with proper subtitles_
 1. Register
 2. Login
 3. Verifikasi Akun
-   - Data Diri
-   - Dokumen
-   - Tanda Tangan
-   - Data Bisnis (khusus UMKM)
-4. Pengajuan Peminjaman Dana
-5. Pendanaan UMKM
-6. Pembayaran Pinjaman
-7. Isi Dana
-8. Tarik Dana
+  - Data Diri
+  - Dokumen
+  - Tanda Tangan
+  - Data Bisnis (khusus UMKM)
+5. Pengajuan Peminjaman Dana
+6. Pendanaan UMKM
+7. Pembayaran Pinjaman
+8. Isi Dana
+9. Tarik Dana
