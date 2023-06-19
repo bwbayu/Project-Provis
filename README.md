@@ -70,7 +70,7 @@ Berikut adalah beberapa langkah untuk menggunakan aplikasi ini:
 
 ## Youtube
 
-_Coming soon with proper subtitles_
+https://youtu.be/0aMHqGnxt9M
 
 ## Dokumentasi Penggunaan
 ### 1. Register
