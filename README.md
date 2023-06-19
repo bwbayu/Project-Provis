@@ -31,78 +31,40 @@ Sebelum Anda mulai menginstal dan menggunakan aplikasi ini, pastikan Anda memili
 Berikut adalah langkah-langkah untuk menginstal aplikasi ini:
 
 1. Clone repositori ini ke komputer Anda:
-
 ```
-git clone https://github.com/nama-user/nama-repo.git
+git clone https://github.com/dauspairet/Provis.git
 ```
 
-1. Masuk ke direktori proyek:
-
-bash
-Copy code
+2. Masuk ke direktori proyek:
+```
 cd nama-repo
-Jalankan perintah berikut untuk menginstal dependensi:
+```
 
-arduino
-Copy code
+3. Jalankan perintah berikut untuk menginstal dependensi:
+```
 flutter pub get
-Hubungkan perangkat Anda ke komputer atau gunakan emulator.
+```
 
-Jalankan aplikasi dengan perintah:
-
-arduino
-Copy code
+4. Jalankan aplikasi dengan perintah:
+```
 flutter run
+```
 Setelah menjalankan perintah tersebut, aplikasi akan terbuka pada perangkat atau emulator yang terhubung.
 
-Penggunaan
+## Penggunaan
 Berikut adalah beberapa langkah untuk menggunakan aplikasi ini:
 
-Buka aplikasi Lending UMKM di perangkat atau emulator.
+1. Buka aplikasi Lending UMKM di perangkat atau emulator.
 
-Daftar sebagai UMKM dan lengkapi informasi bisnis Anda.
+2. Daftar sebagai UMKM dan lengkapi informasi bisnis Anda.
 
-Setelah mendaftar, Anda dapat melihat daftar pinjaman yang tersedia.
+3. Setelah mendaftar, Anda dapat melihat daftar pinjaman yang tersedia.
 
-Jika Anda adalah investor, Anda dapat menawarkan pinjaman kepada UMKM yang membutuhkan.
+4. Jika Anda adalah investor, Anda dapat menawarkan pinjaman kepada UMKM yang membutuhkan.
 
-Aplikasi akan melakukan verifikasi dan penilaian terhadap UMKM yang mengajukan pinjaman.
+5. Aplikasi akan melakukan verifikasi dan penilaian terhadap UMKM yang mengajukan pinjaman.
 
-Jika pinjaman disetujui, UMKM dapat melacak status pinjaman dan melakukan pembayaran.
+6. Jika pinjaman disetujui, UMKM dapat melacak status pinjaman dan melakukan pembayaran.
 
-Investor dapat melacak pembayaran yang diterima dan melihat status pinjaman yang dimilikinya.
-
-Kontribusi
-Jika Anda ingin berkontribusi pada proyek ini, Anda dapat melakukan langkah-langkah berikut:
-
-Fork repositori ini.
-
-Buat branch fitur baru:
-
-css
-Copy code
-git checkout -b fitur-baru
-Lakukan perubahan yang diperlukan dan commit:
-
-sql
-Copy code
-git commit -m "Deskripsi perubahan"
-Push branch ke repositori jarak jauh:
-
-perl
-Copy code
-git push origin fitur-baru
-Ajukan pull request ke repositori ini.
-
-Kami sangat menghargai kontribusi dari komunitas, dan kami akan melakukan yang terbaik untuk memeriksa dan menggabungkan setiap perubahan yang berguna.
-
-Tim Pengembang
-Nama Tim: [Nama Tim]
-Anggota Tim: [Nama Anggota Tim]
-Lisensi
-Proyek ini dilisensikan di bawah [nama lisensi]. Silakan merujuk ke file LICENSE untuk informasi lebih lanjut.
-
-Terima kasih telah membaca README untuk aplikasi Lending UMKM menggunakan Flutter. Jika Anda memiliki pertanyaan lebih lanjut, jangan ragu untuk menghubungi kami di [kontak email].
-
- 
+7. Investor dapat melacak pembayaran yang diterima dan melihat status pinjaman yang dimilikinya.
  
