@@ -103,7 +103,10 @@ https://github.com/dauspairet/Provis/assets/100768773/dad846f6-7fa0-4264-95e2-fb
 
   
 
-https://github.com/dauspairet/Provis/assets/100768773/32857eea-6d21-422a-bb00-1b6f361aedf6
+
+https://github.com/dauspairet/Provis/assets/100768773/4a87184c-d586-4513-b716-c9fb46cab8e2
+
+
 
 
 ### 4. Pengajuan Peminjaman Dana
