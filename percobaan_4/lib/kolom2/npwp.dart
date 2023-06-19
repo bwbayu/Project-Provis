@@ -88,7 +88,10 @@ class formNPWP extends StatelessWidget {
                                         'http://127.0.0.1:8000/getimage/$img',
                                         height: 200,
                                       )
-                                    : const Text("Image Tidak Tersedia");
+                                    : Image.network(
+                                        'http://127.0.0.1:8000/getimage/default.png',
+                                        height: 200,
+                                      );
                               },
                             ),
                             Column(
