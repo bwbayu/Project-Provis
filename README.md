@@ -18,7 +18,7 @@ Beberapa fitur utama yang terdapat dalam aplikasi ini antara lain:
   - Pendaftaran UMKM     : UMKM dapat mendaftar ke aplikasi dan menyediakan informasi tentang bisnis mereka.
   - Pendaftaran Investor : Investor dapat mendaftar ke aplikasi dan menyediakan identitas mereka.
   - Penawaran Pinjaman   : Investor dapat melihat daftar UMKM yang membutuhkan dana dan menawarkan pinjaman.
-  - Verifikasi           : Terdapat mekanisme verifikasi identitas terhadap UMKM dan investor yang menggunakan aplikasi ini.
+  - Verifikasi           : Terdapat mekanisme verifikasi identitas terhadap UMKM dan investor yang menggunakan aplikasi.
   - Pelacakan Pinjaman   : UMKM dan investor dapat melacak status pinjaman yang diajukan dan pinjaman yang diberikan.
   - Pembayaran           : Aplikasi akan menyediakan mekanisme pembayaran bagi UMKM untuk melunasi pinjaman kepada investor.
 
@@ -55,18 +55,9 @@ Setelah menjalankan perintah tersebut, aplikasi akan terbuka pada perangkat atau
 
 ## Penggunaan
 Berikut adalah beberapa langkah untuk menggunakan aplikasi ini:
-
 1. Buka aplikasi Lending UMKM di perangkat atau emulator.
-
-2. Daftar sebagai UMKM dan lengkapi informasi bisnis Anda.
-
-3. Setelah mendaftar, Anda dapat melihat daftar pinjaman yang tersedia.
-
-4. Jika Anda adalah investor, Anda dapat menawarkan pinjaman kepada UMKM yang membutuhkan.
-
-5. Aplikasi akan melakukan verifikasi dan penilaian terhadap UMKM yang mengajukan pinjaman.
-
-6. Jika pinjaman disetujui, UMKM dapat melacak status pinjaman dan melakukan pembayaran.
-
-7. Investor dapat melacak pembayaran yang diterima dan melihat status pinjaman yang dimilikinya.
- 
+2. Daftar sebagai UMKM atau Investor dan lengkapi informasi Anda.
+3. Setelah mendaftar, Anda harus melakukan verifikasi terlebih dahulu.
+4. Jika proses verifikasi berhasil maka Anda dapat mengakses fitur utama aplikasi.
+5. Jika Anda adalah investor, Anda dapat menawarkan pinjaman kepada UMKM yang membutuhkan.
+6. Jika Anda adalah UMKM, Anda dapat mengajukan pinjaman kepada investor.
