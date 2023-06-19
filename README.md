@@ -15,16 +15,17 @@ Aplikasi Lending UMKM adalah aplikasi yang memungkinkan Usaha Mikro, Kecil, dan 
 
 Beberapa fitur utama yang terdapat dalam aplikasi ini antara lain:
 
-  - Pendaftaran UMKM: UMKM dapat mendaftar ke aplikasi dan menyediakan informasi tentang bisnis mereka.
-  - Penawaran Pinjaman: Investor dapat melihat daftar UMKM yang membutuhkan dana dan menawarkan pinjaman.
-  - Verifikasi dan Penilaian: Aplikasi akan melakukan verifikasi dan penilaian terhadap UMKM yang mengajukan pinjaman untuk memastikan kelayakan pinjaman.
-  - Pelacakan Pinjaman: UMKM dan investor dapat melacak status pinjaman yang diajukan dan pinjaman yang diberikan.
-  - Pembayaran: Aplikasi akan menyediakan mekanisme pembayaran bagi UMKM untuk melunasi pinjaman kepada investor.
+  - Pendaftaran UMKM    : UMKM dapat mendaftar ke aplikasi dan menyediakan informasi tentang bisnis mereka.
+  - Pendaftaran Investor: Investor dapat mendaftar ke aplikasi dan menyediakan identitas mereka.
+  - Penawaran Pinjaman  : Investor dapat melihat daftar UMKM yang membutuhkan dana dan menawarkan pinjaman.
+  - Verifikasi          : Terdapat mekanisme verifikasi identitas terhadap UMKM dan investor yang menggunakan aplikasi ini.
+  - Pelacakan Pinjaman  : UMKM dan investor dapat melacak status pinjaman yang diajukan dan pinjaman yang diberikan.
+  - Pembayaran          : Aplikasi akan menyediakan mekanisme pembayaran bagi UMKM untuk melunasi pinjaman kepada investor.
 
 ## Prasyarat
 Sebelum Anda mulai menginstal dan menggunakan aplikasi ini, pastikan Anda memiliki prasyarat berikut:
 
-- Flutter verison: 3.7.5
+- Flutter verison : 3.7.5
 - Dart SDK version: 2.19.2
 
 ## Instalasi
