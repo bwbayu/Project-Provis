@@ -70,7 +70,7 @@ Berikut adalah beberapa langkah untuk menggunakan aplikasi ini:
 
 ## Youtube
 
-https://youtu.be/0aMHqGnxt9M
+[![provis_video](https://github.com/dauspairet/Provis/assets/100768773/d914c45c-70b0-443a-8072-69a7f0f1b6f2)](https://youtu.be/0aMHqGnxt9M)
 
 ## Dokumentasi Penggunaan
 ### 1. Register
