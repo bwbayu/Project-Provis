@@ -149,7 +149,7 @@ class formData extends StatelessWidget {
                         color: Color(0xFFF7F8F9),
                       ),
                       title: Text(
-                        'NPWP (opsional)',
+                        'NPWP',
                         style: TextStyle(
                           fontFamily: 'Outfit',
                           color: Color(0xFFF7F8F9),
@@ -157,7 +157,7 @@ class formData extends StatelessWidget {
                         ),
                       ),
                       subtitle: Text(
-                        'Gunakan e-ktp ataupun Surat Keterangan Pengganti (SKP) KTP untuk mendaftar',
+                        'Gunakan NPWP untuk mendaftar',
                         style: TextStyle(
                           fontFamily: 'Outfit',
                           color: Color(0xFFF2F5F8),

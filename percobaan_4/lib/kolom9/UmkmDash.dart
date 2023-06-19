@@ -346,7 +346,10 @@ class UmkmDash extends StatelessWidget {
                                                   Navigator.pushNamed(
                                                     context,
                                                     '/rincianPinjaman',
-                                                    arguments: index,
+                                                    arguments: {
+                                                      'pinjamanList': pinjaman.pinjamanPendingList!,
+                                                      'index': index,
+                                                    },
                                                   );
                                                 },
                                                 child: Padding(

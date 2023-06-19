@@ -362,6 +362,10 @@ class TarikDanaPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       child: ElevatedButton(
                         onPressed: () async {
+                          // Disable the button while the transaction is being processed
+                          if (riwayat.isLoading || riwayat.isLoading1 || wallet.isLoading) {
+                            return;
+                          }
                           // assign data
                           riwayat.keterangan = "Tarik Saldo";
                           riwayat.statusTransaksi = "Keluar";
@@ -371,7 +375,6 @@ class TarikDanaPage extends StatelessWidget {
                             if (riwayat.saldoTransaksi != 0) {
                               final statusCode = await riwayat
                                   .addRiwayatWallet(wallet.wallet_id);
-                              print(statusCode);
                               if (statusCode == 200) {
                                 // fetch data riwayat wallet
                                 await riwayat
@@ -406,6 +409,9 @@ class TarikDanaPage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           primary: Colors
                               .orangeAccent, // Same background color as other buttons
+                          backgroundColor: riwayat.isLoading || riwayat.isLoading1 || wallet.isLoading
+                              ? Colors.grey // Disabled button color when loading
+                              : Colors.orangeAccent, // Set the desired button color here
                         ),
                         child: SizedBox(
                           width: double.infinity,

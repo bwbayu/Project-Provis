@@ -50,6 +50,7 @@ import 'package:percobaan_4/kolom14/CallCenterPage.dart';
 import 'package:percobaan_4/kolom14/FAQPage.dart';
 import 'package:percobaan_4/kolom14/HelpCenterPage.dart';
 import 'package:percobaan_4/kolom14/PoinHelpPage.dart';
+import 'package:percobaan_4/kolom14/SettingPage.dart';
 
 // =====================================
 final Map<String, WidgetBuilder> routes = {
@@ -111,5 +112,6 @@ final Map<String, WidgetBuilder> routes = {
   '/CallCenterPage': (context) => CallCenterPage(), //aman
   '/FAQPage': (context) => FAQPage(), //aman
   '/HelpCenterPage': (context) => HelpCenterPage(), //aman
-  '/PoinHelpPage': (context) => PoinHelpPage(title: ''), //aman
+  '/SettingPage': (context) => SettingPage(), //aman
+  '/PoinHelpPage': (context) => PoinHelpPage(title: '', text: ''), //aman
 };

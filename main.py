@@ -416,7 +416,12 @@ def get_pinjaman_by_user_id(user_id: int, session=Depends(get_session)):
     if pinjaman is None:
         return {"message": "Pinjaman not found"}
     # dashboard umkm
-    pinjamanPending = session.query(models.PinjamanModel).filter_by(umkm_id=umkm_id).filter_by(status_pinjaman="Pending").all()
+    pinjamanPending = session.query(models.PinjamanModel).filter(
+    or_(
+        models.PinjamanModel.status_pinjaman == "Pending",
+        models.PinjamanModel.status_pinjaman == "Open"
+    )
+    ).filter_by(umkm_id=umkm_id).all()
     if pinjamanPending is None:
         return {"message": "Pinjaman not found"}
     # list pinjaman selesai / lunas

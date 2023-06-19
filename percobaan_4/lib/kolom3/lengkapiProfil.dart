@@ -22,9 +22,9 @@ class formVerifikasi extends StatelessWidget {
               builder: (context, verif, umkm, child) =>
               IconButton(
                 onPressed: () async{
-                  // reset form
-                  verif.reset();
-                  umkm.reset();
+                  // // reset form
+                  // verif.reset();
+                  // umkm.reset();
                   Navigator.of(context).pop();
                 },
                 icon: SvgPicture.asset(
@@ -255,6 +255,8 @@ class formVerifikasi extends StatelessWidget {
                             } else {
                               // reset variable in umkm
                               umkm.reset();
+                              // fetch data umkm
+                              await umkm.fetchDataUmkm(login.user_id);
                               Navigator.pushNamed(context, '/dashboardUMKM');
                             }
                           } else {

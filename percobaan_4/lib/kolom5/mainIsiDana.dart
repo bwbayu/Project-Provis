@@ -3,8 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percobaan_4/model.dart';
 import 'package:provider/provider.dart';
 
-class IsiDanaPage extends StatelessWidget {
+// class IsiDanaPage extends StatefulWidget {
+//   @override
+//   _IsiDanaPageState createState() => _IsiDanaPageState();
+// }
+
+class IsiDanaPage extends StatelessWidget{
   final TextEditingController _textEditingController = TextEditingController();
+  // bool isButtonDisabled = false;
+
   @override
   Widget build(BuildContext context) {
     String bankName = ModalRoute.of(context)?.settings.arguments as String;
@@ -338,6 +345,10 @@ class IsiDanaPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       child: ElevatedButton(
                         onPressed: () async{
+                          // Disable the button while the transaction is being processed
+                          if (riwayat.isLoading || riwayat.isLoading1 || wallet.isLoading) {
+                            return;
+                          }
                           // assign data
                           riwayat.keterangan = "Isi Saldo";
                           riwayat.statusTransaksi = "Masuk";
@@ -345,7 +356,6 @@ class IsiDanaPage extends StatelessWidget {
                           // cek nominal
                           if (riwayat.saldoTransaksi != 0) {
                             final statusCode = await riwayat.addRiwayatWallet(wallet.wallet_id);
-                            print(statusCode);
                             if(statusCode == 200) {
                               // fetch data riwayat wallet
                               await riwayat.fetchDataRiwayatWallet(wallet.wallet_id);
@@ -371,10 +381,13 @@ class IsiDanaPage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           primary: Colors
                               .orangeAccent, // Same background color as other buttons
+                          backgroundColor: riwayat.isLoading || riwayat.isLoading1 || wallet.isLoading
+                              ? Colors.grey // Disabled button color when loading
+                              : Colors.orangeAccent, // Set the desired button color here
                         ),
                         child: SizedBox(
                           width: double.infinity,
-                          height: 70,
+                          height: 50,
                           child: Center(
                             child: Text(
                               'Konfirmasi',
@@ -400,3 +413,4 @@ class IsiDanaPage extends StatelessWidget {
     );
   }
 }
+
