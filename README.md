@@ -56,8 +56,8 @@ Setelah menjalankan perintah tersebut, aplikasi akan terbuka pada perangkat atau
 ## Penggunaan
 Berikut adalah beberapa langkah untuk menggunakan aplikasi ini:
 1. Buka aplikasi Lending UMKM di perangkat atau emulator.
-2. Daftar sebagai UMKM atau Investor dan lengkapi informasi Anda.<br>
-3. Setelah mendaftar, Anda harus melakukan verifikasi terlebih dahulu.<br>
-4. Jika proses verifikasi berhasil maka Anda dapat mengakses fitur utama aplikasi.<br>
-5. Jika Anda adalah investor, Anda dapat menawarkan pinjaman kepada UMKM yang membutuhkan.<br>
+2. Daftar sebagai UMKM atau Investor dan lengkapi informasi Anda.
+3. Setelah mendaftar, Anda harus melakukan verifikasi terlebih dahulu.
+4. Jika proses verifikasi berhasil maka Anda dapat mengakses fitur utama aplikasi.
+5. Jika Anda adalah investor, Anda dapat menawarkan pinjaman kepada UMKM yang membutuhkan.
 6. Jika Anda adalah UMKM, Anda dapat mengajukan pinjaman kepada investor.
